@@ -1,0 +1,1 @@
+<value>com/${sysName}/entity/${tableName}.hbm.xml</value>

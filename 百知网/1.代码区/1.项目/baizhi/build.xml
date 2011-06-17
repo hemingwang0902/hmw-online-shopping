@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="BaiZhi-deployments" default="dest">
+
+	<description>百知网</description>
+
+	<property file="default.properties" />
+
+	<target name="prepare">
+		<mkdir dir="${app.bin}" />
+		<mkdir dir="${build.target}" />
+		<mkdir dir="${target.webapp}" />
+		<mkdir dir="${target.webinf}" />
+		<mkdir dir="${target.lib}" />
+		<mkdir dir="${target.classes}" />
+	</target>
+
+	<path id="compile.classpath">
+		<fileset dir="${app.library}">
+			<include name="**/*.jar" />
+			<include name="**/*.zip" />
+		</fileset>
+	</path>
+
+	<target name="compiles">
+		<javac srcdir="${app.src}" destdir="${app.bin}" debug="no">
+			<classpath refid="compile.classpath" />
+		</javac>
+	</target>
+
+	<target name="copy">
+		<copy todir="${target.webapp}">
+			<fileset dir="${app.webapp}" />
+		</copy>
+
+		<copy todir="${target.webinf}">
+			<fileset dir="${app.configuration}">
+				<include name="**/web.xml" />
+				<include name="**/applicationContext.xml" />
+			</fileset>
+		</copy>
+
+		<copy todir="${target.lib}">
+			<fileset dir="${app.library}/commons" />
+			<fileset dir="${app.library}/dom4j" />
+			<fileset dir="${app.library}/driver" />
+			<fileset dir="${app.library}/dwr" />
+			<fileset dir="${app.library}/hibernate" />
+			<fileset dir="${app.library}/jdom" />
+			<fileset dir="${app.library}/jericho-html" />
+			<fileset dir="${app.library}/log4j" />
+			<fileset dir="${app.library}/spring" />
+			<fileset dir="${app.library}/struts2" />
+			<fileset dir="${app.library}/poi" />
+			<fileset dir="${app.library}/component" />
+		</copy>
+
+		<copy todir="${target.classes}">
+			<fileset dir="${app.bin}" />
+			<fileset dir="${app.configuration}">
+				<exclude name="**/web.xml" />
+				<exclude name="**/applicationContext.xml" />
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="recompiles">
+		<antcall target="compiles" />
+		<antcall target="copy" />
+	</target>
+
+	<target name="dest" depends="prepare">
+		<antcall target="recompiles" />
+	</target>
+</project>

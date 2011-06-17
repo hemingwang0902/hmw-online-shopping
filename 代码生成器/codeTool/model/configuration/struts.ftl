@@ -1,0 +1,1 @@
+<include file="struts2/${sysName}/s-${packageName}.xml" />

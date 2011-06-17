@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+	<!-- Generated 2007-8-14 14:51:51 by Hibernate Tools 3.2.0.b9 -->
+<hibernate-mapping>
+	<class entity-name="PUB_REGUSER" table="PUB_REGUSER" lazy="false">
+		<comment></comment>
+		<id name="REG_ID" column="REG_ID" type="long">
+			<!-- <generator class="identity" /> -->
+			<generator class="sequence">
+				<param name="sequence">SEQ_PUB_REGUSER</param>
+			</generator>
+		</id> 
+		<property name="REG_CNAME" type="string">
+			<column name="REG_CNAME" length="30"  > 
+				<comment></comment>
+			</column>
+		</property>
+		<property name="REG_USER" type="string">
+			<column name="REG_USER" length="30"> 
+				<comment></comment>
+			</column>
+		</property>
+		<property name="PASSWORD" type="string">
+			<column name="PASSWORD" length="200"> 
+				<comment></comment>
+			</column>
+		</property>
+		<property name="REG_TIME" type="long">
+			<column name="REG_TIME"  >    
+				<comment></comment>
+			</column>
+		</property>
+		<property name="FREEZED" type="long">
+			<column name="FREEZED"  > 
+				<comment></comment>
+			</column>
+		</property>
+		<property name="LOGINED" type="long">
+			<column name="LOGINED"  > 
+				<comment></comment>
+			</column>
+		</property>
+		<property name="BLONG_UNIT" type="long">
+			<column name="BLONG_UNIT"  > 
+				<comment></comment>
+			</column>
+		</property>
+		<property name="EMPLOYEE_ID" type="long">
+			<column name="EMPLOYEE_ID"  > 
+				<comment></comment>
+			</column>
+		</property>
+		<property name="CREATE_BY" type="long">
+			<column name="CREATE_BY" length="200">
+				<comment></comment>
+			</column>
+		</property>
+		<property name="CREATE_UNIT" type="long">
+			<column name="CREATE_UNIT" length="200">
+				<comment></comment>
+			</column>
+		</property>
+		<property name="CREATE_TIME" type="long">
+			<column name="CREATE_TIME" length="14" >
+				<comment></comment>
+			</column>
+		</property>
+		<property name="MODIFY_BY" type="long">
+			<column name="MODIFY_BY" length="200">
+				<comment></comment>
+			</column>
+		</property>
+		<property name="MODIFY_UNIT" type="long">
+			<column name="MODIFY_UNIT" length="200">
+				<comment></comment>
+			</column>
+		</property>
+		<property name="MODIFY_TIME" type="long">
+			<column name="MODIFY_TIME" length="14" >
+				<comment></comment>
+			</column>
+		</property>
+	</class>
+</hibernate-mapping>
