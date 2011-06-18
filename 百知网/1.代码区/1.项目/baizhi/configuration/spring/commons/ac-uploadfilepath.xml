@@ -5,8 +5,8 @@
     http://www.directwebremoting.org/schema/spring-dwr-2.0.xsd">
 
 	<!--上传文件资源路径-->		
-	<bean id="uploadFilePath" class="com.geeboo.commons.configure.UploadFilePath" init-method="init">
+	<bean id="uploadFilePath" class="com.baizhi.commons.configure.UploadFilePath" init-method="init">
 		<!--上传照片、Logo-->
-		<property name="path_logo" value="/upload/logo" />
+		<property name="logo_path" value="/upload/logo" />
 	</bean>
 </beans>
