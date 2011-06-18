@@ -35,6 +35,27 @@ public abstract class ActionSupport extends com.opensymphony.xwork2.ActionSuppor
 	// 定义设置json数据格式 用于页面解析
 	public String result;
 	public String message;
+	
+	//分页
+	private int nowPage;     // 当前页
+	private int onePageCount;// 每页显示多少条
+	
+	public int getNowPage() {
+		return nowPage;
+	}
+
+	public void setNowPage(int nowPage) {
+		this.nowPage = nowPage;
+	}
+
+	public int getOnePageCount() {
+		return onePageCount;
+	}
+
+	public void setOnePageCount(int onePageCount) {
+		this.onePageCount = onePageCount;
+	}
+	
 
 	public String getMessage() {
 		return message;
@@ -182,5 +203,41 @@ public abstract class ActionSupport extends com.opensymphony.xwork2.ActionSuppor
 	public String getContext_path() {
 		return ServletActionContext.getRequest().getContextPath();
 	}
-
+	
+	/**
+	 * 设置map值
+	 * @param params 设置对象
+	 * @param key　　 键
+	 * @param value  值
+	 */
+	public  void setMap(Map<String, Object> params,String key,Object value) {
+		//判断键是否为空
+		if(key!=null&&!key.trim().equals("")){
+			//判断值不为空则放在map中，否则不放入map中
+			if(value!=null&&!String.valueOf(value).trim().equals("")){
+				params.put(key, value);
+			}
+		}
+	}
+	
+	/**
+	 * 设置map值
+	 * @param params 设置对象
+	 * @param key　　 键
+	 * @param value  值
+	 * @param ischaracter 字符是否需要转换,true转换,false不转换
+	 */
+	public  void setMap(Map<String, Object> params,String key,Object value,boolean ischaracter) throws Exception{
+		//判断键是否为空
+		if(key!=null&&!key.trim().equals("")){
+			//判断值不为空则放在map中，否则不放入map中
+			if(value!=null&&!String.valueOf(value).trim().equals("")){
+				if(ischaracter){
+					params.put(key,URLDecoder.decode(String.valueOf(value),"UTF-8"));
+				}else{
+					params.put(key, value);
+				}
+			}
+		}
+	}
 }

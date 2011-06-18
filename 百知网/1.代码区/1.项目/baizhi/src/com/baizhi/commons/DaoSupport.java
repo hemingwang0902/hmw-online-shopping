@@ -60,16 +60,11 @@ public abstract class DaoSupport extends HibernateDaoSupport {
 	 * @param dom4jSession 链接对象
 	 * @return 返回主键ID
 	 */
-	public String save(Element element,Session dom4jSession){
+	public String save(Element element,Session dom4jSession) throws Exception{
 		String keyid = "";
-		try {
-			Serializable serializableid = dom4jSession.save(element);
-			if (serializableid != null && !serializableid.equals("")) {
-				return serializableid.toString();
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
+		Serializable serializableid = dom4jSession.save(element);
+		if (serializableid != null && !serializableid.equals("")) {
+			return serializableid.toString();
 		}
 		return keyid;
 	}
@@ -108,16 +103,9 @@ public abstract class DaoSupport extends HibernateDaoSupport {
 	 * @param dom4jSession 链接对象
 	 * @return 返回主键ID
 	 */
-	public String saveOrUpdate(Element element,String idName,Session dom4jSession) {
-		String idValue = "";
-		try {
-			dom4jSession.saveOrUpdate(element);
-			idValue = element.elementText(idName);
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-		}
-		return idValue;
+	public String saveOrUpdate(Element element,String idName,Session dom4jSession) throws Exception {
+		dom4jSession.saveOrUpdate(element);
+		return element.elementText(idName);
 	}
 	
 	
@@ -155,16 +143,9 @@ public abstract class DaoSupport extends HibernateDaoSupport {
 	 * @param idName   主键字段名称
 	 * @return 返回主键ID
 	 */
-	public String update(Element element,String idName,Session dom4jSession) {
-		String idValue = "";
-		try {
-			dom4jSession.update(element);
-			idValue = element.elementText(idName);
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-		}
-		return idValue;
+	public String update(Element element,String idName,Session dom4jSession) throws Exception {
+		dom4jSession.update(element);
+		return element.elementText(idName);
 	}
 	
 	/**
@@ -193,6 +174,82 @@ public abstract class DaoSupport extends HibernateDaoSupport {
 	}
 	
 	/**
+	 * 公共批量删除表信息
+	 * 
+	 * @param tableName 表名
+	 * @param idName    表主键字段名
+	 * @param idValue   ID值集合以","分隔
+	 * @return
+	 */
+	public boolean delete(String tableName, String idName, String idValue) {
+		boolean flag = false;
+		Session session = getSession();
+		try {
+			//组织删除语句
+			StringBuffer sql=new StringBuffer("delete from " + tableName + " where " + idName + " ");
+			String[] ids=idValue.split(",");
+			int length=ids.length;
+			if(length==1){
+				sql.append("=?");
+			}else{
+				StringBuffer condition=new StringBuffer("");
+				condition.append("?");
+				for (int i = 1; i <length; i++) {
+					condition.append(",?");
+				}
+				sql.append("in("+condition+")");
+			}
+			//执行语句
+			session.beginTransaction();
+			Query query = session.createQuery(sql.toString());
+			for (int i = 0; i < ids.length; i++) {
+				query.setLong(i, Long.parseLong(ids[i]));
+			}
+			query.executeUpdate();
+			session.getTransaction().commit();
+			flag = true;
+		} catch (Exception e) {
+			session.beginTransaction().rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return flag;
+	}
+	
+	/**
+	 * 公共批量删除表信息
+	 * 
+	 * @param tableName 表名
+	 * @param idName    表主键字段名
+	 * @param idValue   ID值集合以","分隔
+	 * @return
+	 */
+	public boolean delete(String tableName, String idName, String idValue,Session session) throws Exception  {
+		//组织删除语句
+		StringBuffer sql=new StringBuffer("delete from " + tableName + " where " + idName + " ");
+		String[] ids=idValue.split(",");
+		int length=ids.length;
+		if(length==1){
+			sql.append("=?");
+		}else{
+			StringBuffer condition=new StringBuffer("");
+			condition.append("?");
+			for (int i = 1; i <length; i++) {
+				condition.append(",?");
+			}
+			sql.append("in("+condition+")");
+		}
+		//执行语句
+		Query query = session.createQuery(sql.toString());
+		for (int i = 0; i < ids.length; i++) {
+			query.setLong(i, Long.parseLong(ids[i]));
+		}
+		query.executeUpdate();
+		return true;
+	}
+	
+	/**
 	 * 公共执行方法
 	 * 
 	 * @param sql     SQL删除、修改、新增语句
@@ -215,8 +272,6 @@ public abstract class DaoSupport extends HibernateDaoSupport {
 		}
 		return count;
 	}
-	
-	
 	
 	/**
 	 * 公共执行查询方法，获取单条记录
@@ -314,6 +369,32 @@ public abstract class DaoSupport extends HibernateDaoSupport {
 		return returnMap;
 	}
 	
+	/**
+	 * 根据ID获取实体
+	 * @param tableName 表名
+	 * @param keyid 主键字段
+	 * @param id 主键id
+	 * @return 返回表实体,如果无查询记录则返回null
+	 */
+	@SuppressWarnings("unchecked")
+	public  Element getElementById(String tableName,String keyid,String id){
+		Element element=null;
+		Session session = super.getSession();
+		Session dom4jSession = session.getSession(EntityMode.DOM4J);
+		try {
+			List<Element> list = dom4jSession.createQuery("FROM "+tableName+" where "+keyid+"="+id).list();
+			if(list!=null&&list.size()>0){
+				element=list.get(0);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dom4jSession.close();
+			session.close();
+		}
+		return element;
+	}
+	
 	
 	/**
 	 * 设置参数
@@ -322,21 +403,23 @@ public abstract class DaoSupport extends HibernateDaoSupport {
 	 * @return
 	 */
 	public Query setQueryParameters(Query query, Object[] params) {
-		for (int i = 0; i < params.length; i++) {
-			if (params[i] instanceof Integer) {
-				query.setInteger(i, (Integer) params[i]);
-			} else if (params[i] instanceof Long) {
-				query.setLong(i, (Long) params[i]);
-			} else if (params[i] instanceof Boolean) {
-				query.setBoolean(i, (Boolean) params[i]);
-			} else if (params[i] instanceof Double) {
-				query.setDouble(i, (Double) params[i]);
-			} else if (params[i] instanceof Float) {
-				query.setFloat(i, (Float) params[i]);
-			} else if (params[i] instanceof Date) {
-				query.setDate(i, (Date) params[i]);
-			} else {
-				query.setString(i, (String) params[i]);
+		if(params!=null){
+			for (int i = 0; i < params.length; i++) {
+				if (params[i] instanceof Integer) {
+					query.setInteger(i, (Integer) params[i]);
+				} else if (params[i] instanceof Long) {
+					query.setLong(i, (Long) params[i]);
+				} else if (params[i] instanceof Boolean) {
+					query.setBoolean(i, (Boolean) params[i]);
+				} else if (params[i] instanceof Double) {
+					query.setDouble(i, (Double) params[i]);
+				} else if (params[i] instanceof Float) {
+					query.setFloat(i, (Float) params[i]);
+				} else if (params[i] instanceof Date) {
+					query.setDate(i, (Date) params[i]);
+				} else {
+					query.setString(i, (String) params[i]);
+				}
 			}
 		}
 		return query;
