@@ -8,6 +8,8 @@ import java.io.Serializable;
 
 import org.apache.struts2.ServletActionContext;
 
+import com.baizhi.exception.BaizhiException;
+
 /**
  * 类名： FileUploadUtils<br>
  * 描述：文件上传帮助类<br>
@@ -21,22 +23,10 @@ public class FileUploadUtils implements Serializable {
 	
 	private static final long serialVersionUID = 4774240444217317171L;
 	
-	private String fileName="";
-	
-	private FileUploadUtils(){};
-
-	/**
-	 * 读取文件大小
-	 */
+	/** 读取文件大小 */
 	private int size = 1024;
-
-	public int getSize() {
-		return size;
-	}
-
-	public void setSize(int size) {
-		this.size = size;
-	}
+	
+	private String fileName="";
 	
 	/**
 	 * 上传文件
@@ -52,12 +42,12 @@ public class FileUploadUtils implements Serializable {
 		try {
 			// 获取上下文路径
 			String contextpath = ServletActionContext.getServletContext().getRealPath("/");
-			File dir = new File(contextpath + directory);
+			File dir = new File(contextpath, directory);
 			//判断目录是否存在，如果不存在则创建
 			if (!dir.exists()) {
 				dir.mkdirs();
 			}
-			fos = new FileOutputStream(contextpath + directory + "/" + filename);
+			fos = new FileOutputStream(new File(dir, filename));
 			fis = new FileInputStream(file);
 			byte[] buffer = new byte[size];
 			int len = 0;
@@ -65,26 +55,22 @@ public class FileUploadUtils implements Serializable {
 			while ((len = fis.read(buffer)) > 0) {
 				fos.write(buffer, 0, len);
 			}
-			//关闭文件流
-			if (fis != null) {
-				fis.close();
-			}
-			if (fos != null) {
-				fos.close();
-			}
+			
 			//手动将文件删除
-			file.deleteOnExit();
 			flag = true;
 			this.setFileName(directory + "/" + filename);
 		} catch (Exception e) {
-			e.printStackTrace();
-			file.deleteOnExit();
+			throw new BaizhiException(e);
 		} finally {
+			file.deleteOnExit();
+			
+			//关闭文件流
 			try {
 				if (fis != null) {
 					fis.close();
 				}
 				if (fos != null) {
+					fos.flush();
 					fos.close();
 				}
 			} catch (IOException e) {
@@ -116,8 +102,12 @@ public class FileUploadUtils implements Serializable {
 		this.fileName = fileName;
 	}
 
-	public static long getSerialVersionUID() {
-		return serialVersionUID;
+
+	public int getSize() {
+		return size;
 	}
 
+	public void setSize(int size) {
+		this.size = size;
+	}
 }

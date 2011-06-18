@@ -6,6 +6,8 @@ import java.io.PrintStream;
 import java.io.Serializable;
 import java.util.List;
 import javax.servlet.http.HttpServletResponse;
+
+import com.baizhi.exception.BaizhiException;
 import com.geeboo.component.excelsupport.write.WriteExcelINTF;
 import com.geeboo.component.excelsupport.write.WriteExcelSupport;
 
@@ -69,14 +71,14 @@ public class ExcelUtils implements Serializable {
 			response.setContentLength(bos.size());
 			bos.writeTo(out);
 		} catch (IOException e) {
-			e.printStackTrace();
+			throw new BaizhiException(e);
 		} finally {
 			try {
 				out.flush();
 				out.close();
 				out = null;
-			} catch (Exception e1) {
-				e1.printStackTrace();
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
 
 			try {
