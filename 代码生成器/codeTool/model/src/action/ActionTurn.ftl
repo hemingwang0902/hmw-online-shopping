@@ -1,6 +1,6 @@
 package com.${sysName}.${packageName}.action;
 
-import com.commons.ActionSupport;
+import com.${sysName}.commons.ActionSupport;
 /**
  * 
  * 类名：${className}Turn.java

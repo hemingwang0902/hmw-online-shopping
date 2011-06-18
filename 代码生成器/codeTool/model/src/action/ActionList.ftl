@@ -3,7 +3,7 @@ package com.${sysName}.${packageName}.action;
 import java.net.URLDecoder;
 import java.util.Map;
 import java.util.HashMap;
-import com.commons.ActionSupport;
+import com.${sysName}.commons.ActionSupport;
 import com.${sysName}.${packageName}.service.${className}Service;
 
 /**

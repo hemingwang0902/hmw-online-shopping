@@ -1,6 +1,6 @@
 package com.${sysName}.${packageName}.dao;
 
-import com.commons.DaoImplSupport;
+import com.${sysName}.commons.DaoImplSupport;
 /**
  * 
  * 类名：${className}ImplDao.java

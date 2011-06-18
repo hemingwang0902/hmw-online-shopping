@@ -3,7 +3,7 @@ package com.${sysName}.${packageName}.service;
 import java.util.List;
 import java.util.Map;
 import org.dom4j.Element;
-import com.commons.ServiceSupport;
+import com.${sysName}.commons.ServiceSupport;
 import com.${sysName}.${packageName}.dao.${className}Dao;
 
 /**

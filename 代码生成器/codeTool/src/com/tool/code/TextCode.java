@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
+import java.net.URISyntaxException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -17,16 +18,19 @@ import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import freemarker.template.Configuration;
 import freemarker.template.DefaultObjectWrapper;
 import freemarker.template.Template;
 
 public class TextCode {
+	private static final String TABLE_SCHEMA = "baizhi";
+	private static final String SYSTEM_NAME = "baizhi";
 	
-	public static void main(String[] args) {
+	public static void main(String[] args){
 		TextCode code = new TextCode();
 		//TODO 运行之前先修改此处
-		code.create("jianghong", "PUB_CARCOLOR", "车辆颜色","E:/work/taichina");
+		code.create("何明旺", "t_user", "用户信息","F:/workspace/google_myEclipseWorkspace2/百知网/1.代码区/1.项目/baizhi");
 	}
 	
 	/**
@@ -38,24 +42,24 @@ public class TextCode {
 	 */
 	public void create(String auth,String tablename,String tablecomtent,String directory){
 		//获取当前模板路径
-		String thispath=this.getClass().getResource("").toString();
-		String modelpath=thispath.substring(6,thispath.indexOf("bin"))+"model";
-		
-		if(tablename==null||tablename.trim().equals("")||tablename.trim().indexOf("_")<=-1){
-			System.out.println("表名输入格式错误");
-			return ;
+		String modelpath= null;
+		try {
+			modelpath = new File(ClassLoader.getSystemResource("").toURI()).getAbsolutePath();
+		} catch (URISyntaxException e) {
+			//发生异常则直接退出
+			e.printStackTrace();
+			System.exit(1);
 		}
-		int len=tablename.trim().indexOf("_");
+		
 		//获取文件命名
-		String sysname=tablename.trim().substring(0,len).toLowerCase();
-		String filename=tablename.trim().substring(len+1, tablename.trim().length()).toLowerCase();
+		String filename= (tablename.toUpperCase().startsWith("T_") ? tablename.substring(2) : tablename).toLowerCase();
 		
 		Map<String,Object> root = new HashMap<String,Object>();
 		root.put("tableName", tablename.toUpperCase());
 		root.put("className", this.toFistUpp(filename));
 		root.put("packageName", filename);
 		root.put("packageNameUpperCase", filename.toUpperCase());
-		root.put("sysName", sysname);
+		root.put("sysName", SYSTEM_NAME);
 		root.put("lis", this.getColumn(tablename));
 		root.put("tabCon", tablecomtent);
 		root.put("auth", auth);
@@ -65,14 +69,14 @@ public class TextCode {
 		String curtime = format.format(calendar.getTime());
 		root.put("createDate", curtime);
 		
-		String jsppath=directory+"/webapp/"+sysname+"/"+filename+"/";
-		String actionpath=directory+"/src/com/geeboo/"+sysname+"/"+filename+"/action/";
-		String daopath=directory+"/src/com/geeboo/"+sysname+"/"+filename+"/dao/";
-		String servicepath=directory+"/src/com/geeboo/"+sysname+"/"+filename+"/service/";
-		String entitypath=directory+"/src/com/geeboo/"+sysname+"/entity/";
-		String strutspath=directory+"/configuration/struts2/"+sysname+"/";
+		String jsppath=directory+"/webapp/"+filename+"/";
+		String actionpath=directory+"/src/com/"+SYSTEM_NAME+"/"+filename+"/action/";
+		String daopath=directory+"/src/com/"+SYSTEM_NAME+"/"+filename+"/dao/";
+		String servicepath=directory+"/src/com/"+SYSTEM_NAME+"/"+filename+"/service/";
+		String entitypath=directory+"/src/com/"+SYSTEM_NAME+"/entity/";
+		String strutspath=directory+"/configuration/struts2/";
 		String strutsxmlpath=directory+"/configuration/";
-		String springpath=directory+"/configuration/spring/"+sysname+"/";
+		String springpath=directory+"/configuration/spring/";
 		String databasepath=directory+"/configuration/spring/";
 		
 		this.mkdirs(daopath);
@@ -122,36 +126,65 @@ public class TextCode {
 	 */
 	public List<Column> getColumn(String tablename){
 		List<Column> list = new ArrayList<Column>();
+		/*
+		// 针对于 Oracle 的
 		StringBuffer sql=new StringBuffer("SELECT T.TABLE_NAME,C.COLUMN_NAME,T.DATA_LENGTH,C.COMMENTS,T.DATA_TYPE  ")
 								  .append("FROM USER_TAB_COLUMNS T,USER_COL_COMMENTS C ")
 								  .append("WHERE T.TABLE_NAME=C.table_name AND T.COLUMN_NAME=C.column_name AND T.TABLE_NAME=?");
+		*/
+		// 针对于 mySql 的
+		StringBuffer sql=new StringBuffer("select c.TABLE_NAME, c.COLUMN_NAME, c.CHARACTER_MAXIMUM_LENGTH, c.DATA_TYPE, c.COLUMN_COMMENT")
+		.append(" from information_schema.columns c")
+		.append(" where c.table_schema='" + TABLE_SCHEMA + "' and c.table_name=?")
+		.append(" order by c.ordinal_position");
+		
 		Connection conn=JdbcTool.getConn();
 		try {
 			PreparedStatement ps = conn.prepareStatement(sql.toString());
 			ps.setString(1, tablename);
 			ResultSet rs = ps.executeQuery();
 			Column cl = null;
-			while(rs.next()){
+			String tableName, columnName;
+			while (rs.next()) {
+				tableName = defaultString(rs.getString("TABLE_NAME")).trim();
+				columnName = defaultString(rs.getString("COLUMN_NAME")).trim();
+
 				cl = new Column();
-				cl.setOldCl(rs.getString("COLUMN_NAME")==null?"":rs.getString("COLUMN_NAME").trim());
-				cl.setUppcase(rs.getString("COLUMN_NAME")==null?"":rs.getString("COLUMN_NAME").trim().toLowerCase());
-				cl.setLowcase(rs.getString("COLUMN_NAME")==null?"":rs.getString("COLUMN_NAME").trim().toLowerCase());
-				cl.setFistLow(rs.getString("COLUMN_NAME")==null?"":rs.getString("COLUMN_NAME"));
-				cl.setFistUpp(this.toFistUpp(null==rs.getString("COLUMN_NAME")?"":rs.getString("COLUMN_NAME")));
-				cl.setLen(rs.getString("DATA_LENGTH")==null?"":rs.getString("DATA_LENGTH"));
-				cl.setContent(rs.getString("COMMENTS")==null?"":rs.getString("COMMENTS"));
-				if(rs.getString("DATA_TYPE")!=null){
-					String datatype = rs.getString("DATA_TYPE");
-					if(datatype.equals("NUMBER")){
-						cl.setDatatype("long");
-					}else{
-						cl.setDatatype("string");
-					}
-				}else{
-					cl.setDatatype("string");
-				}
-				list.add(cl);
+
+				cl.setOldCl(columnName);
+				cl.setUppcase(columnName.toLowerCase());
+				cl.setLowcase(columnName.toLowerCase());
+				cl.setFistLow(columnName);
+				cl.setFistUpp(this.toFistUpp(columnName));
+
+				cl.setOldTab(tableName);
+				cl.setUppTab(tableName.toLowerCase());
+				cl.setLowTab(tableName.toLowerCase());
+				cl.setFistLowTab(tableName);
+				cl.setFistUppTab(this.toFistUpp(tableName));
+
+				cl.setLen(defaultString(rs.getString("CHARACTER_MAXIMUM_LENGTH")));
+
+				cl.setContent(defaultString(rs.getString("COLUMN_COMMENT")));
+
+				String dataType = rs.getString("DATA_TYPE").toUpperCase();
+				if ("NUMBER".equals(dataType) || "DECIMAL".equals(dataType)) {
+					cl.setDatatype("long");
+				} else if ("BIT".equals(dataType)) {
+					cl.setDatatype("boolean");
+				} else if (dataType.indexOf("INT") >= 0) {
+					cl.setDatatype("int");
+				} else if (dataType.indexOf("FLOAT") >= 0) {
+					cl.setDatatype("float");
+				} else if (dataType.indexOf("DOUBLE") >= 0) {
+					cl.setDatatype("double");
+				} else if (dataType.indexOf("DATE") >= 0
+						|| dataType.indexOf("TIME") >= 0) {
+					cl.setDatatype("java.util.Date");
+				} else
+					cl.setDatatype("String");
 			}
+			list.add(cl);
 		} catch (SQLException e) {
 			e.printStackTrace();
 			
@@ -211,6 +244,10 @@ public class TextCode {
 				e.printStackTrace();
 			}
 		}
+	}
+
+	private String defaultString(String str){
+		return str == null ? "" : str;
 	}
 	
 }

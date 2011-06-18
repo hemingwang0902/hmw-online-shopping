@@ -7,8 +7,8 @@ import org.dom4j.Element;
 import org.hibernate.EntityMode;
 import org.hibernate.Query;
 import org.hibernate.Session;
-import com.commons.DaoSupport;
-import com.commons.PagerSupport;
+import com.${sysName}.commons.DaoSupport;
+import com.${sysName}.commons.PagerSupport;
 /**
  * 
  * 类名：${className}Dao.java

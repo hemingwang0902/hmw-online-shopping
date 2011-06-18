@@ -3,8 +3,8 @@ package com.${sysName}.${packageName}.action;
 import org.dom4j.Element;
 import org.dom4j.tree.DefaultElement;
 import org.apache.commons.lang.StringUtils;
-import com.commons.ActionSupport;
-import com.commons.support.Elements;
+import com.${sysName}.commons.ActionSupport;
+import com.${sysName}.commons.support.Elements;
 import com.${sysName}.${packageName}.service.${className}Service;
 /**
  * 

@@ -1,7 +1,7 @@
 package com.${sysName}.${packageName}.action;
 
 import java.util.Map;
-import com.commons.ActionSupport;
+import com.${sysName}.commons.ActionSupport;
 import com.${sysName}.${packageName}.service.${className}Service;
 
 
