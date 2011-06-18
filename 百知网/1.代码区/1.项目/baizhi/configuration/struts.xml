@@ -5,5 +5,4 @@
 <struts>
 	<include file="struts-default.xml" />
 	<include file="struts2/s/s-user.xml" />
-	
 </struts>
