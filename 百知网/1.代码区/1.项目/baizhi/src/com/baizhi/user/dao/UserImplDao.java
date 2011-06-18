@@ -1,17 +1,18 @@
 package com.baizhi.user.dao;
 
-import com.baizhi.commons.DaoSupport;
-
+import com.baizhi.commons.DaoImplSupport;
 /**
  * 
- * 类名：UserImplDao<br>
- * 描述： 用户外部引用类<br>
- * 创建者：江红  <br>
- * 创建日期： 2011-3-11<br>
- * 版本：V0.9 <br>
- * 修改者：        <br>
- * 修改日期：   <br>
+ * 类名：    UserImplDao.java
+ * 描述：    用户信息表外部数据操作类
+ * 创建者：  江红
+ * 创建日期：2011-06-18 22:32:20
+ * 版本：    V0.9 
+ * 修改者：  
+ * 修改日期： 
  */
-public class UserImplDao extends DaoSupport{
+public class UserImplDao extends DaoImplSupport{
+
+	private static final long serialVersionUID = 4088526890814855158L;
 
 }

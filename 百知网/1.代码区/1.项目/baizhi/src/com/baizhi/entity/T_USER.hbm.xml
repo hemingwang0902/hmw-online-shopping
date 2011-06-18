@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+	
+<hibernate-mapping>
+	<class entity-name="T_USER" table="T_USER" lazy="false">
+		<comment>用户信息表</comment>
+		<id name="USER_ID" column="USER_ID" type="int" >
+			<generator class="identity" />
+		</id>
+		<property name="USER_TYPE" type="string">
+			<column name="USER_TYPE" length="10" >
+				<comment>用户类型(字典：1用户、2品牌)</comment>
+			</column>
+		</property>
+		<property name="EMAIL" type="string">
+			<column name="EMAIL" length="50" >
+				<comment>Email</comment>
+			</column>
+		</property>
+		<property name="PASSWORD" type="string">
+			<column name="PASSWORD" length="50" >
+				<comment>密码</comment>
+			</column>
+		</property>
+		<property name="REG_TIME" type="java.util.Date">
+			<column name="REG_TIME"  >
+				<comment>注册时间</comment>
+			</column>
+		</property>
+		<property name="LAST_LOGINTIME" type="java.util.Date">
+			<column name="LAST_LOGINTIME"  >
+				<comment>最后登录时间</comment>
+			</column>
+		</property>
+		<property name="IP" type="string">
+			<column name="IP" length="30" >
+				<comment>最后登录IP</comment>
+			</column>
+		</property>
+		<property name="MAC" type="string">
+			<column name="MAC" length="50" >
+				<comment>最后登录MAC</comment>
+			</column>
+		</property>
+		<property name="LAST_FREEZETIME" type="java.util.Date">
+			<column name="LAST_FREEZETIME"  >
+				<comment>最后冻结时间</comment>
+			</column>
+		</property>
+	</class>
+</hibernate-mapping>

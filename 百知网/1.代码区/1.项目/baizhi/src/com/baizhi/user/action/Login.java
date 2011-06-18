@@ -58,7 +58,7 @@ public class Login extends ActionSupport{
 		//将密码设置成MD5加密
 		userpwd=Encrypt.edcryptMD5(userpwd);
 		//验证用户名密码是否正确
-		Map<String, Object> data = userService.login(username, userpwd,"","");
+		Map<String, Object> data = null;//userService.login(username, userpwd,"","");
 		//判断登录是否正确
 		if(data==null||data.get("USER_ID")==null||String.valueOf(data.get("USER_ID")).trim().equals("")){
 			this.setMessage("用户名密码错误");
