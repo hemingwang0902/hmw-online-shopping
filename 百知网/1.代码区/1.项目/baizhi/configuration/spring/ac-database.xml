@@ -6,11 +6,11 @@
 	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
 		<property name="hibernateProperties">
 			<props>
-				<prop key="hibernate.dialect">com.mysql.jdbc.Driver</prop>
-				<prop key="hibernate.connection.driver_class">org.gjt.mm.mysql.Driver</prop>
-				<prop key="hibernate.connection.url">jdbc:mysql://127.0.0.1:3306/test</prop>
-				<prop key="hibernate.connection.username">test</prop>
-				<prop key="hibernate.connection.password">test</prop>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="hibernate.connection.driver_class">com.mysql.jdbc.Driver</prop>
+				<prop key="hibernate.connection.url">jdbc:mysql://127.0.0.1:3306/baizhi?useUnicode=true&amp;characterEncoding=UTF-8</prop>
+				<prop key="hibernate.connection.username">root</prop>
+				<prop key="hibernate.connection.password">123456</prop>
 				<prop key="hibernate.c3p0.min_size">10</prop>
 				<prop key="hibernate.c3p0.max_size">10</prop>
 				<prop key="hibernate.c3p0.timeout">300</prop>
@@ -25,7 +25,6 @@
 		</property>
 		<property name="mappingResources">
 			<list>
-				<value>com/baizhi/entity/PUB_REGUSER.hbm.xml</value>
 				
 			</list>
 		</property>
