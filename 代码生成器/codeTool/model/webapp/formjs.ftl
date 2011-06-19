@@ -1,30 +1,54 @@
 $(document).ready(function(){
-	$("#${packageName}Form").validate({
+	$("#${className}Form").validate({
 		rules:{
-			NAME: {required: true,remote: {url: "check${packageName}.go",type: "post",dataType: "json",data: {
-        		//传递参数
-				NAME: function() {return window.encodeURI($("#NAME").val());},
-				ID: function() {return  $("#ID").val();}
-			}}},
-<#list lis as being>
-			${being.oldCl}: {required: true, number:true, rangelength: [1,${being.len}]},
-</#list>
+			<#list lis as being>
+			<#if being.columnkey != "PRI">
+			<#if being_index != (totalcount-1)>
+			<#if being.datatype == "java.util.Date">
+			${being.oldCl}: {required: true},
+			<#elseif  being.datatype == "int">
+			${being.oldCl}: {required: true, number:true},
+			<#else>
+			${being.oldCl}: {required: true, rangelength: [1,${being.len}]},
+			</#if>
+			<#else>
+			<#if being.datatype == "java.util.Date">
+			${being.oldCl}: {required: true}
+			<#elseif  being.datatype == "int">
+			${being.oldCl}: {required: true, number:true}
+			<#else>
+			${being.oldCl}: {required: true, rangelength: [1,${being.len}]}
+			</#if>
+			</#if>
+			</#if>
+			</#list>
 		},
 		messages:{
-<#list lis as being>
-			${being.oldCl}: {required: "请选择${being.content}", number: "${being.content}是整数", rangelength: "长度为1或者${being.len}"}
-</#list>
+			<#list lis as being>
+			<#if being.columnkey != "PRI">
+			<#if being_index != (totalcount-1)>
+			<#if being.datatype == "java.util.Date">
+			${being.oldCl}: {required: "请选择${being.content}"},
+			<#elseif being.datatype == "int">
+			${being.oldCl}: {required: "请选择${being.content}",number:"${being.content}必须为整数"},
+			<#else>
+			${being.oldCl}: {required: "请选择${being.content}", rangelength: "长度为1或者${being.len}"},
+			</#if>
+			<#else>
+			<#if being.datatype == "java.util.Date">
+			${being.oldCl}: {required: "请选择${being.content}"}
+			<#elseif being.datatype == "int">
+			${being.oldCl}: {required: "请选择${being.content}",number:"${being.content}必须为整数"}
+			<#else>
+			${being.oldCl}: {required: "请选择${being.content}", rangelength: "长度为1或者${being.len}"}
+			</#if>
+			</#if>
+			</#if>
+			</#list>
 		},
 		submitHandler:function(form){
             form.submit();
         }   
 	});
-	/*
-	$("#cname").fancybox({
-		'width'				: 1000,      //弹出框宽度
-		'height'			: 700,      //弹出框高度
-		'type'				: 'iframe', //弹出框类型
-		'transitionIn'	    : 'elastic',//弹入方式
-		'transitionOut'	    : 'elastic' //弹出方式
-	});*/
+	
 });

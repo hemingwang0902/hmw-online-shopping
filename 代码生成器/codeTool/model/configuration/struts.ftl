@@ -1,1 +1,1 @@
-<include file="struts2/${sysName}/s-${packageName}.xml" />
+<include file="struts2/s/s-${packageName}.xml" />

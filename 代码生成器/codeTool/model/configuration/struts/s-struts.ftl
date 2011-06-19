@@ -3,16 +3,16 @@
         "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
         "http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
-	<package name="${packageName}" extends="json-default" namespace="/${sysName}/${packageName}">
-		<action name="${packageName}List" class="com.${sysName}.${packageName}.action.${className}List">
+	<package name="${packageName}" extends="json-default" namespace="/${packageName}">
+		<action name="get${className}List" class="com.${sysName}.${packageName}.action.Get${className}List">
 			<result name="jsonsuccess" type="json">
 		      <param name="root">result</param>
 		    </result>
 		</action>
-		<action name="${packageName}Turn" class="com.${sysName}.${packageName}.action.${className}Turn">
+		<action name="init${className}Form" class="com.${sysName}.${packageName}.action.Init${className}Form">
 			<result name="success" type="dispatcher">${packageName}form.jsp</result>
 		</action>
-		<action name="${packageName}Save" class="com.${sysName}.${packageName}.action.${className}Save">
+		<action name="save${className}" class="com.${sysName}.${packageName}.action.Save${className}">
 			<result name="error"  type="dispatcher" >${packageName}form.jsp</result>
 			<result name="success" type="redirect" >${packageName}list.jsp</result>
 			<result name="update" type="dispatcher" >${packageName}form.jsp</result>
@@ -20,18 +20,13 @@
 			<interceptor-ref name="defaultStack"><param name="workflow.excludeMethods">default</param></interceptor-ref> 
 			<interceptor-ref name="tokenSession"><param name="excludeMethods">default</param></interceptor-ref>
 		</action>
-		<action name="${packageName}Del" class="com.${sysName}.${packageName}.action.${className}Del">
+		<action name="del${className}" class="com.${sysName}.${packageName}.action.Del${className}">
 			<result name="jsonsuccess" type="json">
 		      <param name="root">result</param>
 		    </result>
 		</action>
-		<action name="get${className}" class="com.${sysName}.${packageName}.action.Get${className}">
+		<action name="get${className}ById" class="com.${sysName}.${packageName}.action.Get${className}ById">
 			<result name="success" type="dispatcher" >${packageName}form.jsp</result>
-		</action>
-		<action name="check${className}" class="com.${sysName}.${packageName}.action.Check${className}">
-			<result name="jsonsuccess" type="json">
-		      <param name="root">result</param>
-		    </result>
 		</action>
 	</package>
 </struts>

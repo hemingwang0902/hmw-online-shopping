@@ -18,6 +18,10 @@ public class Column {
 	//数据类型
 	private String datatype;
 	
+	//列键
+	private String columnkey;
+	
+	
 	public String getOldCl() {
 		return oldCl;
 	}
@@ -97,5 +101,10 @@ public class Column {
 	public void setDatatype(String datatype) {
 		this.datatype = datatype;
 	}
-	
+	public String getColumnkey() {
+		return columnkey;
+	}
+	public void setColumnkey(String columnkey) {
+		this.columnkey = columnkey;
+	}
 }

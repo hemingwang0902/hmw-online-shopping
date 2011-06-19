@@ -9,7 +9,7 @@ import java.sql.SQLException;
 public class JdbcTool {
 	private static String url = "jdbc:mysql://localhost:3306/baizhi?useUnicode=true&amp;characterEncoding=UTF-8";
 	private static String name = "root";
-	private static String pass = "root";
+	private static String pass = "123456";
 	
 	/**
 	 * 获取数据库连接

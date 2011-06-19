@@ -1,16 +1,19 @@
 var count;
-/* 列表${tabCon}*/
-function get${className}List(){
-	$("tr").remove("#${packageName}List_tr");
+/* 获取数据列表*/
+function getDataList(){
+	//设置全选"未选中"状态
+	$.fn.setNoCheck();
+	//删除原有记录
+	$("tr").remove("#${packageName}list_tr");
 	var onePageCount=$("#onePageCount").val();
 	var nowPage=$("#nowPage").val();
-<#list lis as being>
-	var ${being.oldCl} = $("#NAMES").val();
-</#list>
-	$.post("${packageName}List.go",{
-<#list lis as being>
+	<#list lis as being>
+	var ${being.oldCl} = $("#${being.oldCl}").val();
+	</#list>
+	$.post("get${className}List.go",{
+		<#list lis as being>
 		${being.oldCl}: window.encodeURI(${being.oldCl}),
-</#list>
+		</#list>
 		nowPage: nowPage,
 		onePageCount: onePageCount},
 		function(result){
@@ -23,70 +26,62 @@ function get${className}List(){
 					if(nowPage==1){
 						count=data["totalCount"] ;
 					}
-<#list lis as being>
+					<#list lis as being>
 					var ${being.fistLow} = ""; //${being.content}
-</#list>	
+					</#list>	
 			
 					for(var i=0;i<data["list"].length;i++){
-<#list lis as being>
+					<#list lis as being>
 					${being.fistLow} = data["list"][i]["${being.oldCl}"];//${being.content}
-</#list>
+					</#list>
 						
-						var edithref = "get${className}.go?ID="+id;
-						content += "<tr id='${packageName}List_tr'>";
-						content += "  <td><input type='checkbox' value='"+id+"' /></td>";
+						var edithref = "get${className}ById.go?${PK_KEY}="+${PK_KEY};
+						content += "<tr id='${packageName}list_tr'>";
+						content += "  <td><input type='checkbox' value='"+${PK_KEY}+"' /></td>";
 						content += "  <td>";
 						content += "    <a href='"+edithref+"' class='bj_btn' title='编辑'/>";
-						content += "    <a href='javascript:;' class='sc_btn' title='删除' onclick=\"${packageName}Del('"+id+"')\"/>";
+						content += "    <a href='javascript:;' class='sc_btn' title='删除' onclick=\"delData('"+${PK_KEY}+"')\"/>";
 						content += "  </td>";
-<#list lis as being>
+						<#list lis as being>
 						content += "  <td>"+${being.fistLow}+"</td>";
-</#list>
+						</#list>
 						content += "</tr>"
 					}
 				}
-			pagination(nowPage,onePageCount,count,content,get${className}List);
+			pagination(nowPage,onePageCount,count,content,getDataList);
 	});
 	return;
 }
 
-/* 删除${tabCon}*/
-function ${packageName}Del(ids){
-		$("#tip_message").html("");
-		if(ids==null||ids==''){
-				//$.messager.alert('删除用户','请选择用户!','error');
-				$("#tip_message").html("请选择用户");
-				return ;
-		}
-		$.post("${packageName}Del.go",{
-			ID:ids
-		},function(result){
-			if(result==null||result==''){
+/* 删除数据*/
+function delData(ids){
+	if(ids==null||ids==''){
+		showmessage({message:"请选择${tabCon}",type:"info"});
+		return ;
+	}
+	showmessage({message:"是否删除?",type:"error",callmethod:function(flag){
+		if(flag){
+			$.post("del${className}.go",{
+				IDS:ids
+			},function(result){
+				if(result==null||result==''){
 					return;
-			}
-			var data = eval("("+result+")");
-			if(data!=null&&data["flag"]==true){
-					$("#tip_message").html(data["message"]);
+				}
+				var data = eval("("+result+")");
+				if(data!=null&&data["flag"]==true){
+					$("#nowPage").val(1);
 					//查询
-					get${className}List();
-			}else{
-					$.messager.alert('删除${tabCon}',data["message"],'error');
-					$("#tip_message").html(data["message"]);
-			}
-		});
-		return;
+					getDataList();
+				}else{
+					showmessage({message:data["message"],type:"error"});
+				}
+			});
+		}
+	}});
+	return;
 }
 
 $(document).ready(function(){
-		//查询 ${tabCon}
-		get${className}List();
-		//点击 "查询" 查询${tabCon}
-		$("#btn_search").click(function(){
-				$("#tip_message").html("");
-				get${className}List();
-		});
-		//点击"删除"删除用户
-		$("#del${className}").click(function(){
-				${packageName}Del($.fn.getCheckValue());
-		});
+	//获取数据列表
+	getDataList();
 });  

@@ -4,19 +4,25 @@
 	
 <hibernate-mapping>
 	<class entity-name="${tableName}" table="${tableName}" lazy="false">
-		<comment></comment>
-		<id name="ID" column="ID" type="long">
-			<!-- <generator class="identity" /> -->
-			<generator class="sequence">
-				<param name="sequence">SEQ_${tableName}</param>
-			</generator>
-		</id>
+		<comment>${tabCon}</comment>
 	<#list lis as being>
+	<#if being.columnkey == "PRI">
+		<id name="${being.oldCl}" column="${being.oldCl}" type="${being.datatype}" >
+			<generator class="identity" />
+		</id>
+	<#else>
 		<property name="${being.oldCl}" type="${being.datatype}">
-			<column name="${being.oldCl}" length="${being.len}" >
-				<comment></comment>
+			<#if being.len == "">
+			<column name="${being.oldCl}"  >
+				<comment>${being.content}</comment>
 			</column>
+			<#else>
+			<column name="${being.oldCl}" length="${being.len}" >
+				<comment>${being.content}</comment>
+			</column>
+			</#if>
 		</property>
+	</#if>
 	</#list>
 	</class>
 </hibernate-mapping>

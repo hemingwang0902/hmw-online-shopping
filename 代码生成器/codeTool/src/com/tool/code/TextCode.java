@@ -26,11 +26,12 @@ import freemarker.template.Template;
 public class TextCode {
 	private static final String TABLE_SCHEMA = "baizhi";
 	private static final String SYSTEM_NAME = "baizhi";
+	Map<String,Object> root = new HashMap<String,Object>();
 	
 	public static void main(String[] args){
 		TextCode code = new TextCode();
 		//TODO 运行之前先修改此处
-		code.create("何明旺", "t_user", "用户信息","F:/workspace/google_myEclipseWorkspace2/百知网/1.代码区/1.项目/baizhi");
+		code.create("江红", "t_area","E:/work/baizhi");
 	}
 	
 	/**
@@ -40,7 +41,11 @@ public class TextCode {
 	 * @param tablecomtent 表注释
 	 * @param directory 存放目录
 	 */
-	public void create(String auth,String tablename,String tablecomtent,String directory){
+	public void create(String auth,String tablename,String directory){
+		//设置表名大写
+		if(tablename!=null){
+			tablename=tablename.toUpperCase();
+		}
 		//获取当前模板路径
 		String modelpath= null;
 		try {
@@ -52,16 +57,26 @@ public class TextCode {
 		}
 		
 		//获取文件命名
-		String filename= (tablename.toUpperCase().startsWith("T_") ? tablename.substring(2) : tablename).toLowerCase();
+		String filename= "";
+		String classname="";
+		if(tablename.indexOf("_")>-1){
+			String[] temptablename = tablename.split("_");
+			if(temptablename.length>1){
+				for (int i = 1; i < temptablename.length; i++) {
+					classname+=this.toFistUpp(temptablename[i]);
+				}
+			}
+			filename=classname.toLowerCase();
+		}
+		//filename= (tablename.toUpperCase().startsWith("T_") ? tablename.substring(2) : tablename).toLowerCase();
 		
-		Map<String,Object> root = new HashMap<String,Object>();
+		
 		root.put("tableName", tablename.toUpperCase());
-		root.put("className", this.toFistUpp(filename));
+		root.put("className", classname);
 		root.put("packageName", filename);
 		root.put("packageNameUpperCase", filename.toUpperCase());
 		root.put("sysName", SYSTEM_NAME);
 		root.put("lis", this.getColumn(tablename));
-		root.put("tabCon", tablecomtent);
 		root.put("auth", auth);
 		//获取当前时间
 		Calendar calendar = new GregorianCalendar();
@@ -88,23 +103,24 @@ public class TextCode {
 		this.mkdirs(springpath);
 		
 		//生成页面文件
-		this.convert(root, modelpath, "webapp/listjsp.ftl", jsppath+filename.toLowerCase()+"list.jsp");
-		this.convert(root, modelpath, "webapp/listjs.ftl",  jsppath+filename.toLowerCase()+"list.js");
+		this.convert(root, modelpath, "webapp/listjsp.ftl", jsppath+filename+"list.jsp");
+		this.convert(root, modelpath, "webapp/listjs.ftl",  jsppath+filename+"list.js");
 		
-		this.convert(root, modelpath, "webapp/formjsp.ftl", jsppath+filename.toLowerCase()+"form.jsp");
-		this.convert(root, modelpath, "webapp/formjs.ftl",  jsppath+filename.toLowerCase()+"form.js");
+		this.convert(root, modelpath, "webapp/formjsp.ftl", jsppath+filename+"form.jsp");
+		this.convert(root, modelpath, "webapp/formjs.ftl",  jsppath+filename+"form.js");
 		//生成Action文件
-		this.convert(root, modelpath, "src/action/ActionList.ftl",  actionpath+toFistUpp(filename)+"List.java");
-		this.convert(root, modelpath, "src/action/ActionTurn.ftl",  actionpath+toFistUpp(filename)+"Turn.java");
-		this.convert(root, modelpath, "src/action/ActionSave.ftl",  actionpath+toFistUpp(filename)+"Save.java");
-		this.convert(root, modelpath, "src/action/GetAction.ftl",   actionpath+"Get"+toFistUpp(filename)+".java");
-		this.convert(root, modelpath, "src/action/ActionDel.ftl",   actionpath+toFistUpp(filename)+"Del.java");
-		this.convert(root, modelpath, "src/action/ActionCheck.ftl", actionpath+toFistUpp(filename)+"Check.java");
+		this.convert(root, modelpath, "src/action/GetActionList.ftl",  actionpath+"Get"+classname+"List.java");
+		this.convert(root, modelpath, "src/action/InitActionForm.ftl",  actionpath+"Init"+classname+"Form.java");
+		this.convert(root, modelpath, "src/action/SaveAction.ftl",  actionpath+"Save"+classname+".java");
+		this.convert(root, modelpath, "src/action/GetActionById.ftl",   actionpath+"Get"+classname+"ById.java");
+		this.convert(root, modelpath, "src/action/DelAction.ftl",   actionpath+"Del"+classname+".java");
+		//this.convert(root, modelpath, "src/action/ActionCheck.ftl", actionpath+classname+"Check.java");
+		this.convert(root, modelpath, "src/action/ActionForm.ftl",  actionpath+classname+"Form.java");
 		//生成Dao文件
-		this.convert(root, modelpath, "src/dao/Dao.ftl",     daopath+toFistUpp(filename)+"Dao.java");
-		this.convert(root, modelpath, "src/dao/ImplDao.ftl", daopath+toFistUpp(filename)+"ImplDao.java");
+		this.convert(root, modelpath, "src/dao/Dao.ftl",     daopath+classname+"Dao.java");
+		this.convert(root, modelpath, "src/dao/ImplDao.ftl", daopath+classname+"ImplDao.java");
 		//生成Service文件
-		this.convert(root, modelpath, "src/service/Service.ftl", servicepath+toFistUpp(filename)+"Service.java");
+		this.convert(root, modelpath, "src/service/Service.ftl", servicepath+classname+"Service.java");
 		//生成配置文件
 		this.convert(root, modelpath, "src/entity/hbxml.ftl",   entitypath+tablename.toUpperCase()+".hbm.xml");
 		//生成struts文件
@@ -133,9 +149,9 @@ public class TextCode {
 								  .append("WHERE T.TABLE_NAME=C.table_name AND T.COLUMN_NAME=C.column_name AND T.TABLE_NAME=?");
 		*/
 		// 针对于 mySql 的
-		StringBuffer sql=new StringBuffer("select c.TABLE_NAME, c.COLUMN_NAME, c.CHARACTER_MAXIMUM_LENGTH, c.DATA_TYPE, c.COLUMN_COMMENT")
-		.append(" from information_schema.columns c")
-		.append(" where c.table_schema='" + TABLE_SCHEMA + "' and c.table_name=?")
+		StringBuffer sql=new StringBuffer("select c.TABLE_NAME, c.COLUMN_NAME, c.CHARACTER_MAXIMUM_LENGTH, c.DATA_TYPE, c.COLUMN_COMMENT,c.COLUMN_KEY,d.TABLE_COMMENT ")
+		.append(" from information_schema.columns c,information_schema.tables d ")
+		.append(" where c.table_schema='" + TABLE_SCHEMA + "' and c.table_name=? and c.table_name=d.table_name ")
 		.append(" order by c.ordinal_position");
 		
 		Connection conn=JdbcTool.getConn();
@@ -144,10 +160,13 @@ public class TextCode {
 			ps.setString(1, tablename);
 			ResultSet rs = ps.executeQuery();
 			Column cl = null;
-			String tableName, columnName;
+			String tableName, columnName,tabCon="",PK_KEY="";
+			int totalcount=0;
 			while (rs.next()) {
+				totalcount++;
 				tableName = defaultString(rs.getString("TABLE_NAME")).trim();
 				columnName = defaultString(rs.getString("COLUMN_NAME")).trim();
+				tabCon=defaultString(rs.getString("TABLE_COMMENT")).trim();
 
 				cl = new Column();
 
@@ -166,25 +185,32 @@ public class TextCode {
 				cl.setLen(defaultString(rs.getString("CHARACTER_MAXIMUM_LENGTH")));
 
 				cl.setContent(defaultString(rs.getString("COLUMN_COMMENT")));
+				
+				cl.setColumnkey(defaultString(rs.getString("COLUMN_KEY")));
 
 				String dataType = rs.getString("DATA_TYPE").toUpperCase();
-				if ("NUMBER".equals(dataType) || "DECIMAL".equals(dataType)) {
-					cl.setDatatype("long");
-				} else if ("BIT".equals(dataType)) {
-					cl.setDatatype("boolean");
-				} else if (dataType.indexOf("INT") >= 0) {
+				if(rs.getString("COLUMN_KEY")!=null&&rs.getString("COLUMN_KEY").trim().equals("PRI")){
+					PK_KEY=columnName;
+				}
+				if ("INT".equals(dataType)) {
 					cl.setDatatype("int");
 				} else if (dataType.indexOf("FLOAT") >= 0) {
-					cl.setDatatype("float");
+					cl.setDatatype("double");
 				} else if (dataType.indexOf("DOUBLE") >= 0) {
 					cl.setDatatype("double");
-				} else if (dataType.indexOf("DATE") >= 0
+				} else if (dataType.indexOf("DATETIME") >= 0
 						|| dataType.indexOf("TIME") >= 0) {
 					cl.setDatatype("java.util.Date");
-				} else
-					cl.setDatatype("String");
+				} else{
+					cl.setDatatype("string");
+				}
+				
+				list.add(cl);
 			}
-			list.add(cl);
+			root.put("PK_KEY", PK_KEY);
+			root.put("tabCon", tabCon);
+			root.put("totalcount", totalcount);
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 			
