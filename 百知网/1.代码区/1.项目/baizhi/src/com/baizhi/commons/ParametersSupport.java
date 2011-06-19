@@ -22,14 +22,16 @@ public class ParametersSupport {
 	private Object[] values;
 	
 	public ParametersSupport(Map<String, Object> params){
+		StringBuffer cond=new StringBuffer();
 		List<Object> list=new ArrayList<Object>();
 		//循环设置值
 		for (Map.Entry<String, Object> entry:params.entrySet()) {
-			if(entry.getKey()!=null&&entry.getKey().trim().equals("")){
-				conditions+=" AND "+entry.getKey()+" ";
+			if(entry.getKey()!=null&&!entry.getKey().trim().equals("")){
+				cond.append(" AND "+entry.getKey()+" ");
 				list.add(entry.getValue());
 			}
 		}
+		conditions=cond.toString();
 		//设置参数条件数组值
 		if(list.size()>0){
 			int len=list.size();

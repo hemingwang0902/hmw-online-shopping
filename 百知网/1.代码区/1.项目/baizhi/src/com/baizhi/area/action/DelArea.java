@@ -1,27 +1,24 @@
-package com.baizhi.user.action;
+package com.baizhi.area.action;
 
 import java.util.HashMap;
 import java.util.Map;
 import com.baizhi.commons.ActionSupport;
-import com.baizhi.user.service.UserService;
-
+import com.baizhi.area.service.AreaService;
 /**
  * 
- * 类名：DelUser.java
- * 描述：删除用户信息表信息
+ * 类名：AreaDel.java<br>
+ * 描述： 删除地区信息表信息
  * 创建者：江红
- * 创建日期：2011-06-18 22:32:20
- * 版本：V0.9
- * 修改者：  
+ * 创建日期：2011-06-19 23:15:19
+ * 版本：V0.9 
+ * 修改者： 
  * 修改日期：
  */
-public class DelUser  extends ActionSupport{
+public class DelArea extends ActionSupport{
 	
-	private static final long serialVersionUID = -4653540582906166131L;
-
 	private String IDS;//用户信息表ID集合以","分隔
 	
-	private UserService userService;//用户信息表业务类
+	private AreaService areaService;
 	
 	public String getIDS() {
 		return IDS;
@@ -30,13 +27,13 @@ public class DelUser  extends ActionSupport{
 	public void setIDS(String ids) {
 		IDS = ids;
 	}
-
-	public UserService getUserService() {
-		return userService;
+	
+	public AreaService getAreaService() {
+		return areaService;
 	}
 
-	public void setUserService(UserService userService) {
-		this.userService = userService;
+	public void setAreaService(AreaService areaService) {
+		this.areaService = areaService;
 	}
 	
 	@Override
@@ -47,7 +44,7 @@ public class DelUser  extends ActionSupport{
 		//判断参数是否为空
 		if(IDS!=null&&!IDS.trim().equals("")){
 			//删除用户
-			boolean result = userService.deleteUser(IDS);
+			boolean result = areaService.deleteArea(IDS);
 			//判断删除是否成功
 			if(result){
 				flag=true;

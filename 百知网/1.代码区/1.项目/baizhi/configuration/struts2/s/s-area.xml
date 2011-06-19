@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="area" extends="json-default" namespace="/area">
+		<action name="getAreaList" class="com.baizhi.area.action.GetAreaList">
+			<result name="jsonsuccess" type="json">
+		      <param name="root">result</param>
+		    </result>
+		</action>
+		<action name="initAreaForm" class="com.baizhi.area.action.InitAreaForm">
+			<result name="success" type="dispatcher">areaform.jsp</result>
+		</action>
+		<action name="saveArea" class="com.baizhi.area.action.SaveArea">
+			<result name="error"  type="dispatcher" >areaform.jsp</result>
+			<result name="success" type="redirect" >arealist.jsp</result>
+			<result name="update" type="dispatcher" >areaform.jsp</result>
+			<result name="invalid.token" type="freemarker">areaform.jsp</result> 
+			<interceptor-ref name="defaultStack"><param name="workflow.excludeMethods">default</param></interceptor-ref> 
+			<interceptor-ref name="tokenSession"><param name="excludeMethods">default</param></interceptor-ref>
+		</action>
+		<action name="delArea" class="com.baizhi.area.action.DelArea">
+			<result name="jsonsuccess" type="json">
+		      <param name="root">result</param>
+		    </result>
+		</action>
+		<action name="getAreaById" class="com.baizhi.area.action.GetAreaById">
+			<result name="success" type="dispatcher" >areaform.jsp</result>
+		</action>
+	</package>
+</struts>

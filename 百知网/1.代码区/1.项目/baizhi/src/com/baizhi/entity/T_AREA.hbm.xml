@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+	
+<hibernate-mapping>
+	<class entity-name="T_AREA" table="T_AREA" lazy="false">
+		<comment>地区信息表</comment>
+		<id name="AREA_ID" column="AREA_ID" type="int" >
+			<generator class="identity" />
+		</id>
+		<property name="DIC_CODE" type="string">
+			<column name="DIC_CODE" length="30" >
+				<comment>地区代码(根据级别制定规则定义)</comment>
+			</column>
+		</property>
+		<property name="DIC_NAME" type="string">
+			<column name="DIC_NAME" length="50" >
+				<comment>地区名称</comment>
+			</column>
+		</property>
+		<property name="PAREA_ID" type="int">
+			<column name="PAREA_ID"  >
+				<comment>地区上级代码</comment>
+			</column>
+		</property>
+		<property name="ALLPIN" type="string">
+			<column name="ALLPIN" length="100" >
+				<comment>地区全拼</comment>
+			</column>
+		</property>
+		<property name="SIMPLEPIN" type="string">
+			<column name="SIMPLEPIN" length="30" >
+				<comment>地区简拼</comment>
+			</column>
+		</property>
+		<property name="ORDER_BY" type="int">
+			<column name="ORDER_BY"  >
+				<comment>显示顺序</comment>
+			</column>
+		</property>
+		<property name="IP_START" type="string">
+			<column name="IP_START" length="20" >
+				<comment>IP起始段</comment>
+			</column>
+		</property>
+		<property name="IP_END" type="string">
+			<column name="IP_END" length="20" >
+				<comment>IP终止段</comment>
+			</column>
+		</property>
+		<property name="AREA_LEVEL" type="string">
+			<column name="AREA_LEVEL" length="10" >
+				<comment>地区级别(字典：1省、2市、3县、4镇、5村)暂时定义省、市两级</comment>
+			</column>
+		</property>
+		<property name="REMARK" type="string">
+			<column name="REMARK" length="1000" >
+				<comment>备注</comment>
+			</column>
+		</property>
+	</class>
+</hibernate-mapping>

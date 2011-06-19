@@ -26,6 +26,7 @@
 		<property name="mappingResources">
 			<list>
 				<value>com/baizhi/entity/T_USER.hbm.xml</value>
+				<value>com/baizhi/entity/T_AREA.hbm.xml</value>
 			</list>
 		</property>
 	</bean>

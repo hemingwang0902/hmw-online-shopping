@@ -240,4 +240,20 @@ public abstract class ActionSupport extends com.opensymphony.xwork2.ActionSuppor
 			}
 		}
 	}
+	
+	/**
+	 * 设置值
+	 * @param map 取值对象
+	 * @param key 键
+	 * @return 返回键对应的值，如果为null则返回""
+	 */
+	public String setValue(Map<String, Object>  map,String key)  {
+		String value="";
+		if(map!=null&&map.size()>0){
+			if(map.get(key)!=null){
+				value=String.valueOf(map.get(key)).trim();
+			}
+		}
+		return value;
+	}
 }

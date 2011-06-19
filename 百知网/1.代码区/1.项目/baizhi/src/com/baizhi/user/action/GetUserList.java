@@ -6,11 +6,11 @@ import com.baizhi.user.service.UserService;
 
 /**
  * 
- * 类名：    GetUserList.java
- * 描述：    获取用户信息表列表信息
- * 创建者：  江红
+ * 类名：GetUserList.java
+ * 描述：获取用户信息表列表信息
+ * 创建者：江红
  * 创建日期：2011-06-18 22:32:20
- * 版本：    V0.9
+ * 版本：V0.9
  * 修改者：  
  * 修改日期：
  */

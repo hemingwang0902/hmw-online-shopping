@@ -7,11 +7,11 @@ import com.baizhi.commons.DaoSupport;
 import com.baizhi.commons.ParametersSupport;
 /**
  * 
- * 类名：    UserDao.java
- * 描述：    用户信息表数据操作类，负责增删改查
- * 创建者：  江红
+ * 类名：UserDao.java
+ * 描述：用户信息表数据操作类，负责增删改查
+ * 创建者：江红
  * 创建日期：2011-06-18 22:32:20
- * 版本：    V0.9
+ * 版本：V0.9
  * 修改者：  
  * 修改日期：
  */
@@ -106,6 +106,7 @@ public class UserDao extends DaoSupport{
 		   .append("FROM T_USER a WHERE 1=1");
 		//设置查询条件,及初始化查询条件值
 		ParametersSupport ps=new ParametersSupport(params);
+		sql.append(ps.getConditions());
 		
 		return this.getByList(sql.toString(), ps.getValues(), "T_USER", nowPage, onePageCount);
 	}
@@ -132,6 +133,8 @@ public class UserDao extends DaoSupport{
 		   .append("FROM T_USER a ");
 		//设置查询条件,及初始化查询条件值
 		ParametersSupport ps=new ParametersSupport(params);
+		sql.append(ps.getConditions());
+		
 		return this.getByList(sql.toString(), ps.getValues());
 	}
 	
