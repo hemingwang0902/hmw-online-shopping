@@ -8,7 +8,7 @@
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
 		<property name="host" value="smtp.qq.com"/>
 		<property name="username" value="hemingwang0902" />
-		<property name="password" value="QQpwd&amp;19891209" />
+		<property name="password" value="******" />
 		<property name="javaMailProperties">
 			<props>
 				<!-- 如果要使用用户名和密码验证,这一步需要 -->
