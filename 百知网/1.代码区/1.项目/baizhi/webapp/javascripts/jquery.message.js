@@ -69,3 +69,12 @@ function closemessage(isconfirm){
 	}
 }
 
+$(document).ready(function(){
+	
+	var tip_message=$("#tip_message").html();
+	if(tip_message!=null&&tip_message!=""){
+		showmessage({message:tip_message,type:"info"});
+		$("#tip_message").html("");
+	}
+	
+});
