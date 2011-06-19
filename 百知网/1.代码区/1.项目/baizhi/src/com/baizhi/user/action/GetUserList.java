@@ -33,7 +33,7 @@ public class GetUserList extends UserForm {
 		Map<String, Object> params = new HashMap<String, Object>();
 		//设置查询条件
 		this.setMap(params, "USER_ID=?", this.getUSER_ID());// 用户ID
-		this.setMap(params, "USER_TYPE=?", this.getUSER_ID());// 用户类型(字典：1用户、2品牌)
+		this.setMap(params, "USER_TYPE=?", this.getUSER_TYPE());// 用户类型(字典：1用户、2品牌)
 		this.setMap(params, "EMAIL=?", this.getEMAIL());// Email
 		this.setMap(params, "PASSWORD=?", this.getPASSWORD());// 密码
 		this.setMap(params, "REG_TIME=?", this.getREG_TIME());// 注册时间
