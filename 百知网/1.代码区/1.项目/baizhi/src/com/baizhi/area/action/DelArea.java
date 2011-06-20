@@ -15,7 +15,8 @@ import com.baizhi.area.service.AreaService;
  * 修改日期：
  */
 public class DelArea extends ActionSupport{
-	
+	private static final long serialVersionUID = -2986429091913310917L;
+
 	private String IDS;//用户信息表ID集合以","分隔
 	
 	private AreaService areaService;

@@ -11,7 +11,7 @@ import com.baizhi.commons.ActionSupport;
  * 修改日期：
  */
 public abstract class DicitemForm extends ActionSupport {
-	
+	private static final long serialVersionUID = -486067287369899459L;
 	private String DICITEM_ID;//字典清单ID
 	private String CODE;//列表字典代码
 	private String DIC_CODE;//字典代码

@@ -12,7 +12,8 @@ import com.baizhi.commons.ActionSupport;
  * 修改日期：
  */
 public class InitDicitemForm extends ActionSupport{
-	
+	private static final long serialVersionUID = 28006189460838241L;
+
 	private String CURR_CREATE_BY;//创建人
 	
 	private String CURR_CREATE_TIME;//创建时间

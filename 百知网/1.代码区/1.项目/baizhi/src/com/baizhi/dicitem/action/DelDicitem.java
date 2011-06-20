@@ -15,7 +15,8 @@ import com.baizhi.dicitem.service.DicitemService;
  * 修改日期：
  */
 public class DelDicitem extends ActionSupport{
-	
+	private static final long serialVersionUID = 2812783732188256763L;
+
 	private String IDS;//用户信息表ID集合以","分隔
 	
 	private DicitemService dicitemService;

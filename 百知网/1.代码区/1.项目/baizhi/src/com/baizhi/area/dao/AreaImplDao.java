@@ -12,5 +12,6 @@ import com.baizhi.commons.DaoImplSupport;
  * 修改日期： 
  */
 public class AreaImplDao extends DaoImplSupport{
+	private static final long serialVersionUID = -1081774849179572666L;
 
 }

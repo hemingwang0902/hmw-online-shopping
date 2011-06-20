@@ -12,5 +12,6 @@ import com.baizhi.commons.DaoImplSupport;
  * 修改日期： 
  */
 public class DicitemImplDao extends DaoImplSupport{
+	private static final long serialVersionUID = 6586047620482613394L;
 
 }

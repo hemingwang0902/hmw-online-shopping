@@ -16,7 +16,7 @@ import com.baizhi.area.dao.AreaDao;
  * 修改日期：
  */
 public class AreaService extends ServiceSupport{
-	
+	private static final long serialVersionUID = -3875467587785827359L;
 	private AreaDao areaDao;
 	
 	public AreaDao getAreaDao() {

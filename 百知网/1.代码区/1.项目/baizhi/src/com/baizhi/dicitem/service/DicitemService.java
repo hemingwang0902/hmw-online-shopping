@@ -16,7 +16,7 @@ import com.baizhi.dicitem.dao.DicitemDao;
  * 修改日期：
  */
 public class DicitemService extends ServiceSupport{
-	
+	private static final long serialVersionUID = 3869276272256222413L;
 	private DicitemDao dicitemDao;
 	
 	public DicitemDao getDicitemDao() {

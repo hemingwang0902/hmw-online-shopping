@@ -13,7 +13,7 @@ import com.baizhi.dicitem.service.DicitemService;
  * 修改日期：
  */
 public class GetDicitemById extends DicitemForm{
-	
+	private static final long serialVersionUID = 7138769334770594385L;
 	private DicitemService dicitemService;//字典列表清单业务类
 	
 	public DicitemService getDicitemService() {
