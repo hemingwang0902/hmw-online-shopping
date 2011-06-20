@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<bean id="adDao" class="com.baizhi.ad.dao.AdDao" parent="daoSupport"></bean>
+	
+	<bean id="adService" class="com.baizhi.ad.service.AdService" parent="serviceSupport">
+		<property name="adDao">
+			<ref local="adDao" />
+		</property>
+	</bean>
+</beans>

@@ -27,6 +27,11 @@
 			<list>
 				<value>com/baizhi/entity/T_USER.hbm.xml</value>
 				<value>com/baizhi/entity/T_AREA.hbm.xml</value>
+				<value>com/baizhi/entity/T_FUNCTIONLIST.hbm.xml</value>
+				<value>com/baizhi/entity/T_TALK.hbm.xml</value>
+				<value>com/baizhi/entity/T_SCORE_LEVEL.hbm.xml</value>
+				<value>com/baizhi/entity/T_PROBLEM.hbm.xml</value>
+				<value>com/baizhi/entity/T_AD.hbm.xml</value>
 			</list>
 		</property>
 	</bean>

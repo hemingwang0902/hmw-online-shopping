@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="ad" extends="json-default" namespace="/ad">
+		<action name="getAdList" class="com.baizhi.ad.action.GetAdList">
+			<result name="jsonsuccess" type="json">
+		      <param name="root">result</param>
+		    </result>
+		</action>
+		<action name="initAdForm" class="com.baizhi.ad.action.InitAdForm">
+			<result name="success" type="dispatcher">adform.jsp</result>
+		</action>
+		<action name="saveAd" class="com.baizhi.ad.action.SaveAd">
+			<result name="error"  type="dispatcher" >adform.jsp</result>
+			<result name="success" type="redirect" >adlist.jsp</result>
+			<result name="update" type="dispatcher" >adform.jsp</result>
+			<result name="invalid.token" type="freemarker">adform.jsp</result> 
+			<interceptor-ref name="defaultStack"><param name="workflow.excludeMethods">default</param></interceptor-ref> 
+			<interceptor-ref name="tokenSession"><param name="excludeMethods">default</param></interceptor-ref>
+		</action>
+		<action name="delAd" class="com.baizhi.ad.action.DelAd">
+			<result name="jsonsuccess" type="json">
+		      <param name="root">result</param>
+		    </result>
+		</action>
+		<action name="getAdById" class="com.baizhi.ad.action.GetAdById">
+			<result name="success" type="dispatcher" >adform.jsp</result>
+		</action>
+	</package>
+</struts>

@@ -23,12 +23,12 @@
 		</div>
         <div style=" clear:both;"></div>
 		<div id="tt" style="height:auto;overflow:hidden;text-align: center;display:none;">
+			<div closable='true' style='padding:0px;float:left;width:100%;overflow:hidden;' cache='false' >
+				<iframe scrolling='yes' id="iframe_main" frameborder='0'¡¡ onload="turnHeight('iframe_main');"   style='width:100%;overflow:hidden;;height:600px;padding-bottom:20px;'></iframe>
+			</div>
 		</div>
-		
         <div style=" clear:both;"></div>
 	</div>
 </body>
-<script>
-	document.getElementById('portal').style.height = document.documentElement.clientHeight - 93 + 'px';
-</script>
+
 </html>

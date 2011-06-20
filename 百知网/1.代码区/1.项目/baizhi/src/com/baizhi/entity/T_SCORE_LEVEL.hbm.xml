@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+	
+<hibernate-mapping>
+	<class entity-name="T_SCORE_LEVEL" table="T_SCORE_LEVEL" lazy="false">
+		<comment>积分级别信息表</comment>
+		<id name="SCORELEVEL_ID" column="SCORELEVEL_ID" type="int" >
+			<generator class="identity" />
+		</id>
+		<property name="NAME" type="string">
+			<column name="NAME" length="50" >
+				<comment>级别名称</comment>
+			</column>
+		</property>
+		<property name="SOCRE_UP" type="int">
+			<column name="SOCRE_UP"  >
+				<comment>积分上限</comment>
+			</column>
+		</property>
+		<property name="SOCRE_DOWN" type="int">
+			<column name="SOCRE_DOWN"  >
+				<comment>积分下限</comment>
+			</column>
+		</property>
+		<property name="REMARK" type="string">
+			<column name="REMARK" length="1000" >
+				<comment>备注</comment>
+			</column>
+		</property>
+	</class>
+</hibernate-mapping>

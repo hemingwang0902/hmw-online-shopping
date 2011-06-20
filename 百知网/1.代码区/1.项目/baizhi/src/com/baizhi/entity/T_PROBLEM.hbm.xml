@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+	
+<hibernate-mapping>
+	<class entity-name="T_PROBLEM" table="T_PROBLEM" lazy="false">
+		<comment>问题信息表</comment>
+		<id name="PROBLEM_ID" column="PROBLEM_ID" type="int" >
+			<generator class="identity" />
+		</id>
+		<property name="PROBLEM_TYPE" type="string">
+			<column name="PROBLEM_TYPE" length="10" >
+				<comment>问题类型(字典：1普通、2我问的问题)</comment>
+			</column>
+		</property>
+		<property name="CONTENT" type="string">
+			<column name="CONTENT" length="3000" >
+				<comment>问题内容</comment>
+			</column>
+		</property>
+		<property name="IS_ANONYMITY" type="int">
+			<column name="IS_ANONYMITY"  >
+				<comment>是否匿名(0否、1是)</comment>
+			</column>
+		</property>
+		<property name="RELEVANT_DETAILS" type="string">
+			<column name="RELEVANT_DETAILS" length="1000" >
+				<comment>相关细节</comment>
+			</column>
+		</property>
+		<property name="USER_ID" type="int">
+			<column name="USER_ID"  >
+				<comment>用户ID</comment>
+			</column>
+		</property>
+		<property name="WAS_USERID" type="int">
+			<column name="WAS_USERID"  >
+				<comment>被问用户ID</comment>
+			</column>
+		</property>
+		<property name="ANSWER_COUNT" type="int">
+			<column name="ANSWER_COUNT"  >
+				<comment>答案数量</comment>
+			</column>
+		</property>
+		<property name="REVIEW_COUNT" type="int">
+			<column name="REVIEW_COUNT"  >
+				<comment>评论数量</comment>
+			</column>
+		</property>
+		<property name="ATTENTION_COUNT" type="int">
+			<column name="ATTENTION_COUNT"  >
+				<comment>关注数量</comment>
+			</column>
+		</property>
+		<property name="COLLECTION_COUNT" type="int">
+			<column name="COLLECTION_COUNT"  >
+				<comment>收藏数量</comment>
+			</column>
+		</property>
+		<property name="BROWSE_COUNT" type="int">
+			<column name="BROWSE_COUNT"  >
+				<comment>浏览次数</comment>
+			</column>
+		</property>
+		<property name="IS_REPORT" type="int">
+			<column name="IS_REPORT"  >
+				<comment>是否举报(0否、1是)</comment>
+			</column>
+		</property>
+		<property name="REPORT_COUNT" type="int">
+			<column name="REPORT_COUNT"  >
+				<comment>举报次数</comment>
+			</column>
+		</property>
+		<property name="CREATE_TIME" type="java.util.Date">
+			<column name="CREATE_TIME"  >
+				<comment>创建时间</comment>
+			</column>
+		</property>
+		<property name="MODIFY_TIME" type="java.util.Date">
+			<column name="MODIFY_TIME"  >
+				<comment>修改时间</comment>
+			</column>
+		</property>
+	</class>
+</hibernate-mapping>

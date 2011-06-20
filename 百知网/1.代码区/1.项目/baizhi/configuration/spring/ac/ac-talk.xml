@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<bean id="talkDao" class="com.baizhi.talk.dao.TalkDao" parent="daoSupport"></bean>
+	
+	<bean id="talkService" class="com.baizhi.talk.service.TalkService" parent="serviceSupport">
+		<property name="talkDao">
+			<ref local="talkDao" />
+		</property>
+	</bean>
+</beans>

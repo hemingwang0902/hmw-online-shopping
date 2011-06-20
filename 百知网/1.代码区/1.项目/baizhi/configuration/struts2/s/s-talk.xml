@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="talk" extends="json-default" namespace="/talk">
+		<action name="getTalkList" class="com.baizhi.talk.action.GetTalkList">
+			<result name="jsonsuccess" type="json">
+		      <param name="root">result</param>
+		    </result>
+		</action>
+		<action name="initTalkForm" class="com.baizhi.talk.action.InitTalkForm">
+			<result name="success" type="dispatcher">talkform.jsp</result>
+		</action>
+		<action name="saveTalk" class="com.baizhi.talk.action.SaveTalk">
+			<result name="error"  type="dispatcher" >talkform.jsp</result>
+			<result name="success" type="redirect" >talklist.jsp</result>
+			<result name="update" type="dispatcher" >talkform.jsp</result>
+			<result name="invalid.token" type="freemarker">talkform.jsp</result> 
+			<interceptor-ref name="defaultStack"><param name="workflow.excludeMethods">default</param></interceptor-ref> 
+			<interceptor-ref name="tokenSession"><param name="excludeMethods">default</param></interceptor-ref>
+		</action>
+		<action name="delTalk" class="com.baizhi.talk.action.DelTalk">
+			<result name="jsonsuccess" type="json">
+		      <param name="root">result</param>
+		    </result>
+		</action>
+		<action name="getTalkById" class="com.baizhi.talk.action.GetTalkById">
+			<result name="success" type="dispatcher" >talkform.jsp</result>
+		</action>
+	</package>
+</struts>

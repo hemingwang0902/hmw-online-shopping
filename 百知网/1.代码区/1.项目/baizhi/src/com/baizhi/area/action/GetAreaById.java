@@ -14,6 +14,8 @@ import com.baizhi.area.service.AreaService;
  */
 public class GetAreaById extends AreaForm{
 	private static final long serialVersionUID = 8140999186042170875L;
+	private static final long serialVersionUID = 8140999186042170875L;
+	
 	private AreaService areaService;//地区信息表业务类
 	
 	public AreaService getAreaService() {

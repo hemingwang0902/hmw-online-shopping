@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+	
+<hibernate-mapping>
+	<class entity-name="T_FUNCTIONLIST" table="T_FUNCTIONLIST" lazy="false">
+		<comment>功能菜单表</comment>
+		<id name="FUNCLIST_ID" column="FUNCLIST_ID" type="int" >
+			<generator class="identity" />
+		</id>
+		<property name="FUNC_NAME" type="string">
+			<column name="FUNC_NAME" length="100" >
+				<comment>功能名称</comment>
+			</column>
+		</property>
+		<property name="FUNC_URL" type="string">
+			<column name="FUNC_URL" length="1000" >
+				<comment>功能URL</comment>
+			</column>
+		</property>
+		<property name="PARENT_FLID" type="int">
+			<column name="PARENT_FLID"  >
+				<comment>父功能ID</comment>
+			</column>
+		</property>
+		<property name="FUNC_ORDER" type="int">
+			<column name="FUNC_ORDER"  >
+				<comment>显示顺序</comment>
+			</column>
+		</property>
+		<property name="FUNC_STATUS" type="int">
+			<column name="FUNC_STATUS"  >
+				<comment>是否启用(0停用1启用)</comment>
+			</column>
+		</property>
+		<property name="ACC_LIMIT" type="int">
+			<column name="ACC_LIMIT"  >
+				<comment>是否有资源限制(0无,1有)</comment>
+			</column>
+		</property>
+		<property name="IS_CHILD" type="int">
+			<column name="IS_CHILD"  >
+				<comment>是否有下级菜单(0无,1有)</comment>
+			</column>
+		</property>
+		<property name="FUNC_DESC" type="string">
+			<column name="FUNC_DESC" length="1000" >
+				<comment>功能说明</comment>
+			</column>
+		</property>
+		<property name="REMARK" type="string">
+			<column name="REMARK" length="1000" >
+				<comment>备注</comment>
+			</column>
+		</property>
+	</class>
+</hibernate-mapping>
