@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<bean id="dicitemDao" class="com.baizhi.dicitem.dao.DicitemDao" parent="daoSupport"></bean>
+	
+	<bean id="dicitemService" class="com.baizhi.dicitem.service.DicitemService" parent="serviceSupport">
+		<property name="dicitemDao">
+			<ref local="dicitemDao" />
+		</property>
+	</bean>
+</beans>

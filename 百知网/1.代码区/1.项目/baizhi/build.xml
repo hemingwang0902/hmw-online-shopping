@@ -27,19 +27,23 @@
 		</javac>
 	</target>
 
+	<target name="delete">
+		<delete dir="${target.webapp}"></delete>
+	</target>
+	
 	<target name="copy">
-		<copy todir="${target.webapp}">
+		<copy todir="${target.webapp}" overwrite="true">
 			<fileset dir="${app.webapp}" />
 		</copy>
 
-		<copy todir="${target.webinf}">
+		<copy todir="${target.webinf}" overwrite="true">
 			<fileset dir="${app.configuration}">
 				<include name="**/web.xml" />
 				<include name="**/applicationContext.xml" />
 			</fileset>
 		</copy>
 
-		<copy todir="${target.lib}">
+		<copy todir="${target.lib}" overwrite="true">
 			<fileset dir="${app.library}/commons" />
 			<fileset dir="${app.library}/dom4j" />
 			<fileset dir="${app.library}/driver" />
@@ -52,9 +56,10 @@
 			<fileset dir="${app.library}/struts2" />
 			<fileset dir="${app.library}/poi" />
 			<fileset dir="${app.library}/component" />
+			<fileset dir="${app.library}/javamail" />
 		</copy>
 
-		<copy todir="${target.classes}">
+		<copy todir="${target.classes}" overwrite="true">
 			<fileset dir="${app.bin}" />
 			<fileset dir="${app.configuration}">
 				<exclude name="**/web.xml" />
@@ -64,6 +69,7 @@
 	</target>
 
 	<target name="recompiles">
+		<antcall target="delete"></antcall>
 		<antcall target="compiles" />
 		<antcall target="copy" />
 	</target>

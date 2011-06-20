@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="configuration"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry exported="true" kind="lib" path="library/commons/commons-fileupload-1.2.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="library/commons/commons-io-1.3.2.jar"/>
