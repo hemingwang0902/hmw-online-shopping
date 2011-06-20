@@ -14,14 +14,14 @@ import com.${sysName}.${packageName}.service.${className}Service;
  */
 public class Get${className}List extends ${className}Form {
 	
-	private ${className}Service ${packageName}Service;//${tabCon}业务类
+	private ${className}Service ${beanname}Service;//${tabCon}业务类
 	
 	public ${className}Service get${className}Service() {
-		return ${packageName}Service;
+		return ${beanname}Service;
 	}
 
-	public void set${className}Service(${className}Service ${packageName}Service) {
-		this.${packageName}Service = ${packageName}Service;
+	public void set${className}Service(${className}Service ${beanname}Service) {
+		this.${beanname}Service = ${beanname}Service;
 	}
 	
 	@Override
@@ -32,7 +32,7 @@ public class Get${className}List extends ${className}Form {
 		this.setMap(params, "${being.oldCl}=?", this.get${being.oldCl}());// ${being.content}
 		</#list>
 		// 查询${tabCon}列表
-		Map<String, Object> returnMap = ${packageName}Service.get${className}List(params, this.getNowPage(), this.getOnePageCount());
+		Map<String, Object> returnMap = ${beanname}Service.get${className}List(params, this.getNowPage(), this.getOnePageCount());
 		//判断是否存在查询记录
 		if (returnMap != null && returnMap.size() != 0) {
 			this.setResult(returnMap);

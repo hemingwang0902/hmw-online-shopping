@@ -31,10 +31,22 @@
 				<table width="100%;" border="0" cellspacing="0" cellpadding="0" class="lightbox_table">
 					<#list lis as being>
 					<#if being.columnkey != "PRI">
+					<#if being_index%2 == 1 >
+					<#if being_index == (totalcount-1)>
 					<tr>
 						<td class="lightbox_title"><span class="font_red">*</span>${being.content}：</td>
 						<td class="lightbox_content"><input type="text" class="input_width" id="${being.oldCl}" name="${being.oldCl}" value='<s:property value="${being.oldCl}"/>'/></td>
 					</tr>
+					<#else>
+					<tr>
+						<td class="lightbox_title"><span class="font_red">*</span>${being.content}：</td>
+						<td class="lightbox_content"><input type="text" class="input_width" id="${being.oldCl}" name="${being.oldCl}" value='<s:property value="${being.oldCl}"/>'/></td>
+					</#if>
+					<#else>
+						<td class="lightbox_title"><span class="font_red">*</span>${being.content}：</td>
+						<td class="lightbox_content"><input type="text" class="input_width" id="${being.oldCl}" name="${being.oldCl}" value='<s:property value="${being.oldCl}"/>'/></td>
+					</tr>
+					</#if>
 					</#if>
 					</#list>
 				</table>

@@ -124,7 +124,7 @@ public class ${className}Dao extends DaoSupport{
 		   .append("a.${being.oldCl} as ${being.oldCl}) ")//${being.content}
 			</#if>
 		   </#list>
-		   .append("FROM T_USER a ");
+		   .append("FROM ${tableName} a where 1=1 ");
 		//设置查询条件,及初始化查询条件值
 		ParametersSupport ps=new ParametersSupport(params);
 		sql.append(ps.getConditions());

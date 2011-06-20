@@ -18,7 +18,7 @@ public class Del${className} extends ActionSupport{
 	
 	private String IDS;//用户信息表ID集合以","分隔
 	
-	private ${className}Service ${packageName}Service;
+	private ${className}Service ${beanname}Service;//${tabCon}业务类
 	
 	public String getIDS() {
 		return IDS;
@@ -29,11 +29,11 @@ public class Del${className} extends ActionSupport{
 	}
 	
 	public ${className}Service get${className}Service() {
-		return ${packageName}Service;
+		return ${beanname}Service;
 	}
 
-	public void set${className}Service(${className}Service ${packageName}Service) {
-		this.${packageName}Service = ${packageName}Service;
+	public void set${className}Service(${className}Service ${beanname}Service) {
+		this.${beanname}Service = ${beanname}Service;
 	}
 	
 	@Override
@@ -44,7 +44,7 @@ public class Del${className} extends ActionSupport{
 		//判断参数是否为空
 		if(IDS!=null&&!IDS.trim().equals("")){
 			//删除用户
-			boolean result = ${packageName}Service.delete${className}(IDS);
+			boolean result = ${beanname}Service.delete${className}(IDS);
 			//判断删除是否成功
 			if(result){
 				flag=true;

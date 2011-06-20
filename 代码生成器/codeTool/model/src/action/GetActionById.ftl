@@ -14,20 +14,20 @@ import com.${sysName}.${packageName}.service.${className}Service;
  */
 public class Get${className}ById extends ${className}Form{
 	
-	private ${className}Service ${packageName}Service;//${tabCon}业务类
+	private ${className}Service ${beanname}Service;//${tabCon}业务类
 	
 	public ${className}Service get${className}Service() {
-		return ${packageName}Service;
+		return ${beanname}Service;
 	}
 
-	public void set${className}Service(${className}Service ${packageName}Service) {
-		this.${packageName}Service = ${packageName}Service;
+	public void set${className}Service(${className}Service ${beanname}Service) {
+		this.${beanname}Service = ${beanname}Service;
 	}
 	
 	@Override
 	public String execute() throws Exception {
 		//查询数据
-		Map<String, Object>  returnMap = ${packageName}Service.get${className}MapById(this.get${PK_KEY}());
+		Map<String, Object>  returnMap = ${beanname}Service.get${className}MapById(this.get${PK_KEY}());
 		if(returnMap!=null&&returnMap.size()>0){
 			<#list lis as being>
 			<#if being.columnkey != "PRI">

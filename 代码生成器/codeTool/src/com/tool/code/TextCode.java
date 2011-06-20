@@ -31,7 +31,7 @@ public class TextCode {
 	public static void main(String[] args){
 		TextCode code = new TextCode();
 		//TODO 运行之前先修改此处
-		code.create("江红", "t_area","E:/work/baizhi");
+		code.create("江红", "T_AD","E:/work/baizhi");
 	}
 	
 	/**
@@ -59,11 +59,17 @@ public class TextCode {
 		//获取文件命名
 		String filename= "";
 		String classname="";
+		String beanname="";
 		if(tablename.indexOf("_")>-1){
 			String[] temptablename = tablename.split("_");
 			if(temptablename.length>1){
 				for (int i = 1; i < temptablename.length; i++) {
 					classname+=this.toFistUpp(temptablename[i]);
+					if(i==1){
+						beanname+=temptablename[i].toLowerCase();
+					}else{
+						beanname+=this.toFistUpp(temptablename[i]);
+					}
 				}
 			}
 			filename=classname.toLowerCase();
@@ -78,6 +84,7 @@ public class TextCode {
 		root.put("sysName", SYSTEM_NAME);
 		root.put("lis", this.getColumn(tablename));
 		root.put("auth", auth);
+		root.put("beanname", beanname);
 		//获取当前时间
 		Calendar calendar = new GregorianCalendar();
 		Format format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

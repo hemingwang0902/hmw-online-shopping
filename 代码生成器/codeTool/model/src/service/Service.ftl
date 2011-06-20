@@ -17,14 +17,14 @@ import com.${sysName}.${packageName}.dao.${className}Dao;
  */
 public class ${className}Service extends ServiceSupport{
 	
-	private ${className}Dao ${packageName}Dao;
+	private ${className}Dao ${beanname}Dao;
 	
 	public ${className}Dao get${className}Dao() {
-		return ${packageName}Dao;
+		return ${beanname}Dao;
 	}
 
-	public void set${className}Dao(${className}Dao ${packageName}Dao) {
-		this.${packageName}Dao = ${packageName}Dao;
+	public void set${className}Dao(${className}Dao ${beanname}Dao) {
+		this.${beanname}Dao = ${beanname}Dao;
 	}
 	
 	/**
@@ -34,7 +34,7 @@ public class ${className}Service extends ServiceSupport{
 	 * @return 返回主键ID,失败返回""
 	 */
 	public String saveOrUpdate${className}(Element element) {
-		return ${packageName}Dao.saveOrUpdate${className}(element);
+		return ${beanname}Dao.saveOrUpdate${className}(element);
 	}
 	
 	/**
@@ -44,7 +44,7 @@ public class ${className}Service extends ServiceSupport{
 	 * @return 返回boolean值,成功返回true,失败返回false
 	 */
 	public boolean delete${className}(String ${PK_KEY}S) {
-		return ${packageName}Dao.delete${className}(${PK_KEY}S);
+		return ${beanname}Dao.delete${className}(${PK_KEY}S);
 	}
 	
 	/**
@@ -53,7 +53,7 @@ public class ${className}Service extends ServiceSupport{
 	 * @return 返回${tabCon}实体,如果无查询记录则返回null
 	 */
 	public  Element get${className}EleById(String ${PK_KEY}){
-		return ${packageName}Dao.get${className}EleById(${PK_KEY});
+		return ${beanname}Dao.get${className}EleById(${PK_KEY});
 	}
 	
 	/**
@@ -63,7 +63,7 @@ public class ${className}Service extends ServiceSupport{
 	 * @return 返回查询记录数量,失败返回-1
 	 */
 	public int get${className}Count(Map<String, Object> params) {
-		return ${packageName}Dao.get${className}Count(params);
+		return ${beanname}Dao.get${className}Count(params);
 	}
 	
 	/**
@@ -72,7 +72,7 @@ public class ${className}Service extends ServiceSupport{
 	 * @return 返回${tabCon}信息,如果无查询记录则返回null
 	 */
 	public Map<String, Object> get${className}MapById(String ${PK_KEY}){
-		return ${packageName}Dao.get${className}MapById(${PK_KEY});
+		return ${beanname}Dao.get${className}MapById(${PK_KEY});
 	}
 	
 	/**
@@ -83,7 +83,7 @@ public class ${className}Service extends ServiceSupport{
 	 * @return 返回${tabCon}列表信息,如果无查询记录则返回null
 	 */
 	public Map<String,Object> get${className}List(Map<String, Object> params,int nowPage,int onePageCount){
-		return ${packageName}Dao.get${className}List(params, nowPage, onePageCount);
+		return ${beanname}Dao.get${className}List(params, nowPage, onePageCount);
 	}
 	
 	/**
@@ -93,7 +93,7 @@ public class ${className}Service extends ServiceSupport{
      * @return 成功返回${tabCon}信息,如果无查询记录则返回null
      */
 	public List<Map<String,Object>> get${className}List(Map<String, Object> params){
-		return ${packageName}Dao.get${className}List(params);
+		return ${beanname}Dao.get${className}List(params);
 	}
 
 }
