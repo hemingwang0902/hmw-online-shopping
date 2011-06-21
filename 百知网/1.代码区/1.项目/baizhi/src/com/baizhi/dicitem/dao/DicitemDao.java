@@ -137,6 +137,33 @@ public class DicitemDao extends DaoSupport{
 		
 		return this.getByList(sql.toString(), ps.getValues());
 	}
-	
+
+	/**
+	 * 获取字典列表清单列表信息
+	 * @param params 参数
+	 * @param nowPage 当前页
+	 * @param onePageCount 每页显示多少条
+	 * @return 返回字典列表清单列表信息,如果无查询记录则返回null
+	 */
+	public Map<String,Object> getDicitemListWithOrCondition(Map<String, Object> params,int nowPage,int onePageCount){
+		//组织查询语句
+		StringBuffer sql = new StringBuffer();
+		sql.append("SELECT new Map(")
+		   .append("a.DICITEM_ID as DICITEM_ID,")//字典清单ID
+		   .append("a.CODE as CODE,")//列表字典代码
+		   .append("a.DIC_CODE as DIC_CODE,")//字典代码
+		   .append("a.DIC_NAME as DIC_NAME,")//字典名称
+		   .append("a.PDIC_CODE as PDIC_CODE,")//字典上级代码
+		   .append("a.ALLPIN as ALLPIN,")//字典全拼
+		   .append("a.SIMPLEPIN as SIMPLEPIN,")//字典简拼
+		   .append("a.ORDER_BY as ORDER_BY,")//显示顺序
+		   .append("a.REMARK as REMARK) ")//备注
+		   .append("FROM T_DICITEM a WHERE 1=2");
+		//设置查询条件,及初始化查询条件值
+		ParametersSupport ps=new ParametersSupport(params);
+		sql.append(ps.getOrConditions());
+		
+		return this.getByList(sql.toString(), ps.getValues(), "T_DICITEM", nowPage, onePageCount);
+	}
 }
 

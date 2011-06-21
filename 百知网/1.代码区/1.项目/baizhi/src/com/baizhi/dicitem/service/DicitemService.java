@@ -95,5 +95,15 @@ public class DicitemService extends ServiceSupport{
 	public List<Map<String,Object>> getDicitemList(Map<String, Object> params){
 		return dicitemDao.getDicitemList(params);
 	}
-
+	
+	/**
+	 * 获取字典列表清单列表信息
+	 * @param params 参数
+	 * @param nowPage 当前页
+	 * @param onePageCount 每页显示多少条
+	 * @return 返回字典列表清单列表信息,如果无查询记录则返回null
+	 */
+	public Map<String,Object> getDicitemListWithOrCondition(Map<String, Object> params,int nowPage,int onePageCount){
+		return dicitemDao.getDicitemListWithOrCondition(params, nowPage, onePageCount);
+	}
 }

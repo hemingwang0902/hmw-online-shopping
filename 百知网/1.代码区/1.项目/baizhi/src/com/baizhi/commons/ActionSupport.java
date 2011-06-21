@@ -31,9 +31,9 @@ public abstract class ActionSupport extends com.opensymphony.xwork2.ActionSuppor
 	protected Logger log = Logger.getLogger(this.getClass());
 
 	// json返回结果
-	public static String JSONSUCCESS = "jsonsuccess";
-	public static String UPDATESUCCESS = "update";
-	public static String CONTEXTPATH="cpath";
+	public static final String JSONSUCCESS = "jsonsuccess";
+	public static final String UPDATESUCCESS = "update";
+	public static final String CONTEXTPATH="cpath";
 
 	// 定义设置json数据格式 用于页面解析
 	public String result;
@@ -66,14 +66,6 @@ public abstract class ActionSupport extends com.opensymphony.xwork2.ActionSuppor
 
 	public void setMessage(String message) {
 		this.message = message;
-	}
-
-	public static String getJSONSUCCESS() {
-		return JSONSUCCESS;
-	}
-
-	public static void setJSONSUCCESS(String jsonsuccess) {
-		JSONSUCCESS = jsonsuccess;
 	}
 
 	public String getResult() {

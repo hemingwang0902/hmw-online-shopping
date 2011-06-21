@@ -9,6 +9,13 @@
 		      <param name="root">result</param>
 		    </result>
 		</action>
+		
+		<action name="getDicitemByKeyword" class="com.baizhi.dicitem.action.GetDicitemList" method="getDicitemByKeyword">
+			<result name="jsonsuccess" type="json">
+		      <param name="root">result</param>
+		    </result>
+		</action>
+		
 		<action name="initDicitemForm" class="com.baizhi.dicitem.action.InitDicitemForm">
 			<result name="success" type="dispatcher">dicitemform.jsp</result>
 		</action>
