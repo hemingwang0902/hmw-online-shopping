@@ -30,29 +30,16 @@
 			<div class="form_style">
 				<table width="100%;" border="0" cellspacing="0" cellpadding="0" class="lightbox_table">
 				  <tr>
-				    	<td class="lightbox_title"><span class="font_red">*</span>用户类型(字典：1用户、2品牌):</td>
-				      <td class="lightbox_content"><input type="text" class="input_width" id="USER_TYPE" name="USER_TYPE" value='<s:property value="USER_TYPE"/>'/></td>
-				 
-				    	<td class="lightbox_title"><span class="font_red">*</span>Email:</td>
-				      <td class="lightbox_content"><input type="text" class="input_width" id="EMAIL" name="EMAIL" value='<s:property value="EMAIL"/>'/></td>
+				    	<td class="lightbox_title"><span class="font_red">*</span>用户类型:</td>
+				      	<td class="lightbox_content"><input type="text" class="input_width" id="USER_TYPE" name="USER_TYPE" value='<s:property value="USER_TYPE"/>'/></td>
+				 		<td class="lightbox_title"><span class="font_red">*</span>Email:</td>
+				      	<td class="lightbox_content"><input type="text" class="input_width" id="EMAIL" name="EMAIL" value='<s:property value="EMAIL"/>'/></td>
 				   </tr>
 				  <tr>
 				    	<td class="lightbox_title"><span class="font_red">*</span>密码:</td>
-				      <td class="lightbox_content"><input type="text" class="input_width" id="PASSWORD" name="PASSWORD" value='<s:property value="PASSWORD"/>'/></td>
-				    	<td class="lightbox_title"><span class="font_red">*</span>注册时间:</td>
-				      <td class="lightbox_content"><input type="text" class="input_width Wdate" id="REG_TIME" name="REG_TIME"  onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',autoPickDate:true})" value='<s:property value="REG_TIME"/>'/></td>
-				  </tr>
-				  <tr>
-				    	<td class="lightbox_title"><span class="font_red">*</span>最后登录时间:</td>
-				      <td class="lightbox_content"><input type="text" class="input_width Wdate" id="LAST_LOGINTIME" name="LAST_LOGINTIME"  onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',autoPickDate:true})"  value='<s:property value="LAST_LOGINTIME"/>'/></td>
-				    	<td class="lightbox_title"><span class="font_red">*</span>最后登录IP:</td>
-				      <td class="lightbox_content"><input type="text" class="input_width" id="IP" name="IP" value='<s:property value="IP"/>'/></td>
-				  </tr>
-				  <tr>
-				    	<td class="lightbox_title"><span class="font_red">*</span>最后登录MAC:</td>
-				      <td class="lightbox_content"><input type="text" class="input_width" id="MAC" name="MAC" value='<s:property value="MAC"/>'/></td>
-				    	<td class="lightbox_title"><span class="font_red">*</span>最后冻结时间:</td>
-				      <td class="lightbox_content"><input type="text" class="input_width Wdate" id="LAST_FREEZETIME" name="LAST_FREEZETIME"  onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',autoPickDate:true})" value='<s:property value="LAST_FREEZETIME"/>'/></td>
+				      	<td class="lightbox_content"><input type="password" class="input_width" id="PASSWORD" name="PASSWORD" /></td>
+				    	<td class="lightbox_title"><span class="font_red">*</span>确认密码:</td>
+				      	<td class="lightbox_content"><input type="password" class="input_width" id="PASSWORD" name="CONFIRM_PASSWORD" /></td>
 				  </tr>
 				</table>
 			</div>

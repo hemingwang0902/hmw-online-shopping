@@ -22,10 +22,6 @@
 			<form id="UserList" >
 				<table width="100%;" border="0" cellspacing="0" cellpadding="0" class="lightbox_table">
 					<tr>
-						<td nowrap="nowrap" class="lightbox_title">用户ID：</td>
-						<td class="lightbox_content"><input type="text" class="input_width3" name="USER_ID" id="USER_ID" /> </td>
-					</tr>
-					<tr>
 						<td nowrap="nowrap" class="lightbox_title">用户类型：</td>
 						<td class="lightbox_content"><input type="text" class="input_width3 Wdicter" name="USER_TYPE" id="USER_TYPE" /> </td>
 					</tr>
@@ -34,28 +30,28 @@
 						<td class="lightbox_content"><input type="text" class="input_width3" name="EMAIL" id="EMAIL" /> </td>
 					</tr>
 					<tr>
-						<td nowrap="nowrap" class="lightbox_title">密码：</td>
-						<td class="lightbox_content"><input type="text" class="input_width3" name="PASSWORD" id="PASSWORD" /> </td>
+						<td nowrap="nowrap" class="lightbox_title">注册时间(起)：</td>
+						<td class="lightbox_content"><input type="text" class="input_width3 Wdate" name="REG_TIME" id="REG_TIME" onclick="WdatePicker()" /> </td>
 					</tr>
 					<tr>
-						<td nowrap="nowrap" class="lightbox_title">注册时间：</td>
-						<td class="lightbox_content"><input type="text" class="input_width3 Wdate" name="REG_TIME" id="REG_TIME" /> </td>
+						<td nowrap="nowrap" class="lightbox_title">注册时间(止)：</td>
+						<td class="lightbox_content"><input type="text" class="input_width3 Wdate" name="REG_TIME_END" id="REG_TIME_END" onclick="WdatePicker()" /> </td>
 					</tr>
 					<tr>
-						<td nowrap="nowrap" class="lightbox_title">最后登录时间：</td>
-						<td class="lightbox_content"><input type="text" class="input_width3 Wdate" name="LAST_LOGINTIME" id="LAST_LOGINTIME" /> </td>
+						<td nowrap="nowrap" class="lightbox_title">登录时间(起)：</td>
+						<td class="lightbox_content"><input type="text" class="input_width3 Wdate" name="LAST_LOGINTIME" id="LAST_LOGINTIME" onclick="WdatePicker()" /> </td>
 					</tr>
 					<tr>
-						<td nowrap="nowrap" class="lightbox_title">IP：</td>
-						<td class="lightbox_content"><input type="text" class="input_width3" name="IP" id="IP" /> </td>
+						<td nowrap="nowrap" class="lightbox_title">登录时间(止)：</td>
+						<td class="lightbox_content"><input type="text" class="input_width3 Wdate" name="LAST_LOGINTIME_END" id="LAST_LOGINTIME_END" onclick="WdatePicker()" /> </td>
 					</tr>
 					<tr>
-						<td nowrap="nowrap" class="lightbox_title">MAC：</td>
-						<td class="lightbox_content"><input type="text" class="input_width3" name="MAC" id="MAC" /> </td>
+						<td nowrap="nowrap" class="lightbox_title">冻结时间(起)：</td>
+						<td class="lightbox_content"><input type="text" class="input_width3 Wdate" name="LAST_FREEZETIME" id="LAST_FREEZETIME" onclick="WdatePicker()" /> </td>
 					</tr>
 					<tr>
-						<td nowrap="nowrap" class="lightbox_title">最后冻结时间：</td>
-						<td class="lightbox_content"><input type="text" class="input_width3 Wdate" name="LAST_FREEZETIME" id="LAST_FREEZETIME" /> </td>
+						<td nowrap="nowrap" class="lightbox_title">冻结时间(止)：</td>
+						<td class="lightbox_content"><input type="text" class="input_width3 Wdate" name="LAST_FREEZETIME_END" id="LAST_FREEZETIME_END" onclick="WdatePicker()" /> </td>
 					</tr>
 					<tr>
 						<td>&nbsp;</td>
@@ -81,15 +77,11 @@
 					<tr class="tr_bg">
 						<td width="6%"><input type="checkbox" /></td>
 						<td width="10%">操作</td>
-						<td width="10%">用户ID</td>
 						<td width="10%">用户类型</td>
 						<td width="10%">Email</td>
-						<td width="10%">密码</td>
 						<td width="10%">注册时间</td>
-						<td width="10%">最后登录时间</td>
-						<td width="10%">IP</td>
-						<td width="10%">MAC</td>
-						<td width="10%">最后冻结时间</td>
+						<td width="10%">登录时间</td>
+						<td width="10%">冻结时间</td>
 					</tr>
 				</table> 
 			</div>   
