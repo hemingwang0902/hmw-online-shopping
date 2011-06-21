@@ -949,12 +949,13 @@ $.extend($.validator, {
 				port: "validate" + element.name,
 				dataType: "json",
 				data: data,
-				success: function(response) {
-					/*新增*/
+				success: function(result) {
 					var returndata = eval("(" + result + ")");
 					response=returndata["flag"];
-					var message=returndata["message"];
-					/*end*/
+					var message="";
+					if(returndata["message"]!=null){
+						message=returndata["message"];
+					}
 					
 					validator.settings.messages[element.name].remote = previous.originalMessage;
 					var valid = response === true;
@@ -966,13 +967,11 @@ $.extend($.validator, {
 						validator.showErrors();
 					} else {
 						var errors = {};
-						/*新增*/
 						if(message==null||message==''){
 							message = (previous.message = response || validator.defaultMessage( element, "remote" ));
 						}else{
 							previous.message=message;
 						}
-						/*end*/
 						//delete var message = response || validator.defaultMessage( element, "remote" );
 						errors[element.name] = previous.message = $.isFunction(message) ? message(value) : message;
 						validator.showErrors(errors);
@@ -1021,7 +1020,7 @@ $.extend($.validator, {
 			return this.optional(element) || /^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$/i.test(value);
 		},
 		
-		/*新增*/
+		/*锟斤拷锟斤拷*/
 		zipcode: function(value, element) {
 			return this.optional(element) || /^[0-9]{6}$/.test(value);
 		},
