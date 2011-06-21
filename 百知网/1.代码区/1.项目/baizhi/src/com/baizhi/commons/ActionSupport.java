@@ -3,10 +3,13 @@ package com.baizhi.commons;
 import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import java.text.SimpleDateFormat;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
+
+import com.baizhi.commons.support.DateUtils;
 
 import net.sf.json.JSONObject;
 
@@ -247,7 +250,7 @@ public abstract class ActionSupport extends com.opensymphony.xwork2.ActionSuppor
 	 * @param key 键
 	 * @return 返回键对应的值，如果为null则返回""
 	 */
-	public String setValue(Map<String, Object>  map,String key)  {
+	public String getValue(Map<String, Object>  map,String key)  {
 		String value="";
 		if(map!=null&&map.size()>0){
 			if(map.get(key)!=null){
@@ -255,5 +258,36 @@ public abstract class ActionSupport extends com.opensymphony.xwork2.ActionSuppor
 			}
 		}
 		return value;
+	}
+	
+	/**
+	 * 
+	 * @param map   取值对象
+	 * @param key   键
+	 * @return
+	 */
+	public String getTime(Map<String, Object> map,String key){
+		return getTime(map,key, "");
+	}
+	
+	/**
+	 * 
+	 * @param map   取值对象
+	 * @param key   键
+	 * @param format格式
+	 * @return
+	 */
+	public String getTime(Map<String, Object> map,String key,String format){
+		String time="";
+		if(map!=null){
+			if(map.get(key)!=null&&!String.valueOf(map.get(key)).trim().equals("")){
+				if(format.trim().equals("")){
+					time=new SimpleDateFormat(DateUtils.SHOW_DATE_FORMAT).format(map.get(key));  
+				}else{
+					time=new SimpleDateFormat(format).format(map.get(key));  
+				}
+			}
+		}
+		return time;
 	}
 }
