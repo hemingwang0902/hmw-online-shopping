@@ -311,9 +311,9 @@ public abstract class DaoSupport extends HibernateDaoSupport {
 		Session session = getSession();
 		try {
 			Query query = setQueryParameters(session.createQuery(sql), params);
-			List<Integer> list=query.list();
+			List list=query.list();
 			if(list!=null&&list.size()>0){
-				count=list.get(0);
+				count=Integer.parseInt(String.valueOf(list.get(0)));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
