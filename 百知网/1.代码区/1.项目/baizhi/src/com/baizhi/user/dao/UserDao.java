@@ -58,6 +58,8 @@ public class UserDao extends DaoSupport{
 		sql.append("SELECT count(*) FROM T_USER a WHERE 1=1 ");
 		//设置查询条件,及初始化查询条件值
 		ParametersSupport ps=new ParametersSupport(params);
+		sql.append(ps.getConditions());
+		
 		return this.getCount(sql.toString(), ps.getValues());
 	}
 	
