@@ -37,6 +37,7 @@ a{color:#333;text-decoration:none;outline:none;}
 a:hover{color:#333;text-decoration:underline;}
 .error{height:18px;line-height:18px;color:red;}
 .readonly{background-color: #EEE;}
+.textarea_box{border:#CCC solid 1px;padding:5px;width:99%;height:80px;}
 
 /*表头*/
 .logo{float:left;padding-top:15px;padding-left:28px;}
