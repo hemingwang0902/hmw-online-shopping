@@ -29,14 +29,14 @@ public class GetDicitemById extends DicitemForm{
 		//查询数据
 		Map<String, Object>  returnMap = dicitemService.getDicitemMapById(this.getDICITEM_ID());
 		if(returnMap!=null&&returnMap.size()>0){
-			this.setCODE(this.setValue(returnMap,"CODE"));// 列表字典代码
-			this.setDIC_CODE(this.setValue(returnMap,"DIC_CODE"));// 字典代码
-			this.setDIC_NAME(this.setValue(returnMap,"DIC_NAME"));// 字典名称
-			this.setPDIC_CODE(this.setValue(returnMap,"PDIC_CODE"));// 字典上级代码
-			this.setALLPIN(this.setValue(returnMap,"ALLPIN"));// 字典全拼
-			this.setSIMPLEPIN(this.setValue(returnMap,"SIMPLEPIN"));// 字典简拼
-			this.setORDER_BY(this.setValue(returnMap,"ORDER_BY"));// 显示顺序
-			this.setREMARK(this.setValue(returnMap,"REMARK"));// 备注
+			this.setCODE(this.getValue(returnMap,"CODE"));// 列表字典代码
+			this.setDIC_CODE(this.getValue(returnMap,"DIC_CODE"));// 字典代码
+			this.setDIC_NAME(this.getValue(returnMap,"DIC_NAME"));// 字典名称
+			this.setPDIC_CODE(this.getValue(returnMap,"PDIC_CODE"));// 字典上级代码
+			this.setALLPIN(this.getValue(returnMap,"ALLPIN"));// 字典全拼
+			this.setSIMPLEPIN(this.getValue(returnMap,"SIMPLEPIN"));// 字典简拼
+			this.setORDER_BY(this.getValue(returnMap,"ORDER_BY"));// 显示顺序
+			this.setREMARK(this.getValue(returnMap,"REMARK"));// 备注
 		}
 		return SUCCESS;
 	}

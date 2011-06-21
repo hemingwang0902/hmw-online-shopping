@@ -29,10 +29,10 @@ public class GetScoreLevelById extends ScoreLevelForm{
 		//查询数据
 		Map<String, Object>  returnMap = scoreLevelService.getScoreLevelMapById(this.getSCORELEVEL_ID());
 		if(returnMap!=null&&returnMap.size()>0){
-			this.setNAME(this.setValue(returnMap,"NAME"));// 级别名称
-			this.setSOCRE_UP(this.setValue(returnMap,"SOCRE_UP"));// 积分上限
-			this.setSOCRE_DOWN(this.setValue(returnMap,"SOCRE_DOWN"));// 积分下限
-			this.setREMARK(this.setValue(returnMap,"REMARK"));// 备注
+			this.setNAME(this.getValue(returnMap,"NAME"));// 级别名称
+			this.setSOCRE_UP(this.getValue(returnMap,"SOCRE_UP"));// 积分上限
+			this.setSOCRE_DOWN(this.getValue(returnMap,"SOCRE_DOWN"));// 积分下限
+			this.setREMARK(this.getValue(returnMap,"REMARK"));// 备注
 		}
 		return SUCCESS;
 	}

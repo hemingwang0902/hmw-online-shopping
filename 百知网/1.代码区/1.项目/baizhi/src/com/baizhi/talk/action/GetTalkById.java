@@ -31,10 +31,10 @@ public class GetTalkById extends TalkForm{
 		//查询数据
 		Map<String, Object>  returnMap = talkService.getTalkMapById(this.getTALK_ID());
 		if(returnMap!=null&&returnMap.size()>0){
-			this.setCONTENT(this.setValue(returnMap,"CONTENT"));// 内容
-			this.setUSER_ID(this.setValue(returnMap,"USER_ID"));// 用户ID
-			this.setCREATE_TIME(this.setValue(returnMap,"CREATE_TIME"));// 创建时间
-			this.setMODIFY_TIME(this.setValue(returnMap,"MODIFY_TIME"));// 修改时间
+			this.setCONTENT(this.getValue(returnMap,"CONTENT"));// 内容
+			this.setUSER_ID(this.getValue(returnMap,"USER_ID"));// 用户ID
+			this.setCREATE_TIME(this.getValue(returnMap,"CREATE_TIME"));// 创建时间
+			this.setMODIFY_TIME(this.getValue(returnMap,"MODIFY_TIME"));// 修改时间
 		}
 		return SUCCESS;
 	}
