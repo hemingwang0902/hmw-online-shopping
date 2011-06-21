@@ -23,34 +23,8 @@
 			<form id="ScoreLevelList" >
 				<table width="100%;" border="0" cellspacing="0" cellpadding="0" class="lightbox_table">
 		   			<tr>
-						<td class="lightbox_title">积分级别ID：</td>
-					
-						<td class="lightbox_content"><input type="text" class="input_width3" name="SCORELEVEL_ID" id="SCORELEVEL_ID" /> </td>
-	
-					</tr>
-		   			<tr>
 						<td class="lightbox_title">级别名称：</td>
-					
 						<td class="lightbox_content"><input type="text" class="input_width3" name="NAME" id="NAME" /> </td>
-	
-					</tr>
-		   			<tr>
-						<td class="lightbox_title">积分上限：</td>
-					
-						<td class="lightbox_content"><input type="text" class="input_width3" name="SOCRE_UP" id="SOCRE_UP" /> </td>
-	
-					</tr>
-		   			<tr>
-						<td class="lightbox_title">积分下限：</td>
-					
-						<td class="lightbox_content"><input type="text" class="input_width3" name="SOCRE_DOWN" id="SOCRE_DOWN" /> </td>
-	
-					</tr>
-		   			<tr>
-						<td class="lightbox_title">备注：</td>
-					
-						<td class="lightbox_content"><input type="text" class="input_width3" name="REMARK" id="REMARK" /> </td>
-	
 					</tr>
 					<tr>
 						<td>&nbsp;</td>
@@ -76,7 +50,6 @@
 					<tr class="tr_bg">
 						<td width="6%"><input type="checkbox" /></td>
 						<td width="10%">操作</td>
-		   				<td width="10%">积分级别ID</td>
 		   				<td width="10%">级别名称</td>
 		   				<td width="10%">积分上限</td>
 		   				<td width="10%">积分下限</td>

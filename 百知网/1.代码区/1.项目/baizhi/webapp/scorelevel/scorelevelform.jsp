@@ -31,15 +31,17 @@
 				<table width="100%;" border="0" cellspacing="0" cellpadding="0" class="lightbox_table">
 					<tr>
 						<td class="lightbox_title"><span class="font_red">*</span>级别名称：</td>
-						<td class="lightbox_content"><input type="text" class="input_width" id="NAME" name="NAME" value='<s:property value="NAME"/>'/></td>
-						<td class="lightbox_title"><span class="font_red">*</span>积分上限：</td>
-						<td class="lightbox_content"><input type="text" class="input_width" id="SOCRE_UP" name="SOCRE_UP" value='<s:property value="SOCRE_UP"/>'/></td>
+						<td class="lightbox_content" colspan="3"><input type="text" class="input_width" id="NAME" name="NAME" value='<s:property value="NAME"/>'/></td>
 					</tr>
 					<tr>
+						<td class="lightbox_title"><span class="font_red">*</span>积分上限：</td>
+						<td class="lightbox_content"><input type="text" class="input_width" id="SOCRE_UP" name="SOCRE_UP" value='<s:property value="SOCRE_UP"/>'/></td>
 						<td class="lightbox_title"><span class="font_red">*</span>积分下限：</td>
-						<td class="lightbox_content"><input type="text" class="input_width" id="SOCRE_DOWN" name="SOCRE_DOWN" value='<s:property value="SOCRE_DOWN"/>'/></td>
-						<td class="lightbox_title"><span class="font_red">*</span>备注：</td>
-						<td class="lightbox_content"><input type="text" class="input_width" id="REMARK" name="REMARK" value='<s:property value="REMARK"/>'/></td>
+						<td class="lightbox_content" ><input type="text" class="input_width" id="SOCRE_DOWN" name="SOCRE_DOWN" value='<s:property value="SOCRE_DOWN"/>'/></td>
+					</tr>
+					<tr>
+						<td class="lightbox_title">&nbsp;备注：</td>
+						<td colspan="3" class="lightbox_content"><textarea  class="textarea_box"  id="REMARK" name="REMARK" ><s:property value="REMARK"/></textarea></td>
 					</tr>
 				</table>
 			</div>

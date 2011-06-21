@@ -7,17 +7,9 @@ function getDataList(){
 	$("tr").remove("#scorelevellist_tr");
 	var onePageCount=$("#onePageCount").val();
 	var nowPage=$("#nowPage").val();
-	var SCORELEVEL_ID = $("#SCORELEVEL_ID").val();
 	var NAME = $("#NAME").val();
-	var SOCRE_UP = $("#SOCRE_UP").val();
-	var SOCRE_DOWN = $("#SOCRE_DOWN").val();
-	var REMARK = $("#REMARK").val();
 	$.post("getScoreLevelList.go",{
-		SCORELEVEL_ID: window.encodeURI(SCORELEVEL_ID),
 		NAME: window.encodeURI(NAME),
-		SOCRE_UP: window.encodeURI(SOCRE_UP),
-		SOCRE_DOWN: window.encodeURI(SOCRE_DOWN),
-		REMARK: window.encodeURI(REMARK),
 		nowPage: nowPage,
 		onePageCount: onePageCount},
 		function(result){
@@ -50,7 +42,6 @@ function getDataList(){
 						content += "    <a href='"+edithref+"' class='bj_btn' title='编辑'/>";
 						content += "    <a href='javascript:;' class='sc_btn' title='删除' onclick=\"delData('"+SCORELEVEL_ID+"')\"/>";
 						content += "  </td>";
-						content += "  <td>"+SCORELEVEL_ID+"</td>";
 						content += "  <td>"+NAME+"</td>";
 						content += "  <td>"+SOCRE_UP+"</td>";
 						content += "  <td>"+SOCRE_DOWN+"</td>";
