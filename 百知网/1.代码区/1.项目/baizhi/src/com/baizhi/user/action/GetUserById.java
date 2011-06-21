@@ -31,14 +31,14 @@ public class GetUserById  extends UserForm{
 		//查询数据
 		Map<String, Object>  returnMap = userService.getUserMapById(this.getUSER_ID());
 		if(returnMap!=null&&returnMap.size()>0){
-			this.setUSER_TYPE(this.setValue(returnMap,"USER_TYPE"));//用户类型(字典：1用户、2品牌)
-			this.setEMAIL(this.setValue(returnMap,"EMAIL"));//Email
-			this.setPASSWORD(this.setValue(returnMap,"PASSWORD"));//密码
-			this.setREG_TIME(this.setValue(returnMap,"REG_TIME"));//注册时间
-			this.setLAST_LOGINTIME(this.setValue(returnMap,"LAST_LOGINTIME"));//最后登录时间
-			this.setIP(this.setValue(returnMap,"IP"));//最后登录IP
-			this.setMAC(this.setValue(returnMap,"MAC"));//最后登录MAC
-			this.setLAST_FREEZETIME(this.setValue(returnMap,"LAST_FREEZETIME"));//最后冻结时间
+			this.setUSER_TYPE(this.getValue(returnMap,"USER_TYPE"));//用户类型(字典：1用户、2品牌)
+			this.setEMAIL(this.getValue(returnMap,"EMAIL"));//Email
+			this.setPASSWORD(this.getValue(returnMap,"PASSWORD"));//密码
+			this.setREG_TIME(this.getValue(returnMap,"REG_TIME"));//注册时间
+			this.setLAST_LOGINTIME(this.getValue(returnMap,"LAST_LOGINTIME"));//最后登录时间
+			this.setIP(this.getValue(returnMap,"IP"));//最后登录IP
+			this.setMAC(this.getValue(returnMap,"MAC"));//最后登录MAC
+			this.setLAST_FREEZETIME(this.getValue(returnMap,"LAST_FREEZETIME"));//最后冻结时间
 		}
 		return SUCCESS;
 	}
