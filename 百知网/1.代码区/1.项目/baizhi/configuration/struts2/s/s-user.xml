@@ -28,5 +28,10 @@
 		<action name="getUserById" class="com.baizhi.user.action.GetUserById">
 			<result name="success" type="dispatcher" >userform.jsp</result>
 		</action>
+		<action name="checkEmail" class="com.baizhi.user.action.CheckEmail">
+			<result name="jsonsuccess" type="json">
+		      <param name="root">result</param>
+		    </result>
+		</action>
 	</package>
 </struts>
