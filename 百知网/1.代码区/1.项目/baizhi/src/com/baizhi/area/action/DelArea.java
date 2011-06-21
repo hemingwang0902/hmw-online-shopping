@@ -15,7 +15,6 @@ import com.baizhi.area.service.AreaService;
  * 修改日期：
  */
 public class DelArea extends ActionSupport{
-	private static final long serialVersionUID = -2986429091913310917L;
 
 	private static final long serialVersionUID = -2986429091913310917L;
 

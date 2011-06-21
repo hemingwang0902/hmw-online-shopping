@@ -12,7 +12,6 @@ import com.baizhi.commons.ActionSupport;
  * 修改日期：
  */
 public class InitAreaForm extends ActionSupport{
-	private static final long serialVersionUID = 4920758154110688206L;
 
 	private static final long serialVersionUID = 4920758154110688206L;
 

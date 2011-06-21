@@ -11,7 +11,7 @@ import com.baizhi.commons.ActionSupport;
  * 修改日期：
  */
 public abstract class AreaForm extends ActionSupport {
-	private static final long serialVersionUID = -7921660718540727790L;
+	
 	private static final long serialVersionUID = -7921660718540727790L;
 	
 	private String AREA_ID;//地区ID

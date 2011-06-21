@@ -16,7 +16,7 @@ import com.baizhi.area.service.AreaService;
  * 修改日期：
  */
 public class SaveArea extends AreaForm{
-	private static final long serialVersionUID = 3122825375228300143L;
+	
 	private static final long serialVersionUID = 3122825375228300143L;
 	
 	private AreaService areaService;//地区信息表业务类
