@@ -31,7 +31,7 @@ public class Get${className}ById extends ${className}Form{
 		if(returnMap!=null&&returnMap.size()>0){
 			<#list lis as being>
 			<#if being.columnkey != "PRI">
-			this.set${being.oldCl}(this.setValue(returnMap,"${being.oldCl}"));// ${being.content}
+			this.set${being.oldCl}(this.getValue(returnMap,"${being.oldCl}"));// ${being.content}
 			</#if>
 			</#list>
 		}
