@@ -35,6 +35,8 @@ a.button_box:hover,input.button_box:hover {background-position:bottom;border:#fe
 
 a{color:#333;text-decoration:none;outline:none;}
 a:hover{color:#333;text-decoration:underline;}
+.error{height:18px;line-height:18px;color:red;}
+.readonly{background-color: #EEE;}
 
 /*表头*/
 .logo{float:left;padding-top:15px;padding-left:28px;}
