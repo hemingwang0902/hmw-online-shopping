@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+	
+<hibernate-mapping>
+	<class entity-name="T_DICLIST" table="T_DICLIST" lazy="false">
+		<comment>字典列表</comment>
+		<id name="DICLIST_ID" column="DICLIST_ID" type="int" >
+			<generator class="identity" />
+		</id>
+		<property name="NAME" type="string">
+			<column name="NAME" length="50" >
+				<comment>字典名称</comment>
+			</column>
+		</property>
+		<property name="CODE" type="string">
+			<column name="CODE" length="50" >
+				<comment>字典代码</comment>
+			</column>
+		</property>
+		<property name="ALLPIN" type="string">
+			<column name="ALLPIN" length="100" >
+				<comment>字典全拼</comment>
+			</column>
+		</property>
+		<property name="SIMPLEPIN" type="string">
+			<column name="SIMPLEPIN" length="30" >
+				<comment>字典简拼</comment>
+			</column>
+		</property>
+		<property name="REMARK" type="string">
+			<column name="REMARK" length="1000" >
+				<comment>备注</comment>
+			</column>
+		</property>
+	</class>
+</hibernate-mapping>

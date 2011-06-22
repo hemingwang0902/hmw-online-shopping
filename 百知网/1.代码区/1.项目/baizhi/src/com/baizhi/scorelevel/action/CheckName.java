@@ -8,7 +8,7 @@ import com.baizhi.scorelevel.service.ScoreLevelService;
 /**
  * 
  * 类名：CheckName.java
- * 描述：验证积分名称不能为空
+ * 描述：验证积分名称不能为重复
  * 创建者：江红
  * 创建日期：2011-06-18 22:32:20
  * 版本：V0.9

@@ -20,6 +20,7 @@
 		<div id="tip_message" class="tip_message" ><s:property value="message"/></div>
 		<form action="saveDicitem.go" method="post" id="DicitemForm">
 			<input type="hidden"  id="DICITEM_ID" name="DICITEM_ID" value='<s:property value="DICITEM_ID"/>' />
+			<input type="hidden"  id="CODE" name="CODE" value='<s:property value="#parameters.CODE"/>' />
 			<s:token></s:token>
 			<input type="hidden" id="ID" name="ID" value='<s:property value="ID"/>'/>
 			<div class="lightbox_header"><span class="font_span">字典列表清单表单</span></div>
@@ -30,16 +31,10 @@
 			<div class="form_style">
 				<table width="100%;" border="0" cellspacing="0" cellpadding="0" class="lightbox_table">
 					<tr>
-						<td class="lightbox_title"><span class="font_red">*</span>列表字典代码：</td>
-						<td class="lightbox_content"><input type="text" class="input_width" id="CODE" name="CODE" value='<s:property value="CODE"/>'/></td>
 						<td class="lightbox_title"><span class="font_red">*</span>字典代码：</td>
 						<td class="lightbox_content"><input type="text" class="input_width" id="DIC_CODE" name="DIC_CODE" value='<s:property value="DIC_CODE"/>'/></td>
-					</tr>
-					<tr>
 						<td class="lightbox_title"><span class="font_red">*</span>字典名称：</td>
 						<td class="lightbox_content"><input type="text" class="input_width" id="DIC_NAME" name="DIC_NAME" value='<s:property value="DIC_NAME"/>'/></td>
-						<td class="lightbox_title"><span class="font_red">*</span>字典上级代码：</td>
-						<td class="lightbox_content"><input type="text" class="input_width" id="PDIC_CODE" name="PDIC_CODE" value='<s:property value="PDIC_CODE"/>'/></td>
 					</tr>
 					<tr>
 						<td class="lightbox_title"><span class="font_red">*</span>字典全拼：</td>
@@ -49,9 +44,11 @@
 					</tr>
 					<tr>
 						<td class="lightbox_title"><span class="font_red">*</span>显示顺序：</td>
-						<td class="lightbox_content"><input type="text" class="input_width" id="ORDER_BY" name="ORDER_BY" value='<s:property value="ORDER_BY"/>'/></td>
-						<td class="lightbox_title"><span class="font_red">*</span>备注：</td>
-						<td class="lightbox_content"><input type="text" class="input_width" id="REMARK" name="REMARK" value='<s:property value="REMARK"/>'/></td>
+						<td class="lightbox_content" colspan="3"><input type="text" class="input_width" id="ORDER_BY" name="ORDER_BY" value='<s:property value="ORDER_BY"/>'/></td>
+					</tr>
+					<tr>
+						<td class="lightbox_title">&nbsp;备注：</td>
+						<td colspan="3" class="lightbox_content"><textarea  class="textarea_box"  id="REMARK" name="REMARK" ><s:property value="REMARK"/></textarea></td>
 					</tr>
 				</table>
 			</div>

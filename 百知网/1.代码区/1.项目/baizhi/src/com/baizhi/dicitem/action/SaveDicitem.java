@@ -16,7 +16,9 @@ import com.baizhi.dicitem.service.DicitemService;
  * 修改日期：
  */
 public class SaveDicitem extends DicitemForm{
+	
 	private static final long serialVersionUID = -8531540779204531751L;
+	
 	private DicitemService dicitemService;//字典列表清单业务类
 	
 	public DicitemService getDicitemService() {
@@ -35,10 +37,10 @@ public class SaveDicitem extends DicitemForm{
 		if(StringUtils.isNotEmpty(this.getDICITEM_ID())){
 			element = dicitemService.getDicitemEleById("DICITEM_ID");
 			Elements.setElementValue(element, "DICITEM_ID", this.getDICITEM_ID());// 字典清单ID
-			Elements.setElementValue(element, "CODE", this.getCODE());// 列表字典代码
+			//Elements.setElementValue(element, "CODE", this.getCODE());// 列表字典代码
 			Elements.setElementValue(element, "DIC_CODE", this.getDIC_CODE());// 字典代码
 			Elements.setElementValue(element, "DIC_NAME", this.getDIC_NAME());// 字典名称
-			Elements.setElementValue(element, "PDIC_CODE", this.getPDIC_CODE());// 字典上级代码
+			//Elements.setElementValue(element, "PDIC_CODE", this.getPDIC_CODE());// 字典上级代码
 			Elements.setElementValue(element, "ALLPIN", this.getALLPIN());// 字典全拼
 			Elements.setElementValue(element, "SIMPLEPIN", this.getSIMPLEPIN());// 字典简拼
 			Elements.setElementValue(element, "ORDER_BY", this.getORDER_BY());// 显示顺序
@@ -56,7 +58,7 @@ public class SaveDicitem extends DicitemForm{
 			Elements.setElementValue(element, "CODE", this.getCODE());// 列表字典代码
 			Elements.setElementValue(element, "DIC_CODE", this.getDIC_CODE());// 字典代码
 			Elements.setElementValue(element, "DIC_NAME", this.getDIC_NAME());// 字典名称
-			Elements.setElementValue(element, "PDIC_CODE", this.getPDIC_CODE());// 字典上级代码
+			Elements.setElementValue(element, "PDIC_CODE", 0);// 字典上级代码
 			Elements.setElementValue(element, "ALLPIN", this.getALLPIN());// 字典全拼
 			Elements.setElementValue(element, "SIMPLEPIN", this.getSIMPLEPIN());// 字典简拼
 			Elements.setElementValue(element, "ORDER_BY", this.getORDER_BY());// 显示顺序

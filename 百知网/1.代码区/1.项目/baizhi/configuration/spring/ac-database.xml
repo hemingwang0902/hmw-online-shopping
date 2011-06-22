@@ -32,6 +32,8 @@
 				<value>com/baizhi/entity/T_SCORE_LEVEL.hbm.xml</value>
 				<value>com/baizhi/entity/T_PROBLEM.hbm.xml</value>
 				<value>com/baizhi/entity/T_AD.hbm.xml</value>
+				<value>com/baizhi/entity/T_DICLIST.hbm.xml</value>
+				<value>com/baizhi/entity/T_DICITEM.hbm.xml</value>
 			</list>
 		</property>
 	</bean>

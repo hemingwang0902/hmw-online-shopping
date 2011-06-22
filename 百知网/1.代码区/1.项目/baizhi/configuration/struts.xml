@@ -5,11 +5,13 @@
 <struts>
 	<include file="struts-default.xml" />
 	<include file="struts2/s/s-user.xml" />
-	<include file="struts2/s/s-dicitem.xml" />
 	<include file="struts2/s/s-area.xml" />
 	<include file="struts2/s/s-functionlist.xml" />
 	<include file="struts2/s/s-talk.xml" />
 	<include file="struts2/s/s-scorelevel.xml" />
 	<include file="struts2/s/s-problem.xml" />
 	<include file="struts2/s/s-ad.xml" />
+	
+	<include file="struts2/s/s-dicitem.xml" />
+	<include file="struts2/s/s-diclist.xml" />
 </struts>
