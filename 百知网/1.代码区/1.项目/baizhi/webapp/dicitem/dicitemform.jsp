@@ -18,7 +18,7 @@
 <div class="container">
 	<div class="content">
 		<div id="tip_message" class="tip_message" ><s:property value="message"/></div>
-		<form action="saveDicitem.go" method="post" id="DicitemForm">
+		<form action="../dicitem/saveDicitem.go" method="post" id="DicitemForm">
 			<input type="hidden"  id="DICITEM_ID" name="DICITEM_ID" value='<s:property value="DICITEM_ID"/>' />
 			<input type="hidden"  id="CODE" name="CODE" value='<s:property value="#parameters.CODE"/>' />
 			<s:token></s:token>
@@ -26,7 +26,6 @@
 			<div class="lightbox_header"><span class="font_span">字典列表清单表单</span></div>
 			<div class="btn_box">
 				<input type="submit" value="保存" class="button_box"/>
-				<input type="button" value="返回" onclick="location.href='dicitemlist.jsp';" class="button_box"/>
 			</div>
 			<div class="form_style">
 				<table width="100%;" border="0" cellspacing="0" cellpadding="0" class="lightbox_table">
