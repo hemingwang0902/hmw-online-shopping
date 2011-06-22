@@ -37,7 +37,15 @@ public class ParametersSupport {
 			if(StringUtils.isNotBlank(entry.getKey())){
 				cond.append(" AND ").append(entry.getKey()).append(" ");
 				orConditions.append(" OR ").append(entry.getKey()).append(" ");
-				list.add(entry.getValue());
+				if (entry.getValue() instanceof Object[]) {
+					Object[] tempobject = (Object[])entry.getValue();
+					for (int i = 0; i < tempobject.length; i++) {
+						list.add(tempobject[i]);
+					}
+				}else{
+					list.add(entry.getValue());
+				}
+				
 			}
 		}
 		conditions=cond.toString();
