@@ -1,10 +1,8 @@
 package com.baizhi.commons.ip;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
-import java.net.URISyntaxException;
 import java.nio.ByteOrder;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
@@ -95,10 +93,8 @@ public class IPSeeker {
 		b4 = new byte[4];
 		b3 = new byte[3];
 		try {
-			ipFile = new RandomAccessFile(new File(new File(ClassLoader.getSystemResource("").toURI()), ipFilePath), "r");
-		} catch (FileNotFoundException e) {
-			logger.error("IP地址信息文件没有找到，IP显示功能将无法使用", e);
-		} catch (URISyntaxException e) {
+			ipFile = new RandomAccessFile(new File(new File(getClass().getClassLoader().getResource("").toURI()), ipFilePath), "r");
+		} catch (Exception e) {
 			logger.error("IP地址信息文件没有找到，IP显示功能将无法使用", e);
 		}
 		// 如果打开文件成功，读取文件头信息
