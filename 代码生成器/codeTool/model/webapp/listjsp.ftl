@@ -25,13 +25,11 @@
 					<#list lis as being>
 		   			<tr>
 						<td class="lightbox_title">${being.content}：</td>
-					
 						<#if being.datatype == "java.util.Date">
 						<td class="lightbox_content"><input type="text" class="input_width3 Wdate"  onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',autoPickDate:true})" name="${being.oldCl}" id="${being.oldCl}" /> </td>
 						<#else>
 						<td class="lightbox_content"><input type="text" class="input_width3" name="${being.oldCl}" id="${being.oldCl}" /> </td>
 						</#if>
-	
 					</tr>
 					</#list>
 					<tr>

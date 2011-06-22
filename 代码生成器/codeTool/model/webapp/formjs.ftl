@@ -28,19 +28,19 @@ $(document).ready(function(){
 			<#if being.columnkey != "PRI">
 			<#if being_index != (totalcount-1)>
 			<#if being.datatype == "java.util.Date">
-			${being.oldCl}: {required: "请选择${being.content}"},
+			${being.oldCl}: {required: "请输入${being.content}"},
 			<#elseif being.datatype == "int">
-			${being.oldCl}: {required: "请选择${being.content}",number:"${being.content}必须为整数"},
+			${being.oldCl}: {required: "请输入${being.content}",number:"${being.content}必须为整数"},
 			<#else>
-			${being.oldCl}: {required: "请选择${being.content}", rangelength: "长度为1或者${being.len}"},
+			${being.oldCl}: {required: "请输入${being.content}", rangelength: "长度为1或者${being.len}"},
 			</#if>
 			<#else>
 			<#if being.datatype == "java.util.Date">
-			${being.oldCl}: {required: "请选择${being.content}"}
+			${being.oldCl}: {required: "请输入${being.content}"}
 			<#elseif being.datatype == "int">
-			${being.oldCl}: {required: "请选择${being.content}",number:"${being.content}必须为整数"}
+			${being.oldCl}: {required: "请输入${being.content}",number:"${being.content}必须为整数"}
 			<#else>
-			${being.oldCl}: {required: "请选择${being.content}", rangelength: "长度为1或者${being.len}"}
+			${being.oldCl}: {required: "请输入${being.content}", rangelength: "长度为1或者${being.len}"}
 			</#if>
 			</#if>
 			</#if>

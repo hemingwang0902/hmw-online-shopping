@@ -31,9 +31,9 @@ function getDataList(){
 					</#list>	
 			
 					for(var i=0;i<data["list"].length;i++){
-					<#list lis as being>
-					${being.fistLow} = data["list"][i]["${being.oldCl}"];//${being.content}
-					</#list>
+						<#list lis as being>
+						${being.fistLow} = data["list"][i]["${being.oldCl}"];//${being.content}
+						</#list>
 						
 						var edithref = "get${className}ById.go?${PK_KEY}="+${PK_KEY};
 						content += "<tr id='${packageName}list_tr'>";
