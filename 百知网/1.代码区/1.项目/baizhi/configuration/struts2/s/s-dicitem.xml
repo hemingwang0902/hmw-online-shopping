@@ -10,7 +10,7 @@
 		    </result>
 		</action>
 		
-		<action name="getDicitemByKeyword" class="com.baizhi.dicitem.action.GetDicitemList" method="getDicitemByKeyword">
+		<action name="getDicitemByKeyword" class="com.baizhi.dicitem.action.GetDicitemByKeyword">
 			<result name="jsonsuccess" type="json">
 		      <param name="root">result</param>
 		    </result>
