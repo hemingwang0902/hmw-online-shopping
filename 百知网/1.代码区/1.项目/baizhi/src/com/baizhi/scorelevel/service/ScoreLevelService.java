@@ -17,6 +17,8 @@ import com.baizhi.scorelevel.dao.ScoreLevelDao;
  */
 public class ScoreLevelService extends ServiceSupport{
 	
+	private static final long serialVersionUID = 3325788707891522078L;
+	
 	private ScoreLevelDao scoreLevelDao;
 	
 	public ScoreLevelDao getScoreLevelDao() {

@@ -13,4 +13,6 @@ import com.baizhi.commons.DaoImplSupport;
  */
 public class ScoreLevelImplDao extends DaoImplSupport{
 
+	private static final long serialVersionUID = 1864864398535141763L;
+
 }

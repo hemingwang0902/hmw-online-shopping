@@ -13,6 +13,8 @@ import com.baizhi.commons.ActionSupport;
  */
 public class InitScoreLevelForm extends ActionSupport{
 	
+	private static final long serialVersionUID = -7004325884501890262L;
+
 	private String CURR_CREATE_BY;//创建人
 	
 	private String CURR_CREATE_TIME;//创建时间

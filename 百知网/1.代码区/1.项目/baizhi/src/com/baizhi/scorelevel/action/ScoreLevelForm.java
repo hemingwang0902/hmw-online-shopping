@@ -12,6 +12,8 @@ import com.baizhi.commons.ActionSupport;
  */
 public abstract class ScoreLevelForm extends ActionSupport {
 	
+	private static final long serialVersionUID = 3919756819350933204L;
+	
 	private String SCORELEVEL_ID;//积分级别ID
 	private String NAME;//级别名称
 	private String SOCRE_UP;//积分上限

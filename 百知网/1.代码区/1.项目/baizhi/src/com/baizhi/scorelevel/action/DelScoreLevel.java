@@ -16,6 +16,8 @@ import com.baizhi.scorelevel.service.ScoreLevelService;
  */
 public class DelScoreLevel extends ActionSupport{
 	
+	private static final long serialVersionUID = -4008119617466845493L;
+
 	private String IDS;//用户信息表ID集合以","分隔
 	
 	private ScoreLevelService scoreLevelService;//积分级别信息表业务类

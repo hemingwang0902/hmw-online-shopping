@@ -14,6 +14,8 @@ import com.baizhi.scorelevel.service.ScoreLevelService;
  */
 public class GetScoreLevelList extends ScoreLevelForm {
 	
+	private static final long serialVersionUID = -734599018810260532L;
+	
 	private ScoreLevelService scoreLevelService;//积分级别信息表业务类
 	
 	public ScoreLevelService getScoreLevelService() {

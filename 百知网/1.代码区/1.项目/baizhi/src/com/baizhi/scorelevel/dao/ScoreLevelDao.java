@@ -58,6 +58,9 @@ public class ScoreLevelDao extends DaoSupport{
 		sql.append("SELECT count(*) FROM T_SCORE_LEVEL a WHERE 1=1 ");
 		//设置查询条件,及初始化查询条件值
 		ParametersSupport ps=new ParametersSupport(params);
+		sql.append(ps.getConditions());
+		
+		System.out.println(sql.toString());
 		return this.getCount(sql.toString(), ps.getValues());
 	}
 	
