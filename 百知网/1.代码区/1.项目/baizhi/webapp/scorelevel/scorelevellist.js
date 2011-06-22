@@ -29,12 +29,16 @@ function getDataList(){
 					var REMARK = ""; //备注
 			
 					for(var i=0;i<data["list"].length;i++){
-					SCORELEVEL_ID = data["list"][i]["SCORELEVEL_ID"];//积分级别ID
-					NAME = data["list"][i]["NAME"];//级别名称
-					SOCRE_UP = data["list"][i]["SOCRE_UP"];//积分上限
-					SOCRE_DOWN = data["list"][i]["SOCRE_DOWN"];//积分下限
-					REMARK = data["list"][i]["REMARK"];//备注
+						SCORELEVEL_ID = data["list"][i]["SCORELEVEL_ID"];//积分级别ID
+						NAME = data["list"][i]["NAME"];//级别名称
+						SOCRE_UP = data["list"][i]["SOCRE_UP"];//积分上限
+						SOCRE_DOWN = data["list"][i]["SOCRE_DOWN"];//积分下限
+						REMARK = data["list"][i]["REMARK"];//备注
 						
+						if(REMARK==null||REMARK==""){
+							REMARK="&nbsp;";
+						}
+							
 						var edithref = "getScoreLevelById.go?SCORELEVEL_ID="+SCORELEVEL_ID;
 						content += "<tr id='scorelevellist_tr'>";
 						content += "  <td><input type='checkbox' value='"+SCORELEVEL_ID+"' /></td>";

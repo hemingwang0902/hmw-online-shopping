@@ -1,9 +1,23 @@
 $(document).ready(function(){
 	$("#ScoreLevelForm").validate({
 		rules:{
-			NAME: {required: true, rangelength: [1,50]},
-			SOCRE_UP: {required: true, number:true},
-			SOCRE_DOWN: {required: true, number:true,equalSize: "#SOCRE_UP"},
+			NAME: {required: true, rangelength: [1,50],remote: {url: "checkName.go",type: "post",dataType: "json",data: {
+				//传递参数
+				NAME: function() {return  $("#NAME").val();},
+				SCORELEVEL_ID: function() {return  $("#SCORELEVEL_ID").val();}
+			}}},
+			SOCRE_UP: {required: true, number:true,remote: {url: "checkScore.go",type: "post",dataType: "json",data: {
+        		//传递参数
+				SOCRE_UP: function() {return $("#SOCRE_UP").val();},
+				SOCRE_DOWN: function() {return  $("#SOCRE_DOWN").val();},
+				SCORELEVEL_ID: function() {return  $("#SCORELEVEL_ID").val();}
+			}}},
+			SOCRE_DOWN: {required: true, number:true,equalSize: "#SOCRE_UP",remote: {url: "checkScore.go",type: "post",dataType: "json",data: {
+				//传递参数
+				SOCRE_UP: function() {return $("#SOCRE_UP").val();},
+				SOCRE_DOWN: function() {return  $("#SOCRE_DOWN").val();},
+				SCORELEVEL_ID: function() {return  $("#SCORELEVEL_ID").val();}
+			}}},
 			REMARK: {max:1000}
 		},
 		messages:{
