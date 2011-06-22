@@ -28,5 +28,15 @@
 		<action name="getScoreLevelById" class="com.baizhi.scorelevel.action.GetScoreLevelById">
 			<result name="success" type="dispatcher" >scorelevelform.jsp</result>
 		</action>
+		<action name="checkScore" class="com.baizhi.scorelevel.action.CheckScore">
+			<result name="jsonsuccess" type="json">
+		      <param name="root">result</param>
+		    </result>
+		</action>
+		<action name="checkName" class="com.baizhi.scorelevel.action.CheckName">
+			<result name="jsonsuccess" type="json">
+		      <param name="root">result</param>
+		    </result>
+		</action>
 	</package>
 </struts>
