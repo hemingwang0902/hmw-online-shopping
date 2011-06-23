@@ -93,9 +93,10 @@ public class TalkDao extends DaoSupport{
 		   .append("a.TALK_ID as TALK_ID,")//话题ID
 		   .append("a.CONTENT as CONTENT,")//内容
 		   .append("a.USER_ID as USER_ID,")//用户ID
+		   .append("b.NAME as NAME,")//用户名
 		   .append("a.CREATE_TIME as CREATE_TIME,")//创建时间
 		   .append("a.MODIFY_TIME as MODIFY_TIME) ")//修改时间
-		   .append("FROM T_TALK a WHERE 1=1");
+		   .append("FROM T_TALK a,T_USER_BASIC b WHERE a.USER_ID=b.USER_ID ");
 		//设置查询条件,及初始化查询条件值
 		ParametersSupport ps=new ParametersSupport(params);
 		sql.append(ps.getConditions());

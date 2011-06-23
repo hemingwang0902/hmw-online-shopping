@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+	
+<hibernate-mapping>
+	<class entity-name="T_USER_INVITE" table="T_USER_INVITE" lazy="false">
+		<comment>用户邀请信息表</comment>
+		<id name="INVITE_ID" column="INVITE_ID" type="int" >
+			<generator class="identity" />
+		</id>
+		<property name="USER_ID" type="int">
+			<column name="USER_ID"  >
+				<comment>用户ID</comment>
+			</column>
+		</property>
+		<property name="IS_SUCCESS" type="int">
+			<column name="IS_SUCCESS"  >
+				<comment>是否邀请成功(0否、1是)</comment>
+			</column>
+		</property>
+		<property name="EMAIL" type="string">
+			<column name="EMAIL" length="50" >
+				<comment>邀请Email</comment>
+			</column>
+		</property>
+		<property name="INVITE_CODE" type="string">
+			<column name="INVITE_CODE" length="30" >
+				<comment>邀请码</comment>
+			</column>
+		</property>
+		<property name="INVITE_TIME" type="java.util.Date">
+			<column name="INVITE_TIME"  >
+				<comment>邀请时间</comment>
+			</column>
+		</property>
+		<property name="INVITE_USERID" type="int">
+			<column name="INVITE_USERID"  >
+				<comment>邀请用户ID</comment>
+			</column>
+		</property>
+	</class>
+</hibernate-mapping>

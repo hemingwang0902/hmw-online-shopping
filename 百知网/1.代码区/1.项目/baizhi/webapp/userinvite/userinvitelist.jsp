@@ -11,7 +11,7 @@
 <script type="text/javascript" language="javascript"  src="../javascripts/jquery.pagination.js"></script>
 <script type="text/javascript" language="javascript"  src="../javascripts/jquery.checkbox.js"></script>
 <script type="text/javascript" language="javascript"  src="../javascripts/jquery.message.js"></script>
-<script type="text/javascript" language="javascript"  src="talklist.js"></script>
+<script type="text/javascript" language="javascript"  src="userinvitelist.js"></script>
 </head>
 <body>
 <div id="page_shadow" class="page_shadow"></div>
@@ -20,11 +20,33 @@
 	<div class="content">
 		<div class="find_box">
 			<div class="lightbox_header"><span class="font_span">查询条件</span></div>
-			<form id="TalkList" >
+			<form id="UserInviteList" >
 				<table width="100%;" border="0" cellspacing="0" cellpadding="0" class="lightbox_table">
 		   			<tr>
-						<td class="lightbox_title">话题名称：</td>
-						<td class="lightbox_content"><input type="text" class="input_width3" name="CONTENT" id="CONTENT" /> </td>
+						<td class="lightbox_title">会员姓名：</td>
+						<td class="lightbox_content"><input type="text" class="input_width3" name="NAME" id="NAME" /> </td>
+					</tr>
+		   			<tr>
+						<td class="lightbox_title">是否邀请成功：</td>
+						<td class="lightbox_content" >
+							<select name="IS_SUCCESS" id="IS_SUCCESS" class="select_box3">
+								<option value=""></option>
+								<option value="1">是</option>
+								<option value="0">否</option>
+							</select>
+						</td>
+					</tr>
+		   			<tr>
+						<td class="lightbox_title">邀请Email：</td>
+						<td class="lightbox_content"><input type="text" class="input_width3" name="EMAIL" id="EMAIL" /> </td>
+					</tr>
+		   			<tr>
+						<td class="lightbox_title">邀请时间(起)：</td>
+						<td class="lightbox_content"><input type="text" class="input_width3 Wdate"  onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',autoPickDate:true})" name="INVITE_TIME" id="INVITE_TIME" /> </td>
+					</tr>
+					<tr>
+						<td class="lightbox_title">邀请时间(止)：</td>
+						<td class="lightbox_content"><input type="text" class="input_width3 Wdate"  onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',autoPickDate:true})" name="INVITE_TIME_END" id="INVITE_TIME_END" /> </td>
 					</tr>
 					<tr>
 						<td>&nbsp;</td>
@@ -38,22 +60,22 @@
 		</div>
 		<div class="table_box">
 			<div class="lightbox_header">
-				<span class="font_span">话题信息表列表</span>
+				<span class="font_span">用户邀请信息表列表</span>
 			</div>
 			<div class="lightbox_opt">
-				<input type="button"  value="新增" class="button_box" onclick="location.href='initTalkForm.go';"/>
-				<input type="button"  value="删除" class="button_box" onclick="delData($.fn.getCheckValue())"/>
+				<input type="button"  value="邀请" class="button_box" onclick="location.href='initUserInviteForm.go';"/>
+				<!-- <input type="button"  value="删除" class="button_box" onclick="delData($.fn.getCheckValue())"/> -->
 			</div>
 			<div id="Pagination" class="pagination"><!-- 这里显示分页 --></div>
 			<div class="list_style">
 				<table width="100%;" border="0" cellspacing="0" cellpadding="0" class="lightbox_table" id="datalist">
 					<tr class="tr_bg">
-						<td width="6%"><input type="checkbox" /></td>
-						<td width="10%">操作</td>
-		   				<td width="10%">话题名称</td>
-		   				<td width="10%">创建人</td>
-		   				<td width="10%">创建时间</td>
-		   				<td width="10%">修改时间</td>
+						<!--<td width="6%"><input type="checkbox" /></td>
+						<td width="10%">操作</td>-->
+		   				<td width="10%">会员姓名</td>
+		   				<td width="10%">是否邀请成功</td>
+		   				<td width="10%">邀请Email</td>
+		   				<td width="10%">邀请时间</td>
 					</tr>
 				</table> 
 			</div>   

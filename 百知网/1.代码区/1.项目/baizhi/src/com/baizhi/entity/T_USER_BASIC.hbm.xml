@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+	
+<hibernate-mapping>
+	<class entity-name="T_USER_BASIC" table="T_USER_BASIC" lazy="false">
+		<comment>用户基本信息表</comment>
+		<id name="BASIC_ID" column="BASIC_ID" type="int" >
+			<generator class="identity" />
+		</id>
+		<property name="USER_ID" type="int">
+			<column name="USER_ID"  >
+				<comment>用户ID</comment>
+			</column>
+		</property>
+		<property name="USER_TYPE" type="string">
+			<column name="USER_TYPE" length="10" >
+				<comment>用户类型(字典：1用户、2品牌)冗余字段</comment>
+			</column>
+		</property>
+		<property name="NAME" type="string">
+			<column name="NAME" length="50" >
+				<comment>姓名/品牌名称</comment>
+			</column>
+		</property>
+		<property name="SOURCE" type="string">
+			<column name="SOURCE" length="50" >
+				<comment>发源地(品牌特有)</comment>
+			</column>
+		</property>
+		<property name="PROVINCE" type="int">
+			<column name="PROVINCE"  >
+				<comment>所在地区(省：地区信息表ID)</comment>
+			</column>
+		</property>
+		<property name="CITY" type="int">
+			<column name="CITY"  >
+				<comment>所在地区(市：地区信息表ID)</comment>
+			</column>
+		</property>
+		<property name="INDUSTRY" type="string">
+			<column name="INDUSTRY" length="10" >
+				<comment>从事行业(字典)</comment>
+			</column>
+		</property>
+		<property name="YEARS" type="string">
+			<column name="YEARS" length="10" >
+				<comment>所在年代(字典、用户特有)</comment>
+			</column>
+		</property>
+		<property name="LINK_MODE" type="string">
+			<column name="LINK_MODE" length="20" >
+				<comment>联系方式</comment>
+			</column>
+		</property>
+		<property name="IS_OPEN" type="int">
+			<column name="IS_OPEN"  >
+				<comment>是否对外开放(0否、1是)</comment>
+			</column>
+		</property>
+		<property name="INTRODUCTION" type="string">
+			<column name="INTRODUCTION" length="1000" >
+				<comment>个人介绍/品牌介绍</comment>
+			</column>
+		</property>
+		<property name="MOTTO" type="string">
+			<column name="MOTTO" length="100" >
+				<comment>人生格言(用户特有)</comment>
+			</column>
+		</property>
+		<property name="IMAGE_PATH" type="string">
+			<column name="IMAGE_PATH" length="100" >
+				<comment>相片路径/LOGO路径</comment>
+			</column>
+		</property>
+		<property name="WEBSITE" type="string">
+			<column name="WEBSITE" length="100" >
+				<comment>个性网址</comment>
+			</column>
+		</property>
+		<property name="PRIVATE_SET" type="string">
+			<column name="PRIVATE_SET" length="10" >
+				<comment>私信设置(字典：1所有人、2我关注的人)</comment>
+			</column>
+		</property>
+		<property name="LEVEL" type="int">
+			<column name="LEVEL"  >
+				<comment>级别</comment>
+			</column>
+		</property>
+		<property name="SCORE" type="int">
+			<column name="SCORE"  >
+				<comment>积分</comment>
+			</column>
+		</property>
+		<property name="REMARK" type="string">
+			<column name="REMARK" length="1000" >
+				<comment>备注</comment>
+			</column>
+		</property>
+		<property name="CREATE_TIME" type="java.util.Date">
+			<column name="CREATE_TIME"  >
+				<comment>创建时间</comment>
+			</column>
+		</property>
+		<property name="MODIFY_TIME" type="java.util.Date">
+			<column name="MODIFY_TIME"  >
+				<comment>修改时间</comment>
+			</column>
+		</property>
+	</class>
+</hibernate-mapping>

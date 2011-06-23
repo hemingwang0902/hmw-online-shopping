@@ -1,6 +1,7 @@
 package com.baizhi.talk.action;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import com.baizhi.talk.service.TalkService;
 /**
@@ -26,19 +27,29 @@ public class GetTalkList extends TalkForm {
 		this.talkService = talkService;
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public String execute() throws Exception {
 		Map<String, Object> params = new HashMap<String, Object>();
 		//设置查询条件
-		this.setMap(params, "TALK_ID=?", this.getTALK_ID());// 话题ID
 		this.setMap(params, "CONTENT=?", this.getCONTENT());// 内容
-		this.setMap(params, "USER_ID=?", this.getUSER_ID());// 用户ID
-		this.setMap(params, "CREATE_TIME=?", this.getCREATE_TIME());// 创建时间
-		this.setMap(params, "MODIFY_TIME=?", this.getMODIFY_TIME());// 修改时间
 		// 查询话题信息表列表
 		Map<String, Object> returnMap = talkService.getTalkList(params, this.getNowPage(), this.getOnePageCount());
 		//判断是否存在查询记录
+		//判断是否存在查询记录
 		if (returnMap != null && returnMap.size() != 0) {
+			//判断是否存在列表数据，如果存在列表数据，则将日期格式转换
+			if(returnMap.get("list")!=null&&((List<Map<String,Object>>)returnMap.get("list")).size()>0){
+				List<Map<String, Object>> list = (List<Map<String,Object>>)returnMap.get("list");
+				for (int i = 0; i < list.size(); i++) {
+					Map<String, Object> newmap = list.get(i);
+					String CREATE_TIME=getTime(newmap, "CREATE_TIME");
+					String MODIFY_TIME=getTime(newmap, "MODIFY_TIME");
+					newmap.put("CREATE_TIME", CREATE_TIME);
+					newmap.put("MODIFY_TIME", MODIFY_TIME.equals("")?"&nbsp;":MODIFY_TIME);
+				}
+				
+			}
 			this.setResult(returnMap);
 		}
 		return JSONSUCCESS;

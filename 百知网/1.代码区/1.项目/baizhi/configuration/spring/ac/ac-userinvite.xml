@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<bean id="userInviteDao" class="com.baizhi.userinvite.dao.UserInviteDao" parent="daoSupport"></bean>
+	
+	<bean id="userInviteService" class="com.baizhi.userinvite.service.UserInviteService" parent="serviceSupport">
+		<property name="userInviteDao">
+			<ref local="userInviteDao" />
+		</property>
+	</bean>
+</beans>

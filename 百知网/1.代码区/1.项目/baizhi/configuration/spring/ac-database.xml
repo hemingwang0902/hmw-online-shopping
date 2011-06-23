@@ -34,6 +34,8 @@
 				<value>com/baizhi/entity/T_AD.hbm.xml</value>
 				<value>com/baizhi/entity/T_DICLIST.hbm.xml</value>
 				<value>com/baizhi/entity/T_DICITEM.hbm.xml</value>
+				<value>com/baizhi/entity/T_USER_BASIC.hbm.xml</value>
+				<value>com/baizhi/entity/T_USER_INVITE.hbm.xml</value>
 			</list>
 		</property>
 	</bean>

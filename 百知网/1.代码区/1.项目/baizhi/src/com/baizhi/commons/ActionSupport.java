@@ -113,7 +113,8 @@ public abstract class ActionSupport extends com.opensymphony.xwork2.ActionSuppor
 	 * @return
 	 */
 	public long getSessionUserId() {
-		return Long.parseLong(String.valueOf(getSessionUserInfo().get("USER_ID")));
+		//Long.parseLong(String.valueOf(getSessionUserInfo().get("USER_ID")))
+		return 1;
 	}
 
 	/**

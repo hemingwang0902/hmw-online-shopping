@@ -2,6 +2,8 @@ package com.baizhi.talk.action;
 
 import org.dom4j.Element;
 import org.dom4j.tree.DefaultElement;
+
+import com.baizhi.commons.support.DateUtils;
 import com.baizhi.commons.support.Elements;
 import com.baizhi.commons.support.StringUtils;
 import com.baizhi.talk.service.TalkService;
@@ -36,11 +38,11 @@ public class SaveTalk extends TalkForm{
 		//如果话题信息表ID为""，则为新增话题信息表，否则更新话题信息表
 		if(StringUtils.isNotEmpty(this.getTALK_ID())){
 			element = talkService.getTalkEleById("TALK_ID");
-			Elements.setElementValue(element, "TALK_ID", this.getTALK_ID());// 话题ID
+			//Elements.setElementValue(element, "TALK_ID", this.getTALK_ID());// 话题ID
 			Elements.setElementValue(element, "CONTENT", this.getCONTENT());// 内容
-			Elements.setElementValue(element, "USER_ID", this.getUSER_ID());// 用户ID
-			Elements.setElementValue(element, "CREATE_TIME", this.getCREATE_TIME());// 创建时间
-			Elements.setElementValue(element, "MODIFY_TIME", this.getMODIFY_TIME());// 修改时间
+			//Elements.setElementValue(element, "USER_ID", this.getUSER_ID());// 用户ID
+			//Elements.setElementValue(element, "CREATE_TIME", this.getCREATE_TIME());// 创建时间
+			Elements.setElementValue(element, "MODIFY_TIME", DateUtils.getCurrentTime(DateUtils.SHOW_DATE_FORMAT));// 修改时间
 			
 			//如果保存成功，返回主键
 			keyid = talkService.saveOrUpdateTalk(element);
@@ -52,9 +54,9 @@ public class SaveTalk extends TalkForm{
 		}else{
 			element = new DefaultElement("T_TALK");
 			Elements.setElementValue(element, "CONTENT", this.getCONTENT());// 内容
-			Elements.setElementValue(element, "USER_ID", this.getUSER_ID());// 用户ID
-			Elements.setElementValue(element, "CREATE_TIME", this.getCREATE_TIME());// 创建时间
-			Elements.setElementValue(element, "MODIFY_TIME", this.getMODIFY_TIME());// 修改时间
+			Elements.setElementValue(element, "USER_ID", this.getSessionUserId());// 用户ID
+			Elements.setElementValue(element, "CREATE_TIME", DateUtils.getCurrentTime(DateUtils.SHOW_DATE_FORMAT));// 创建时间
+			//Elements.setElementValue(element, "MODIFY_TIME", this.getMODIFY_TIME());// 修改时间
 			//如果保存成功，返回主键
 			keyid = talkService.saveOrUpdateTalk(element);
 			//判断主键是否为空，如果不为空，则保存成功

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="userbasic" extends="json-default" namespace="/userbasic">
+		<action name="getUserBasicList" class="com.baizhi.userbasic.action.GetUserBasicList">
+			<result name="jsonsuccess" type="json">
+		      <param name="root">result</param>
+		    </result>
+		</action>
+		<action name="initUserBasicForm" class="com.baizhi.userbasic.action.InitUserBasicForm">
+			<result name="success" type="dispatcher">userbasicform.jsp</result>
+		</action>
+		<action name="saveUserBasic" class="com.baizhi.userbasic.action.SaveUserBasic">
+			<result name="error"  type="dispatcher" >userbasicform.jsp</result>
+			<result name="success" type="redirect" >userbasiclist.jsp</result>
+			<result name="update" type="dispatcher" >userbasicform.jsp</result>
+			<result name="invalid.token" type="freemarker">userbasicform.jsp</result> 
+			<interceptor-ref name="defaultStack"><param name="workflow.excludeMethods">default</param></interceptor-ref> 
+			<interceptor-ref name="tokenSession"><param name="excludeMethods">default</param></interceptor-ref>
+		</action>
+		<action name="delUserBasic" class="com.baizhi.userbasic.action.DelUserBasic">
+			<result name="jsonsuccess" type="json">
+		      <param name="root">result</param>
+		    </result>
+		</action>
+		<action name="getUserBasicById" class="com.baizhi.userbasic.action.GetUserBasicById">
+			<result name="success" type="dispatcher" >userbasicform.jsp</result>
+		</action>
+	</package>
+</struts>
