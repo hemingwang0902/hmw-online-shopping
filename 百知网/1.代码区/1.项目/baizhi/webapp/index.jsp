@@ -1,20 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=GBK" pageEncoding="GBK"%>
-<%@page import="com.baizhi.commons.ip.IPSeeker"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="/struts-tags" prefix="s" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=GBK">
-	<title>百知网</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>鐧剧煡缃�</title>
 	<link rel="stylesheet" type="text/css" href="styles/index.css" />
 	<link rel="stylesheet" type="text/css" href="styles/menu.css"  />
 	<link rel="stylesheet" type="text/css" href="styles/lightbox.css" />
-	<link rel="stylesheet" type="text/css" href="styles/jquery.autocomplete.css" />
 	<script type="text/javascript" src="javascripts/jquery-1.6.1.js"></script>
 	<script type="text/javascript" src="javascripts/jquery.menu.js"></script>
 	<script type="text/javascript" src="javascripts/jquery.lightbox.js"></script>
 	<script type="text/javascript" src="javascripts/jquery.lightboxmousewheel.js"></script>
-	<script type="text/javascript" src="javascripts/jquery.autocomplete.min-1.1.js"></script>
 	<script type="text/javascript" src="index.js"></script>
 	
 </head>
@@ -27,7 +24,7 @@
         </div>
 		<div id="tt" style="height:auto;overflow:hidden;text-align: center;display:none;">
 			<div closable='true' style='padding:0px;float:left;width:100%;overflow:hidden;' cache='false' >
-				<iframe scrolling='yes' id="iframe_main" frameborder='0'　 onload="turnHeight('iframe_main');"   style='width:100%;overflow:hidden;;height:600px;padding-bottom:20px;'></iframe>
+				<iframe scrolling='yes' id="iframe_main" frameborder='0'銆� onload="turnHeight('iframe_main');"   style='width:100%;overflow:hidden;;height:600px;padding-bottom:20px;'></iframe>
 			</div>
 		</div>
         <div style=" clear:both;"></div>
