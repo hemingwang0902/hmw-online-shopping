@@ -18,7 +18,7 @@
 		<action name="saveArea" class="com.baizhi.area.action.SaveArea">
 			<!-- 省份 -->
 			<result name="error1"  type="dispatcher" >provinceform.jsp</result>
-			<result name="success1" type="redirect" >provincelist.jsp</result>
+			<result name="success1" type="redirect" >getAreaById.go?AREA_LEVEL=1&amp;AREA_ID=${AREA_ID}</result>
 			<result name="update1" type="dispatcher" >provinceform.jsp</result>
 			<!-- 城市 -->
 			<result name="error2"  type="dispatcher" >cityform.jsp</result>

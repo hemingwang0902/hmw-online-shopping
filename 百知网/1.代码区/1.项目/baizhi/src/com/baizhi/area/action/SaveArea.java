@@ -54,6 +54,7 @@ public class SaveArea extends AreaForm{
 			keyid = areaService.saveOrUpdateArea(element);
 			//判断主键是否为空，如果不为空，则保存成功
 			if(StringUtils.isNotEmpty(keyid)){
+				setAREA_ID(keyid);
 				return SUCCESS + getAREA_LEVEL();
 			}
 		}
