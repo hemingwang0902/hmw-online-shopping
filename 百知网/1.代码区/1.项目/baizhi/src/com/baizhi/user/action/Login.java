@@ -75,13 +75,9 @@ public class Login extends ActionSupport{
 		
 		//获取Session对象
 		HttpSession session = request.getSession();
-		session.setMaxInactiveInterval(10);
 		//将值设置到Session对象中
 		session.setAttribute("userinfo", data);
 		return SUCCESS;
 	}
 	
-	public static void main(String[] args) {
-		System.out.println(Encrypt.edcryptMD5("111111"));
-	}
 }

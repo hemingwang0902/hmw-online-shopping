@@ -13,14 +13,14 @@ $(document).ready(function(){
 			}}},
 			ALLPIN: {required: true, rangelength: [1,100]},
 			SIMPLEPIN: {required: true, rangelength: [1,30]},
-			REMARK: {required: true, rangelength: [1,1000]}
+			REMARK: { rangelength: [1,1000]}
 		},
 		messages:{
 			NAME: {required: "请输入字典名称", rangelength: "长度为1或者50"},
 			CODE: {required: "请输入字典代码", rangelength: "长度为1或者50"},
 			ALLPIN: {required: "请输入字典全拼", rangelength: "长度为1或者100"},
 			SIMPLEPIN: {required: "请输入字典简拼", rangelength: "长度为1或者30"},
-			REMARK: {required: "请输入备注", rangelength: "长度为1或者1000"}
+			REMARK: { rangelength: "长度为1或者1000"}
 		},
 		submitHandler:function(form){
             form.submit();
