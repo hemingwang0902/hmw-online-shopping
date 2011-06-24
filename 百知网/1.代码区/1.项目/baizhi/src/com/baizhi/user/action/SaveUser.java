@@ -1,10 +1,16 @@
 package com.baizhi.user.action;
 
-import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
+import java.util.Map;
 
+import javax.mail.MessagingException;
+
+import org.apache.log4j.Logger;
 import org.dom4j.Element;
 import org.dom4j.tree.DefaultElement;
+import org.springframework.mail.javamail.MimeMessageHelper;
 
+import com.baizhi.commons.component.SendEmailUtils;
 import com.baizhi.commons.support.DateUtils;
 import com.baizhi.commons.support.Elements;
 import com.baizhi.commons.support.StringUtils;
@@ -23,17 +29,19 @@ import com.baizhi.user.service.UserService;
 public class SaveUser extends UserForm{
 
 	private static final long serialVersionUID = -8075832185081472628L;
+	private static final Logger logger = Logger.getLogger(SaveUser.class);
 	
 	private UserService  userService;//用户信息表业务类
-	
-	public UserService getUserService() {
-		return userService;
-	}
+	private SendEmailUtils  sendEmailUtils;
 	
 	public void setUserService(UserService userService) {
 		this.userService = userService;
 	}
 	
+	public void setSendEmailUtils(SendEmailUtils sendEmailUtils) {
+		this.sendEmailUtils = sendEmailUtils;
+	}
+
 	@Override
 	public String execute() throws Exception {
 		Element element = null;
@@ -63,29 +71,29 @@ public class SaveUser extends UserForm{
 			keyid = userService.saveOrUpdateUser(element);
 			//判断主键是否为空，如果不为空，则保存成功
 			if(StringUtils.isNotEmpty(keyid)){
+				// 发送邮件通知用户注册成功
+				sendEmail();
 				return SUCCESS;
 			}
 		}
 		return ERROR;
 	}
 	
-	/**
-	 * 获取IP地址
-	 * @param request
-	 * @return
-	 */
-	public String getIpAddr(HttpServletRequest request) {
-		String ip = request.getHeader("x-forwarded-for");
-		if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
-			ip = request.getHeader("Proxy-Client-IP");
+	private void sendEmail() {
+		Map<String, Object> rootMap = new HashMap<String, Object>();
+		rootMap.put("name", "");
+		rootMap.put("email", this.getEMAIL());
+		rootMap.put("password", this.getPASSWORD());
+		
+		try {
+			MimeMessageHelper helper = sendEmailUtils.getMimeMessageHelper();
+			// TODO 如果需要的话，将下面这几行硬编码改为从配置文件读取
+			helper.setFrom("hemingwang0902@qq.com");
+			helper.setTo(this.getEMAIL());
+			helper.setSubject("欢迎注册百知网");
+			sendEmailUtils.sendTemplateMail("AfterUserRegist.ftl", rootMap);
+		} catch (MessagingException e) {
+			logger.error("发送注册通知邮件至" + this.getEMAIL() + "失败。", e);
 		}
-		if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
-			ip = request.getHeader("WL-Proxy-Client-IP");
-		}
-		if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
-			ip = request.getRemoteAddr();
-		}
-		return ip;
 	}
-	
 }

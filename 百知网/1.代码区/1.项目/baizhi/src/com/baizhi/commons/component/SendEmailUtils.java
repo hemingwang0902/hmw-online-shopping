@@ -98,7 +98,7 @@ public class SendEmailUtils {
 	public void sendTemplateMail(String templateName, Map<String, Object> rootMap){
 		StringWriter out = new StringWriter();
 		try {
-			File dir = new File(ClassLoader.getSystemResource(templateDirectory).toURI());
+			File dir = new File(getClass().getClassLoader().getResource(templateDirectory).toURI());
 			//按模板生成文件
 			freeMarkerConfiguration.setDirectoryForTemplateLoading(dir);
 			freeMarkerConfiguration.setObjectWrapper(new DefaultObjectWrapper());
