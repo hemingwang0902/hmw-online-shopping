@@ -24,11 +24,6 @@
 		<div id="myjquerymenu" class="jquerycssmenu">
 		</div>
         <div style=" clear:both;">
-        <%
-			IPSeeker ipSeeker = IPSeeker.getInstance();
-			String ip = ipSeeker.getRemoteAddr(request);
-			out.write(ip + "<br>" + ipSeeker.getCountry(ip));
-		%>
         </div>
 		<div id="tt" style="height:auto;overflow:hidden;text-align: center;display:none;">
 			<div closable='true' style='padding:0px;float:left;width:100%;overflow:hidden;' cache='false' >
