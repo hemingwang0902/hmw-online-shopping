@@ -21,7 +21,7 @@
 				<table  >
 					<tr>
 						<td style="width: 100px;" align="right">用户名：</td>
-						<td style="width: 400px;" align="left"><input type="text" class="input_width" id="username" name="username"  value="123123" /><span class="error" id="message"><s:property value="message" /></span></td>
+						<td style="width: 400px;" align="left"><input type="text" class="input_width" id="username" name="username"  value="bb@qq.com" /><span class="error" id="message"><s:property value="message" /></span></td>
 						<td></td>
 					</tr>
 					<tr>

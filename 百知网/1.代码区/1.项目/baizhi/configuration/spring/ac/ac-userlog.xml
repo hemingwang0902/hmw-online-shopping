@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<bean id="userLogDao" class="com.baizhi.userlog.dao.UserLogDao" parent="daoSupport"></bean>
+	
+	<bean id="userLogService" class="com.baizhi.userlog.service.UserLogService" parent="serviceSupport">
+		<property name="userLogDao">
+			<ref local="userLogDao" />
+		</property>
+	</bean>
+</beans>

@@ -13,6 +13,8 @@
 	<include file="struts2/s/s-ad.xml" />
 	<include file="struts2/s/s-userbasic.xml" />
 	<include file="struts2/s/s-userinvite.xml" />
+	<include file="struts2/s/s-userlog.xml" />
+	<include file="struts2/s/s-login.xml" />
 	
 	<include file="struts2/s/s-dicitem.xml" />
 	<include file="struts2/s/s-diclist.xml" />

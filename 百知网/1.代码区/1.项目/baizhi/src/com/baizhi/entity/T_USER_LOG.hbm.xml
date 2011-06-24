@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+	
+<hibernate-mapping>
+	<class entity-name="T_USER_LOG" table="T_USER_LOG" lazy="false">
+		<comment>用户日志表</comment>
+		<id name="LOG_ID" column="LOG_ID" type="int" >
+			<generator class="identity" />
+		</id>
+		<property name="USER_ID" type="int">
+			<column name="USER_ID"  >
+				<comment>用户ID</comment>
+			</column>
+		</property>
+		<property name="LOGIN_TIME" type="java.util.Date">
+			<column name="LOGIN_TIME"  >
+				<comment>登录时间</comment>
+			</column>
+		</property>
+		<property name="IP" type="string">
+			<column name="IP" length="30" >
+				<comment>IP</comment>
+			</column>
+		</property>
+		<property name="MAC" type="string">
+			<column name="MAC" length="50" >
+				<comment>MAC</comment>
+			</column>
+		</property>
+	</class>
+</hibernate-mapping>

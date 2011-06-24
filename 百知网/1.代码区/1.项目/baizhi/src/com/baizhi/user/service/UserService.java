@@ -79,6 +79,17 @@ public class UserService extends ServiceSupport{
 	}
 	
 	/**
+	 * 登录
+	 * @param EMAIL 用户名
+	 * @param PASSWORD 密码
+	 * @param IP IP
+	 * @return 返回用户信息表信息,如果无查询记录则返回null
+	 */
+	public Map<String, Object> login(String EMAIL,String PASSWORD,String IP){
+		return userDao.login(EMAIL, PASSWORD, IP);
+	}
+	
+	/**
 	 * 获取用户信息表列表信息
 	 * @param params 参数
 	 * @param nowPage 当前页

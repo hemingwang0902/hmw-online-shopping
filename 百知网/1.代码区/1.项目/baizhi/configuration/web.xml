@@ -10,9 +10,9 @@
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 	
-	<!--  <filter>
+	<filter>
 		<filter-name>session</filter-name>
-		<filter-class>com.geeboo.commons.filter.SessionFilter</filter-class>
+		<filter-class>com.baizhi.commons.filter.SessionFilter</filter-class>
 	</filter>
 	<filter-mapping>
 		<filter-name>session</filter-name>
@@ -21,7 +21,7 @@
 	<filter-mapping>
 		<filter-name>session</filter-name>
 		<url-pattern>*.jsp</url-pattern>
-	</filter-mapping>-->
+	</filter-mapping>
 	
  	<!-- Struts2 的过滤器配置    开始 -->
  	<!-- 

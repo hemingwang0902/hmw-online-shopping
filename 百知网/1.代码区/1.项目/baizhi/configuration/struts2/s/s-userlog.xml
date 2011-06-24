@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="userlog" extends="json-default" namespace="/userlog">
+		<action name="getUserLogList" class="com.baizhi.userlog.action.GetUserLogList">
+			<result name="jsonsuccess" type="json">
+		      <param name="root">result</param>
+		    </result>
+		</action>
+		<action name="initUserLogForm" class="com.baizhi.userlog.action.InitUserLogForm">
+			<result name="success" type="dispatcher">userlogform.jsp</result>
+		</action>
+		<action name="saveUserLog" class="com.baizhi.userlog.action.SaveUserLog">
+			<result name="error"  type="dispatcher" >userlogform.jsp</result>
+			<result name="success" type="redirect" >userloglist.jsp</result>
+			<result name="update" type="dispatcher" >userlogform.jsp</result>
+			<result name="invalid.token" type="freemarker">userlogform.jsp</result> 
+			<interceptor-ref name="defaultStack"><param name="workflow.excludeMethods">default</param></interceptor-ref> 
+			<interceptor-ref name="tokenSession"><param name="excludeMethods">default</param></interceptor-ref>
+		</action>
+		<action name="delUserLog" class="com.baizhi.userlog.action.DelUserLog">
+			<result name="jsonsuccess" type="json">
+		      <param name="root">result</param>
+		    </result>
+		</action>
+		<action name="getUserLogById" class="com.baizhi.userlog.action.GetUserLogById">
+			<result name="success" type="dispatcher" >userlogform.jsp</result>
+		</action>
+	</package>
+</struts>

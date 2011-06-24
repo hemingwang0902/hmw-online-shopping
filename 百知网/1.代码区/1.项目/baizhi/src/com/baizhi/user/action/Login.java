@@ -1,9 +1,11 @@
 package com.baizhi.user.action;
 
 import java.util.Map;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.apache.struts2.ServletActionContext;
 import com.baizhi.commons.ActionSupport;
+import com.baizhi.commons.ip.IPSeeker;
 import com.baizhi.commons.support.Encrypt;
 import com.baizhi.user.service.UserService;
 
@@ -22,6 +24,10 @@ public class Login extends ActionSupport{
 	private static final long serialVersionUID = -7476230007375981305L;
 	
 	private UserService userService;  
+	
+	private String username; //用户名
+	
+	private String userpwd;  //密码
 
 	public UserService getUserService() {
 		return userService;
@@ -30,9 +36,6 @@ public class Login extends ActionSupport{
 	public void setUserService(UserService userService) {
 		this.userService = userService;
 	}
-
-	private String username;
-	private String userpwd;
 	
 	public String getUsername() {
 		return username;
@@ -55,10 +58,15 @@ public class Login extends ActionSupport{
 		if(username==null||username.trim().equals("")||userpwd==null||userpwd.trim().equals("")){
 			return ERROR;
 		}
+		//获取IP地址
+		HttpServletRequest request = ServletActionContext.getRequest();
+		IPSeeker ipSeeker = IPSeeker.getInstance();
+		String IP = ipSeeker.getRemoteAddr(request);
+		
 		//将密码设置成MD5加密
 		userpwd=Encrypt.edcryptMD5(userpwd);
 		//验证用户名密码是否正确
-		Map<String, Object> data = null;//userService.login(username, userpwd,"","");
+		Map<String, Object> data = userService.login(username, userpwd,IP);
 		//判断登录是否正确
 		if(data==null||data.get("USER_ID")==null||String.valueOf(data.get("USER_ID")).trim().equals("")){
 			this.setMessage("用户名密码错误");
@@ -66,9 +74,14 @@ public class Login extends ActionSupport{
 		}  
 		
 		//获取Session对象
-		HttpSession session = ServletActionContext.getRequest().getSession();
+		HttpSession session = request.getSession();
+		session.setMaxInactiveInterval(10);
 		//将值设置到Session对象中
 		session.setAttribute("userinfo", data);
 		return SUCCESS;
+	}
+	
+	public static void main(String[] args) {
+		System.out.println(Encrypt.edcryptMD5("111111"));
 	}
 }
