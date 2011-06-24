@@ -1,10 +1,11 @@
 package com.baizhi.area.action;
 
+import org.apache.commons.lang.StringUtils;
 import org.dom4j.Element;
 import org.dom4j.tree.DefaultElement;
-import com.baizhi.commons.support.Elements;
-import com.baizhi.commons.support.StringUtils;
+
 import com.baizhi.area.service.AreaService;
+import com.baizhi.commons.support.Elements;
 /**
  * 
  * 类名：AreaSave.java
@@ -37,44 +38,38 @@ public class SaveArea extends AreaForm{
 		if(StringUtils.isNotEmpty(this.getAREA_ID())){
 			element = areaService.getAreaEleById("AREA_ID");
 			Elements.setElementValue(element, "AREA_ID", this.getAREA_ID());// 地区ID
-			Elements.setElementValue(element, "DIC_CODE", this.getDIC_CODE());// 地区代码(根据级别制定规则定义)
-			Elements.setElementValue(element, "DIC_NAME", this.getDIC_NAME());// 地区名称
-			Elements.setElementValue(element, "PAREA_ID", this.getPAREA_ID());// 地区上级代码
-			Elements.setElementValue(element, "ALLPIN", this.getALLPIN());// 地区全拼
-			Elements.setElementValue(element, "SIMPLEPIN", this.getSIMPLEPIN());// 地区简拼
-			Elements.setElementValue(element, "ORDER_BY", this.getORDER_BY());// 显示顺序
-			Elements.setElementValue(element, "IP_START", this.getIP_START());// IP起始段
-			Elements.setElementValue(element, "IP_END", this.getIP_END());// IP终止段
-			Elements.setElementValue(element, "AREA_LEVEL", this.getAREA_LEVEL());// 地区级别(字典：1省、2市、3县、4镇、5村)暂时定义省、市两级
-			Elements.setElementValue(element, "REMARK", this.getREMARK());// 备注
+			setElementValue(element);
 			
 			//如果保存成功，返回主键
 			keyid = areaService.saveOrUpdateArea(element);
 			//判断主键是否为空，如果不为空，则保存成功
 			if(StringUtils.isNotEmpty(keyid)){
 				this.setMessage("地区信息表信息编辑成功");
-				return UPDATESUCCESS;
+				return UPDATESUCCESS + getAREA_LEVEL();
 			}
 		}else{
 			element = new DefaultElement("T_AREA");
-			Elements.setElementValue(element, "DIC_CODE", this.getDIC_CODE());// 地区代码(根据级别制定规则定义)
-			Elements.setElementValue(element, "DIC_NAME", this.getDIC_NAME());// 地区名称
-			Elements.setElementValue(element, "PAREA_ID", this.getPAREA_ID());// 地区上级代码
-			Elements.setElementValue(element, "ALLPIN", this.getALLPIN());// 地区全拼
-			Elements.setElementValue(element, "SIMPLEPIN", this.getSIMPLEPIN());// 地区简拼
-			Elements.setElementValue(element, "ORDER_BY", this.getORDER_BY());// 显示顺序
-			Elements.setElementValue(element, "IP_START", this.getIP_START());// IP起始段
-			Elements.setElementValue(element, "IP_END", this.getIP_END());// IP终止段
-			Elements.setElementValue(element, "AREA_LEVEL", this.getAREA_LEVEL());// 地区级别(字典：1省、2市、3县、4镇、5村)暂时定义省、市两级
-			Elements.setElementValue(element, "REMARK", this.getREMARK());// 备注
+			setElementValue(element);
 			//如果保存成功，返回主键
 			keyid = areaService.saveOrUpdateArea(element);
 			//判断主键是否为空，如果不为空，则保存成功
 			if(StringUtils.isNotEmpty(keyid)){
-				return SUCCESS;
+				return SUCCESS + getAREA_LEVEL();
 			}
 		}
-		return ERROR;
+		return ERROR + getAREA_LEVEL();
 	}
-
+	
+	private void setElementValue(Element element){
+		Elements.setElementValue(element, "DIC_CODE", this.getDIC_CODE());// 地区代码(根据级别制定规则定义)
+		Elements.setElementValue(element, "DIC_NAME", this.getDIC_NAME());// 地区名称
+		Elements.setElementValue(element, "PAREA_ID", StringUtils.defaultIfEmpty(this.getPAREA_ID(), "0"));// 地区上级代码
+		Elements.setElementValue(element, "ALLPIN", this.getALLPIN());// 地区全拼
+		Elements.setElementValue(element, "SIMPLEPIN", this.getSIMPLEPIN());// 地区简拼
+		Elements.setElementValue(element, "ORDER_BY", StringUtils.defaultIfEmpty(this.getORDER_BY(), "" + Integer.MAX_VALUE));// 显示顺序
+		Elements.setElementValue(element, "IP_START", this.getIP_START());// IP起始段
+		Elements.setElementValue(element, "IP_END", this.getIP_END());// IP终止段
+		Elements.setElementValue(element, "AREA_LEVEL", this.getAREA_LEVEL());// 地区级别(字典：1省、2市、3县、4镇、5村)暂时定义省、市两级
+		Elements.setElementValue(element, "REMARK", this.getREMARK());// 备注
+	}
 }

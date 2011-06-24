@@ -1,6 +1,9 @@
 package com.baizhi.area.action;
 
+import org.apache.commons.lang.StringUtils;
+
 import com.baizhi.commons.ActionSupport;
+import com.baizhi.commons.component.PinyinUtils;
 /**
  * 类名： AreaList.java<br>
  * 描述：  获取地区信息表列表信息
@@ -11,7 +14,6 @@ import com.baizhi.commons.ActionSupport;
  * 修改日期：
  */
 public abstract class AreaForm extends ActionSupport {
-	
 	private static final long serialVersionUID = -7921660718540727790L;
 	
 	private String AREA_ID;//地区ID
@@ -59,7 +61,7 @@ public abstract class AreaForm extends ActionSupport {
 	}
 	
 	public String getALLPIN() {
-		return ALLPIN;
+		return StringUtils.defaultIfEmpty(ALLPIN, PinyinUtils.getQuanPin(this.getDIC_NAME()).toUpperCase());
 	}
 
 	public void setALLPIN(String ALLPIN) {
@@ -67,7 +69,7 @@ public abstract class AreaForm extends ActionSupport {
 	}
 	
 	public String getSIMPLEPIN() {
-		return SIMPLEPIN;
+		return StringUtils.defaultIfEmpty(SIMPLEPIN, PinyinUtils.getShouPin(this.getDIC_NAME()).toUpperCase());
 	}
 
 	public void setSIMPLEPIN(String SIMPLEPIN) {

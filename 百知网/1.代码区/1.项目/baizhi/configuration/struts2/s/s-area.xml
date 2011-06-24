@@ -10,13 +10,21 @@
 		    </result>
 		</action>
 		<action name="initAreaForm" class="com.baizhi.area.action.InitAreaForm">
-			<result name="success" type="dispatcher">areaform.jsp</result>
+			<!-- 省份 -->
+			<result name="success1" type="dispatcher">provinceform.jsp</result>
+			<!-- 城市 -->
+			<result name="success2" type="dispatcher">cityform.jsp</result>
 		</action>
 		<action name="saveArea" class="com.baizhi.area.action.SaveArea">
-			<result name="error"  type="dispatcher" >areaform.jsp</result>
-			<result name="success" type="redirect" >arealist.jsp</result>
-			<result name="update" type="dispatcher" >areaform.jsp</result>
-			<result name="invalid.token" type="freemarker">areaform.jsp</result> 
+			<!-- 省份 -->
+			<result name="error1"  type="dispatcher" >provinceform.jsp</result>
+			<result name="success1" type="redirect" >provincelist.jsp</result>
+			<result name="update1" type="dispatcher" >provinceform.jsp</result>
+			<!-- 城市 -->
+			<result name="error2"  type="dispatcher" >cityform.jsp</result>
+			<result name="success2" type="redirect" >citylist.jsp?PAREA_ID=${PAREA_ID}</result>
+			<result name="update2" type="dispatcher" >cityform.jsp</result>
+			<result name="invalid.token" type="freemarker">cityform.jsp</result>
 			<interceptor-ref name="defaultStack"><param name="workflow.excludeMethods">default</param></interceptor-ref> 
 			<interceptor-ref name="tokenSession"><param name="excludeMethods">default</param></interceptor-ref>
 		</action>
@@ -26,7 +34,10 @@
 		    </result>
 		</action>
 		<action name="getAreaById" class="com.baizhi.area.action.GetAreaById">
-			<result name="success" type="dispatcher" >areaform.jsp</result>
+			<!-- 省份 -->
+			<result name="success1" type="dispatcher">provinceform.jsp</result>
+			<!-- 城市 -->
+			<result name="success2" type="dispatcher">cityform.jsp</result>
 		</action>
 	</package>
 </struts>

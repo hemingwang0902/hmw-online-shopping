@@ -42,7 +42,7 @@ public class GetAreaById extends AreaForm{
 			this.setAREA_LEVEL(this.getValue(returnMap,"AREA_LEVEL"));// 地区级别(字典：1省、2市、3县、4镇、5村)暂时定义省、市两级
 			this.setREMARK(this.getValue(returnMap,"REMARK"));// 备注
 		}
-		return SUCCESS;
+		return SUCCESS + getAREA_LEVEL();
 	}
 	
 }

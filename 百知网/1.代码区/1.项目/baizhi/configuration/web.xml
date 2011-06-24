@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
-	<display-name>TaiChina</display-name>
+	<display-name>BaiZhi</display-name>
 
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
@@ -23,23 +23,27 @@
 		<url-pattern>*.jsp</url-pattern>
 	</filter-mapping>-->
 	
-	<filter>
-		<filter-name>CharacterEncodingFilter</filter-name>
-		<filter-class>com.baizhi.filter.EncodingFilter</filter-class>
-		<init-param>
-			<param-name>encoding</param-name>
-			<param-value>UTF-8</param-value>
-		</init-param>
-	</filter>  
+ 	<!-- Struts2 的过滤器配置    开始 -->
+ 	<!-- 
+ 	struts2的web.xml配置是有顺序的，在web.xml中EncodingFilter的位置应该在Struts2的FilterDispatcher之前，因为要先调整字符集，然后进入Action
+ 	按照Struts2的API，filter的顺序是 struts-cleanup filter、SiteMesh filter、FilterDispatcher
+ 	-->
+    <filter>
+    	<description>zh-cn encoding</description>
+        <filter-name>struts-cleanup</filter-name>
+        <filter-class>org.apache.struts2.dispatcher.ActionContextCleanUp</filter-class>
+    </filter>  
+
 	<filter>
 		<filter-name>struts2</filter-name>
 		<filter-class>org.apache.struts2.dispatcher.FilterDispatcher</filter-class>
 	</filter>
 
 	<filter-mapping>
-		<filter-name>CharacterEncodingFilter</filter-name>
+		<filter-name>struts-cleanup</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+	
 	<filter-mapping>
 		<filter-name>struts2</filter-name>
 		<url-pattern>*.go</url-pattern>
@@ -48,6 +52,7 @@
 		<filter-name>struts2</filter-name>
 		<url-pattern>*.jsp</url-pattern>
 	</filter-mapping>
+	<!-- Struts2 的过滤器配置    结束 -->
 	
 	<servlet>
 		<servlet-name>dwr</servlet-name>
