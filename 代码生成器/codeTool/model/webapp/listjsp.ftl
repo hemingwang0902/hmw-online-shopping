@@ -35,7 +35,7 @@
 					<tr>
 						<td>&nbsp;</td>
 						<td style="padding-top:5px; padding-bottom:5px;">
-							<input type="button"  value="查询"  class="button_box" onclick="getDataList()"/>
+							<input type="button"  value="查询"  class="button_box" onclick="$('#nowPage').val('1');getDataList();"/>
 							<input  type="reset"  value="重置"  class="button_box" />
 						</td>
 					</tr>

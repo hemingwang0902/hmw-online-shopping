@@ -32,7 +32,7 @@ $(document).ready(function(){
 			<#elseif being.datatype == "int">
 			${being.oldCl}: {required: "请输入${being.content}",number:"${being.content}必须为整数"},
 			<#else>
-			${being.oldCl}: {required: "请输入${being.content}", rangelength: "长度为1或者${being.len}"},
+			${being.oldCl}: {required: "请输入${being.content}", rangelength: "长度为1至${being.len}"},
 			</#if>
 			<#else>
 			<#if being.datatype == "java.util.Date">
@@ -40,7 +40,7 @@ $(document).ready(function(){
 			<#elseif being.datatype == "int">
 			${being.oldCl}: {required: "请输入${being.content}",number:"${being.content}必须为整数"}
 			<#else>
-			${being.oldCl}: {required: "请输入${being.content}", rangelength: "长度为1或者${being.len}"}
+			${being.oldCl}: {required: "请输入${being.content}", rangelength: "长度为1至${being.len}"}
 			</#if>
 			</#if>
 			</#if>
