@@ -53,7 +53,8 @@ function getDataList(){
 						content += "    <a href='"+edithref+"' class='bj_btn' title='编辑'/>";
 						content += "    <a href='javascript:;' class='sc_btn' title='删除' onclick=\"delData('"+AREA_ID+"')\"/>";
 						content += "  </td>";
-						content += "  <td><a href='citylist.jsp?PAREA_ID=" + AREA_ID + "'>"+DIC_NAME+"</a></td>";
+						//content += "  <td><a href='citylist.jsp?PAREA_ID=" + AREA_ID + "'>"+DIC_NAME+"</a></td>";
+						content += "  <td>"+DIC_NAME+"</td>";
 						content += "  <td>"+DIC_CODE+"</td>";
 						content += "  <td>"+ALLPIN+"</td>";
 						content += "  <td>"+SIMPLEPIN+"</td>";

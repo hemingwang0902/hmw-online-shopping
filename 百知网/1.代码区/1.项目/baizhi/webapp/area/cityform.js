@@ -17,4 +17,20 @@ $(document).ready(function(){
         }   
 	});
 	
+	
+	$("#DIC_NAME").blur(function(){
+		$.post("../dicitem/getPinyin.go",{
+			DIC_NAME: $("#DIC_NAME").val()
+		},
+		function(result){
+			if(result==null||result==''){
+				return;
+			}
+			var data = eval("("+result+")");
+			if (data != null && data["ALLPIN"] != null && data["ALLPIN"].length > 0) {
+				$("#ALLPIN").val(data["ALLPIN"]);
+				$("#SIMPLEPIN").val(data["SIMPLEPIN"]);
+			}
+		});
+	});
 });

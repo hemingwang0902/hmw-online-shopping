@@ -33,7 +33,7 @@
 			<div class="lightbox_header"><span class="font_span">城市信息表单</span></div>
 			<div class="btn_box">
 				<input type="submit" value="保存" class="button_box"/>
-				<input type="button" value="返回" onclick="location.href='citylist.jsp?PAREA_ID=<s:property value="PAREA_ID"/>';" class="button_box"/>
+				<%--<input type="button" value="返回" onclick="location.href='citylist.jsp?PAREA_ID=<s:property value="PAREA_ID"/>';" class="button_box"/>--%>
 			</div>
 			<div class="form_style">
 				<table width="100%;" border="0" cellspacing="0" cellpadding="0" class="lightbox_table">
