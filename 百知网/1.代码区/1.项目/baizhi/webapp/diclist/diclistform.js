@@ -49,7 +49,21 @@ $(document).ready(function(){
 		'transitionOut'	    : 'elastic' //弹出方式
 	});
 	
-	
+	$("#NAME").blur(function(){
+		$.post("../dicitem/getPinyin.go",{
+			DIC_NAME: $("#NAME").val()
+		},
+		function(result){
+			if(result==null||result==''){
+				return;
+			}
+			var data = eval("("+result+")");
+			if (data != null && data["ALLPIN"] != null && data["ALLPIN"].length > 0) {
+				$("#ALLPIN").val(data["ALLPIN"]);
+				$("#SIMPLEPIN").val(data["SIMPLEPIN"]);
+			}
+		});
+	});
 });
 
 var count;
