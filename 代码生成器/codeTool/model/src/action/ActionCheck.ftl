@@ -5,14 +5,14 @@ import java.util.HashMap;
 import java.util.Map;
 import com.${sysName}.commons.ActionSupport;
 import com.${sysName}.${packageName}.service.${className}Service;
+
 /**
- * 
- * 类名：${className}Check.java
- * 描述： ${tabCon}控制类，负责处理效验${tabCon}是否存在
- * 创建者：${auth}
- * 创建日期： ${createDate}
- * 版本：V0.9 
- * 修改者：
+ * 类名：${className}Check.java<br>
+ * 描述： ${tabCon}控制类，负责处理效验${tabCon}是否存在<br>
+ * 创建者：${auth}<br>
+ * 创建日期： ${createDate}<br>
+ * 版本：V0.9 <br>
+ * 修改者：<br>
  * 修改日期：
  */
 public class ${className}Check extends ActionSupport{

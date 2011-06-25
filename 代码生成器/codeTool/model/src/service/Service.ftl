@@ -5,14 +5,14 @@ import java.util.Map;
 import org.dom4j.Element;
 import com.${sysName}.commons.ServiceSupport;
 import com.${sysName}.${packageName}.dao.${className}Dao;
+
 /**
- * 
- * 类名：${className}Service.java
- * 描述： ${tabCon}服务类，负责增删改查
- * 创建者：${auth}
- * 创建日期： ${createDate}
- * 版本：V0.9
- * 修改者：
+ * 类名：${className}Service.java<br>
+ * 描述： ${tabCon}服务类，负责增删改查<br>
+ * 创建者：${auth}<br>
+ * 创建日期： ${createDate}<br>
+ * 版本：V0.9<br>
+ * 修改者：<br>
  * 修改日期：
  */
 public class ${className}Service extends ServiceSupport{

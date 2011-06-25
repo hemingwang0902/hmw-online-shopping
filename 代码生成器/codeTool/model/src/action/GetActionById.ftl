@@ -2,14 +2,14 @@ package com.${sysName}.${packageName}.action;
 
 import java.util.Map;
 import com.${sysName}.${packageName}.service.${className}Service;
+
 /**
- * 
- * 类名：Get${className}ById.java
- * 描述： 获取单条${tabCon}表单信息
- * 创建者：${auth}
- * 创建日期： ${createDate}
- * 版本：V0.9
- * 修改者：
+ * 类名：Get${className}ById.java<br>
+ * 描述： 获取单条${tabCon}表单信息<br>
+ * 创建者：${auth}<br>
+ * 创建日期： ${createDate}<br>
+ * 版本：V0.9<br>
+ * 修改者：<br>
  * 修改日期：
  */
 public class Get${className}ById extends ${className}Form{

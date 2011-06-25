@@ -5,14 +5,14 @@ import org.dom4j.tree.DefaultElement;
 import com.${sysName}.commons.support.Elements;
 import com.${sysName}.commons.support.StringUtils;
 import com.${sysName}.${packageName}.service.${className}Service;
+
 /**
- * 
- * 类名：${className}Save.java
- * 描述： ${tabCon}控制类，负责处理新增、修改操作
- * 创建者：${auth}
- * 创建日期： ${createDate}
- * 版本：V0.9
- * 修改者：
+ * 类名：${className}Save.java<br>
+ * 描述： ${tabCon}控制类，负责处理新增、修改操作<br>
+ * 创建者：${auth}<br>
+ * 创建日期： ${createDate}<br>
+ * 版本：V0.9<br>
+ * 修改者：<br>
  * 修改日期：
  */
 public class Save${className} extends ${className}Form{

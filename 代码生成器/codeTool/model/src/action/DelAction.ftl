@@ -4,14 +4,14 @@ import java.util.HashMap;
 import java.util.Map;
 import com.${sysName}.commons.ActionSupport;
 import com.${sysName}.${packageName}.service.${className}Service;
+
 /**
- * 
  * 类名：${className}Del.java<br>
- * 描述： 删除${tabCon}信息
- * 创建者：${auth}
- * 创建日期：${createDate}
- * 版本：V0.9 
- * 修改者： 
+ * 描述： 删除${tabCon}信息<br>
+ * 创建者：${auth}<br>
+ * 创建日期：${createDate}<br>
+ * 版本：V0.9 <br>
+ * 修改者： <br>
  * 修改日期：
  */
 public class Del${className} extends ActionSupport{

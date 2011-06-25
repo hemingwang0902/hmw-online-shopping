@@ -5,14 +5,14 @@ import java.util.Map;
 import org.dom4j.Element;
 import com.${sysName}.commons.DaoSupport;
 import com.${sysName}.commons.ParametersSupport;
+
  /**
- * 
- * 类名：${className}Dao.java
- * 描述：${tabCon}数据操作类，负责增删改查
- * 创建者： ${auth}
- * 创建日期：${createDate}
- * 版本：V0.9
- * 修改者：  
+ * 类名：${className}Dao.java<br>
+ * 描述：${tabCon}数据操作类，负责增删改查<br>
+ * 创建者： ${auth}<br>
+ * 创建日期：${createDate}<br>
+ * 版本：V0.9<br>
+ * 修改者：  <br>
  * 修改日期：
  */
 public class ${className}Dao extends DaoSupport{

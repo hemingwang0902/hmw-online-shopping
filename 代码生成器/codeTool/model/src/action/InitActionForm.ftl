@@ -1,14 +1,14 @@
 package com.${sysName}.${packageName}.action;
 
 import com.${sysName}.commons.ActionSupport;
+
 /**
- * 
- * 类名：Init${className}Form.java
- * 描述： ${tabCon}控制类，负责初始化新增操作参数
- * 创建者：${auth}
- * 创建日期：${createDate}
- * 版本：V0.9 
- * 修改者：
+ * 类名：Init${className}Form.java<br>
+ * 描述： ${tabCon}控制类，负责初始化新增操作参数<br>
+ * 创建者：${auth}<br>
+ * 创建日期：${createDate}<br>
+ * 版本：V0.9 <br>
+ * 修改者：<br>
  * 修改日期：
  */
 public class Init${className}Form extends ActionSupport{
