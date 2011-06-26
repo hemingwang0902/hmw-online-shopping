@@ -35,7 +35,7 @@ public class SaveDicitem extends DicitemForm{
 		String keyid="";
 		//如果字典列表清单ID为""，则为新增字典列表清单，否则更新字典列表清单
 		if(StringUtils.isNotEmpty(this.getDICITEM_ID())){
-			element = dicitemService.getDicitemEleById("DICITEM_ID");
+			element = dicitemService.getDicitemEleById(this.getDICITEM_ID());
 			Elements.setElementValue(element, "DICITEM_ID", this.getDICITEM_ID());// 字典清单ID
 			//Elements.setElementValue(element, "CODE", this.getCODE());// 列表字典代码
 			Elements.setElementValue(element, "DIC_CODE", this.getDIC_CODE());// 字典代码

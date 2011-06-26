@@ -37,7 +37,10 @@ $(document).ready(function(){
 		'height'			: 300,      //弹出框高度
 		'type'				: 'iframe', //弹出框类型
 		'transitionIn'	    : 'elastic',//弹入方式
-		'transitionOut'	    : 'elastic' //弹出方式
+		'transitionOut'	    : 'elastic', //弹出方式
+		onClosed : function(){
+			getDataList();
+		}
 	});
 	
 	//字典项修改
@@ -46,7 +49,10 @@ $(document).ready(function(){
 		'height'			: 300,      //弹出框高度
 		'type'				: 'iframe', //弹出框类型
 		'transitionIn'	    : 'elastic',//弹入方式
-		'transitionOut'	    : 'elastic' //弹出方式
+		'transitionOut'	    : 'elastic', //弹出方式
+		onClosed : function(){
+			getDataList();
+		}
 	});
 	
 	$("#NAME").blur(function(){

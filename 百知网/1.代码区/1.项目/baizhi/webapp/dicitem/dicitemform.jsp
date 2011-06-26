@@ -21,6 +21,7 @@
 		<form action="../dicitem/saveDicitem.go" method="post" id="DicitemForm">
 			<input type="hidden"  id="DICITEM_ID" name="DICITEM_ID" value='<s:property value="DICITEM_ID"/>' />
 			<input type="hidden"  id="CODE" name="CODE" value='<s:property value="#parameters.CODE"/>' />
+			<input type="hidden"  id="M_CODE" name="M_CODE" value='<s:property value="CODE"/>' />
 			<s:token></s:token>
 			<input type="hidden" id="ID" name="ID" value='<s:property value="ID"/>'/>
 			<div class="lightbox_header"><span class="font_span">字典列表清单表单</span></div>

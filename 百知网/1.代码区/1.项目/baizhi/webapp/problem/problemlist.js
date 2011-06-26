@@ -52,20 +52,26 @@ function getDataList(){
 					var MODIFY_TIME = ""; //修改时间
 			
 					for(var i=0;i<data["list"].length;i++){
-					PROBLEM_ID = data["list"][i]["PROBLEM_ID"];//问题ID
-					PROBLEM_TYPE_NAME = data["list"][i]["PROBLEM_TYPE_NAME"];//问题类型(字典：1普通、2我问的问题)
-					CONTENT = data["list"][i]["CONTENT"];//问题内容
-					IS_ANONYMITY = data["list"][i]["IS_ANONYMITY"];//是否匿名(0否、1是)
-					NAME = data["list"][i]["NAME"];//用户ID
-					ANSWER_COUNT = data["list"][i]["ANSWER_COUNT"];//答案数量
-					REVIEW_COUNT = data["list"][i]["REVIEW_COUNT"];//评论数量
-					ATTENTION_COUNT = data["list"][i]["ATTENTION_COUNT"];//关注数量
-					COLLECTION_COUNT = data["list"][i]["COLLECTION_COUNT"];//收藏数量
-					BROWSE_COUNT = data["list"][i]["BROWSE_COUNT"];//浏览次数
-					IS_REPORT = data["list"][i]["IS_REPORT"];//是否举报(0否、1是)
-					REPORT_COUNT = data["list"][i]["REPORT_COUNT"];//举报次数
-					CREATE_TIME = data["list"][i]["CREATE_TIME"];//创建时间
-					MODIFY_TIME = data["list"][i]["MODIFY_TIME"];//修改时间
+						PROBLEM_ID = data["list"][i]["PROBLEM_ID"];//问题ID
+						PROBLEM_TYPE_NAME = data["list"][i]["PROBLEM_TYPE_NAME"];//问题类型(字典：1普通、2我问的问题)
+						CONTENT = data["list"][i]["CONTENT"];//问题内容
+						String tempContent="";
+						if(CONTENT.length>20){
+							tempContent=StringUnit.getLength(CONTENT,20);
+						}else{
+							tempContent=CONTENT;
+						}
+						IS_ANONYMITY = data["list"][i]["IS_ANONYMITY"];//是否匿名(0否、1是)
+						NAME = data["list"][i]["NAME"];//用户ID
+						ANSWER_COUNT = data["list"][i]["ANSWER_COUNT"];//答案数量
+						REVIEW_COUNT = data["list"][i]["REVIEW_COUNT"];//评论数量
+						ATTENTION_COUNT = data["list"][i]["ATTENTION_COUNT"];//关注数量
+						COLLECTION_COUNT = data["list"][i]["COLLECTION_COUNT"];//收藏数量
+						BROWSE_COUNT = data["list"][i]["BROWSE_COUNT"];//浏览次数
+						IS_REPORT = data["list"][i]["IS_REPORT"];//是否举报(0否、1是)
+						REPORT_COUNT = data["list"][i]["REPORT_COUNT"];//举报次数
+						CREATE_TIME = data["list"][i]["CREATE_TIME"];//创建时间
+						MODIFY_TIME = data["list"][i]["MODIFY_TIME"];//修改时间
 						
 						var edithref = "getProblemById.go?PROBLEM_ID="+PROBLEM_ID;
 						content += "<tr id='problemlist_tr'>";
@@ -75,7 +81,7 @@ function getDataList(){
 						content += "    <a href='javascript:;' class='sc_btn' title='删除' onclick=\"delData('"+PROBLEM_ID+"')\"/>";
 						content += "  </td>";
 						content += "  <td>"+PROBLEM_TYPE_NAME+"</td>";
-						content += "  <td>"+CONTENT+"</td>";
+						content += "  <td title='"+CONTENT+"'>"+tempContent+"</td>";
 						content += "  <td>"+NAME+"</td>";
 						content += "  <td>"+ANSWER_COUNT+"</td>";
 						content += "  <td>"+REVIEW_COUNT+"</td>";
@@ -121,6 +127,39 @@ function delData(ids){
 		}
 	}});
 	return;
+}
+
+//字符串操作
+var StringUnit={};
+//获取截取长度字符串 示例：StringUnit.getLength('112233',5)
+StringUnit.substring=function(str,length){
+	if(str==null||length==null){
+		return "";
+	}
+	//如果长度小于3，则返回空字符串
+	if(length<=3){
+		return "";
+	}
+	var tempstr="";
+    var realLength = 0;
+	var charCode = -1;
+    for (var i = 0; i < str.length; i++) {
+        charCode = str.charCodeAt(i);
+        if (charCode >= 0 && charCode <= 128) {
+			realLength += 1;
+		}else {
+			realLength += 2;
+		}
+		if(length>=(realLength+3)){
+			tempstr+=str.charAt(i);
+		}
+		
+    }
+	if(length>=realLength){
+		return str;
+	}
+    return tempstr+"...";
+	
 }
 
 $(document).ready(function(){

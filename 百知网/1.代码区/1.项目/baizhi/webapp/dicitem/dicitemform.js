@@ -4,7 +4,12 @@ $(document).ready(function(){
 			DIC_CODE: {required: true, rangelength: [1,30],remote: {url: "../dicitem/checkCode.go",type: "post",dataType: "json",data: {
 				//传递参数
 				DIC_CODE: function() {return $("#DIC_CODE").val();},
-				CODE: function() {return  $("#CODE").val();},
+				CODE: function() {
+					if($("#DICITEM_ID").val()!=""){
+						return  $("#M_CODE").val();
+					}
+					return  $("#CODE").val();
+				},
 				DICITEM_ID: function() {return  $("#DICITEM_ID").val();}
 			}}},
 			DIC_NAME: {required: true, rangelength: [1,100]},
@@ -23,7 +28,7 @@ $(document).ready(function(){
 		},
 		submitHandler:function(form){
             form.submit();
-            parent.getDataList();
+            //parent.getDataList();
             parent.$.fancybox.close();
         }   
 	});
