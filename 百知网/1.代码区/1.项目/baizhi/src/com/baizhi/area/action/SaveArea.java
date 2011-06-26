@@ -65,8 +65,8 @@ public class SaveArea extends AreaForm{
 		Elements.setElementValue(element, "DIC_CODE", this.getDIC_CODE());// 地区代码(根据级别制定规则定义)
 		Elements.setElementValue(element, "DIC_NAME", this.getDIC_NAME());// 地区名称
 		Elements.setElementValue(element, "PAREA_ID", StringUtils.defaultIfEmpty(this.getPAREA_ID(), "0"));// 地区上级代码
-		Elements.setElementValue(element, "ALLPIN", this.getALLPIN());// 地区全拼
-		Elements.setElementValue(element, "SIMPLEPIN", this.getSIMPLEPIN());// 地区简拼
+		Elements.setElementValue(element, "ALLPIN", StringUtils.upperCase(this.getALLPIN()));// 地区全拼
+		Elements.setElementValue(element, "SIMPLEPIN", StringUtils.upperCase(this.getSIMPLEPIN()));// 地区简拼
 		Elements.setElementValue(element, "ORDER_BY", StringUtils.defaultIfEmpty(this.getORDER_BY(), "" + Integer.MAX_VALUE));// 显示顺序
 		Elements.setElementValue(element, "IP_START", this.getIP_START());// IP起始段
 		Elements.setElementValue(element, "IP_END", this.getIP_END());// IP终止段

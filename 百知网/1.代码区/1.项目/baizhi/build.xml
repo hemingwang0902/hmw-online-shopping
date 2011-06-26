@@ -57,6 +57,7 @@
 			<fileset dir="${app.library}/poi" />
 			<fileset dir="${app.library}/component" />
 			<fileset dir="${app.library}/javamail" />
+			<fileset dir="${app.library}/ckeditor" />
 		</copy>
 
 		<copy todir="${target.classes}" overwrite="true">

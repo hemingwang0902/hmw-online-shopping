@@ -1,6 +1,9 @@
 package com.baizhi.ad.action;
 
 import java.util.Map;
+
+import org.apache.struts2.ServletActionContext;
+
 import com.baizhi.ad.service.AdService;
 /**
  * 
@@ -13,7 +16,7 @@ import com.baizhi.ad.service.AdService;
  * 修改日期：
  */
 public class GetAdById extends AdForm{
-	
+	private static final long serialVersionUID = 4417652686619546224L;
 	private AdService adService;//广告信息表业务类
 	
 	public AdService getAdService() {
@@ -40,6 +43,8 @@ public class GetAdById extends AdForm{
 			this.setSTATUS(this.getValue(returnMap,"STATUS"));// 状态(字典：1申请、2通过、3不通过)
 			this.setREMARK(this.getValue(returnMap,"REMARK"));// 备注
 		}
+		ServletActionContext.getRequest().setAttribute("CONTENT", getCONTENT());
+		
 		return SUCCESS;
 	}
 	

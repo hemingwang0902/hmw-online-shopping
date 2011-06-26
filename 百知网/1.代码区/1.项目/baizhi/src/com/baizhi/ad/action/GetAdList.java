@@ -13,7 +13,7 @@ import com.baizhi.ad.service.AdService;
  * 修改日期：
  */
 public class GetAdList extends AdForm {
-	
+	private static final long serialVersionUID = -5045445089368552763L;
 	private AdService adService;//广告信息表业务类
 	
 	public AdService getAdService() {

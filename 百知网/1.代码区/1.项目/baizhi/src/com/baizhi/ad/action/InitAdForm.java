@@ -12,7 +12,8 @@ import com.baizhi.commons.ActionSupport;
  * 修改日期：
  */
 public class InitAdForm extends ActionSupport{
-	
+	private static final long serialVersionUID = -5804139088475484554L;
+
 	private String CURR_CREATE_BY;//创建人
 	
 	private String CURR_CREATE_TIME;//创建时间

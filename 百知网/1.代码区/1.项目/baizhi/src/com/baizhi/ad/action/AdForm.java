@@ -11,7 +11,7 @@ import com.baizhi.commons.ActionSupport;
  * 修改日期：
  */
 public abstract class AdForm extends ActionSupport {
-	
+	private static final long serialVersionUID = -4678595680170884717L;
 	private String AD_ID;//广告ID
 	private String TITLE;//主题
 	private String CONTENT;//内容(支持html内容)

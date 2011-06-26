@@ -1,10 +1,12 @@
 package com.baizhi.ad.action;
 
+import org.apache.commons.lang.StringUtils;
+import org.apache.struts2.ServletActionContext;
 import org.dom4j.Element;
 import org.dom4j.tree.DefaultElement;
-import com.baizhi.commons.support.Elements;
-import com.baizhi.commons.support.StringUtils;
+
 import com.baizhi.ad.service.AdService;
+import com.baizhi.commons.support.Elements;
 /**
  * 
  * 类名：AdSave.java
@@ -16,7 +18,8 @@ import com.baizhi.ad.service.AdService;
  * 修改日期：
  */
 public class SaveAd extends AdForm{
-	
+
+	private static final long serialVersionUID = -3213122859132112752L;
 	private AdService adService;//广告信息表业务类
 	
 	public AdService getAdService() {
@@ -40,7 +43,7 @@ public class SaveAd extends AdForm{
 			Elements.setElementValue(element, "IMAGE", this.getIMAGE());// 图片
 			Elements.setElementValue(element, "SHOW_TYPE", this.getSHOW_TYPE());// 显示方式(字典：1左边悬浮、2中间悬浮、3右边悬浮)
 			Elements.setElementValue(element, "HREF", this.getHREF());// 链接地址
-			Elements.setElementValue(element, "ORDER_BY", this.getORDER_BY());// 显示顺序
+			Elements.setElementValue(element, "ORDER_BY", StringUtils.defaultIfEmpty(this.getORDER_BY(), "" + Integer.MAX_VALUE));// 显示顺序
 			Elements.setElementValue(element, "START_TIME", this.getSTART_TIME());// 起始时间
 			Elements.setElementValue(element, "END_TIME", this.getEND_TIME());// 终止时间
 			Elements.setElementValue(element, "STATUS", this.getSTATUS());// 状态(字典：1申请、2通过、3不通过)
@@ -60,7 +63,7 @@ public class SaveAd extends AdForm{
 			Elements.setElementValue(element, "IMAGE", this.getIMAGE());// 图片
 			Elements.setElementValue(element, "SHOW_TYPE", this.getSHOW_TYPE());// 显示方式(字典：1左边悬浮、2中间悬浮、3右边悬浮)
 			Elements.setElementValue(element, "HREF", this.getHREF());// 链接地址
-			Elements.setElementValue(element, "ORDER_BY", this.getORDER_BY());// 显示顺序
+			Elements.setElementValue(element, "ORDER_BY", StringUtils.defaultIfEmpty(this.getORDER_BY(), "" + Integer.MAX_VALUE));// 显示顺序
 			Elements.setElementValue(element, "START_TIME", this.getSTART_TIME());// 起始时间
 			Elements.setElementValue(element, "END_TIME", this.getEND_TIME());// 终止时间
 			Elements.setElementValue(element, "STATUS", this.getSTATUS());// 状态(字典：1申请、2通过、3不通过)
@@ -72,6 +75,7 @@ public class SaveAd extends AdForm{
 				return SUCCESS;
 			}
 		}
+		ServletActionContext.getRequest().setAttribute("CONTENT", getCONTENT());
 		return ERROR;
 	}
 

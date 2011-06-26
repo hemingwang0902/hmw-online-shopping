@@ -16,6 +16,8 @@ import com.baizhi.ad.service.AdService;
  */
 public class DelAd extends ActionSupport{
 	
+	private static final long serialVersionUID = 2001078880364633567L;
+
 	private String IDS;//用户信息表ID集合以","分隔
 	
 	private AdService adService;//广告信息表业务类

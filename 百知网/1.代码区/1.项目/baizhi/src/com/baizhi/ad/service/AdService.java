@@ -16,7 +16,8 @@ import com.baizhi.ad.dao.AdDao;
  * 修改日期：
  */
 public class AdService extends ServiceSupport{
-	
+
+	private static final long serialVersionUID = -560886660821262868L;
 	private AdDao adDao;
 	
 	public AdDao getAdDao() {
