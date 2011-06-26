@@ -1,5 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="/struts-tags" prefix="s" %>
+<%@ taglib uri="http://ckeditor.com" prefix="ckeditor" %>
+<%@page import="com.ckeditor.CKEditorConfig"%>
+<%@page import="com.ckeditor.EventHandler"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.HashMap"%>
+<%@page import="java.util.Map"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -32,33 +39,73 @@
 					<tr>
 						<td class="lightbox_title"><span class="font_red">*</span>主题：</td>
 						<td class="lightbox_content"><input type="text" class="input_width" id="TITLE" name="TITLE" value='<s:property value="TITLE"/>'/></td>
-						<td class="lightbox_title"><span class="font_red">*</span>内容(支持html内容)：</td>
-						<td class="lightbox_content"><input type="text" class="input_width" id="CONTENT" name="CONTENT" value='<s:property value="CONTENT"/>'/></td>
-					</tr>
-					<tr>
-						<td class="lightbox_title"><span class="font_red">*</span>图片：</td>
-						<td class="lightbox_content"><input type="text" class="input_width" id="IMAGE" name="IMAGE" value='<s:property value="IMAGE"/>'/></td>
-						<td class="lightbox_title"><span class="font_red">*</span>显示方式(字典：1左边悬浮、2中间悬浮、3右边悬浮)：</td>
-						<td class="lightbox_content"><input type="text" class="input_width" id="SHOW_TYPE" name="SHOW_TYPE" value='<s:property value="SHOW_TYPE"/>'/></td>
-					</tr>
-					<tr>
-						<td class="lightbox_title"><span class="font_red">*</span>链接地址：</td>
-						<td class="lightbox_content"><input type="text" class="input_width" id="HREF" name="HREF" value='<s:property value="HREF"/>'/></td>
-						<td class="lightbox_title"><span class="font_red">*</span>显示顺序：</td>
-						<td class="lightbox_content"><input type="text" class="input_width" id="ORDER_BY" name="ORDER_BY" value='<s:property value="ORDER_BY"/>'/></td>
+						<td class="lightbox_title"><span class="font_red">*</span>显示方式：</td>
+						<td class="lightbox_content">
+						<%--<input type="text" class="input_width" id="SHOW_TYPE" name="SHOW_TYPE" value='<s:property value="SHOW_TYPE"/>'/>--%>
+							<select id="SHOW_TYPE" name="SHOW_TYPE" initValue='<s:property value="SHOW_TYPE"/>'>
+								<option value="1">左边悬浮</option>
+								<option value="2">中间悬浮</option>
+								<option value="3">右边悬浮</option>
+							</select>
+						</td>
 					</tr>
 					<tr>
 						<td class="lightbox_title"><span class="font_red">*</span>起始时间：</td>
-						<td class="lightbox_content"><input type="text" class="input_width" id="START_TIME" name="START_TIME" value='<s:property value="START_TIME"/>'/></td>
+						<td class="lightbox_content"><input type="text" class="input_width Wdate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',autoPickDate:true})" name="START_TIME" id="START_TIME" value='<s:property value="START_TIME"/>'/></td>
 						<td class="lightbox_title"><span class="font_red">*</span>终止时间：</td>
-						<td class="lightbox_content"><input type="text" class="input_width" id="END_TIME" name="END_TIME" value='<s:property value="END_TIME"/>'/></td>
+						<td class="lightbox_content"><input type="text" class="input_width Wdate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',autoPickDate:true})" id="END_TIME" name="END_TIME" value='<s:property value="END_TIME"/>'/></td>
 					</tr>
 					<tr>
-						<td class="lightbox_title"><span class="font_red">*</span>状态(字典：1申请、2通过、3不通过)：</td>
-						<td class="lightbox_content"><input type="text" class="input_width" id="STATUS" name="STATUS" value='<s:property value="STATUS"/>'/></td>
-						<td class="lightbox_title"><span class="font_red">*</span>备注：</td>
-						<td class="lightbox_content"><input type="text" class="input_width" id="REMARK" name="REMARK" value='<s:property value="REMARK"/>'/></td>
+						<td class="lightbox_title"><span class="font_red">*</span>状态：</td>
+						<td class="lightbox_content">
+							<%--<input type="text" class="input_width" id="STATUS" name="STATUS" value='<s:property value="STATUS"/>'/>--%>
+							<select id="STATUS" name="STATUS" initValue='<s:property value="STATUS"/>'>
+								<option value="1">申请</option>
+								<option value="2" selected="selected">通过</option>
+								<option value="3">不通过</option>
+							</select>
+						</td>
+						<td class="lightbox_title">显示顺序：</td>
+						<td class="lightbox_content"><input type="text" class="input_width" id="ORDER_BY" name="ORDER_BY" value='<s:property value="ORDER_BY"/>'/></td>
 					</tr>
+
+					<tr>
+						<td class="lightbox_title" colspan="4">
+							<span class="font_red"></span>备注：
+							<div class="lightbox_content"><textarea class="input_width" id="REMARK" name="REMARK" style="width:100%;height:60px;border:#CCC solid 1px;line-height:18px;"><s:property value="REMARK"/></textarea></div>
+						</td>
+					</tr>
+					<tr>
+						<td class="lightbox_title" colspan="4">
+							<span class="font_red"></span>广告内容：<br>
+						<%
+						// CKeditor 配置对象
+						CKEditorConfig settings = new CKEditorConfig();
+						// 设置皮肤
+						settings.addConfigValue("skin", "office2003"); 
+						// 移除皮肤配置（恢复默认配置）
+						//settings.removeConfigValue("skin");
+						// 设置UI主题颜色
+						settings.addConfigValue("uiColor", "#ADE82E");
+						// 设置工具栏按钮
+						//settings.addConfigValue("toolbar", "[['Format'],['Bold','Italic','Underline','Strike','-','Subscript','Superscript']]");
+						// 事件句柄
+						EventHandler eventHandler = new EventHandler(); 
+						// 添加完成CKeditor实例初始化的事件监听
+						//eventHandler.addEventHandler("instanceReady", "function (ev) { alert(\"Loaded: \" + ev.editor.name); }");
+						String value = (String)request.getAttribute("CONTENT");
+						%>
+						
+						<ckeditor:editor basePath="../javascripts/ckeditor/" value='<%=(value == null) ? "" : value %>' config="<%=settings %>" editor="CONTENT" events="<%=eventHandler %>"/>
+						
+						<%--
+						<textarea cols="80" id="editor2" name="editor2" rows="10">&lt;p&gt;This is some &lt;strong&gt;sample text&lt;/strong&gt;. You are using &lt;a href="http://ckeditor.com/"&gt;CKEditor&lt;/a&gt;.&lt;/p&gt;</textarea>
+						<ckeditor:replace basePath="../javascripts/ckeditor/" config="<%=settings %>" replace="editor2" />
+						--%>
+			
+						</td>
+					</tr>
+						
 				</table>
 			</div>
 		</form>

@@ -23,70 +23,28 @@
 			<form id="AdList" >
 				<table width="100%;" border="0" cellspacing="0" cellpadding="0" class="lightbox_table">
 		   			<tr>
-						<td class="lightbox_title">广告ID：</td>
-					
-						<td class="lightbox_content"><input type="text" class="input_width3" name="AD_ID" id="AD_ID" /> </td>
-	
-					</tr>
-		   			<tr>
 						<td class="lightbox_title">主题：</td>
-					
 						<td class="lightbox_content"><input type="text" class="input_width3" name="TITLE" id="TITLE" /> </td>
-	
-					</tr>
-		   			<tr>
-						<td class="lightbox_title">内容：</td>
-					
-						<td class="lightbox_content"><input type="text" class="input_width3" name="CONTENT" id="CONTENT" /> </td>
-	
-					</tr>
-		   			<tr>
-						<td class="lightbox_title">图片：</td>
-					
-						<td class="lightbox_content"><input type="text" class="input_width3" name="IMAGE" id="IMAGE" /> </td>
-	
 					</tr>
 		   			<tr>
 						<td class="lightbox_title">显示方式：</td>
-					
 						<td class="lightbox_content"><input type="text" class="input_width3" name="SHOW_TYPE" id="SHOW_TYPE" /> </td>
-	
-					</tr>
-		   			<tr>
-						<td class="lightbox_title">链接地址：</td>
-					
-						<td class="lightbox_content"><input type="text" class="input_width3" name="HREF" id="HREF" /> </td>
-	
-					</tr>
-		   			<tr>
-						<td class="lightbox_title">显示顺序：</td>
-					
-						<td class="lightbox_content"><input type="text" class="input_width3" name="ORDER_BY" id="ORDER_BY" /> </td>
-	
 					</tr>
 		   			<tr>
 						<td class="lightbox_title">起始时间：</td>
-					
 						<td class="lightbox_content"><input type="text" class="input_width3 Wdate"  onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',autoPickDate:true})" name="START_TIME" id="START_TIME" /> </td>
-	
 					</tr>
 		   			<tr>
 						<td class="lightbox_title">终止时间：</td>
-					
 						<td class="lightbox_content"><input type="text" class="input_width3 Wdate"  onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',autoPickDate:true})" name="END_TIME" id="END_TIME" /> </td>
-	
 					</tr>
 		   			<tr>
 						<td class="lightbox_title">状态：</td>
-					
 						<td class="lightbox_content"><input type="text" class="input_width3" name="STATUS" id="STATUS" /> </td>
-	
 					</tr>
 		   			<tr>
 						<td class="lightbox_title">备注：</td>
-					
 						<td class="lightbox_content"><input type="text" class="input_width3" name="REMARK" id="REMARK" /> </td>
-	
 					</tr>
 					<tr>
 						<td>&nbsp;</td>
@@ -100,7 +58,7 @@
 		</div>
 		<div class="table_box">
 			<div class="lightbox_header">
-				<span class="font_span">广告信息表列表</span>
+				<span class="font_span">广告信息列表</span>
 			</div>
 			<div class="lightbox_opt">
 				<input type="button"  value="新增" class="button_box" onclick="location.href='initAdForm.go';"/>
@@ -112,13 +70,8 @@
 					<tr class="tr_bg">
 						<td width="6%"><input type="checkbox" /></td>
 						<td width="10%">操作</td>
-		   				<td width="10%">广告ID</td>
 		   				<td width="10%">主题</td>
-		   				<td width="10%">内容</td>
-		   				<td width="10%">图片</td>
 		   				<td width="10%">显示方式</td>
-		   				<td width="10%">链接地址</td>
-		   				<td width="10%">显示顺序</td>
 		   				<td width="10%">起始时间</td>
 		   				<td width="10%">终止时间</td>
 		   				<td width="10%">状态</td>
