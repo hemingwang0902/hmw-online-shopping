@@ -14,6 +14,8 @@ import com.baizhi.problem.service.ProblemService;
  */
 public class GetProblemById extends ProblemForm{
 	
+	private static final long serialVersionUID = 9000891294143521121L;
+	
 	private ProblemService problemService;//问题信息表业务类
 	
 	public ProblemService getProblemService() {

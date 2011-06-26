@@ -2,6 +2,8 @@ package com.baizhi.problem.action;
 
 import org.dom4j.Element;
 import org.dom4j.tree.DefaultElement;
+
+import com.baizhi.commons.support.DateUtils;
 import com.baizhi.commons.support.Elements;
 import com.baizhi.commons.support.StringUtils;
 import com.baizhi.problem.service.ProblemService;
@@ -16,6 +18,8 @@ import com.baizhi.problem.service.ProblemService;
  * 修改日期：
  */
 public class SaveProblem extends ProblemForm{
+	
+	private static final long serialVersionUID = -1349659000089046904L;
 	
 	private ProblemService problemService;//问题信息表业务类
 	
@@ -39,17 +43,10 @@ public class SaveProblem extends ProblemForm{
 			Elements.setElementValue(element, "CONTENT", this.getCONTENT());// 问题内容
 			Elements.setElementValue(element, "IS_ANONYMITY", this.getIS_ANONYMITY());// 是否匿名(0否、1是)
 			Elements.setElementValue(element, "RELEVANT_DETAILS", this.getRELEVANT_DETAILS());// 相关细节
-			Elements.setElementValue(element, "USER_ID", this.getUSER_ID());// 用户ID
-			Elements.setElementValue(element, "WAS_USERID", this.getWAS_USERID());// 被问用户ID
-			Elements.setElementValue(element, "ANSWER_COUNT", this.getANSWER_COUNT());// 答案数量
-			Elements.setElementValue(element, "REVIEW_COUNT", this.getREVIEW_COUNT());// 评论数量
-			Elements.setElementValue(element, "ATTENTION_COUNT", this.getATTENTION_COUNT());// 关注数量
-			Elements.setElementValue(element, "COLLECTION_COUNT", this.getCOLLECTION_COUNT());// 收藏数量
-			Elements.setElementValue(element, "BROWSE_COUNT", this.getBROWSE_COUNT());// 浏览次数
-			Elements.setElementValue(element, "IS_REPORT", this.getIS_REPORT());// 是否举报(0否、1是)
-			Elements.setElementValue(element, "REPORT_COUNT", this.getREPORT_COUNT());// 举报次数
-			Elements.setElementValue(element, "CREATE_TIME", this.getCREATE_TIME());// 创建时间
-			Elements.setElementValue(element, "MODIFY_TIME", this.getMODIFY_TIME());// 修改时间
+			if(this.getWAS_USERID()!=null&&!this.getWAS_USERID().trim().equals("")){
+				Elements.setElementValue(element, "WAS_USERID", this.getWAS_USERID());// 被问用户ID
+			}
+			Elements.setElementValue(element, "MODIFY_TIME", DateUtils.getCurrentTime(DateUtils.SHOW_DATE_FORMAT));// 修改时间
 			
 			//如果保存成功，返回主键
 			keyid = problemService.saveOrUpdateProblem(element);
@@ -64,17 +61,18 @@ public class SaveProblem extends ProblemForm{
 			Elements.setElementValue(element, "CONTENT", this.getCONTENT());// 问题内容
 			Elements.setElementValue(element, "IS_ANONYMITY", this.getIS_ANONYMITY());// 是否匿名(0否、1是)
 			Elements.setElementValue(element, "RELEVANT_DETAILS", this.getRELEVANT_DETAILS());// 相关细节
-			Elements.setElementValue(element, "USER_ID", this.getUSER_ID());// 用户ID
-			Elements.setElementValue(element, "WAS_USERID", this.getWAS_USERID());// 被问用户ID
-			Elements.setElementValue(element, "ANSWER_COUNT", this.getANSWER_COUNT());// 答案数量
-			Elements.setElementValue(element, "REVIEW_COUNT", this.getREVIEW_COUNT());// 评论数量
-			Elements.setElementValue(element, "ATTENTION_COUNT", this.getATTENTION_COUNT());// 关注数量
-			Elements.setElementValue(element, "COLLECTION_COUNT", this.getCOLLECTION_COUNT());// 收藏数量
-			Elements.setElementValue(element, "BROWSE_COUNT", this.getBROWSE_COUNT());// 浏览次数
-			Elements.setElementValue(element, "IS_REPORT", this.getIS_REPORT());// 是否举报(0否、1是)
-			Elements.setElementValue(element, "REPORT_COUNT", this.getREPORT_COUNT());// 举报次数
-			Elements.setElementValue(element, "CREATE_TIME", this.getCREATE_TIME());// 创建时间
-			Elements.setElementValue(element, "MODIFY_TIME", this.getMODIFY_TIME());// 修改时间
+			Elements.setElementValue(element, "USER_ID", this.getSessionUserId());// 用户ID
+			if(this.getWAS_USERID()!=null&&!this.getWAS_USERID().trim().equals("")){
+				Elements.setElementValue(element, "WAS_USERID", this.getWAS_USERID());// 被问用户ID
+			}
+			Elements.setElementValue(element, "ANSWER_COUNT", 0);// 答案数量
+			Elements.setElementValue(element, "REVIEW_COUNT", 0);// 评论数量
+			Elements.setElementValue(element, "ATTENTION_COUNT",0);// 关注数量
+			Elements.setElementValue(element, "COLLECTION_COUNT",0);// 收藏数量
+			Elements.setElementValue(element, "BROWSE_COUNT", 0);// 浏览次数
+			Elements.setElementValue(element, "IS_REPORT", 0);// 是否举报(0否、1是)
+			Elements.setElementValue(element, "REPORT_COUNT", 0);// 举报次数
+			Elements.setElementValue(element, "CREATE_TIME", DateUtils.getCurrentTime(DateUtils.SHOW_DATE_FORMAT));// 创建时间
 			//如果保存成功，返回主键
 			keyid = problemService.saveOrUpdateProblem(element);
 			//判断主键是否为空，如果不为空，则保存成功

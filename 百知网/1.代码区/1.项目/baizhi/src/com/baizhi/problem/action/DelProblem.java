@@ -16,6 +16,8 @@ import com.baizhi.problem.service.ProblemService;
  */
 public class DelProblem extends ActionSupport{
 	
+	private static final long serialVersionUID = -5601922626666464673L;
+
 	private String IDS;//用户信息表ID集合以","分隔
 	
 	private ProblemService problemService;//问题信息表业务类

@@ -5,6 +5,7 @@ import java.util.Map;
 import org.dom4j.Element;
 import com.baizhi.commons.DaoSupport;
 import com.baizhi.commons.ParametersSupport;
+import com.baizhi.commons.constant.Diclist;
  /**
  * 
  * 类名：ProblemDao.java
@@ -102,12 +103,11 @@ public class ProblemDao extends DaoSupport{
 		StringBuffer sql = new StringBuffer();
 		sql.append("SELECT new Map(")
 		   .append("a.PROBLEM_ID as PROBLEM_ID,")//问题ID
-		   .append("a.PROBLEM_TYPE as PROBLEM_TYPE,")//问题类型(字典：1普通、2我问的问题)
+		   .append("(select DIC_NAME from T_DICITEM where a.PROBLEM_TYPE=DIC_CODE and CODE='"+Diclist.BZ000002+"') as PROBLEM_TYPE_NAME,")//问题类型(字典：1普通、2我问的问题)
 		   .append("a.CONTENT as CONTENT,")//问题内容
 		   .append("a.IS_ANONYMITY as IS_ANONYMITY,")//是否匿名(0否、1是)
-		   .append("a.RELEVANT_DETAILS as RELEVANT_DETAILS,")//相关细节
 		   .append("a.USER_ID as USER_ID,")//用户ID
-		   .append("a.WAS_USERID as WAS_USERID,")//被问用户ID
+		   .append("(select NAME from T_USER_BASIC where USER_ID=a.USER_ID) as NAME,")//会员姓名
 		   .append("a.ANSWER_COUNT as ANSWER_COUNT,")//答案数量
 		   .append("a.REVIEW_COUNT as REVIEW_COUNT,")//评论数量
 		   .append("a.ATTENTION_COUNT as ATTENTION_COUNT,")//关注数量

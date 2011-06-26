@@ -23,100 +23,54 @@
 			<form id="ProblemList" >
 				<table width="100%;" border="0" cellspacing="0" cellpadding="0" class="lightbox_table">
 		   			<tr>
-						<td class="lightbox_title">问题ID：</td>
-					
-						<td class="lightbox_content"><input type="text" class="input_width3" name="PROBLEM_ID" id="PROBLEM_ID" /> </td>
-	
-					</tr>
-		   			<tr>
 						<td class="lightbox_title">问题类型：</td>
-					
-						<td class="lightbox_content"><input type="text" class="input_width3" name="PROBLEM_TYPE" id="PROBLEM_TYPE" /> </td>
-	
+						<td class="lightbox_content">
+							<select id="PROBLEM_TYPE" name="PROBLEM_TYPE" class="select_box3"  >
+								<option value=""></option>
+					      		<option value="1">普通</option>
+					      		<option value="2">我问的问题</option>
+				      		</select>
+						</td>
+					</tr>
+					<tr>
+						<td class="lightbox_title">会员名称：</td>
+						<td class="lightbox_content"><input type="text" class="input_width3" name="NAME" id="NAME" /> </td>
 					</tr>
 		   			<tr>
 						<td class="lightbox_title">问题内容：</td>
-					
 						<td class="lightbox_content"><input type="text" class="input_width3" name="CONTENT" id="CONTENT" /> </td>
-	
 					</tr>
 		   			<tr>
 						<td class="lightbox_title">是否匿名：</td>
-					
-						<td class="lightbox_content"><input type="text" class="input_width3" name="IS_ANONYMITY" id="IS_ANONYMITY" /> </td>
-	
-					</tr>
-		   			<tr>
-						<td class="lightbox_title">相关细节：</td>
-					
-						<td class="lightbox_content"><input type="text" class="input_width3" name="RELEVANT_DETAILS" id="RELEVANT_DETAILS" /> </td>
-	
-					</tr>
-		   			<tr>
-						<td class="lightbox_title">用户ID：</td>
-					
-						<td class="lightbox_content"><input type="text" class="input_width3" name="USER_ID" id="USER_ID" /> </td>
-	
-					</tr>
-		   			<tr>
-						<td class="lightbox_title">被问用户ID：</td>
-					
-						<td class="lightbox_content"><input type="text" class="input_width3" name="WAS_USERID" id="WAS_USERID" /> </td>
-	
-					</tr>
-		   			<tr>
-						<td class="lightbox_title">答案数量：</td>
-					
-						<td class="lightbox_content"><input type="text" class="input_width3" name="ANSWER_COUNT" id="ANSWER_COUNT" /> </td>
-	
-					</tr>
-		   			<tr>
-						<td class="lightbox_title">评论数量：</td>
-					
-						<td class="lightbox_content"><input type="text" class="input_width3" name="REVIEW_COUNT" id="REVIEW_COUNT" /> </td>
-	
-					</tr>
-		   			<tr>
-						<td class="lightbox_title">关注数量：</td>
-					
-						<td class="lightbox_content"><input type="text" class="input_width3" name="ATTENTION_COUNT" id="ATTENTION_COUNT" /> </td>
-	
-					</tr>
-		   			<tr>
-						<td class="lightbox_title">收藏数量：</td>
-					
-						<td class="lightbox_content"><input type="text" class="input_width3" name="COLLECTION_COUNT" id="COLLECTION_COUNT" /> </td>
-	
-					</tr>
-		   			<tr>
-						<td class="lightbox_title">浏览次数：</td>
-					
-						<td class="lightbox_content"><input type="text" class="input_width3" name="BROWSE_COUNT" id="BROWSE_COUNT" /> </td>
-	
+						<td class="lightbox_content">
+							<select  name="IS_ANONYMITY" id="IS_ANONYMITY"  class="select_box3">
+								<option value=""></option>
+								<option value="1">是</option>
+								<option value="0">否</option>
+							</select>
+						</td>
 					</tr>
 		   			<tr>
 						<td class="lightbox_title">是否举报：</td>
-					
-						<td class="lightbox_content"><input type="text" class="input_width3" name="IS_REPORT" id="IS_REPORT" /> </td>
-	
+						<td class="lightbox_content">
+							<select  name="IS_REPORT" id="IS_REPORT"  class="select_box3">
+								<option value=""></option>
+								<option value="1">是</option>
+								<option value="0">否</option>
+							</select>
+						</td>
 					</tr>
 		   			<tr>
-						<td class="lightbox_title">举报次数：</td>
-					
-						<td class="lightbox_content"><input type="text" class="input_width3" name="REPORT_COUNT" id="REPORT_COUNT" /> </td>
-	
+						<td class="lightbox_title">创建时间(起)：</td>
+						<td class="lightbox_content">
+							<input type="text" class="input_width3 Wdate"  onclick="WdatePicker()" name="CREATE_TIME" id="CREATE_TIME" /> 
+						</td>
 					</tr>
-		   			<tr>
-						<td class="lightbox_title">创建时间：</td>
-					
-						<td class="lightbox_content"><input type="text" class="input_width3 Wdate"  onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',autoPickDate:true})" name="CREATE_TIME" id="CREATE_TIME" /> </td>
-	
-					</tr>
-		   			<tr>
-						<td class="lightbox_title">修改时间：</td>
-					
-						<td class="lightbox_content"><input type="text" class="input_width3 Wdate"  onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',autoPickDate:true})" name="MODIFY_TIME" id="MODIFY_TIME" /> </td>
-	
+					<tr>
+						<td class="lightbox_title">创建时间(止)：</td>
+						<td class="lightbox_content">
+							<input type="text" class="input_width3 Wdate"  onclick="WdatePicker()" name="CREATE_TIME_END" id="CREATE_TIME_END" /> 
+						</td>
 					</tr>
 					<tr>
 						<td>&nbsp;</td>
@@ -141,19 +95,16 @@
 				<table width="100%;" border="0" cellspacing="0" cellpadding="0" class="lightbox_table" id="datalist">
 					<tr class="tr_bg">
 						<td width="6%"><input type="checkbox" /></td>
-						<td width="10%">操作</td>
-		   				<td width="10%">问题ID</td>
+						<td width="10%"><div style="width:60px;">操作</div></td>
 		   				<td width="10%">问题类型</td>
 		   				<td width="10%">问题内容</td>
-		   				<td width="10%">是否匿名</td>
-		   				<td width="10%">相关细节</td>
-		   				<td width="10%">用户ID</td>
-		   				<td width="10%">被问用户ID</td>
+		   				<td width="10%">会员姓名</td>
 		   				<td width="10%">答案数量</td>
 		   				<td width="10%">评论数量</td>
 		   				<td width="10%">关注数量</td>
 		   				<td width="10%">收藏数量</td>
 		   				<td width="10%">浏览次数</td>
+		   				<td width="10%">是否匿名</td>
 		   				<td width="10%">是否举报</td>
 		   				<td width="10%">举报次数</td>
 		   				<td width="10%">创建时间</td>

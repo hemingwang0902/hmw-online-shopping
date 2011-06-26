@@ -12,6 +12,8 @@ import com.baizhi.commons.ActionSupport;
  */
 public abstract class ProblemForm extends ActionSupport {
 	
+	private static final long serialVersionUID = 8415862441981326021L;
+	
 	private String PROBLEM_ID;//问题ID
 	private String PROBLEM_TYPE;//问题类型(字典：1普通、2我问的问题)
 	private String CONTENT;//问题内容

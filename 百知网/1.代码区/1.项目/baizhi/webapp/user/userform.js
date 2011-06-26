@@ -27,5 +27,9 @@ $(document).ready(function(){
 		$("#USER_TYPE").attr("readonly","readonly");
 		$("#EMAIL").addClass("readonly");
 		$("#EMAIL").attr("readonly","readonly");
+		
+		$("#USER_TYPE").val($("#USER_TYPE_HIDDEN").val());
+		
 	}
+	
 });

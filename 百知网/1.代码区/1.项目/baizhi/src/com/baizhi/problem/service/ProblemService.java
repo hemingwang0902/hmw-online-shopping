@@ -17,6 +17,8 @@ import com.baizhi.problem.dao.ProblemDao;
  */
 public class ProblemService extends ServiceSupport{
 	
+	private static final long serialVersionUID = -3984123263916268303L;
+	
 	private ProblemDao problemDao;
 	
 	public ProblemDao getProblemDao() {

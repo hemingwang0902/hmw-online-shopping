@@ -2,17 +2,15 @@ package com.baizhi.user.action;
 
 import java.util.HashMap;
 import java.util.Map;
-
 import javax.mail.MessagingException;
-
 import org.apache.log4j.Logger;
 import org.dom4j.Element;
 import org.dom4j.tree.DefaultElement;
 import org.springframework.mail.javamail.MimeMessageHelper;
-
 import com.baizhi.commons.component.SendEmailUtils;
 import com.baizhi.commons.support.DateUtils;
 import com.baizhi.commons.support.Elements;
+import com.baizhi.commons.support.Encrypt;
 import com.baizhi.commons.support.StringUtils;
 import com.baizhi.user.service.UserService;
 
@@ -50,7 +48,7 @@ public class SaveUser extends UserForm{
 		//如果用户ID为""，则为新增用户信息表，否则更新用户信息表
 		if(StringUtils.isNotEmpty(this.getUSER_ID())){
 			element = userService.getUserEleById("USER_ID");
-			Elements.setElementValue(element, "PASSWORD", this.getPASSWORD());
+			Elements.setElementValue(element, "PASSWORD",  Encrypt.edcryptMD5(this.getPASSWORD()));
 			
 			//如果保存成功，返回主键
 			keyid = userService.saveOrUpdateUser(element);
@@ -63,7 +61,7 @@ public class SaveUser extends UserForm{
 			element = new DefaultElement("T_USER");
 			Elements.setElementValue(element, "USER_TYPE", this.getUSER_TYPE());
 			Elements.setElementValue(element, "EMAIL", this.getEMAIL());
-			Elements.setElementValue(element, "PASSWORD", this.getPASSWORD());
+			Elements.setElementValue(element, "PASSWORD",  Encrypt.edcryptMD5(this.getPASSWORD()));
 			Elements.setElementValue(element, "REG_TIME", DateUtils.getCurrentTime(DateUtils.SHOW_DATE_FORMAT));
 			Elements.setElementValue(element, "IP", this.getIP());
 			Elements.setElementValue(element, "MAC", this.getMAC());

@@ -30,51 +30,36 @@
 			<div class="form_style">
 				<table width="100%;" border="0" cellspacing="0" cellpadding="0" class="lightbox_table">
 					<tr>
-						<td class="lightbox_title"><span class="font_red">*</span>问题类型(字典：1普通、2我问的问题)：</td>
-						<td class="lightbox_content"><input type="text" class="input_width" id="PROBLEM_TYPE" name="PROBLEM_TYPE" value='<s:property value="PROBLEM_TYPE"/>'/></td>
-						<td class="lightbox_title"><span class="font_red">*</span>问题内容：</td>
-						<td class="lightbox_content"><input type="text" class="input_width" id="CONTENT" name="CONTENT" value='<s:property value="CONTENT"/>'/></td>
-					</tr>
-					<tr>
+						<td class="lightbox_title"><span class="font_red">*</span>问题类型：</td>
+						<td class="lightbox_content">
+							<input type="hidden" class="input_width" id="PROBLEM_TYPE_HIDDEN" name="PROBLEM_TYPE_HIDDEN" value='<s:property value="PROBLEM_TYPE"/>'/>
+							<select id="PROBLEM_TYPE" name="PROBLEM_TYPE" class="select_box"  >
+					      		<option value="1">普通</option>
+					      		<option value="2">我问的问题</option>
+					      	</select>
+						</td>
 						<td class="lightbox_title"><span class="font_red">*</span>是否匿名(0否、1是)：</td>
-						<td class="lightbox_content"><input type="text" class="input_width" id="IS_ANONYMITY" name="IS_ANONYMITY" value='<s:property value="IS_ANONYMITY"/>'/></td>
-						<td class="lightbox_title"><span class="font_red">*</span>相关细节：</td>
-						<td class="lightbox_content"><input type="text" class="input_width" id="RELEVANT_DETAILS" name="RELEVANT_DETAILS" value='<s:property value="RELEVANT_DETAILS"/>'/></td>
+						<td class="lightbox_content">
+							<input type="hidden" class="input_width" id="IS_ANONYMITY_HIDDEN" name="IS_ANONYMITY_HIDDEN" value='<s:property value="IS_ANONYMITY"/>'/>
+							<select  name="IS_ANONYMITY" id="IS_ANONYMITY"  class="select_box">
+								<option value="0">否</option>
+								<option value="1">是</option>
+							</select>
+						</td>
 					</tr>
 					<tr>
-						<td class="lightbox_title"><span class="font_red">*</span>用户ID：</td>
-						<td class="lightbox_content"><input type="text" class="input_width" id="USER_ID" name="USER_ID" value='<s:property value="USER_ID"/>'/></td>
-						<td class="lightbox_title"><span class="font_red">*</span>被问用户ID：</td>
-						<td class="lightbox_content"><input type="text" class="input_width" id="WAS_USERID" name="WAS_USERID" value='<s:property value="WAS_USERID"/>'/></td>
+						<td class="lightbox_title">&nbsp;回答会员：</td>
+						<td class="lightbox_content" colspan="3"><input type="text" class="input_width Wlightbox" id="WAS_USERID" name="WAS_USERID" value='<s:property value="WAS_USERID"/>'/></td>
 					</tr>
 					<tr>
-						<td class="lightbox_title"><span class="font_red">*</span>答案数量：</td>
-						<td class="lightbox_content"><input type="text" class="input_width" id="ANSWER_COUNT" name="ANSWER_COUNT" value='<s:property value="ANSWER_COUNT"/>'/></td>
-						<td class="lightbox_title"><span class="font_red">*</span>评论数量：</td>
-						<td class="lightbox_content"><input type="text" class="input_width" id="REVIEW_COUNT" name="REVIEW_COUNT" value='<s:property value="REVIEW_COUNT"/>'/></td>
+						<td class="lightbox_title"><span class="font_red">*</span>内容：</td>
+						<td colspan="3" class="lightbox_content"><textarea  class="textarea_box"  id="CONTENT" name="CONTENT" ><s:property value="CONTENT"/></textarea></td>
 					</tr>
 					<tr>
-						<td class="lightbox_title"><span class="font_red">*</span>关注数量：</td>
-						<td class="lightbox_content"><input type="text" class="input_width" id="ATTENTION_COUNT" name="ATTENTION_COUNT" value='<s:property value="ATTENTION_COUNT"/>'/></td>
-						<td class="lightbox_title"><span class="font_red">*</span>收藏数量：</td>
-						<td class="lightbox_content"><input type="text" class="input_width" id="COLLECTION_COUNT" name="COLLECTION_COUNT" value='<s:property value="COLLECTION_COUNT"/>'/></td>
+						<td class="lightbox_title">&nbsp;相关细节：</td>
+						<td colspan="3" class="lightbox_content"><textarea  class="textarea_box"  id="RELEVANT_DETAILS" name="RELEVANT_DETAILS" ><s:property value="RELEVANT_DETAILS"/></textarea></td>
 					</tr>
-					<tr>
-						<td class="lightbox_title"><span class="font_red">*</span>浏览次数：</td>
-						<td class="lightbox_content"><input type="text" class="input_width" id="BROWSE_COUNT" name="BROWSE_COUNT" value='<s:property value="BROWSE_COUNT"/>'/></td>
-						<td class="lightbox_title"><span class="font_red">*</span>是否举报(0否、1是)：</td>
-						<td class="lightbox_content"><input type="text" class="input_width" id="IS_REPORT" name="IS_REPORT" value='<s:property value="IS_REPORT"/>'/></td>
-					</tr>
-					<tr>
-						<td class="lightbox_title"><span class="font_red">*</span>举报次数：</td>
-						<td class="lightbox_content"><input type="text" class="input_width" id="REPORT_COUNT" name="REPORT_COUNT" value='<s:property value="REPORT_COUNT"/>'/></td>
-						<td class="lightbox_title"><span class="font_red">*</span>创建时间：</td>
-						<td class="lightbox_content"><input type="text" class="input_width" id="CREATE_TIME" name="CREATE_TIME" value='<s:property value="CREATE_TIME"/>'/></td>
-					</tr>
-					<tr>
-						<td class="lightbox_title"><span class="font_red">*</span>修改时间：</td>
-						<td class="lightbox_content"><input type="text" class="input_width" id="MODIFY_TIME" name="MODIFY_TIME" value='<s:property value="MODIFY_TIME"/>'/></td>
-					</tr>
+					
 				</table>
 			</div>
 		</form>

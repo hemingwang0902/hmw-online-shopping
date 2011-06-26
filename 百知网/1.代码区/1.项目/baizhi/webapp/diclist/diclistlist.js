@@ -12,7 +12,7 @@ function getDataList(){
 	var ALLPIN = $("#ALLPIN").val();
 	var SIMPLEPIN = $("#SIMPLEPIN").val();
 	$.post("getDiclistList.go",{
-		NAME: window.encodeURI(NAME),
+		NAME: NAME,
 		CODE: CODE,
 		ALLPIN: ALLPIN,
 		SIMPLEPIN: SIMPLEPIN,

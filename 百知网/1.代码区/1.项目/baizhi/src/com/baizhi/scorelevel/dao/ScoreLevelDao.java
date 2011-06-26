@@ -101,7 +101,7 @@ public class ScoreLevelDao extends DaoSupport{
 		   .append("FROM T_SCORE_LEVEL a WHERE 1=1");
 		//设置查询条件,及初始化查询条件值
 		ParametersSupport ps=new ParametersSupport(params);
-		sql.append(ps.getConditions());
+		sql.append(ps.getConditions()+" order by SOCRE_UP DESC ");
 		
 		return this.getByList(sql.toString(), ps.getValues(), "T_SCORE_LEVEL", nowPage, onePageCount);
 	}

@@ -22,8 +22,15 @@
 			<form id="UserList" >
 				<table width="100%;" border="0" cellspacing="0" cellpadding="0" class="lightbox_table">
 					<tr>
-						<td nowrap="nowrap" class="lightbox_title">用户类型：</td>
-						<td class="lightbox_content"><input type="text" class="input_width3 Wdicter" name="USER_TYPE" id="USER_TYPE" /> </td>
+						<td nowrap="nowrap" class="lightbox_title">会员类型：</td>
+						<td class="lightbox_content">
+							<select id="USER_TYPE" name="USER_TYPE" class="select_box3"  >
+								<option value=""></option>
+					      		<option value="1">会员</option>
+					      		<option value="2">品牌</option>
+					      		<option value="3">系统</option>
+				      		</select>
+						</td>
 					</tr>
 					<tr>
 						<td nowrap="nowrap" class="lightbox_title">Email：</td>
@@ -65,7 +72,7 @@
 		</div>
 		<div class="table_box">
 			<div class="lightbox_header">
-				<span class="font_span">用户信息列表</span>
+				<span class="font_span">会员信息列表</span>
 			</div>
 			<div class="lightbox_opt">
 				<input type="button"  value="新增" class="button_box" onclick="location.href='initUserForm.go';"/>
@@ -77,7 +84,7 @@
 					<tr class="tr_bg">
 						<td width="6%"><input type="checkbox" /></td>
 						<td width="10%">操作</td>
-						<td width="10%">用户类型</td>
+						<td width="10%">会员类型</td>
 						<td width="10%">Email</td>
 						<td width="10%">注册时间</td>
 						<td width="10%">登录时间</td>

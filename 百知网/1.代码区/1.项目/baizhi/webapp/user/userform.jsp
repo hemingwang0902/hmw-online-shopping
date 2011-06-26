@@ -22,7 +22,7 @@
 			<input type="hidden"  id="USER_ID" name="USER_ID" value='<s:property value="USER_ID"/>' />
 			<s:token></s:token>
 			<input type="hidden" id="ID" name="ID" value='<s:property value="ID"/>'/>
-			<div class="lightbox_header"><span class="font_span">用户信息表表单</span></div>
+			<div class="lightbox_header"><span class="font_span">会员信息表表单</span></div>
 			<div class="btn_box">
 				<input type="submit" value="保存" class="button_box"/>
 				<input type="button" value="返回" onclick="location.href='userlist.jsp';" class="button_box"/>
@@ -30,8 +30,15 @@
 			<div class="form_style">
 				<table width="100%;" border="0" cellspacing="0" cellpadding="0" class="lightbox_table">
 				  <tr>
-				    	<td class="lightbox_title"><span class="font_red">*</span>用户类型:</td>
-				      	<td class="lightbox_content"><input type="text" class="input_width" id="USER_TYPE" name="USER_TYPE" value='<s:property value="USER_TYPE"/>'/></td>
+				    	<td class="lightbox_title"><span class="font_red">*</span>会员类型:</td>
+				      	<td class="lightbox_content">
+				      		<input type="hidden" class="input_width"  id="USER_TYPE_HIDDEN" name="USER_TYPE_HIDDEN"  value='<s:property value="USER_TYPE"/>'/>
+					      	<select id="USER_TYPE" name="USER_TYPE" class="select_box"  >
+					      		<option value="1">会员</option>
+					      		<option value="2">品牌</option>
+					      		<option value="3">系统</option>
+					      	</select>
+				      	</td>
 				 		<td class="lightbox_title"><span class="font_red">*</span>Email:</td>
 				      	<td class="lightbox_content"><input type="text" class="input_width" id="EMAIL" name="EMAIL" value='<s:property value="EMAIL"/>'/></td>
 				   </tr>

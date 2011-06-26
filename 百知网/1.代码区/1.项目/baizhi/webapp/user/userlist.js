@@ -37,7 +37,7 @@ function getDataList(){
 						count=data["totalCount"] ;
 					}
 					var USER_ID = ""; //用户ID
-					var USER_TYPE = ""; //用户类型(字典：1用户、2品牌)
+					var USER_TYPE_NAME = ""; //用户类型(字典：1用户、2品牌)
 					var EMAIL = ""; //Email
 					var REG_TIME = ""; //注册时间
 					var LAST_LOGINTIME = ""; //最后登录时间
@@ -45,7 +45,7 @@ function getDataList(){
 			
 					for(var i=0;i<data["list"].length;i++){
 					USER_ID = data["list"][i]["USER_ID"];//用户ID
-					USER_TYPE = data["list"][i]["USER_TYPE"];//用户类型(字典：1用户、2品牌)
+					USER_TYPE_NAME = data["list"][i]["USER_TYPE_NAME"];//用户类型(字典：1用户、2品牌)
 					EMAIL = data["list"][i]["EMAIL"];//Email
 					REG_TIME = data["list"][i]["REG_TIME"];//注册时间
 					LAST_LOGINTIME = data["list"][i]["LAST_LOGINTIME"];//最后登录时间
@@ -58,7 +58,7 @@ function getDataList(){
 						content += "    <a href='"+edithref+"' class='bj_btn' title='编辑'/>";
 						content += "    <a href='javascript:;' class='sc_btn' title='删除' onclick=\"delData('"+USER_ID+"')\"/>";
 						content += "  </td>";
-						content += "  <td>"+USER_TYPE+"</td>";
+						content += "  <td>"+USER_TYPE_NAME+"</td>";
 						content += "  <td>"+EMAIL+"</td>";
 						content += "  <td>"+REG_TIME+"</td>";
 						content += "  <td>"+LAST_LOGINTIME+"</td>";

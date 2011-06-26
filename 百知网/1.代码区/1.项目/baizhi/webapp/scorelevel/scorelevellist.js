@@ -9,7 +9,7 @@ function getDataList(){
 	var nowPage=$("#nowPage").val();
 	var NAME = $("#NAME").val();
 	$.post("getScoreLevelList.go",{
-		NAME: window.encodeURI(NAME),
+		NAME:NAME,
 		nowPage: nowPage,
 		onePageCount: onePageCount},
 		function(result){

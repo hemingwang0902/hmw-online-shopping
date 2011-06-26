@@ -7,6 +7,7 @@ import org.hibernate.EntityMode;
 import org.hibernate.Session;
 import com.baizhi.commons.DaoSupport;
 import com.baizhi.commons.ParametersSupport;
+import com.baizhi.commons.constant.Diclist;
 import com.baizhi.commons.support.DateUtils;
 import com.baizhi.userlog.dao.UserLogDao;
 /**
@@ -116,7 +117,7 @@ public class UserDao extends DaoSupport{
 				//添加日志
 				userLogDao.saveUserLog(USER_ID, IP, dom4jSession);
 				//修改最后登录时间
-				dom4jSession.createQuery("update T_USER set LAST_LOGINTIME='"+DateUtils.getCurrentTime(DateUtils.SHOW_DATE_FORMAT)+"' where USER_ID="+USER_ID);
+				dom4jSession.createQuery("update T_USER set LAST_LOGINTIME='"+DateUtils.getCurrentTime(DateUtils.SHOW_DATE_FORMAT)+"' where USER_ID="+USER_ID).executeUpdate();
 				
 				dom4jSession.getTransaction().commit();
 			}
@@ -165,6 +166,7 @@ public class UserDao extends DaoSupport{
 		sql.append("SELECT new Map(")
 		   .append("a.USER_ID as USER_ID,")//用户ID
 		   .append("a.USER_TYPE as USER_TYPE,")//用户类型(字典：1用户、2品牌)
+		   .append("(select DIC_NAME from T_DICITEM where a.USER_TYPE=DIC_CODE and CODE='"+Diclist.BZ000001+"') as USER_TYPE_NAME,")//用户类型(字典：1用户、2品牌)
 		   .append("a.EMAIL as EMAIL,")//Email
 		   .append("a.PASSWORD as PASSWORD,")//密码
 		   .append("a.REG_TIME as REG_TIME,")//注册时间

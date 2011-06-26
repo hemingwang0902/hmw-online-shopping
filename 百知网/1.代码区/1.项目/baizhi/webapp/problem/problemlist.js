@@ -7,39 +7,21 @@ function getDataList(){
 	$("tr").remove("#problemlist_tr");
 	var onePageCount=$("#onePageCount").val();
 	var nowPage=$("#nowPage").val();
-	var PROBLEM_ID = $("#PROBLEM_ID").val();
+	var NAME = $("#NAME").val();
 	var PROBLEM_TYPE = $("#PROBLEM_TYPE").val();
 	var CONTENT = $("#CONTENT").val();
 	var IS_ANONYMITY = $("#IS_ANONYMITY").val();
-	var RELEVANT_DETAILS = $("#RELEVANT_DETAILS").val();
-	var USER_ID = $("#USER_ID").val();
-	var WAS_USERID = $("#WAS_USERID").val();
-	var ANSWER_COUNT = $("#ANSWER_COUNT").val();
-	var REVIEW_COUNT = $("#REVIEW_COUNT").val();
-	var ATTENTION_COUNT = $("#ATTENTION_COUNT").val();
-	var COLLECTION_COUNT = $("#COLLECTION_COUNT").val();
-	var BROWSE_COUNT = $("#BROWSE_COUNT").val();
 	var IS_REPORT = $("#IS_REPORT").val();
-	var REPORT_COUNT = $("#REPORT_COUNT").val();
 	var CREATE_TIME = $("#CREATE_TIME").val();
-	var MODIFY_TIME = $("#MODIFY_TIME").val();
+	var CREATE_TIME_END = $("#CREATE_TIME_END").val();
 	$.post("getProblemList.go",{
-		PROBLEM_ID: window.encodeURI(PROBLEM_ID),
-		PROBLEM_TYPE: window.encodeURI(PROBLEM_TYPE),
-		CONTENT: window.encodeURI(CONTENT),
-		IS_ANONYMITY: window.encodeURI(IS_ANONYMITY),
-		RELEVANT_DETAILS: window.encodeURI(RELEVANT_DETAILS),
-		USER_ID: window.encodeURI(USER_ID),
-		WAS_USERID: window.encodeURI(WAS_USERID),
-		ANSWER_COUNT: window.encodeURI(ANSWER_COUNT),
-		REVIEW_COUNT: window.encodeURI(REVIEW_COUNT),
-		ATTENTION_COUNT: window.encodeURI(ATTENTION_COUNT),
-		COLLECTION_COUNT: window.encodeURI(COLLECTION_COUNT),
-		BROWSE_COUNT: window.encodeURI(BROWSE_COUNT),
-		IS_REPORT: window.encodeURI(IS_REPORT),
-		REPORT_COUNT: window.encodeURI(REPORT_COUNT),
-		CREATE_TIME: window.encodeURI(CREATE_TIME),
-		MODIFY_TIME: window.encodeURI(MODIFY_TIME),
+		NAME: window.encodeURI(NAME),
+		PROBLEM_TYPE: PROBLEM_TYPE,
+		CONTENT: CONTENT,
+		IS_ANONYMITY: IS_ANONYMITY,
+		IS_REPORT: IS_REPORT,
+		CREATE_TIME: CREATE_TIME,
+		CREATE_TIME_END: CREATE_TIME_END,
 		nowPage: nowPage,
 		onePageCount: onePageCount},
 		function(result){
@@ -53,7 +35,7 @@ function getDataList(){
 						count=data["totalCount"] ;
 					}
 					var PROBLEM_ID = ""; //问题ID
-					var PROBLEM_TYPE = ""; //问题类型(字典：1普通、2我问的问题)
+					var PROBLEM_TYPE_NAME = ""; //问题类型(字典：1普通、2我问的问题)
 					var CONTENT = ""; //问题内容
 					var IS_ANONYMITY = ""; //是否匿名(0否、1是)
 					var RELEVANT_DETAILS = ""; //相关细节
@@ -71,12 +53,10 @@ function getDataList(){
 			
 					for(var i=0;i<data["list"].length;i++){
 					PROBLEM_ID = data["list"][i]["PROBLEM_ID"];//问题ID
-					PROBLEM_TYPE = data["list"][i]["PROBLEM_TYPE"];//问题类型(字典：1普通、2我问的问题)
+					PROBLEM_TYPE_NAME = data["list"][i]["PROBLEM_TYPE_NAME"];//问题类型(字典：1普通、2我问的问题)
 					CONTENT = data["list"][i]["CONTENT"];//问题内容
 					IS_ANONYMITY = data["list"][i]["IS_ANONYMITY"];//是否匿名(0否、1是)
-					RELEVANT_DETAILS = data["list"][i]["RELEVANT_DETAILS"];//相关细节
-					USER_ID = data["list"][i]["USER_ID"];//用户ID
-					WAS_USERID = data["list"][i]["WAS_USERID"];//被问用户ID
+					NAME = data["list"][i]["NAME"];//用户ID
 					ANSWER_COUNT = data["list"][i]["ANSWER_COUNT"];//答案数量
 					REVIEW_COUNT = data["list"][i]["REVIEW_COUNT"];//评论数量
 					ATTENTION_COUNT = data["list"][i]["ATTENTION_COUNT"];//关注数量
@@ -94,18 +74,15 @@ function getDataList(){
 						content += "    <a href='"+edithref+"' class='bj_btn' title='编辑'/>";
 						content += "    <a href='javascript:;' class='sc_btn' title='删除' onclick=\"delData('"+PROBLEM_ID+"')\"/>";
 						content += "  </td>";
-						content += "  <td>"+PROBLEM_ID+"</td>";
-						content += "  <td>"+PROBLEM_TYPE+"</td>";
+						content += "  <td>"+PROBLEM_TYPE_NAME+"</td>";
 						content += "  <td>"+CONTENT+"</td>";
-						content += "  <td>"+IS_ANONYMITY+"</td>";
-						content += "  <td>"+RELEVANT_DETAILS+"</td>";
-						content += "  <td>"+USER_ID+"</td>";
-						content += "  <td>"+WAS_USERID+"</td>";
+						content += "  <td>"+NAME+"</td>";
 						content += "  <td>"+ANSWER_COUNT+"</td>";
 						content += "  <td>"+REVIEW_COUNT+"</td>";
 						content += "  <td>"+ATTENTION_COUNT+"</td>";
 						content += "  <td>"+COLLECTION_COUNT+"</td>";
 						content += "  <td>"+BROWSE_COUNT+"</td>";
+						content += "  <td>"+IS_ANONYMITY+"</td>";
 						content += "  <td>"+IS_REPORT+"</td>";
 						content += "  <td>"+REPORT_COUNT+"</td>";
 						content += "  <td>"+CREATE_TIME+"</td>";
