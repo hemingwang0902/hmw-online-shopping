@@ -10,7 +10,7 @@
 				<prop key="hibernate.connection.driver_class">com.mysql.jdbc.Driver</prop>
 				<prop key="hibernate.connection.url">jdbc:mysql://127.0.0.1:3306/baizhi?useUnicode=true&amp;characterEncoding=UTF-8</prop>
 				<prop key="hibernate.connection.username">root</prop>
-				<prop key="hibernate.connection.password">123456</prop>
+				<prop key="hibernate.connection.password">root</prop>
 				<prop key="hibernate.c3p0.min_size">10</prop>
 				<prop key="hibernate.c3p0.max_size">10</prop>
 				<prop key="hibernate.c3p0.timeout">300</prop>
