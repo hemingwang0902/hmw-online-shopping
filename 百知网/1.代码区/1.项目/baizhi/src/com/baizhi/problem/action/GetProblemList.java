@@ -21,6 +21,8 @@ public class GetProblemList extends ProblemForm {
 	
 	private String CREATE_TIME_END;// 创建时间(止)
 	
+	private String NAME;//会员姓名
+	
 	public ProblemService getProblemService() {
 		return problemService;
 	}
@@ -36,6 +38,14 @@ public class GetProblemList extends ProblemForm {
 	public void setCREATE_TIME_END(String create_time_end) {
 		CREATE_TIME_END = create_time_end;
 	}
+	
+	public String getNAME() {
+		return NAME;
+	}
+
+	public void setNAME(String name) {
+		NAME = name;
+	}
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -46,7 +56,7 @@ public class GetProblemList extends ProblemForm {
 		this.setMap(params, "CONTENT=?", this.getCONTENT());// 问题内容
 		this.setMap(params, "IS_ANONYMITY=?", this.getIS_ANONYMITY());// 是否匿名(0否、1是)
 		this.setMap(params, "RELEVANT_DETAILS=?", this.getRELEVANT_DETAILS());// 相关细节
-		//this.setMap(params, "USER_ID=?", this.getUSER_ID());// 用户ID
+		this.setMap(params, "NAME like ?", this.getNAME());// 会员姓名
 		//this.setMap(params, "WAS_USERID=?", this.getWAS_USERID());// 被问用户ID
 		
 		this.setMap(params, "IS_REPORT=?", this.getIS_REPORT());// 是否举报(0否、1是)

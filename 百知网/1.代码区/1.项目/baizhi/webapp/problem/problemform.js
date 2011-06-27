@@ -23,4 +23,12 @@ $(document).ready(function(){
 		
 	}
 	
+	$("#basic_a").fancybox({
+		'width'				: 1000,      //弹出框宽度
+		'height'			: 700,      //弹出框高度
+		'type'				: 'iframe', //弹出框类型
+		'transitionIn'	    : 'elastic',//弹入方式
+		'transitionOut'	    : 'elastic'//弹出方式
+	});
+	
 });

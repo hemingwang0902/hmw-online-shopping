@@ -28,5 +28,10 @@
 		<action name="getProblemById" class="com.baizhi.problem.action.GetProblemById">
 			<result name="success" type="dispatcher" >problemform.jsp</result>
 		</action>
+		<action name="getUserBasicList" class="com.baizhi.problem.action.GetUserBasicList">
+			<result name="jsonsuccess" type="json">
+		      <param name="root">result</param>
+		    </result>
+		</action>
 	</package>
 </struts>

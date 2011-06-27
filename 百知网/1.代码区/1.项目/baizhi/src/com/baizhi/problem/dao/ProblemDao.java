@@ -117,7 +117,13 @@ public class ProblemDao extends DaoSupport{
 		   .append("a.REPORT_COUNT as REPORT_COUNT,")//举报次数
 		   .append("a.CREATE_TIME as CREATE_TIME,")//创建时间
 		   .append("a.MODIFY_TIME as MODIFY_TIME) ")//修改时间
-		   .append("FROM T_PROBLEM a WHERE 1=1");
+		   .append("FROM T_PROBLEM a ");
+		//判断会员姓名是否为空
+		if(params.get("NAME like ?")!=null&&!String.valueOf(params.get("NAME like ?")).trim().equals("")){
+			sql.append(",T_USER_BASIC b where  a.USER_ID=b.USER_ID ");
+		}else{
+			sql.append(" WHERE 1=1 ");
+		}
 		//设置查询条件,及初始化查询条件值
 		ParametersSupport ps=new ParametersSupport(params);
 		sql.append(ps.getConditions());

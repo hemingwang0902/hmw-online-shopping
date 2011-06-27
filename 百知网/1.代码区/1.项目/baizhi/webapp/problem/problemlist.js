@@ -15,7 +15,7 @@ function getDataList(){
 	var CREATE_TIME = $("#CREATE_TIME").val();
 	var CREATE_TIME_END = $("#CREATE_TIME_END").val();
 	$.post("getProblemList.go",{
-		NAME: window.encodeURI(NAME),
+		NAME: NAME,
 		PROBLEM_TYPE: PROBLEM_TYPE,
 		CONTENT: CONTENT,
 		IS_ANONYMITY: IS_ANONYMITY,
@@ -55,9 +55,9 @@ function getDataList(){
 						PROBLEM_ID = data["list"][i]["PROBLEM_ID"];//问题ID
 						PROBLEM_TYPE_NAME = data["list"][i]["PROBLEM_TYPE_NAME"];//问题类型(字典：1普通、2我问的问题)
 						CONTENT = data["list"][i]["CONTENT"];//问题内容
-						String tempContent="";
+						var tempContent="";
 						if(CONTENT.length>20){
-							tempContent=StringUnit.getLength(CONTENT,20);
+							tempContent=StringUnit.substring(CONTENT,20);
 						}else{
 							tempContent=CONTENT;
 						}

@@ -6,10 +6,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>百知网</title>
 <link href="../styles/style.css" rel="stylesheet" type="text/css"/>
+<link href="../styles/lightbox.css" rel="stylesheet" type="text/css"  media="screen"/>
 <script type="text/javascript" language="javascript" src="../calendar/WdatePicker.js"></script>
 <script type="text/javascript" language="javascript" src="../javascripts/jquery-1.6.1.js"></script>
 <script type="text/javascript" language="javascript" src="../javascripts/jquery.validate.js"></script>
 <script type="text/javascript" language="javascript" src="../javascripts/jquery.message.js"></script>
+<script type="text/javascript" language="javascript" src="../javascripts/jquery.lightbox.js"></script>
+<script type="text/javascript" language="javascript" src="../javascripts/jquery.lightboxmousewheel.js"></script>
 <script type="text/javascript" language="javascript" src="problemform.js"></script>
 </head>
 <body>
@@ -49,7 +52,11 @@
 					</tr>
 					<tr>
 						<td class="lightbox_title">&nbsp;回答会员：</td>
-						<td class="lightbox_content" colspan="3"><input type="text" class="input_width Wlightbox" id="WAS_USERID" name="WAS_USERID" value='<s:property value="WAS_USERID"/>'/></td>
+						<td class="lightbox_content" colspan="3">
+							<a id="basic_a" href="userbasiclist.jsp?id=WAS_USERID&name=WAS_USERID_TEXT"></a>
+							<input type="text" class="input_width Wlightbox" id="WAS_USERID_TEXT" name="WAS_USERID_TEXT"  onclick="$('#basic_a').click();" />
+							<input type="hidden" id="WAS_USERID" name="WAS_USERID" value='<s:property value="WAS_USERID"/>' />
+						</td>
 					</tr>
 					<tr>
 						<td class="lightbox_title"><span class="font_red">*</span>内容：</td>
