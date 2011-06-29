@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<bean id="ppymDao" class="com.baizhi.index.dao.PpymDao" parent="daoSupport"></bean>
+	
+	<bean id="ppymService" class="com.baizhi.index.service.PpymService" parent="serviceSupport">
+		<property name="ppymDao">
+			<ref local="ppymDao" />
+		</property>
+	</bean>
+</beans>

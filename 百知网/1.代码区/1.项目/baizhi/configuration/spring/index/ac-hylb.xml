@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<bean id="hylbDao" class="com.baizhi.index.dao.HylbDao" parent="daoSupport"></bean>
+	
+	<bean id="hylbService" class="com.baizhi.index.service.HylbService" parent="serviceSupport">
+		<property name="hylbDao">
+			<ref local="hylbDao" />
+		</property>
+	</bean>
+</beans>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<bean id="wgzdwtDao" class="com.baizhi.index.dao.WgzdwtDao" parent="daoSupport"></bean>
+	
+	<bean id="wgzdwtService" class="com.baizhi.index.service.WgzdwtService" parent="serviceSupport">
+		<property name="wgzdwtDao">
+			<ref local="wgzdwtDao" />
+		</property>
+	</bean>
+</beans>
