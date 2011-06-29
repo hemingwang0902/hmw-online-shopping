@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<meta name="keywords" content="站长,网页特效,js特效,js脚本,脚本,广告代码,zzjs,zzjs.net,sky,www.zzjs.net,站长特效 网" />
+<meta name="description" content="www.zzjs.net,站长特效网，站长必备js特效及广告代码。大量高质量js特效，提供高质量广告代码下载,尽在站长特效网" />
+<title>网页特效 css实现鼠标经过显示提示信息效果 站长特效网欢迎您。</title>
+<style type="text/css">
+/*Tooltips*/
+.tooltips{
+position:relative; /*这个是关键*/
+z-index:2;
+}
+.tooltips:hover{
+z-index:3;
+background:none; /*没有这个在IE中不可用*/
+}
+.tooltips span{
+display: none;
+}
+.tooltips:hover span{ /*span 标签仅在 :hover 状态时显示*/
+display:block;
+position:absolute;
+top:21px;
+left:9px;
+width:15em;
+border:1px solid black;
+background-color:#ccFFFF;
+padding: 3px;
+color:black;
+}
+</style>
+
+
+
+</head>
+<body>
+<div> <a class="tooltips" href="#tooltips">这就是Tooltips<span>正是你见到的，这些附加的说明文字是在鼠标经过的时候显示。</span></a>
+</div>
+</body>
+</html>
