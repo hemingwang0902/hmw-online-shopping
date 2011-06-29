@@ -1,7 +1,11 @@
 package com.baizhi.ad.action;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
+import org.apache.commons.lang.StringUtils;
+
 import com.baizhi.ad.service.AdService;
 /**
  * 类名： AdList.java<br>
@@ -24,6 +28,7 @@ public class GetAdList extends AdForm {
 		this.adService = adService;
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public String execute() throws Exception {
 		Map<String, Object> params = new HashMap<String, Object>();
@@ -43,6 +48,14 @@ public class GetAdList extends AdForm {
 		Map<String, Object> returnMap = adService.getAdList(params, this.getNowPage(), this.getOnePageCount());
 		//判断是否存在查询记录
 		if (returnMap != null && returnMap.size() != 0) {
+			List<Map<String, Object>> list = (List<Map<String, Object>>) returnMap.get("list");
+			// 判断是否存在列表数据，如果存在列表数据，则将日期格式转换
+			if (list != null && list.size() > 0) {
+				for (Map<String, Object> newmap : list) {
+					newmap.put("START_TIME", StringUtils.defaultIfEmpty(getTime(newmap, "START_TIME"), "&nbsp;"));
+					newmap.put("END_TIME", StringUtils.defaultIfEmpty(getTime(newmap, "END_TIME"), "&nbsp;"));
+				}
+			}
 			this.setResult(returnMap);
 		}
 		return JSONSUCCESS;
