@@ -24,27 +24,43 @@
 				<table width="100%;" border="0" cellspacing="0" cellpadding="0" class="lightbox_table">
 		   			<tr>
 						<td class="lightbox_title">主题：</td>
-						<td class="lightbox_content"><input type="text" class="input_width3" name="TITLE" id="TITLE" /> </td>
+						<td class="lightbox_content"><input type="text" class="input_width4" name="TITLE" id="TITLE" /> </td>
 					</tr>
 		   			<tr>
 						<td class="lightbox_title">显示方式：</td>
-						<td class="lightbox_content"><input type="text" class="input_width3" name="SHOW_TYPE" id="SHOW_TYPE" /> </td>
+						<td class="lightbox_content">
+							<%--<input type="text" class="input_width4" name="SHOW_TYPE" id="SHOW_TYPE" />--%>
+							<select id="SHOW_TYPE" name="SHOW_TYPE" class="input_width4">
+								<option value="">请选择</option>
+								<option value="1">左边悬浮</option>
+								<option value="2">中间悬浮</option>
+								<option value="3">右边悬浮</option>
+							</select>
+						</td>
 					</tr>
 		   			<tr>
 						<td class="lightbox_title">起始时间：</td>
-						<td class="lightbox_content"><input type="text" class="input_width3 Wdate"  onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',autoPickDate:true})" name="START_TIME" id="START_TIME" /> </td>
+						<td class="lightbox_content"><input type="text" class="input_width4 Wdate"  onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',autoPickDate:true})" name="START_TIME" id="START_TIME" /> </td>
 					</tr>
 		   			<tr>
 						<td class="lightbox_title">终止时间：</td>
-						<td class="lightbox_content"><input type="text" class="input_width3 Wdate"  onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',autoPickDate:true})" name="END_TIME" id="END_TIME" /> </td>
+						<td class="lightbox_content"><input type="text" class="input_width4 Wdate"  onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',autoPickDate:true})" name="END_TIME" id="END_TIME" /> </td>
 					</tr>
 		   			<tr>
 						<td class="lightbox_title">状态：</td>
-						<td class="lightbox_content"><input type="text" class="input_width3" name="STATUS" id="STATUS" /> </td>
+						<td class="lightbox_content">
+							<%--<input type="text" class="input_width4" name="STATUS" id="STATUS" />--%>
+							<select id="STATUS" name="STATUS" class="input_width4">
+								<option value="">请选择</option>
+								<option value="1">申请</option>
+								<option value="2">通过</option>
+								<option value="3">不通过</option>
+							</select>
+						</td>
 					</tr>
 		   			<tr>
 						<td class="lightbox_title">备注：</td>
-						<td class="lightbox_content"><input type="text" class="input_width3" name="REMARK" id="REMARK" /> </td>
+						<td class="lightbox_content"><input type="text" class="input_width4" name="REMARK" id="REMARK" /> </td>
 					</tr>
 					<tr>
 						<td>&nbsp;</td>

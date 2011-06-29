@@ -42,7 +42,7 @@
 						<td class="lightbox_title"><span class="font_red">*</span>显示方式：</td>
 						<td class="lightbox_content">
 						<%--<input type="text" class="input_width" id="SHOW_TYPE" name="SHOW_TYPE" value='<s:property value="SHOW_TYPE"/>'/>--%>
-							<select id="SHOW_TYPE" name="SHOW_TYPE" initValue='<s:property value="SHOW_TYPE"/>'>
+							<select id="SHOW_TYPE" name="SHOW_TYPE" class="input_width" initValue='<s:property value="SHOW_TYPE"/>'>
 								<option value="1">左边悬浮</option>
 								<option value="2">中间悬浮</option>
 								<option value="3">右边悬浮</option>
@@ -59,7 +59,7 @@
 						<td class="lightbox_title"><span class="font_red">*</span>状态：</td>
 						<td class="lightbox_content">
 							<%--<input type="text" class="input_width" id="STATUS" name="STATUS" value='<s:property value="STATUS"/>'/>--%>
-							<select id="STATUS" name="STATUS" initValue='<s:property value="STATUS"/>'>
+							<select id="STATUS" name="STATUS" class="input_width" initValue='<s:property value="STATUS"/>'>
 								<option value="1">申请</option>
 								<option value="2" selected="selected">通过</option>
 								<option value="3">不通过</option>
@@ -72,7 +72,7 @@
 					<tr>
 						<td class="lightbox_title" colspan="4">
 							<span class="font_red"></span>备注：
-							<div class="lightbox_content"><textarea class="input_width" id="REMARK" name="REMARK" style="width:100%;height:60px;border:#CCC solid 1px;line-height:18px;"><s:property value="REMARK"/></textarea></div>
+							<div class="lightbox_content" style="width: 100%;"><textarea class="input_width" id="REMARK" name="REMARK" style="width:100%;height:60px;border:#CCC solid 1px;line-height:18px;"><s:property value="REMARK"/></textarea></div>
 						</td>
 					</tr>
 					<tr>
