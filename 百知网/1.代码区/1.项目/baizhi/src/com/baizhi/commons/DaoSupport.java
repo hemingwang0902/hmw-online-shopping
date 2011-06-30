@@ -395,6 +395,31 @@ public abstract class DaoSupport extends HibernateDaoSupport {
 		return element;
 	}
 	
+	/**
+	 * 公共执行查询方法，获取单条记录
+	 * 
+	 * @param sql     SQL查询语句
+	 * @param params  参数
+	 * @return 返回单条记录
+	 */
+	@SuppressWarnings("unchecked")
+	public Element getElementById(String sql,Object[] params) {
+		Element element=null;
+		Session session = getSession();
+		try {
+			Query query = setQueryParameters(session.createQuery(sql), params);
+			List<Element> list=query.list();
+			if(list!=null&&list.size()>0){
+				element=list.get(0);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return element;
+	}
+	
 	
 	/**
 	 * 设置参数

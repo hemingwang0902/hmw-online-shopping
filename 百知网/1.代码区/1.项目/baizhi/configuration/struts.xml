@@ -19,4 +19,6 @@
 	<include file="struts2/s/s-dicitem.xml" />
 	<include file="struts2/s/s-diclist.xml" />
 	
+	<include file="struts2/s/s-userattention.xml" />
+	
 </struts>

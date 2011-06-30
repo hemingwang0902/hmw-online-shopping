@@ -112,9 +112,8 @@ public abstract class ActionSupport extends com.opensymphony.xwork2.ActionSuppor
 	 * 
 	 * @return
 	 */
-	public long getSessionUserId() {
-		//Long.parseLong(String.valueOf(getSessionUserInfo().get("USER_ID")))
-		return 1;
+	public int getSessionUserId() {
+		return Integer.parseInt(String.valueOf(getSessionUserInfo().get("USER_ID")));
 	}
 
 	/**
@@ -125,69 +124,7 @@ public abstract class ActionSupport extends com.opensymphony.xwork2.ActionSuppor
 	public String getSessionUserName() {
 		return String.valueOf(getSessionUserInfo().get("USER_NAME"));
 	}
-
-	/**
-	 * 获取当前session用户所属部门
-	 * 
-	 * @return
-	 */
-	public long getSessionDeptId() {
-		return Long.parseLong(String.valueOf(getSessionUserInfo().get("DEPT_ID")));
-	}
-
-	/**
-	 * 获取当前session用户所属部门名称
-	 * 
-	 * @return
-	 */
-	public String getSessionDeptName() {
-		return String.valueOf(getSessionUserInfo().get("DEPT_NAME"));
-	}
-
-	/**
-	 * 获取当前session用户所属单位
-	 * 
-	 * @return
-	 */
-	public long getSessionUnitId() {
-		return Long.parseLong(String.valueOf(getSessionUserInfo().get("UNIT_ID")));
-	}
-
-	/**
-	 * 获取当前session用户所属单位名称
-	 * 
-	 * @return
-	 */
-	public String getSessionUnitName() {
-		return String.valueOf(getSessionUserInfo().get("UNIT_NAME"));
-	}
-
-	/**
-	 * 获取当前session用户所能操作的品牌,如果存在多个品牌则以“，”间隔
-	 * 
-	 * @return
-	 */
-	public String getSessionBrands() {
-		return String.valueOf(getSessionUserInfo().get("BRANDS"));
-	}
 	
-	/**
-	 * 获取当前session用户所能操作的机构,如果存在多个机构则以“，”间隔
-	 * 
-	 * @return
-	 */
-	public String getSessionOptUnit() {
-		return String.valueOf(getSessionUserInfo().get("OPTUNIT"));
-	}
-	
-	/**
-	 * 获取当前session用户所能操作的组,如果存在多个组则以“，”间隔
-	 * 
-	 * @return
-	 */
-	public String getSessionOptGroup() {
-		return String.valueOf(getSessionUserInfo().get("OPTGROUP"));
-	}
 
 	@Override
 	public abstract String execute() throws Exception;
