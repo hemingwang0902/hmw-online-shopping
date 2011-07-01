@@ -5,17 +5,29 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>百知网</title>
+<link rel="stylesheet" type="text/css" href="../styles/style.css" />
 <link href="../styles/style_home.css" rel="stylesheet" type="text/css" />
+
+
 <script type="text/javascript" src="../javascripts/jquery-1.6.1.js"></script>
 <script type="text/javascript" src="../javascripts/correctPNG.js"></script>
+
+<script type="text/javascript" language="javascript"  src="../javascripts/jquery.message.js"></script>
+
+<script type="text/javascript" language="javascript"  src="list_pqlb.js"></script>
+
 <style type="text/css">
 <!--
 .STYLE1 {color: #FFFFFF}
+
+.baizhi_button_1{width:100px; height:25px; background-color:#dadade}
 -->
 </style>
 </head>
 
 <body>
+<div id="page_shadow" class="page_shadow"></div>
+<div id="page_loading" class="page_loading"></div>
 <div class="top">
 	<div class="top_big">
    	  <div class="logo"><img src="../images/main/logo.png" /></div>
@@ -32,77 +44,13 @@
       <div class="subMenu"><input name="" type="button" class="bot_tjht"  value="" />&nbsp;<input name="" type="button" class="bot_wc" value="" />
       </div>
       <div class="line_1"></div>
-      <div class="title_xgwt">
-        <div class="title_xgwt_tu"><img src="../images/main/xner.jpg" /></div>
-        <div class="title_xgwt_xner">
-        	<ul>
-            	<li class="tit"><a href="#">LG</a></li>
-                <li class="tit_con">电信行业的我，如何进入互联网行业公司工作</li>
-            </ul>
-        </div>
-        <div class="title_xgwt_anniu">
-          <p><input name="" type="button" value="添加关注" style="width:100px; height:25px; background-color:#dadade" /></p>
-          <p><input name="" type="button" value="添加关注" style="width:100px; height:25px; background-color:#dadade" /></p>
-        </div>
-        <div class="clear"></div>
+      <input type="hidden" id="nowPage" name="nowPage" value="1" />
+      <input type="hidden" id="onePageCount" name="onePageCount" value="10" />
+      <div id="list_pqlb">
+      
       </div>
-      <div class="title_xgwt_x">
-        <div class="title_xgwt_tu"><img src="../images/main/xner.jpg" /></div>
-        <div class="title_xgwt_xner">
-        	<ul>
-            	<li class="tit"><a href="#">LG</a></li>
-                <li class="tit_con">电信行业的我，如何进入互联网行业公司工作</li>
-            </ul>
-        </div>
-        <div class="title_xgwt_anniu">
-          <p><input name="" type="button" value="添加关注" style="width:100px; height:25px; background-color:#dadade" /></p>
-          <p><input name="" type="button" value="添加关注" style="width:100px; height:25px; background-color:#dadade" /></p>
-        </div>
-        <div class="clear"></div>
-      </div>
-      <div class="title_xgwt_x">
-        <div class="title_xgwt_tu"><img src="../images/main/xner.jpg" /></div>
-        <div class="title_xgwt_xner">
-        	<ul>
-            	<li class="tit"><a href="#">LG</a></li>
-                <li class="tit_con">电信行业的我，如何进入互联网行业公司工作</li>
-            </ul>
-        </div>
-        <div class="title_xgwt_anniu">
-          <p><input name="" type="button" value="添加关注" style="width:100px; height:25px; background-color:#dadade" /></p>
-          <p><input name="" type="button" value="添加关注" style="width:100px; height:25px; background-color:#dadade" /></p>
-        </div>
-        <div class="clear"></div>
-      </div>
-      <div class="title_xgwt_x">
-        <div class="title_xgwt_tu"><img src="../images/main/xner.jpg" /></div>
-        <div class="title_xgwt_xner">
-        	<ul>
-            	<li class="tit"><a href="#">LG</a></li>
-                <li class="tit_con">电信行业的我，如何进入互联网行业公司工作</li>
-            </ul>
-        </div>
-        <div class="title_xgwt_anniu">
-          <p><input name="" type="button" value="添加关注" style="width:100px; height:25px; background-color:#dadade" /></p>
-          <p><input name="" type="button" value="添加关注" style="width:100px; height:25px; background-color:#dadade" /></p>
-        </div>
-        <div class="clear"></div>
-      </div>
-      <div class="title_xgwt_x" style="margin-bottom:15px;">
-        <div class="title_xgwt_tu"><img src="../images/main/xner.jpg" /></div>
-        <div class="title_xgwt_xner">
-        	<ul>
-            	<li class="tit"><a href="#">LG</a></li>
-                <li class="tit_con">电信行业的我，如何进入互联网行业公司工作</li>
-            </ul>
-        </div>
-        <div class="title_xgwt_anniu">
-          <p><input name="" type="button" value="添加关注" style="width:100px; height:25px; background-color:#dadade" /></p>
-          <p><input name="" type="button" value="添加关注" style="width:100px; height:25px; background-color:#dadade" /></p>
-        </div>
-        <div class="clear"></div>
-      </div>
-      <div class="tiao"><a href="#">更多 &gt;&gt;</a></div>
+      
+      <div class="tiao"><a href="javascript:;" id="list_pqlb_more">更多 &gt;&gt;</a></div>
   </div>
     
     

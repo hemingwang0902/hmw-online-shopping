@@ -10,7 +10,7 @@
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 	
-	<!--<filter>
+	<filter>
 		<filter-name>session</filter-name>
 		<filter-class>com.baizhi.commons.filter.SessionFilter</filter-class>
 	</filter>
@@ -23,7 +23,7 @@
 		<url-pattern>*.jsp</url-pattern>
 	</filter-mapping>
 	
- 	 Struts2 的过滤器配置    开始 -->
+ 	<!-- Struts2 的过滤器配置    开始 -->
  	<!-- 
  	struts2的web.xml配置是有顺序的，在web.xml中EncodingFilter的位置应该在Struts2的FilterDispatcher之前，因为要先调整字符集，然后进入Action
  	按照Struts2的API，filter的顺序是 struts-cleanup filter、SiteMesh filter、FilterDispatcher

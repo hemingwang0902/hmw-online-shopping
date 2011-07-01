@@ -26,24 +26,20 @@
 			<classpath refid="compile.classpath" />
 		</javac>
 	</target>
-
-	<target name="delete">
-		<delete dir="${target.webapp}"></delete>
-	</target>
 	
 	<target name="copy">
-		<copy todir="${target.webapp}" overwrite="true">
+		<copy todir="${target.webapp}" >
 			<fileset dir="${app.webapp}" />
 		</copy>
 
-		<copy todir="${target.webinf}" overwrite="true">
+		<copy todir="${target.webinf}" >
 			<fileset dir="${app.configuration}">
 				<include name="**/web.xml" />
 				<include name="**/applicationContext.xml" />
 			</fileset>
 		</copy>
 
-		<copy todir="${target.lib}" overwrite="true">
+		<copy todir="${target.lib}" >
 			<fileset dir="${app.library}/commons" />
 			<fileset dir="${app.library}/dom4j" />
 			<fileset dir="${app.library}/driver" />
@@ -60,7 +56,7 @@
 			<fileset dir="${app.library}/ckeditor" />
 		</copy>
 
-		<copy todir="${target.classes}" overwrite="true">
+		<copy todir="${target.classes}" >
 			<fileset dir="${app.bin}" />
 			<fileset dir="${app.configuration}">
 				<exclude name="**/web.xml" />
@@ -70,7 +66,6 @@
 	</target>
 
 	<target name="recompiles">
-		<antcall target="delete"></antcall>
 		<antcall target="compiles" />
 		<antcall target="copy" />
 	</target>

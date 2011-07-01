@@ -406,8 +406,9 @@ public abstract class DaoSupport extends HibernateDaoSupport {
 	public Element getElementById(String sql,Object[] params) {
 		Element element=null;
 		Session session = getSession();
+		Session dom4jSession = session.getSession(EntityMode.DOM4J);
 		try {
-			Query query = setQueryParameters(session.createQuery(sql), params);
+			Query query = setQueryParameters(dom4jSession.createQuery(sql), params);
 			List<Element> list=query.list();
 			if(list!=null&&list.size()>0){
 				element=list.get(0);
@@ -415,6 +416,7 @@ public abstract class DaoSupport extends HibernateDaoSupport {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
+			dom4jSession.close();
 			session.close();
 		}
 		return element;
