@@ -14,3 +14,5 @@
 		</div>
 	</div>
 </div>
+<div id="page_shadow" class="page_shadow"></div>
+<div id="page_loading" class="page_loading"></div>
