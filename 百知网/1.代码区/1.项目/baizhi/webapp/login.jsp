@@ -4,35 +4,26 @@
 <html>
 <head>
 	<%@include file="common/jsCss.jsp" %>
-	<style type="text/css">
-		td{height: 40px;}
-	</style>
 </head>
 <body>
-	<%@include file="common/head.jsp" %>
-	<div class="content">
-		<div style="height:400px; text-align: center;">
-			<form action="login.go" id="loginform" name="loginform" method="post">
-				<table>
-					<tr>
-						<td style="width: 100px;" align="right">用户名：</td>
-						<td align="left"><input type="text" class="input_width" id="username" name="username"  value="bb@qq.com" /><span class="error" id="message"><s:property value="message" /></span></td>
-					</tr>
-					<tr>
-						<td align="right">密码：</td>
-						<td align="left"><input type="password" class="input_width" id="userpwd" name="userpwd" value="111111" /></td>
-					</tr>
-					<tr>
-						<td align="center" colspan="2">
-							<input id="btn_login" type="submit" class="baizhi_button_1" value="登录" />
-							<input id="btn_reset" type="reset" class="baizhi_button_1" value="重置" />
-						</td>
-					</tr>
-				</table>
-			</form>				
-		</div>
-		<div class="clear"></div>
-	</div>
-	<%@include file="common/foot.jsp" %>
+
+<div class="login_bg">
+	<div class="login_logo"><img src="images/main/login_logo.png" /></div>
+    <div class="loginbar">
+    	<div class="loginbar_l">
+        	<div class="loginbar_l_t">邮箱&gt;&nbsp;
+        	  <input name="input" type="text" class="login_text" tabindex="1"/>
+        	</div>
+          <div class="loginbar_l_j"><input id="remenberMe" name="" type="checkbox" value="" tabindex="4"/><label for="remenberMe">记住我</label></div>
+        </div>
+        <div class="loginbar_r">
+        	<div class="loginbar_l_t">密码&gt;&nbsp;<input name="" type="password" class="login_pass" tabindex="2"/></div>
+          <div class="loginbar_l_w"><a href="#" tabindex="5">忘记密码？</a></div>        
+        </div>
+        <div class="loginbar_d"><input name="" type="button" class="loginbar_but" value="" tabindex="3"/></div>
+    </div>
+    <div class="loginbar_toy">© 2011 百知问答平台 • 京ICP证110888号 </div>
+</div>
+
 </body>
 </html>

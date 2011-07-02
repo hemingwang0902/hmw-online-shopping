@@ -4,15 +4,20 @@
 <html>
 <head>
 	<%@include file="../common/jsCss.jsp" %>
+	<link rel="stylesheet" type="text/css" href="../styles/jquery.autocomplete.css" />
+	<script type="text/javascript" src="../javascripts/jquery.autocomplete.min-1.1.js"></script>
+	<script type="text/javascript" src="home.js"></script>
 </head>
 
 <body>
 	<%@include file="../common/head.jsp" %>
 <div class="content">
+
 	<div class="c_left">
 	  <div class="search">
-	    <input name="text" type="text" value="请在此添加你的问题 >>" size="" style="height:21px; float:left; color:#999; padding-top:5px;  padding-left:5px; width:450px;" onfocus="javascript:this.value='';" onblur="javascript:this.value='请在此添加你的问题 >>';"/>  
-	    <input type="button" class="bot_t" value=""  style=" bottom:0px; float:right;" />
+	  	<a href="addProblem.jsp" id="item_a"></a>
+	    <input type="text" id="title" name="title" value="搜索问题、品牌或会员 >>" style="height:21px; float:left; color:#999; padding-top:5px;  padding-left:5px; width:450px;"/>  
+	    <input type="button" class="bot_t" value="" style=" bottom:0px; float:right;cursor: pointer;" onclick="$('#item_a').click();"/>
 	  </div>
       <div class="subMenu">
       	<ul>
