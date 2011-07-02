@@ -5,6 +5,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.apache.commons.lang.StringUtils;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.impl.SQLQueryImpl;
@@ -40,7 +42,13 @@ public class PagerSupport implements Serializable {
 	 * @return 返回 Map,Map存取 count 总记录数 size 总页数 list数据集存放Map数据
 	 */
 	public static Map<String, Object> getList(Session session, Query query, String tableName,Object[] params,int nowPage, int onePageCount) {
-		Map<String, Object> data = getPage(session, query, tableName,  nowPage, onePageCount, params);
+		Map<String, Object> data = null;
+		if(StringUtils.isBlank(tableName)){
+			data = new HashMap<String, Object>(); 
+		}else{
+			data = getPage(session, query, tableName,  nowPage, onePageCount, params);
+		}
+		
 		query = query.setFirstResult((nowPage - 1) * onePageCount);
 		query = query.setFetchSize(onePageCount);
 		query = query.setMaxResults(onePageCount);
