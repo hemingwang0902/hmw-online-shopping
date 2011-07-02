@@ -1,27 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="/struts-tags" prefix="s" %>
+<%@include file="../common/basePath.jsp" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>百知网</title>
-<link href="../styles/style_home.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="../javascripts/jquery-1.6.1.js"></script>
-<script type="text/javascript" src="../javascripts/correctPNG.js"></script>
-<style type="text/css">
-<!--
-.STYLE1 {color: #FFFFFF}
--->
-</style>
+	<%@include file="../common/jsCss.jsp" %>
 </head>
 
 <body>
-<div class="top">
-	<div class="top_big">
-   	  <div class="logo"><img src="../images/main/logo.png" /></div>
-        <div class="nav"><a href="#">首页</a>&nbsp;&nbsp;<a href="#">通知</a>&nbsp;&nbsp;<a href="#">私信</a>&nbsp;&nbsp;<a href="#">设置</a>&nbsp;&nbsp;<a href="#">登录</a>&nbsp;&nbsp;<a href="#">注册</a></div>
-    </div>
-</div>
+	<%@include file="../common/head.jsp" %>
 <div class="content">
 	<div class="c_left">
 	  <div class="search">
@@ -225,8 +211,6 @@
     </div>
 	<div class="clear"></div>
 </div>
-<div class="footer">
-	<div class="footer_nav"><a href="#">关于百知</a> <span class="STYLE1">•</span> <a href="#">新手入门</a>  <span class="STYLE1">•</span> <a href="#">百知指南</a> <span class="STYLE1">•</span>  <a href="#">百知协议</a> <span class="STYLE1">•</span>  <a href="#">联系我们</a>  <span class="STYLE1">•</span>  <a href="#">2011 百知</a></div>
-</div>
+	<%@include file="../common/foot.jsp" %>
 </body>
 </html>

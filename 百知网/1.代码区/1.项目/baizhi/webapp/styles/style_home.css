@@ -43,6 +43,8 @@ a:link,a:visited,a:hover,a:active{
 	}
 .clear{ clear:both;}
 
+.STYLE1 {color: #FFFFFF}
+.baizhi_button_1{width:100px; height:25px; background-color:#dadade}
 
 
 .top{ width:100%; height:85px; background:url(../images/main/top_bg.jpg)}
@@ -54,7 +56,7 @@ a:link,a:visited,a:hover,a:active{
 .nav a:hover{ color:#111;}
 
 /**************    top完     *****************/
-.content{ width:860px; margin:0 auto; margin-top:30px; margin-bottom:50px;}
+.content{ width:860px; margin:0 auto; margin-top:10px; margin-bottom:10px;}
 .c_left{ width:570px; float:left; height:auto;}
 .search{ width:570px; height:28px; color:#999; padding-bottom:30px; overflow:hidden;}
 .bot_t{ width:100px; height:28px; background:url(../images/main/bot.jpg) no-repeat; border:0;  }
@@ -231,22 +233,3 @@ color:black;
 .title_hyym ul li a:hover{ color:#ff9000;}
 .title_hyym ul li .tit_con{ line-height:20px;}
 .title_hyym_anniu{ width:55px; height:50px; float:left; padding-top:25px;}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
