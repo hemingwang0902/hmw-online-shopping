@@ -7,6 +7,7 @@
 		<action name="login" class="com.baizhi.user.action.Login">
 			<result name="error"  type="dispatcher" >login.jsp</result>
 			<result name="success" type="redirect" >index.jsp</result>
+			<result name="index" type="redirect" >index/home.jsp</result>
 		</action>
 		<action name="destroy" class="com.baizhi.user.action.Destroy">
 			<result name="success" type="redirect" >login.jsp</result> 
