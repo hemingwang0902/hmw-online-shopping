@@ -6,6 +6,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import com.baizhi.commons.DaoSupport;
 import com.baizhi.commons.PagerSupport;
+import com.baizhi.commons.ParametersSupport;
 /**
  * 
  * 类名：PqlbDao.java
@@ -49,5 +50,30 @@ public class PqlbDao extends DaoSupport{
 			session.close();
 		}
 		return returnMap;
+	}
+	
+	/**
+	 * 获取用户关注人信息表列表信息
+	 * @param params 参数
+	 * @param nowPage 当前页
+	 * @param onePageCount 每页显示多少条
+	 * @return 返回用户关注人信息表列表信息,如果无查询记录则返回null
+	 */
+	public Map<String,Object> getUserAttentionList(Map<String, Object> params,int nowPage,int onePageCount){
+		//组织查询语句
+		StringBuffer sql = new StringBuffer();
+		sql.append("SELECT new Map(")
+		   .append("a.ATTENTION_ID as ATTENTION_ID,")//用户关注人ID
+		   .append("a.USER_ID as USER_ID,")//用户ID
+		   .append("a.WAS_USERID as WAS_USERID,")//被关注用户
+		   .append("a.IS_ATTENTION as IS_ATTENTION,")//是否关注(0否、1是)
+		   .append("a.CREATE_TIME as CREATE_TIME,")//创建时间
+		   .append("a.MODIFY_TIME as MODIFY_TIME) ")//修改时间
+		   .append("FROM T_USER_ATTENTION a WHERE 1=1");
+		//设置查询条件,及初始化查询条件值
+		ParametersSupport ps=new ParametersSupport(params);
+		sql.append(ps.getConditions());
+		
+		return this.getByList(sql.toString(), ps.getValues(), "T_USER_ATTENTION", nowPage, onePageCount);
 	}
 }

@@ -12,5 +12,7 @@ import com.baizhi.commons.DaoImplSupport;
  * 修改日期： 
  */
 public class UserAttentionImplDao extends DaoImplSupport{
+	
+	private static final long serialVersionUID = -726376900269817389L;
 
 }
