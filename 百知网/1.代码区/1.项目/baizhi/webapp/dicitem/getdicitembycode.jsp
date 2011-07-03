@@ -10,7 +10,7 @@
 </head>
 <body>
 <select id="dicitem" name="dicitem">
-		<option selected="selected"></option>
+	<option selected="selected"></option>
 </select>
 
 </body>
@@ -22,7 +22,7 @@ function loadSelect(id,codeVal){
 	if(!$.trim(codeVal))return ;
 	var code = "",check = 0;
 	if(codeVal.indexOf(",") != -1){
-		var arr = code.split(",");
+		var arr = codeVal.split(",");
 		code = arr[0];
 		check = arr[1];
 	}else {
@@ -33,16 +33,21 @@ function loadSelect(id,codeVal){
 	$.get(url,data,function(response){
 		var result = eval("("+response+")");
 		var returnMapList = result.returnMapList;
-		$(id).empty();
-		$(returnMapList).each(function(){
-			$(id).append('<option value="' + this.DIC_CODE + '">' + this.DIC_NAME + '</option>');
+		$("#" + id).empty();
+		
+		$(returnMapList).each(function(i){
+			if(check!=0 && (i + 1) == check ){
+					$("#" + id).append('<option value="' + this.DIC_CODE + '" selected="selected">' + this.DIC_NAME + '</option>');
+			}else{
+				  $("#" + id).append('<option value="' + this.DIC_CODE + '">' + this.DIC_NAME + '</option>');
+			}
+			
 		});
 	},"json");
 	
-	$(id).find("option").get(parseInt(check)).attr("selected","selected");
 }
 
 $(function(){
-	loadSelect("dicitem","LSL");
+	loadSelect("dicitem","LSL,2");
 });
 </script>
