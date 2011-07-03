@@ -2,9 +2,12 @@ package com.baizhi.dicitem.service;
 
 import java.util.List;
 import java.util.Map;
+
 import org.dom4j.Element;
+
 import com.baizhi.commons.ServiceSupport;
 import com.baizhi.dicitem.dao.DicitemDao;
+
 /**
  * 
  * 类名：DicitemService.java
@@ -15,10 +18,10 @@ import com.baizhi.dicitem.dao.DicitemDao;
  * 修改者：
  * 修改日期：
  */
-public class DicitemService extends ServiceSupport{
+public class DicitemService extends ServiceSupport {
 	private static final long serialVersionUID = 3869276272256222413L;
 	private DicitemDao dicitemDao;
-	
+
 	public DicitemDao getDicitemDao() {
 		return dicitemDao;
 	}
@@ -26,7 +29,7 @@ public class DicitemService extends ServiceSupport{
 	public void setDicitemDao(DicitemDao dicitemDao) {
 		this.dicitemDao = dicitemDao;
 	}
-	
+
 	/**
 	 * 新增或修改字典列表清单信息
 	 * 
@@ -36,7 +39,7 @@ public class DicitemService extends ServiceSupport{
 	public String saveOrUpdateDicitem(Element element) {
 		return dicitemDao.saveOrUpdateDicitem(element);
 	}
-	
+
 	/**
 	 *　删除字典列表清单信息
 	 * 
@@ -46,16 +49,27 @@ public class DicitemService extends ServiceSupport{
 	public boolean deleteDicitem(String DICITEM_IDS) {
 		return dicitemDao.deleteDicitem(DICITEM_IDS);
 	}
-	
+
 	/**
 	 * 根据字典列表清单ID获取字典列表清单实体
 	 * @param DICITEM_ID 字典列表清单ID
 	 * @return 返回字典列表清单实体,如果无查询记录则返回null
 	 */
-	public  Element getDicitemEleById(String DICITEM_ID){
+	public Element getDicitemEleById(String DICITEM_ID) {
 		return dicitemDao.getDicitemEleById(DICITEM_ID);
 	}
-	
+
+	/**
+	 * <p>Title: getDicitemEleByCode</p>
+	 * <p>Description: 根据列表字典代码 CODE 获取字典列表清单实体</p>
+	 * @param CODE
+	 * @return
+	 * @author lishilin  2011-6-27 下午11:55:42
+	 */
+	public List<Map<String, Object>> getDicitemByCode(String CODE) {
+		return dicitemDao.getDicitemByCode(CODE);
+	}
+
 	/**
 	 *　获取字典列表清单数量
 	 * 
@@ -65,16 +79,16 @@ public class DicitemService extends ServiceSupport{
 	public int getDicitemCount(Map<String, Object> params) {
 		return dicitemDao.getDicitemCount(params);
 	}
-	
+
 	/**
 	 * 根据字典列表清单ID获取字典列表清单信息
 	 * @param DICITEM_ID 字典列表清单ID
 	 * @return 返回字典列表清单信息,如果无查询记录则返回null
 	 */
-	public Map<String, Object> getDicitemMapById(String DICITEM_ID){
+	public Map<String, Object> getDicitemMapById(String DICITEM_ID) {
 		return dicitemDao.getDicitemMapById(DICITEM_ID);
 	}
-	
+
 	/**
 	 * 获取字典列表清单列表信息
 	 * @param params 参数
@@ -82,20 +96,20 @@ public class DicitemService extends ServiceSupport{
 	 * @param onePageCount 每页显示多少条
 	 * @return 返回字典列表清单列表信息,如果无查询记录则返回null
 	 */
-	public Map<String,Object> getDicitemList(Map<String, Object> params,int nowPage,int onePageCount){
+	public Map<String, Object> getDicitemList(Map<String, Object> params, int nowPage, int onePageCount) {
 		return dicitemDao.getDicitemList(params, nowPage, onePageCount);
 	}
-	
+
 	/**
-     * 获取字典列表清单信息
-     * 
-     * @param  params 参数
-     * @return 成功返回字典列表清单信息,如果无查询记录则返回null
-     */
-	public List<Map<String,Object>> getDicitemList(Map<String, Object> params){
+	 * 获取字典列表清单信息
+	 * 
+	 * @param  params 参数
+	 * @return 成功返回字典列表清单信息,如果无查询记录则返回null
+	 */
+	public List<Map<String, Object>> getDicitemList(Map<String, Object> params) {
 		return dicitemDao.getDicitemList(params);
 	}
-	
+
 	/**
 	 * 获取字典列表清单列表信息
 	 * @param params 参数
@@ -103,7 +117,7 @@ public class DicitemService extends ServiceSupport{
 	 * @param onePageCount 每页显示多少条
 	 * @return 返回字典列表清单列表信息,如果无查询记录则返回null
 	 */
-	public Map<String,Object> getDicitemListWithOrCondition(Map<String, Object> params,int nowPage,int onePageCount){
+	public Map<String, Object> getDicitemListWithOrCondition(Map<String, Object> params, int nowPage, int onePageCount) {
 		return dicitemDao.getDicitemListWithOrCondition(params, nowPage, onePageCount);
 	}
 }

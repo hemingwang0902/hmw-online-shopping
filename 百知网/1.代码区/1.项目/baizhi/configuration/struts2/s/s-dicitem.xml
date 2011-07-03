@@ -46,5 +46,11 @@
 		      <param name="root">result</param>
 		    </result>
 		</action>
+		
+		<action name="getDicitemByCode" class="com.baizhi.dicitem.action.GetDicitemByCode">
+			<result name="jsonsuccess" type="json">
+		      <param name="root">result</param>
+		    </result>
+		</action>
 	</package>
 </struts>
