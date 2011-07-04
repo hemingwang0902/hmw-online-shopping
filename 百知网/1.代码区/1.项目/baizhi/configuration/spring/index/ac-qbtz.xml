@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<bean id="qbtzDao" class="com.baizhi.index.dao.QbtzDao" parent="daoSupport"></bean>
+	
+	<bean id="qbtzService" class="com.baizhi.index.service.QbtzService" parent="serviceSupport">
+		<property name="qbtzDao">
+			<ref local="qbtzDao" />
+		</property>
+	</bean>
+</beans>
