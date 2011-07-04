@@ -1,11 +1,12 @@
 <!-- /webapp/index/addProblem.jsp -->
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@include file="../common/basePath.jsp" %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>百知网</title>
+		<%@ include file="../common/jsCss.jsp" %>
+		<script type="text/javascript" src="addProblem.js"></script>
 		<style type="text/css">
 body,input,textarea,select,button {
 	font: 13px/ 22px 'Helvetica Neue', Helvetica, Arial, Sans-serif;
@@ -141,21 +142,23 @@ a,a:active,a:visited,a:focus {
 					class="modal-dialog-title-close"></span>
 			</div>
 			<div class="modal-dialog-content">
+				<form id="ProblemForm">
 				<div class="tr temphooker">
-					<textarea class="it label-input-label" title="在这里输入问题"></textarea>
+					<textarea id="CONTENT" class="it label-input-label" title="在这里输入问题"></textarea>
 				</div>
 				<div class="fs" style="display: none"></div>
 				<strong>可选：</strong>添加更多相关细节
 				<div class="tr">
-					<textarea class="it"></textarea>
+					<textarea id="RELEVANT_DETAILS" class="it"></textarea>
 				</div>
 				<div class="ty">
 					<label style="float: left;">
-						<input type="checkbox" value="1" class="jn"> 匿名添加问题
+						<input type="checkbox" id="IS_ANONYMITY" value="1" class="jn"> 匿名添加问题
 					</label>
-					<a href="javascript:;" name="cancel" class="sy">取消</a>
-					<a href="javascript:;" name="addq" class="w q">添加问题</a>
+					<a href="javascript:void(0);" id="cancel" class="sy" onclick="parent.$.fancybox.close();">取消</a>
+					<a href="javascript:void(0);" id="save" class="w q">添加问题</a>
 				</div>
+				</form>
 			</div>
 		</div>
 	</body>

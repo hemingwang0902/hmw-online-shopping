@@ -72,6 +72,7 @@ a:link,a:visited,a:hover,a:active{
 .tit_tit_1 a:hover{ background-color:#adc318; color:#fff;}
 .tit_tit_2{ width:545px; height:25px; line-height:25px; float:left;}
 .tit_tit_2 a{ color:#98b012; font-size:14px; font-weight:bold; float:left;}
+.tit_tit_2>a{white-space: nowrap;width: 500px;text-overflow: ellipsis;overflow: hidden;}
 .tit_tit_2 a:hover{ color:#ff7200;}
 .tit_tit_2 span{ float: right;  height:25px; width:25px;}
 .tit_content{ line-height:20px; padding-left:10px; width:550px; padding-bottom:15px; padding-top:10px;}
