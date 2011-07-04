@@ -48,6 +48,6 @@ function loadSelect(id,codeVal){
 }
 
 $(function(){
-	loadSelect("dicitem","LSL,2");
+	loadSelect("dicitem","BZ000001");
 });
 </script>

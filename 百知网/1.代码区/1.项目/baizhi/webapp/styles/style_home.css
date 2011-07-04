@@ -267,3 +267,27 @@ color:black;
 /**************   何明旺   *****************/
 .STYLE1 {color: #FFFFFF}
 .baizhi_button_1{width:100px; height:25px; background-color:#dadade}
+
+/**************    全部通知.css   *****************/
+
+.qu{float:left;height:25px;margin:0 10px;width:25px;border:0 none;}
+.eu{height:25px;width:25px;overflow:hidden;border:none;}
+.nu{margin:0 0 0 35px; font-size:12px; line-height:20px;}
+.x-c{color:#999;}
+.su{padding:10px 0;border-bottom:1px solid #DDD;font-weight:bold; width:570px; margin-bottom:10px;}
+.x-d a,.x-d a:active,.x-d a:visited,.x-d a:focus{color:#98b012;-moz-outline:none;outline:none;text-decoration:none;}
+.x-d a:hover{text-decoration:underline;}
+
+
+/**************    我的私信.css   *****************/
+.subMenu_wdzx_1{ width:500px; height:30px; float:left; line-height:30px; font-size:14px; font-weight:bold; color:#999999;}
+.subMenu_wdzx_1 span{ font-size:12px;}
+.subMenu_wdzx_2{ width:70px; height:30px; float:left;}
+.av{ width:178px; line-height:20px; border:1px solid #7dad01; background:#f5ffd8; font-size:12px; padding:10px; margin-bottom:400px;}
+.wdzx{ width:570px; height:53px; margin-top:10px;}
+.wdzx_1{ width:53px; height:53px; float:left; padding-right:17px;}
+.wdzx_2{ width:500px; height:53px; float:left;}
+.wdzx_3{ width:500px; height:26px; line-height:26px;}
+.wdzx_3 a{ font-size:14px; font-family:Arial, Helvetica, sans-serif; color:#98b012;}
+.wdzx_4{ width:500px; height:26px; line-height:26px; color:#999; text-align:right;}
+.wdzx_4 span a{ color:#98b012;}
