@@ -15,7 +15,7 @@
       </div>
       <div class="line_1"></div>
         <div class="wdzx">
-        	<div class="wdzx_1"><img src="../images/main/rw_zx.png" /></div>
+        	<div class="wdzx_1"><img src="../images/main/rw_1.png" /></div>
             <div class="wdzx_2">
            	  <div class="wdzx_3"><a href="#" class="mo">Daniel Wang?</a>：颜梅香@创业吧?</div>
                 <div class="wdzx_4">6月2日 14:23 &nbsp;<span><a href="#">共1条对话</a> | <a href="#">回复</a> | <a href="#">删除</a> </span> </div>
