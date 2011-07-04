@@ -22,4 +22,20 @@ public class HomeService  extends ServiceSupport{
 	public Map<String,Object> getUserOrProblemByTitleList(String title, int nowPage, int onePageCount){
 		return homeDao.getUserOrProblemByTitleList(title, nowPage, onePageCount);
 	}
+	
+	public Map<String,Object> getLatestProblemList(int userId, int nowPage, int onePageCount){
+		return homeDao.getLatestProblemList(userId, nowPage, onePageCount);
+	}
+	
+	public Map<String,Object> getHottestProblemList(int nowPage, int onePageCount){
+		return homeDao.getHottestProblemList(nowPage, onePageCount);
+	}
+	
+	public Map<String,Object> getMayInterestedUser(int userId, int nowPage, int onePageCount){
+		return homeDao.getMayInterestedUser(userId, nowPage, onePageCount);
+	}
+	
+	public Map<String,Object> getAttentionUser(int userId, int userType, int nowPage, int onePageCount){
+		return homeDao.getAttentionUser(userId, userType, nowPage, onePageCount);
+	}
 }

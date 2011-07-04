@@ -1,5 +1,8 @@
 package com.baizhi.problem.action;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.dom4j.Element;
 import org.dom4j.tree.DefaultElement;
 
@@ -21,10 +24,16 @@ public class SaveProblem extends ProblemForm{
 	
 	private static final long serialVersionUID = -1349659000089046904L;
 	
+	private Boolean isAjax;
+	
 	private ProblemService problemService;//问题信息表业务类
 	
-	public ProblemService getProblemService() {
-		return problemService;
+	public Boolean getIsAjax() {
+		return isAjax;
+	}
+
+	public void setIsAjax(Boolean isAjax) {
+		this.isAjax = isAjax;
 	}
 
 	public void setProblemService(ProblemService problemService) {
@@ -75,9 +84,17 @@ public class SaveProblem extends ProblemForm{
 			Elements.setElementValue(element, "CREATE_TIME", DateUtils.getCurrentTime(DateUtils.SHOW_DATE_FORMAT));// 创建时间
 			//如果保存成功，返回主键
 			keyid = problemService.saveOrUpdateProblem(element);
+			
+			Map<String, Object> returnMap = new HashMap<String, Object>();
+			returnMap.put("id", keyid);
 			//判断主键是否为空，如果不为空，则保存成功
 			if(StringUtils.isNotEmpty(keyid)){
-				return SUCCESS;
+				if(Boolean.TRUE.equals(isAjax)){
+					setResult(returnMap);
+					return JSONSUCCESS;
+				}else{
+					return SUCCESS;
+				}
 			}
 		}
 		return ERROR;

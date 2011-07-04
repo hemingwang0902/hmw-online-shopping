@@ -6,19 +6,14 @@ import com.baizhi.commons.ActionSupport;
 import com.baizhi.index.service.HomeService;
 
 /**
- * 类名： GetUserOrProblemByTitleList<br>
- * 描述：根据名称（标题）查询会员、品牌和问题列表<br>
- * 创建者：何明旺<br>
- * 创建日期：2011-7-3<br>
- * 版本：1.0<br>
- * 修改者：<br>
- * 修改日期：<br>
+ * 类名： UserBasicList.java<br>
+ * 描述： 获取品牌列表列表信息 创建者：江红 创建日期： 2011-06-23 22:03:15 版本：V0.9 修改者： 修改日期：
  */
-public class GetUserOrProblemByTitleList extends ActionSupport {
+public class GetAttentionUser extends ActionSupport {
 
 	private static final long serialVersionUID = 5465713969149938078L;
 	private HomeService homeService;
-	private String q;
+	private int userType;
 	private int nowPage;
 	private int onePageCount;
 
@@ -26,12 +21,12 @@ public class GetUserOrProblemByTitleList extends ActionSupport {
 		this.homeService = homeService;
 	}
 
-	public String getQ() {
-		return q;
+	public int getUserType() {
+		return userType;
 	}
 
-	public void setQ(String q) {
-		this.q = q;
+	public void setUserType(int userType) {
+		this.userType = userType;
 	}
 
 	public int getNowPage() {
@@ -53,8 +48,11 @@ public class GetUserOrProblemByTitleList extends ActionSupport {
 	@Override
 	public String execute() throws Exception {
 		// 查询结果列表
-		Map<String, Object> returnMap = homeService.getUserOrProblemByTitleList(q + "%", nowPage, onePageCount);
-		this.setResult(returnMap);
+		Map<String, Object> returnMap = homeService.getAttentionUser(getSessionUserId(), userType, nowPage, onePageCount);
+		//判断是否存在查询记录
+		if (returnMap != null && returnMap.size() != 0) {
+			this.setResult(returnMap);
+		}
 		return JSONSUCCESS;
 	}
 

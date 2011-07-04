@@ -9,6 +9,7 @@ import org.dom4j.Element;
 import org.hibernate.EntityMode;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.transform.Transformers;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import com.baizhi.commons.PagerSupport;
 
@@ -345,6 +346,14 @@ public abstract class DaoSupport extends HibernateDaoSupport {
 		return returnlist;
 	}
 	
+	public Map<String,Object> getByList(String sql,Object[] params,int nowPage, int onePageCount) {
+		return getByList(sql, params, nowPage, onePageCount, null);
+	}
+	
+	public Map<String,Object> getByList(String sql,Object[] params,int nowPage, int onePageCount, Session session) {
+		return getByList(sql, params, null, nowPage, onePageCount, session);
+	}
+	
 	/**
 	 * 公共执行查询方法，获取全部记录
 	 * 
@@ -356,8 +365,14 @@ public abstract class DaoSupport extends HibernateDaoSupport {
 	 * @return 返回布尔值
 	 */
 	public Map<String,Object> getByList(String sql,Object[] params,String tableName,int nowPage, int onePageCount) {
+		return getByList(sql, params, tableName, nowPage, onePageCount, null);
+	}
+	
+	public Map<String,Object> getByList(String sql,Object[] params,String tableName,int nowPage, int onePageCount, Session session) {
 		Map<String,Object> returnMap = null;
-		Session session = getSession();
+		if(session == null || !session.isOpen()){
+			session = getSession();
+		}
 		try {
 			Query query = setQueryParameters(session.createQuery(sql), params);
 			returnMap = PagerSupport.getList(session, query, tableName, params,nowPage, onePageCount);
@@ -422,6 +437,64 @@ public abstract class DaoSupport extends HibernateDaoSupport {
 		return element;
 	}
 	
+
+	/**
+	 * 公共执行查询方法，获取全部记录
+	 * @param sql SQL查询语句
+	 * @param params 参数
+	 * @author 何明旺
+	 * @return 返回查询列表
+	 */
+	public List<Map<String,Object>> queryForListWithSQLQuery(String sql,Object[] params) {
+		List<Map<String,Object>> returnlist=null;
+		Session session = getSession();
+		try {
+			setQueryParameters(session.createSQLQuery(sql).setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP), params).list();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return returnlist;
+	}
+	
+	public Map<String,Object> queryForListWithSQLQuery(String sql,Object[] params,int nowPage, int onePageCount) {
+		return queryForListWithSQLQuery(sql, params, nowPage, onePageCount, null);
+	}
+	
+	public Map<String,Object> queryForListWithSQLQuery(String sql,Object[] params,int nowPage, int onePageCount, Session session) {
+		return queryForListWithSQLQuery(sql, params, null, nowPage, onePageCount, session);
+	}
+	
+	/**
+	 * 公共执行查询方法，获取全部记录
+	 * 
+	 * @param sql           SQL查询语句
+	 * @param params        参数
+	 * @param tableName     表名
+	 * @param nowPage       当前页
+	 * @param onePageCount  每页显示多少条
+	 * @return 返回布尔值
+	 */
+	public Map<String,Object> queryForListWithSQLQuery(String sql,Object[] params,String tableName,int nowPage, int onePageCount) {
+		return queryForListWithSQLQuery(sql, params, tableName, nowPage, onePageCount, null);
+	}
+	
+	public Map<String,Object> queryForListWithSQLQuery(String sql,Object[] params,String tableName,int nowPage, int onePageCount, Session session) {
+		Map<String,Object> returnMap = null;
+		if(session == null || !session.isOpen()){
+			session = getSession();
+		}
+		try {
+			Query query = setQueryParameters(session.createSQLQuery(sql).setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP), params);
+			returnMap = PagerSupport.getList(session, query, tableName, params,nowPage, onePageCount);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return returnMap;
+	}
 	
 	/**
 	 * 设置参数

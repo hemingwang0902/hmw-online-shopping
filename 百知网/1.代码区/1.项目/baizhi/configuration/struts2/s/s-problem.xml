@@ -1,37 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE struts PUBLIC
-        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
-        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" "http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
 	<package name="problem" extends="json-default" namespace="/problem">
 		<action name="getProblemList" class="com.baizhi.problem.action.GetProblemList">
 			<result name="jsonsuccess" type="json">
-		      <param name="root">result</param>
-		    </result>
+				<param name="root">result</param>
+			</result>
 		</action>
 		<action name="initProblemForm" class="com.baizhi.problem.action.InitProblemForm">
 			<result name="success" type="dispatcher">problemform.jsp</result>
 		</action>
 		<action name="saveProblem" class="com.baizhi.problem.action.SaveProblem">
-			<result name="error"  type="dispatcher" >problemform.jsp</result>
-			<result name="success" type="redirect" >problemlist.jsp</result>
-			<result name="update" type="dispatcher" >problemform.jsp</result>
-			<result name="invalid.token" type="freemarker">problemform.jsp</result> 
-			<interceptor-ref name="defaultStack"><param name="workflow.excludeMethods">default</param></interceptor-ref> 
-			<interceptor-ref name="tokenSession"><param name="excludeMethods">default</param></interceptor-ref>
+			<result name="error" type="dispatcher">problemform.jsp</result>
+			<result name="success" type="redirect">problemlist.jsp</result>
+			<result name="update" type="dispatcher">problemform.jsp</result>
+			<result name="invalid.token" type="freemarker">problemform.jsp</result>
+			<interceptor-ref name="defaultStack">
+				<param name="workflow.excludeMethods">default</param>
+			</interceptor-ref>
+			<interceptor-ref name="tokenSession">
+				<param name="excludeMethods">default</param>
+			</interceptor-ref>
+		</action>
+		<action name="saveProblemByAjax" class="com.baizhi.problem.action.SaveProblem">
+			<result name="jsonsuccess" type="json">
+				<param name="root">result</param>
+			</result>
 		</action>
 		<action name="delProblem" class="com.baizhi.problem.action.DelProblem">
 			<result name="jsonsuccess" type="json">
-		      <param name="root">result</param>
-		    </result>
+				<param name="root">result</param>
+			</result>
 		</action>
 		<action name="getProblemById" class="com.baizhi.problem.action.GetProblemById">
-			<result name="success" type="dispatcher" >problemform.jsp</result>
+			<result name="success" type="dispatcher">problemform.jsp
+			</result>
 		</action>
 		<action name="getUserBasicList" class="com.baizhi.problem.action.GetUserBasicList">
 			<result name="jsonsuccess" type="json">
-		      <param name="root">result</param>
-		    </result>
+				<param name="root">result</param>
+			</result>
 		</action>
 	</package>
 </struts>
