@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<bean id="userDynamicDao" class="com.baizhi.userdynamic.dao.UserDynamicDao" parent="daoSupport"></bean>
+	
+	<bean id="userDynamicService" class="com.baizhi.userdynamic.service.UserDynamicService" parent="serviceSupport">
+		<property name="userDynamicDao">
+			<ref local="userDynamicDao" />
+		</property>
+	</bean>
+</beans>

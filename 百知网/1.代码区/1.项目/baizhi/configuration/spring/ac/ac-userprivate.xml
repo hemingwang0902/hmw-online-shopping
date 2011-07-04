@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<bean id="userPrivateDao" class="com.baizhi.userprivate.dao.UserPrivateDao" parent="daoSupport"></bean>
+	
+	<bean id="userPrivateService" class="com.baizhi.userprivate.service.UserPrivateService" parent="serviceSupport">
+		<property name="userPrivateDao">
+			<ref local="userPrivateDao" />
+		</property>
+	</bean>
+</beans>

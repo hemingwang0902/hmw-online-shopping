@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="userdynamic" extends="json-default" namespace="/userdynamic">
+		<action name="getUserDynamicList" class="com.baizhi.userdynamic.action.GetUserDynamicList">
+			<result name="jsonsuccess" type="json">
+		      <param name="root">result</param>
+		    </result>
+		</action>
+		<action name="initUserDynamicForm" class="com.baizhi.userdynamic.action.InitUserDynamicForm">
+			<result name="success" type="dispatcher">userdynamicform.jsp</result>
+		</action>
+		<action name="saveUserDynamic" class="com.baizhi.userdynamic.action.SaveUserDynamic">
+			<result name="error"  type="dispatcher" >userdynamicform.jsp</result>
+			<result name="success" type="redirect" >userdynamiclist.jsp</result>
+			<result name="update" type="dispatcher" >userdynamicform.jsp</result>
+			<result name="invalid.token" type="freemarker">userdynamicform.jsp</result> 
+			<interceptor-ref name="defaultStack"><param name="workflow.excludeMethods">default</param></interceptor-ref> 
+			<interceptor-ref name="tokenSession"><param name="excludeMethods">default</param></interceptor-ref>
+		</action>
+		<action name="delUserDynamic" class="com.baizhi.userdynamic.action.DelUserDynamic">
+			<result name="jsonsuccess" type="json">
+		      <param name="root">result</param>
+		    </result>
+		</action>
+		<action name="getUserDynamicById" class="com.baizhi.userdynamic.action.GetUserDynamicById">
+			<result name="success" type="dispatcher" >userdynamicform.jsp</result>
+		</action>
+	</package>
+</struts>

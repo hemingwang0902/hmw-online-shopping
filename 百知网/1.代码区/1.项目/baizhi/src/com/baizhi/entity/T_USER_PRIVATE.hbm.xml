@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+	
+<hibernate-mapping>
+	<class entity-name="T_USER_PRIVATE" table="T_USER_PRIVATE" lazy="false">
+		<comment>用户私信信息表</comment>
+		<id name="PRIVATE_ID" column="PRIVATE_ID" type="int" >
+			<generator class="identity" />
+		</id>
+		<property name="USER_ID" type="int">
+			<column name="USER_ID"  >
+				<comment>收件人ID</comment>
+			</column>
+		</property>
+		<property name="SEND_ID" type="int">
+			<column name="SEND_ID"  >
+				<comment>发送人ID</comment>
+			</column>
+		</property>
+		<property name="CONTENT" type="string">
+			<column name="CONTENT" length="2000" >
+				<comment>发送内容</comment>
+			</column>
+		</property>
+		<property name="IS_READ" type="int">
+			<column name="IS_READ"  >
+				<comment>是否阅读(0否、1是)</comment>
+			</column>
+		</property>
+		<property name="PPRIVATE_ID" type="int">
+			<column name="PPRIVATE_ID"  >
+				<comment>父私信ID（私信、与私信回复为一张表）</comment>
+			</column>
+		</property>
+		<property name="CREATE_TIME" type="java.util.Date">
+			<column name="CREATE_TIME"  >
+				<comment>创建时间</comment>
+			</column>
+		</property>
+	</class>
+</hibernate-mapping>

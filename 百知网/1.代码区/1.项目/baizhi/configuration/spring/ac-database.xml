@@ -38,6 +38,8 @@
 				<value>com/baizhi/entity/T_USER_INVITE.hbm.xml</value>
 				<value>com/baizhi/entity/T_USER_LOG.hbm.xml</value>
 				<value>com/baizhi/entity/T_USER_ATTENTION.hbm.xml</value>
+				<value>com/baizhi/entity/T_USER_PRIVATE.hbm.xml</value>
+				<value>com/baizhi/entity/T_USER_DYNAMIC.hbm.xml</value>
 			</list>
 		</property>
 	</bean>

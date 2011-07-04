@@ -20,6 +20,8 @@
 	<include file="struts2/s/s-diclist.xml" />
 	
 	<include file="struts2/s/s-userattention.xml" />
+	<include file="struts2/s/s-userprivate.xml" />
+	<include file="struts2/s/s-userdynamic.xml" />
 	
 	<include file="struts2/index/s-pqlb.xml" />
 	<include file="struts2/index/s-home.xml" />
