@@ -9,7 +9,6 @@
 	<script type="text/javascript" src="list_sywt.js"></script>
 </head>
 <%--
-所有问题：getAllProblemList.go
 你可能感兴趣的人：getMayInterestedUser.go?userType=1
 关注品牌：getAttentionUser.go?userType=2
 --%>
@@ -20,8 +19,9 @@
 <div class="content">
 	<div class="c_left">
 	  <div class="search">
+	  	<a href="addProblem.jsp" id="item_a"></a>
 	    <input type="text" id="title" name="title" value="搜索问题、品牌或会员 >>" style="height:21px; float:left; color:#999; padding-top:5px;  padding-left:5px; width:450px;"/>  
-	    <input type="button" class="bot_t" value=""  style=" bottom:0px; float:right;" />
+	    <input type="button" class="bot_t" value="" style=" bottom:0px; float:right;cursor: pointer;" onclick="$('#item_a').click();"/>
 	  </div>
       <div class="subMenu">
       <ul><li class="re"><a href="#">所有问题</a></li></ul>
