@@ -86,4 +86,7 @@ public class Login extends ActionSupport{
 		}
 	}
 	
+	public static void main(String[] args) {
+		System.out.println(Encrypt.edcryptMD5("111111"));
+	}
 }

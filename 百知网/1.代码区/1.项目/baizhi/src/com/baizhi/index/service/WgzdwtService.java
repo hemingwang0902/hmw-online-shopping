@@ -1,5 +1,7 @@
 package com.baizhi.index.service;
 
+import java.util.Map;
+
 import com.baizhi.commons.ServiceSupport;
 import com.baizhi.index.dao.WgzdwtDao;
 
@@ -15,5 +17,9 @@ public class WgzdwtService  extends ServiceSupport{
 
 	public void setWgzdwtDao(WgzdwtDao wgzdwtDao) {
 		this.wgzdwtDao = wgzdwtDao;
+	}
+	
+	public Map<String,Object> getAttentionProblemList(int userId, int nowPage, int onePageCount){
+		return wgzdwtDao.getAttentionProblemList(userId, nowPage, onePageCount);
 	}
 }

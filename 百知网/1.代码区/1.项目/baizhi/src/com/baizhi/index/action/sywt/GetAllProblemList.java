@@ -15,8 +15,7 @@ import com.baizhi.index.service.SywtService;
  * 修改日期：<br>
  */
 public class GetAllProblemList extends ActionSupport {
-
-	private static final long serialVersionUID = 5465713969149938078L;
+	private static final long serialVersionUID = -4227623537848090423L;
 	private SywtService sywtService;
 	private int nowPage;
 	private int onePageCount;

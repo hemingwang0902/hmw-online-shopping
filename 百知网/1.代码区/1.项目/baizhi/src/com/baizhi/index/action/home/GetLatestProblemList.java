@@ -7,12 +7,16 @@ import com.baizhi.commons.ActionSupport;
 import com.baizhi.index.service.HomeService;
 
 /**
- * 类名： UserBasicList.java<br>
- * 描述： 获取品牌列表列表信息 创建者：江红 创建日期： 2011-06-23 22:03:15 版本：V0.9 修改者： 修改日期：
+ * 类名： GetLatestProblemList<br>
+ * 描述：获取最新问题列表<br>
+ * 创建者：何明旺<br>
+ * 创建日期：2011-7-6<br>
+ * 版本：1.0<br>
+ * 修改者：<br>
+ * 修改日期：<br>
  */
 public class GetLatestProblemList extends ActionSupport {
-
-	private static final long serialVersionUID = 5465713969149938078L;
+	private static final long serialVersionUID = 1464968933246801463L;
 	private HomeService homeService;
 	private int nowPage;
 	private int onePageCount;

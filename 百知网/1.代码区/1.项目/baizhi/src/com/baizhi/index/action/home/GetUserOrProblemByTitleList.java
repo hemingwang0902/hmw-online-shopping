@@ -15,8 +15,7 @@ import com.baizhi.index.service.HomeService;
  * 修改日期：<br>
  */
 public class GetUserOrProblemByTitleList extends ActionSupport {
-
-	private static final long serialVersionUID = 5465713969149938078L;
+	private static final long serialVersionUID = 1680897793903369039L;
 	private HomeService homeService;
 	private String q;
 	private int nowPage;

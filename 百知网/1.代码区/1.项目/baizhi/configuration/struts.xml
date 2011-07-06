@@ -26,5 +26,6 @@
 	<include file="struts2/index/s-pqlb.xml" />
 	<include file="struts2/index/s-home.xml" />
 	<include file="struts2/index/s-sywt.xml" />
+	<include file="struts2/index/s-wgzdwt.xml" />
 	
 </struts>
