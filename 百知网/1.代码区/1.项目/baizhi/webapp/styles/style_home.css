@@ -292,3 +292,44 @@ color:black;
 .wdzx_3 a{ font-size:14px; font-family:Arial, Helvetica, sans-serif; color:#98b012;}
 .wdzx_4{ width:500px; height:26px; line-height:26px; color:#999; text-align:right;}
 .wdzx_4 span a{ color:#98b012;}
+
+/**************    设置 .css   *****************/
+.c_right_1{width:200px; float:left; height:auto; margin-right:90px; display:inline;}
+.list_sz{ width:200px; padding-top:10px;}
+.list_sz ul li{ margin-bottom:5px;}
+.list_sz ul li a{ color:#98b012;width:200px; line-height:25px;  text-align:center; display:block;}
+.list_sz ul li a:hover{ background:#ccdba2; color:#ff6633;}
+.column_sz{ width:180px;height:25px; padding-bottom:5px; border-bottom:1px solid #bdd11a; line-height:25px; padding-left:20px;font-size:14px; font-weight:bold;}
+.list_xgwt_xght_sz{ line-height:30px; height:30px; width:570px; font-size:14px; font-weight:bold;}
+.title_xgwt_x_sz{width:560px; padding-left:10px; padding-top:15px;}
+.title_xgwt_tu_sz{  float:left; padding-right:15px; width:102px; height:102px; }
+.list_sz_1{ width:430px; height:102px;  float:left; color:#888;}
+.list_sz_1 ul .list_sz_li1{ line-height:25px;}
+.list_kssc{ width:88px; height:30px; background:url(../images/main/bcmm.png) no-repeat; border:0; color:#fff; line-height:30px;}
+.list_sz_xm{ float:left; padding-right:15px; float:left; width:102px;}
+.list_sz_name{float:left; padding-right:15px; float:left; width:102px;}
+.title_xgwt_x_sz_2{ width:102px; padding-right:15px; float:left; text-align:right;}
+.title_xgwt_x_sz_2 ul li{ width:102px; line-height:40px; color:#888;}
+.title_xgwt_x_sz_3{ width:430px; float:left;}
+.title_xgwt_x_sz_3 ul li{ width:430px; line-height:40px; color:#888;}
+.list_sz_js{ width:200px; height:40px; line-height:40px;}
+.list_sz_an{ width:88px; height:30px; border:0; background:url(../images/main//bcmm.png) no-repeat; color:#fff; line-height:30px;}
+
+.list_sz_zhsz{ width:570px; }
+.list_sz_zhsz ul li{ width:300px; line-height:40px; color:#888;}
+.list_sz_zhsz_bcsz{ width:230px; height:30px; margin-left:60px;}
+.list_sz_bcmm{ width:88px; height:30px; border:0; color:#fff; background:url(../images/main/bcmm.png) no-repeat;}
+
+.list_sz_tzsz{ line-height:30px; width:570px; color:#888;}
+.list_se_bcsz_1{ width:570px; line-height:30px; margin-bottom:15px;}
+
+
+/**************    login_home .css   *****************/
+.login_h_logo{ width:200px; height:55px; margin:0 auto; padding-top:140px;}
+.login_h_jj{ line-height:100px; margin:0 auto; width:260px; height:100px; color:#336600}
+.login_h_e{ width:435px; height:31px; margin:0 auto; margin-top:40px;}
+.login_h_an{ width:93px; height:31px; border:0; background:url(../images/main/send.png) no-repeat; }
+.login_h_text{ width:210px; height:29px; background-color:#FFFFFF; border:1px solid #386b06;}
+.login_h_dz{ width:460px; height:90px; margin:0 auto; line-height:90px; color:#360;}
+.login_h_jq{ width:220px; height:26px; margin:0 auto; padding-bottom:70px;}
+.login_di{ width:300px; height:80px; line-height:80px;  color:#fff; text-align:center; margin:0 auto;}
