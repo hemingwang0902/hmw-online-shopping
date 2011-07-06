@@ -13,11 +13,20 @@ public class GetMayInterestedUser extends ActionSupport {
 
 	private static final long serialVersionUID = 5465713969149938078L;
 	private HomeService homeService;
+	private int userType;
 	private int nowPage;
 	private int onePageCount;
 
 	public void setHomeService(HomeService homeService) {
 		this.homeService = homeService;
+	}
+
+	public int getUserType() {
+		return userType;
+	}
+
+	public void setUserType(int userType) {
+		this.userType = userType;
 	}
 
 	public int getNowPage() {
@@ -39,7 +48,7 @@ public class GetMayInterestedUser extends ActionSupport {
 	@Override
 	public String execute() throws Exception {
 		// 查询结果列表
-		Map<String, Object> returnMap = homeService.getMayInterestedUser(getSessionUserId(), this.getNowPage(), this.getOnePageCount());
+		Map<String, Object> returnMap = homeService.getMayInterestedUser(getSessionUserId(), getUserType(), this.getNowPage(), this.getOnePageCount());
 		//判断是否存在查询记录
 		if (returnMap != null && returnMap.size() != 0) {
 			this.setResult(returnMap);

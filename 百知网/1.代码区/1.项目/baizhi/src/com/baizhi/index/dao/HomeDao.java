@@ -123,42 +123,56 @@ public class HomeDao extends DaoSupport{
 	}
 	
 	/**
-	 * 根据登录用户的ID，查询该用户可能感兴趣的人
+	 * 根据登录用户的ID，查询该用户可能感兴趣的人（或品牌）
 	 * @param userId 用户ID
+	 * @param userType 用户类型，参见 <code>com.baizhi.IConstants.USER_TYPE_*</code>
 	 * @param nowPage 当前页
 	 * @param onePageCount 每页显示的记录条数
 	 * @return 查询到的结果集
 	 */
-	public Map<String,Object> getMayInterestedUser(int userId, int nowPage, int onePageCount){
+	public Map<String,Object> getMayInterestedUser(int userId, int userType, int nowPage, int onePageCount){
+		String allFields = " UB.BUBSIC_ID UBs BUBSIC_ID, UB.USER_ID UBs USER_ID, UB.USER_TYPE UBs USER_TYPE, UB.NUBME UBs NUBME, UB.SOURCE UBs SOURCE, UB.PROVINCE UBs PROVINCE, UB.CITY UBs CITY, UB.INDUSTRY UBs INDUSTRY, UB.YEUBRS UBs YEUBRS, UB.LINK_MODE UBs LINK_MODE, UB.IS_OPEN UBs IS_OPEN, UB.INTRODUCTION UBs INTRODUCTION, UB.MOTTO UBs MOTTO, UB.IMUBGE_PUBTH UBs IMUBGE_PUBTH, UB.WEBSITE UBs WEBSITE, UB.PRIVUBTE_SET UBs PRIVUBTE_SET, UB.LEVEL UBs LEVEL, UB.SCORE UBs SCORE, UB.REMUBRK UBs REMUBRK, UB.CREUBTE_TIME UBs CREUBTE_TIME, UB.MODIFY_TIME UBs MODIFY_TIME ";
 		//组织查询语句
-		StringBuffer sql = new StringBuffer()		
-		.append(" SELECT UB1.* FROM T_USER_BASIC UB1, T_USER_BASIC UB2")
-		.append(" WHERE UB1.CITY=UB2.CITY")
-		.append(" AND UB1.BASIC_ID<>UB2.BASIC_ID")
-		.append(" AND UB1.USER_TYPE=").append(IConstants.USER_TYPE_MEMBER)
+		StringBuffer sql = new StringBuffer()
+		.append("SELECT").append(allFields).append(" FROM (")
+		.append(" SELECT").append(allFields).append(" FROM T_USER_BASIC UB, T_USER_BASIC UB2")
+		.append(" WHERE UB.CITY=UB2.CITY")
+		.append(" AND UB.BASIC_ID<>UB2.BASIC_ID")
 		.append(" AND UB2.USER_ID=?")
 		.append(" UNION")
-		.append(" SELECT UB.* FROM T_USER_BASIC UB")
+		.append(" SELECT").append(allFields).append(" FROM T_USER_BASIC UB")
 		.append(" WHERE UB.USER_ID IN(")
 		.append(" SELECT UA1.USER_ID FROM T_USER_ATTENTION UA1, T_USER_ATTENTION UA2")
 		.append(" WHERE UA1.WAS_USERID=UA2.WAS_USERID")
 		.append(" AND UA1.USER_ID<>UA2.USER_ID")
-		.append(" AND UB1.USER_TYPE=").append(IConstants.USER_TYPE_MEMBER)
 		.append(" AND UA2.USER_ID=?")
 		.append(" )")
 		.append(" UNION")
-		.append(" SELECT UB.* FROM T_USER_BASIC UB")
+		.append(" SELECT").append(allFields).append(" FROM T_USER_BASIC UB")
 		.append(" WHERE UB.USER_ID IN(")
 		.append(" SELECT UA1.USER_ID FROM T_USER_ATTENTIONTALK UA1, T_USER_ATTENTIONTALK UA2")
 		.append(" WHERE UA1.TALK_ID=UA2.TALK_ID")
 		.append(" AND UA1.USER_ID<>UA2.USER_ID")
-		.append(" AND UB1.USER_TYPE=").append(IConstants.USER_TYPE_MEMBER)
-		.append(" AND UA2.USER_ID=?");
-
-		Object[] params = new Object[3];
-		for (int i = 0; i < params.length; i++) {
-			params[i] = userId;
+		.append(" AND UA2.USER_ID=?)")
+		.append(" ) AS UB WHERE UB.USER_ID NOT IN(")
+		.append(" SELECT UA.WAS_USERID FROM T_USER_ATTENTION UA where user_id=?")
+		.append(" )");
+		
+		Object[] params = null;
+		if(userType != IConstants.USER_TYPE_ALL){
+			sql.append(" AND UB.USER_TYPE=?");
+			params = new Object[5];
+			for (int i = 0; i < params.length - 1; i++) {
+				params[i] = userId;
+			}
+			params[params.length - 1] = userType;
+		}else{
+			params = new Object[4];
+			for (int i = 0; i < params.length; i++) {
+				params[i] = userId;
+			}
 		}
+		
 		return queryForListWithSQLQuery(sql.toString(), params, nowPage, onePageCount);
 	}
 	
@@ -189,4 +203,5 @@ public class HomeDao extends DaoSupport{
 		
 		return queryForListWithSQLQuery(sql.toString(), params, nowPage, onePageCount);
 	}
+	
 }

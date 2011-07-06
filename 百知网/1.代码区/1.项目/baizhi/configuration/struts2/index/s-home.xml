@@ -2,7 +2,32 @@
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" "http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
 	<package name="home" extends="json-default" namespace="/index">
+		<!-- 模糊搜索用户、品牌和问题 -->
 		<action name="getUserOrProblemByTitleList" class="com.baizhi.index.action.home.GetUserOrProblemByTitleList">
+			<result name="jsonsuccess" type="json">
+		      <param name="root">result</param>
+		    </result>
+		</action>
+		<!-- 查询最新问题列表 -->
+		<action name="getLatestProblemList" class="com.baizhi.index.action.home.GetLatestProblemList">
+			<result name="jsonsuccess" type="json">
+		      <param name="root">result</param>
+		    </result>
+		</action>
+		<!-- 查询最热问题列表 -->
+		<action name="getHottestProblemList" class="com.baizhi.index.action.home.GetHottestProblemList">
+			<result name="jsonsuccess" type="json">
+		      <param name="root">result</param>
+		    </result>
+		</action>
+		<!-- 查询可能感兴趣的用户(或品牌) -->
+		<action name="getMayInterestedUser" class="com.baizhi.index.action.home.GetMayInterestedUser">
+			<result name="jsonsuccess" type="json">
+		      <param name="root">result</param>
+		    </result>
+		</action>
+		<!-- 查询关注的用户(或品牌) -->
+		<action name="getAttentionUser" class="com.baizhi.index.action.home.GetAttentionUser">
 			<result name="jsonsuccess" type="json">
 		      <param name="root">result</param>
 		    </result>

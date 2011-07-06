@@ -34,6 +34,11 @@ public abstract class ActionSupport extends com.opensymphony.xwork2.ActionSuppor
 	public static final String JSONSUCCESS = "jsonsuccess";
 	public static final String UPDATESUCCESS = "update";
 	public static final String CONTEXTPATH="cpath";
+	
+	// resultMap 的 key
+	public static final String KEY_LIST = "list";
+	public static final String KEY_TOTAL_COUNT = "totalCount";
+	public static final String KEY_TOTAL_PAGE="totalPage";
 
 	// 定义设置json数据格式 用于页面解析
 	public String result;

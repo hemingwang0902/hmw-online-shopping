@@ -31,8 +31,8 @@ public class HomeService  extends ServiceSupport{
 		return homeDao.getHottestProblemList(nowPage, onePageCount);
 	}
 	
-	public Map<String,Object> getMayInterestedUser(int userId, int nowPage, int onePageCount){
-		return homeDao.getMayInterestedUser(userId, nowPage, onePageCount);
+	public Map<String,Object> getMayInterestedUser(int userId, int userType, int nowPage, int onePageCount){
+		return homeDao.getMayInterestedUser(userId, userType, nowPage, onePageCount);
 	}
 	
 	public Map<String,Object> getAttentionUser(int userId, int userType, int nowPage, int onePageCount){
