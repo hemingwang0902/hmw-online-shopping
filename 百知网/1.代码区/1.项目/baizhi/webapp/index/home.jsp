@@ -8,13 +8,18 @@
 	<script type="text/javascript" src="../javascripts/jquery.autocomplete.min-1.1.js"></script>
 	<script type="text/javascript" src="home.js"></script>
 </head>
+<%--
+最新问题：getLatestProblemList.go
+热门问题：getHottestProblemList.go
+你可能感兴趣的人：getMayInterestedUser.go?userType=1
+关注品牌：getAttentionUser.go?userType=2
+--%>
 
 <body>
 	<%@include file="../common/head.jsp" %>
 	<input type="hidden" id="onePageCount" value="20">
 	<input type="hidden" id="nowPage" value="1">
 <div class="content">
-
 	<div class="c_left">
 	  <div class="search">
 	  	<a href="addProblem.jsp" id="item_a"></a>
@@ -29,97 +34,6 @@
       </div>
       <div class="line_1"></div>
       <div id="divList">
-      <div class="title">
-      	<div class="tit_tit">
-        	<div class="tit_tit_1"><a href="#">0</a></div>
-        	<div class="tit_tit_2" ><span><a href="#"><img src="../images/main/rw_1.png" /></a></span><a href="#">“心静自然凉”到底有没有科学依据关于 DEC，有两本比较有权威的书。一是艾德加·施恩写的《DEC 已死，DEC 长存》[1]，另一本是电</a></div>
-         </div>
-        <div class="tit_content">关于 DEC，有两本比较有权威的书。一是艾德加·施恩写的《DEC 已死，DEC 长存》[1]，另一本是电
-脑世界两位编辑的作品：《伟大的企业家》[2]。施恩是斯隆管理学院的教授，他认为 DEC 的衰败主
-《伟大的企业家》[2]。施恩是斯隆管理学院的教授，他认为 DEC 的衰败主…</div>
-         <div class="tit_bot">
-       	   <div class="tit_bot_zl">张亮&nbsp;赞同该回答</div>
-            <div class="tit_bot_gz"><a href="#">1 个答案</a> • <a href="#">5个关注</a> • <a href="#">收藏</a> • <a href="#">添加评论</a> • <a href="#">分享</a></div>
-         </div>
-      </div>
-      <div class="title">
-      	<div class="tit_tit">
-        	<div class="tit_tit_1"><a href="#">0</a></div>
-        	<div class="tit_tit_2" ><span><a href="#"><img src="../images/main/rw_1.png" /></a></span><a href="#">“心静自然凉”到底有没有科学依据</a></div>        
-        </div>
-        <div class="tit_content">关于 DEC，有两本比较有权威的书。一是艾德加·施恩写的《DEC 已死，DEC 长存》[1]，另一本是电
-脑世界两位编辑的作品：《伟大的企业家》[2]。施恩是斯隆管理学院的教授，他认为 DEC 的衰败主
-《伟大的企业家》[2]。施恩是斯隆管理学院的教授，他认为 DEC 的衰败主…</div>
-         <div class="tit_bot">
-       	   <div class="tit_bot_zl">张亮&nbsp;赞同该回答</div>
-            <div class="tit_bot_gz"><a href="#">1 个答案</a> • <a href="#">5个关注</a> • <a href="#">收藏</a> • <a href="#">添加评论</a> • <a href="#">分享</a></div>
-         </div>
-      </div>
-      <div class="title">
-      	<div class="tit_tit">
-        	<div class="tit_tit_1"><a href="#">0</a></div>
-        	<div class="tit_tit_2" ><span><a href="#"><img src="../images/main/rw_1.png" /></a></span><a href="#">“心静自然凉”到底有没有科学依据</a></div>        
-        </div>
-        <div class="tit_content">关于 DEC，有两本比较有权威的书。一是艾德加·施恩写的《DEC 已死，DEC 长存》[1]，另一本是电
-脑世界两位编辑的作品：《伟大的企业家》[2]。施恩是斯隆管理学院的教授，他认为 DEC 的衰败主
-《伟大的企业家》[2]。施恩是斯隆管理学院的教授，他认为 DEC 的衰败主…</div>
-         <div class="tit_bot">
-       	   <div class="tit_bot_zl">张亮&nbsp;赞同该回答</div>
-            <div class="tit_bot_gz"><a href="#">1 个答案</a> • <a href="#">5个关注</a> • <a href="#">收藏</a> • <a href="#">添加评论</a> • <a href="#">分享</a></div>
-         </div>
-      </div>
-      <div class="title">
-      	<div class="tit_tit">
-        	<div class="tit_tit_1"><a href="#">0</a></div>
-        	<div class="tit_tit_2" ><span><a href="#"><img src="../images/main/rw_1.png" /></a></span><a href="#">“心静自然凉”到底有没有科学依据</a></div>        
-        </div>
-        <div class="tit_content">关于 DEC，有两本比较有权威的书。一是艾德加·施恩写的《DEC 已死，DEC 长存》[1]，另一本是电
-脑世界两位编辑的作品：《伟大的企业家》[2]。施恩是斯隆管理学院的教授，他认为 DEC 的衰败主
-《伟大的企业家》[2]。施恩是斯隆管理学院的教授，他认为 DEC 的衰败主…</div>
-         <div class="tit_bot">
-       	   <div class="tit_bot_zl">张亮&nbsp;赞同该回答</div>
-            <div class="tit_bot_gz"><a href="#">1 个答案</a> • <a href="#">5个关注</a> • <a href="#">收藏</a> • <a href="#">添加评论</a> • <a href="#">分享</a></div>
-         </div>
-      </div>
-      <div class="title">
-      	<div class="tit_tit">
-        	<div class="tit_tit_1"><a href="#">0</a></div>
-        	<div class="tit_tit_2" ><span><a href="#"><img src="../images/main/rw_1.png" /></a></span><a href="#">“心静自然凉”到底有没有科学依据</a></div>        
-        </div>
-        <div class="tit_content">关于 DEC，有两本比较有权威的书。一是艾德加·施恩写的《DEC 已死，DEC 长存》[1]，另一本是电
-脑世界两位编辑的作品：《伟大的企业家》[2]。施恩是斯隆管理学院的教授，他认为 DEC 的衰败主
-《伟大的企业家》[2]。施恩是斯隆管理学院的教授，他认为 DEC 的衰败主…</div>
-         <div class="tit_bot">
-       	   <div class="tit_bot_zl">张亮&nbsp;赞同该回答</div>
-            <div class="tit_bot_gz"><a href="#">1 个答案</a> • <a href="#">5个关注</a> • <a href="#">收藏</a> • <a href="#">添加评论</a> • <a href="#">分享</a></div>
-         </div>
-      </div>
-      <div class="title">
-      	<div class="tit_tit">
-        	<div class="tit_tit_1"><a href="#">0</a></div>
-        	<div class="tit_tit_2" ><span><a href="#"><img src="../images/main/rw_1.png" /></a></span><a href="#">“心静自然凉”到底有没有科学依据</a></div>        
-        </div>
-        <div class="tit_content">关于 DEC，有两本比较有权威的书。一是艾德加·施恩写的《DEC 已死，DEC 长存》[1]，另一本是电
-脑世界两位编辑的作品：《伟大的企业家》[2]。施恩是斯隆管理学院的教授，他认为 DEC 的衰败主
-《伟大的企业家》[2]。施恩是斯隆管理学院的教授，他认为 DEC 的衰败主…</div>
-         <div class="tit_bot">
-       	   <div class="tit_bot_zl">张亮&nbsp;赞同该回答</div>
-            <div class="tit_bot_gz"><a href="#">1 个答案</a> • <a href="#">5个关注</a> • <a href="#">收藏</a> • <a href="#">添加评论</a> • <a href="#">分享</a></div>
-         </div>
-      </div>
-      <div class="title">
-      	<div class="tit_tit">
-        	<div class="tit_tit_1"><a href="#">0</a></div>
-        	<div class="tit_tit_2" ><span><a href="#"><img src="../images/main/rw_1.png" /></a></span><a href="#">“心静自然凉”到底有没有科学依据</a></div>        
-        </div>
-        <div class="tit_content">关于 DEC，有两本比较有权威的书。一是艾德加·施恩写的《DEC 已死，DEC 长存》[1]，另一本是电
-脑世界两位编辑的作品：《伟大的企业家》[2]。施恩是斯隆管理学院的教授，他认为 DEC 的衰败主
-《伟大的企业家》[2]。施恩是斯隆管理学院的教授，他认为 DEC 的衰败主…</div>
-         <div class="tit_bot">
-       	   <div class="tit_bot_zl">张亮&nbsp;赞同该回答</div>
-            <div class="tit_bot_gz"><a href="#">1 个答案</a> • <a href="#">5个关注</a> • <a href="#">收藏</a> • <a href="#">添加评论</a> • <a href="#">分享</a></div>
-         </div>
-      </div>
       </div>
       <div class="tiao"><a href="#">更多 &gt;&gt;</a></div>
   </div>

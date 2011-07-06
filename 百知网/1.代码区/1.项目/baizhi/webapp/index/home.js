@@ -1,6 +1,6 @@
 $(document).ready(function(){
 	//获取数据列表
-	//getDataList();
+	getLatestProblemList();
 	
 	//新增问题弹出框
 	$("#item_a").fancybox({
@@ -75,7 +75,7 @@ $(document).ready(function(){
 function getLatestProblemList(){
 	var onePageCount=$("#onePageCount").val();
 	var nowPage=$("#nowPage").val();
-	$.post("getProblemList.go",{
+	$.post("getLatestProblemList.go",{
 		nowPage: nowPage,
 		onePageCount: onePageCount
 	}, function(result){
@@ -86,7 +86,7 @@ function getLatestProblemList(){
 		var content = "";
 		if (data != null && data["list"] != null && data["list"].length > 0) {
 			var PROBLEM_ID = ""; //问题ID
-			var PROBLEM_TYPE_NAME = ""; //问题类型(字典：1普通、2我问的问题)
+			var PROBLEM_TYPE = ""; //问题类型(字典：1普通、2我问的问题)
 			var CONTENT = ""; //问题内容
 			var IS_ANONYMITY = ""; //是否匿名(0否、1是)
 			var RELEVANT_DETAILS = ""; //相关细节
@@ -104,10 +104,10 @@ function getLatestProblemList(){
 	
 			for(var i=0;i<data["list"].length;i++){
 				PROBLEM_ID = data["list"][i]["PROBLEM_ID"];//问题ID
-				PROBLEM_TYPE_NAME = data["list"][i]["PROBLEM_TYPE_NAME"];//问题类型(字典：1普通、2我问的问题)
+				PROBLEM_TYPE = data["list"][i]["PROBLEM_TYPE"];//问题类型(字典：1普通、2我问的问题)
 				CONTENT = data["list"][i]["CONTENT"];//问题内容
 				IS_ANONYMITY = data["list"][i]["IS_ANONYMITY"];//是否匿名(0否、1是)
-				NAME = data["list"][i]["NAME"];//用户ID
+				RELEVANT_DETAILS = data["list"][i]["RELEVANT_DETAILS"];//用户ID
 				ANSWER_COUNT = data["list"][i]["ANSWER_COUNT"];//答案数量
 				REVIEW_COUNT = data["list"][i]["REVIEW_COUNT"];//评论数量
 				ATTENTION_COUNT = data["list"][i]["ATTENTION_COUNT"];//关注数量
@@ -121,16 +121,16 @@ function getLatestProblemList(){
 				content += "<div class='title'>";
 				content += "  <div class='tit_tit'>";
 				content += "    <div class='tit_tit_1'><a href='#'>0</a></div>";
-				content += "    <div class='tit_tit_2' ><span><a href='#'><img src='../images/main/rw_1.png' /></a></span><a href='#'>标题</a></div>";
+				content += "    <div class='tit_tit_2' ><span><a href='#'><img src='../images/main/rw_1.png' /></a></span><a href='#'>"+CONTENT+"</a></div>";
 				content += "  </div>";
-				content += "  <div class='tit_content'>细节</div>";
+				content += "  <div class='tit_content'>"+RELEVANT_DETAILS+"</div>";
 				content += "  <div class='tit_bot'>";
 				content += "    <div class='tit_bot_zl'>张亮&nbsp;赞同该回答</div>";
-				content += "    <div class='tit_bot_gz'><a href='#'>1 个答案</a> • <a href='#'>5个关注</a> • <a href='#'>收藏</a> • <a href='#'>添加评论</a> • <a href='#'>分享</a></div>";
+				content += "    <div class='tit_bot_gz'><a href='#'>"+ANSWER_COUNT+" 个答案</a> • <a href='#'>"+ATTENTION_COUNT+"个关注</a> • <a href='#'>收藏</a> • <a href='#'>添加评论</a> • <a href='#'>分享</a></div>";
 				content += "  </div>";
 				content += "</div>";
 			}
-			$("divList").append(content);
+			$("#divList").append(content);
 		}
 	});
 	return;
