@@ -30,16 +30,8 @@ public class GetUserDynamicList extends UserDynamicForm {
 	public String execute() throws Exception {
 		Map<String, Object> params = new HashMap<String, Object>();
 		//设置查询条件
-		this.setMap(params, "DYNAMIC_ID=?", this.getDYNAMIC_ID());// 用户动态ID
-		this.setMap(params, "USER_ID=?", this.getUSER_ID());// 用户ID
-		this.setMap(params, "TITLE=?", this.getTITLE());// 动态主题
-		this.setMap(params, "BUSINESS_ID=?", this.getBUSINESS_ID());// 业务主键(回复问题ID、关注会员ID)
-		this.setMap(params, "DYNAMIC_TYPE=?", this.getDYNAMIC_TYPE());// 动态类型(字典：1回答问题、2关注会员)
-		this.setMap(params, "CONTENT=?", this.getCONTENT());// 动态内容(存放组织好的html内容)
-		this.setMap(params, "WARN_USERID=?", this.getWARN_USERID());// 提醒用户ID
-		this.setMap(params, "IS_OPEN=?", this.getIS_OPEN());// 是否查看(0否、1是)
-		this.setMap(params, "CREATE_TIME=?", this.getCREATE_TIME());// 创建时间
-		this.setMap(params, "MODIFY_TIME=?", this.getMODIFY_TIME());// 修改时间
+		params.put("CUR_USER_ID", this.getSessionUserId());
+		
 		// 查询用户动态信息表列表
 		Map<String, Object> returnMap = userDynamicService.getUserDynamicList(params, this.getNowPage(), this.getOnePageCount());
 		//判断是否存在查询记录

@@ -53,10 +53,16 @@ public class GetProblemList extends ProblemForm {
 		Map<String, Object> params = new HashMap<String, Object>();
 		//设置查询条件
 		this.setMap(params, "PROBLEM_TYPE=?", this.getPROBLEM_TYPE());// 问题类型(字典：1普通、2我问的问题)
-		this.setMap(params, "CONTENT=?", this.getCONTENT());// 问题内容
+		if(getCONTENT()!=null&&!getCONTENT().trim().equals("")){
+			this.setMap(params, "CONTENT like ?", "%"+this.getCONTENT()+"%");// 问题内容
+		}
+		
 		this.setMap(params, "IS_ANONYMITY=?", this.getIS_ANONYMITY());// 是否匿名(0否、1是)
 		this.setMap(params, "RELEVANT_DETAILS=?", this.getRELEVANT_DETAILS());// 相关细节
-		this.setMap(params, "NAME like ?", this.getNAME());// 会员姓名
+		if(NAME!=null&&!NAME.trim().equals("")){
+			this.setMap(params, "NAME like ?", "%"+this.getNAME()+"%");// 会员姓名
+		}
+		
 		//this.setMap(params, "WAS_USERID=?", this.getWAS_USERID());// 被问用户ID
 		
 		this.setMap(params, "IS_REPORT=?", this.getIS_REPORT());// 是否举报(0否、1是)

@@ -12,14 +12,12 @@ function getDataList(){
 	var START_TIME = $("#START_TIME").val();
 	var END_TIME = $("#END_TIME").val();
 	var STATUS = $("#STATUS").val();
-	var REMARK = $("#REMARK").val();
 	$.post("getAdList.go",{
 		TITLE: window.encodeURI(TITLE),
 		SHOW_TYPE: window.encodeURI(SHOW_TYPE),
 		START_TIME: window.encodeURI(START_TIME),
 		END_TIME: window.encodeURI(END_TIME),
 		STATUS: window.encodeURI(STATUS),
-		REMARK: window.encodeURI(REMARK),
 		nowPage: nowPage,
 		onePageCount: onePageCount},
 		function(result){

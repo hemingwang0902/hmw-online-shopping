@@ -30,12 +30,19 @@ public class GetDiclistList extends DiclistForm {
 	public String execute() throws Exception {
 		Map<String, Object> params = new HashMap<String, Object>();
 		//设置查询条件
-		this.setMap(params, "DICLIST_ID=?", this.getDICLIST_ID());// 字典列表ID
-		this.setMap(params, "NAME=?", this.getNAME());// 字典名称
+		if(getNAME()!=null&&!getNAME().equals("")){
+			this.setMap(params, "NAME like ?","%"+ this.getNAME()+"%");// 字典名称
+		}
 		this.setMap(params, "CODE=?", this.getCODE());// 字典代码
-		this.setMap(params, "ALLPIN=?", this.getALLPIN());// 字典全拼
-		this.setMap(params, "SIMPLEPIN=?", this.getSIMPLEPIN());// 字典简拼
-		this.setMap(params, "REMARK=?", this.getREMARK());// 备注
+		
+		if(getALLPIN()!=null&&!getALLPIN().trim().equals("")){
+			this.setMap(params, "ALLPIN like ?", "%"+this.getALLPIN()+"%");// 字典全拼
+		}
+		
+		if(getSIMPLEPIN()!=null&&!getSIMPLEPIN().trim().equals("")){
+			this.setMap(params, "SIMPLEPIN like ?", "%"+this.getSIMPLEPIN()+"%");// 字典简拼
+		}
+		
 		// 查询字典列表列表
 		Map<String, Object> returnMap = diclistService.getDiclistList(params, this.getNowPage(), this.getOnePageCount());
 		//判断是否存在查询记录

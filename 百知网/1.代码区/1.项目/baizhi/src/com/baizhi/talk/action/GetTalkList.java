@@ -32,7 +32,10 @@ public class GetTalkList extends TalkForm {
 	public String execute() throws Exception {
 		Map<String, Object> params = new HashMap<String, Object>();
 		//设置查询条件
-		this.setMap(params, "CONTENT=?", this.getCONTENT());// 内容
+		if(getCONTENT()!=null&&!getCONTENT().trim().equals("")){
+			this.setMap(params, "CONTENT like ?", "%"+this.getCONTENT()+"%");// 内容
+		}
+		
 		// 查询话题信息表列表
 		Map<String, Object> returnMap = talkService.getTalkList(params, this.getNowPage(), this.getOnePageCount());
 		//判断是否存在查询记录

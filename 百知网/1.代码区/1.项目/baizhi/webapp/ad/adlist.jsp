@@ -58,10 +58,6 @@
 							</select>
 						</td>
 					</tr>
-		   			<tr>
-						<td class="lightbox_title">备注：</td>
-						<td class="lightbox_content"><input type="text" class="input_width4" name="REMARK" id="REMARK" /> </td>
-					</tr>
 					<tr>
 						<td>&nbsp;</td>
 						<td style="padding-top:5px; padding-bottom:5px;">

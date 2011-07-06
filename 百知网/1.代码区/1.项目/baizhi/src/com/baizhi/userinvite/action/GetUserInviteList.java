@@ -52,9 +52,12 @@ public class GetUserInviteList extends UserInviteForm {
 	public String execute() throws Exception {
 		Map<String, Object> params = new HashMap<String, Object>();
 		//设置查询条件
-		this.setMap(params, "NAME like ? ", NAME);// 会员名称
+		if(NAME!=null&&!NAME.trim().equals("")){
+			this.setMap(params, "NAME like ? ", "%"+NAME+"%");// 会员名称
+		}
+		
 		this.setMap(params, "IS_SUCCESS=?", this.getIS_SUCCESS());// 是否邀请成功(0否、1是)
-		this.setMap(params, "EMAIL like ?", this.getEMAIL());// 邀请Email
+		this.setMap(params, "EMAIL =?", this.getEMAIL());// 邀请Email
 		this.setMap(params, "INVITE_TIME>=?", this.getINVITE_TIME());// 邀请时间(始)
 		this.setMap(params, "INVITE_TIME<=?", INVITE_TIME_END);// 邀请时间(止)
 		// 查询用户邀请信息表列表

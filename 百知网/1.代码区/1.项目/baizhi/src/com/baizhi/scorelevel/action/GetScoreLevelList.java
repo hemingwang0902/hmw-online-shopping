@@ -30,11 +30,10 @@ public class GetScoreLevelList extends ScoreLevelForm {
 	public String execute() throws Exception {
 		Map<String, Object> params = new HashMap<String, Object>();
 		//设置查询条件
-		this.setMap(params, "SCORELEVEL_ID=?", this.getSCORELEVEL_ID());// 积分级别ID
-		this.setMap(params, "NAME=?", this.getNAME());// 级别名称
-		this.setMap(params, "SOCRE_UP=?", this.getSOCRE_UP());// 积分上限
-		this.setMap(params, "SOCRE_DOWN=?", this.getSOCRE_DOWN());// 积分下限
-		this.setMap(params, "REMARK=?", this.getREMARK());// 备注
+		if(getNAME()!=null&&!getNAME().trim().equals("")){
+			this.setMap(params, "NAME like ?", "%"+this.getNAME()+"%");// 级别名称
+		}
+		
 		// 查询积分级别信息表列表
 		Map<String, Object> returnMap = scoreLevelService.getScoreLevelList(params, this.getNowPage(), this.getOnePageCount());
 		//判断是否存在查询记录
