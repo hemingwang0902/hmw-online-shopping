@@ -43,6 +43,17 @@ public class UserDao extends DaoSupport{
 	}
 	
 	/**
+	 * 修改密码
+	 * 
+	 * @param USER_ID  用户ID
+	 * @param PASSWORD 密码
+	 * @return 返回执行记录数
+	 */
+	public int modifyPassword(int USER_ID,String PASSWORD) {
+		return this.executeUpdate("update T_USER set PASSWORD=? where USER_ID=?", new Object[]{PASSWORD,USER_ID});
+	}
+	
+	/**
 	 *　删除用户信息表信息
 	 * 
 	 * @param USER_IDS  用户信息表ID值集合以","分隔
