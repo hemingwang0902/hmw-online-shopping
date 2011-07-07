@@ -4,6 +4,7 @@
         "http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
 	<package name="wgzdwt" extends="json-default" namespace="/index">
+		<!-- 查询我关注的问题列表 -->
 		<action name="getAttentionProblemList" class="com.baizhi.index.action.wgzdwt.GetAttentionProblemList">
 			<result name="jsonsuccess" type="json">
 		      <param name="root">result</param>
