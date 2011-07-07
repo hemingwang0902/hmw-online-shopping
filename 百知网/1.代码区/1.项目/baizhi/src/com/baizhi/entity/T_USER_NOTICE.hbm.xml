@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+	
+<hibernate-mapping>
+	<class entity-name="T_USER_NOTICE" table="T_USER_NOTICE" lazy="false">
+		<comment>用户通知设置表</comment>
+		<id name="NOTICE_ID" column="NOTICE_ID" type="int" >
+			<generator class="identity" />
+		</id>
+		<property name="USER_ID" type="int">
+			<column name="USER_ID"  >
+				<comment>用户ID</comment>
+			</column>
+		</property>
+		<property name="NOTICE_TYPE" type="int">
+			<column name="NOTICE_TYPE"  >
+				<comment>通知类型(1：有人关注了我、2：有人问了我一个问题、3：有人邀请我回答一个问题、4：我关注的问题有了新答案、5：有人向我发送私信、6：谁可以给我发私信)</comment>
+			</column>
+		</property>
+		<property name="SET_TYPE" type="int">
+			<column name="SET_TYPE"  >
+				<comment>设置类型(0：否、1：是、3：所有人、4：我关注的人)</comment>
+			</column>
+		</property>
+		<property name="CREATE_TIME" type="java.util.Date">
+			<column name="CREATE_TIME"  >
+				<comment>创建时间</comment>
+			</column>
+		</property>
+		<property name="Modify_TIME" type="java.util.Date">
+			<column name="Modify_TIME"  >
+				<comment>修改时间</comment>
+			</column>
+		</property>
+	</class>
+</hibernate-mapping>

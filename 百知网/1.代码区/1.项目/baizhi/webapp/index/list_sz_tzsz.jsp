@@ -4,6 +4,7 @@
 <html>
 <head>
 	<%@include file="../common/jsCss.jsp" %>
+	<script type="text/javascript" language="javascript" src="../index/list_sz_tzsz.js"></script>
 </head>
 
 <body>
@@ -14,36 +15,76 @@
           <div class="column_sz">设置选项</div>
           <div class="list_sz">
           	<ul>
-            	<li><a href="#">基本资料</a></li>
-                <li><a href="#">账户设置</a></li>
-                <li><a href="#">通知设置</a></li>
+            	<li><a href="../index/list_sz.jsp">基本资料</a></li>
+                <li><a href="../index/list_sz_zhsz.jsp">账户设置</a></li>
+                <li><a href="javascript:;">通知设置</a></li>
             </ul>
           </div>
     </div>
   </div>
 	<div class="c_left">
+	<form action="../usernotice/saveUserNotice.go" method="post">
+	<input type="hidden" id="values" name="values" value="${returnMap.values }" /> 
+	<input type="hidden" id="message" value="${message }" />
+	
 	  <div class="list_xgwt_xght_sz">
-	    建议使用字母和数字组合，增强安全性
+	    请选择提醒通知
 	  </div>
       <div class="line_1"></div>
       <div class="list_sz_tzsz">
-      	<input type="checkbox" checked="checked" />&nbsp;有人关注了我<br />
-        <input type="checkbox" checked="checked" />&nbsp;有人关注了我<br />
-        <input type="checkbox" checked="checked" />&nbsp;有人关注了我<br />
-        <input type="checkbox" checked="checked" />&nbsp;有人关注了我<br />
-        <input type="checkbox" checked="checked" />&nbsp;有人关注了我<br />
+      <s:if test="returnMap.SET_TYPE_1==1">
+      	<input type="checkbox" checked="checked" id="SET_TYPE_1" />&nbsp;有人关注了我<br />
+      </s:if>
+      <s:else>
+      	<input type="checkbox"  id="SET_TYPE_1" />&nbsp;有人关注了我<br />
+      </s:else>
+      <s:if test="returnMap.SET_TYPE_2==1">
+      	<input type="checkbox" checked="checked" id="SET_TYPE_2" />&nbsp;有人问了我一个问题<br />
+      </s:if>
+      <s:else>
+      	<input type="checkbox"  id="SET_TYPE_2" />&nbsp;有人问了我一个问题<br />
+      </s:else>
+      <s:if test="returnMap.SET_TYPE_3==1">
+      	<input type="checkbox" checked="checked" id="SET_TYPE_3" />&nbsp;有人邀请我回答一个问题<br />
+      </s:if>
+      <s:else>
+      	<input type="checkbox"  id="SET_TYPE_3" />&nbsp;有人邀请我回答一个问题<br />
+      </s:else>
+      <s:if test="returnMap.SET_TYPE_4==1">
+      	<input type="checkbox" checked="checked" id="SET_TYPE_4" />&nbsp;我关注的问题有了新答案<br />
+      </s:if>
+      <s:else>
+      	<input type="checkbox"  id="SET_TYPE_4" />&nbsp;我关注的问题有了新答案<br />
+      </s:else>
+      <s:if test="returnMap.SET_TYPE_5==1">
+      	<input type="checkbox" checked="checked" id="SET_TYPE_5" />&nbsp;有人向我发送私信<br />
+      </s:if>
+      <s:else><input type="checkbox" id="SET_TYPE_5" />&nbsp;有人向我发送私信<br />
+      	
+      </s:else>
+        
+        
+        
+        
       </div>
       <div class="list_xgwt_xght_sz">
 	    设置谁可以给我发私信
 	  </div>
       <div class="line_1"></div>
       <div class="list_se_bcsz_1">
-   	  <input name="" type="radio" value="" checked="checked" />
-   	  所有人&nbsp; <input name="" type="radio" value="" />我关注的人     </div>
+      <s:if test="returnMap.SET_TYPE_6==3">
+      	<input name="SET_RADIO_TYPE"  type="radio" value="3" checked="checked" />所有人&nbsp;<input name="SET_RADIO_TYPE"  type="radio" value="4" />我关注的人
+      </s:if>
+      <s:else>
+      	<input name="SET_RADIO_TYPE"  type="radio" value="3"  />所有人&nbsp;<input name="SET_RADIO_TYPE"  type="radio" value="4" checked="checked"/>我关注的人
+      </s:else>
+   	  </div>
       <div class="list_sz_zhsz_bcsz">
-        <input name="input" type="button" class="list_sz_bcmm" value="保存密码"/>
+        <input name="input" type="submit" class="list_sz_bcmm" value="保存密码"/>
       </div>
+       </form>
   </div>
+ 
 	<div class="clear"></div>
 </div>
 	<%@include file="../common/foot.jsp" %>

@@ -14,9 +14,9 @@
           <div class="column_sz">设置选项</div>
           <div class="list_sz">
           	<ul>
-            	<li><a href="#">基本资料</a></li>
-                <li><a href="#">账户设置</a></li>
-                <li><a href="#">通知设置</a></li>
+            	<li><a href="../index/list_sz.jsp">基本资料</a></li>
+                <li><a href="javascript:;">账户设置</a></li>
+                <li><a href="../usernotice/getUserNoticeList.go">通知设置</a></li>
             </ul>
           </div>
     </div>

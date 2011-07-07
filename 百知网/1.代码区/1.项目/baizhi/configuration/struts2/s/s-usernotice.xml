@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="usernotice" extends="json-default" namespace="/usernotice">
+		<action name="getUserNoticeList" class="com.baizhi.usernotice.action.GetUserNoticeList">
+			<result name="success" type="dispatcher" >../index/list_sz_tzsz.jsp</result>
+		</action>
+		<action name="saveUserNotice" class="com.baizhi.usernotice.action.SaveUserNotice">
+			<result name="error"  type="dispatcher" >../index/list_sz_tzsz.jsp</result>
+			<result name="success" type="chain" >getUserNoticeList</result>
+		</action>
+	</package>
+</struts>
