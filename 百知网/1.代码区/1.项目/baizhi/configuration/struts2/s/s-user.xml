@@ -33,5 +33,15 @@
 		      <param name="root">result</param>
 		    </result>
 		</action>
+		<action name="checkPassword" class="com.baizhi.user.action.CheckPassword">
+			<result name="jsonsuccess" type="json">
+		      <param name="root">result</param>
+		    </result>
+		</action>
+		<action name="modifyPassword" class="com.baizhi.user.action.ModifyPassword">
+			<result name="jsonsuccess" type="json">
+		      <param name="root">result</param>
+		    </result>
+		</action>
 	</package>
 </struts>
