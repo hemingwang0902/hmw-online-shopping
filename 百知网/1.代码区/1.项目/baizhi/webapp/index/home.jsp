@@ -7,6 +7,11 @@
 	<link rel="stylesheet" type="text/css" href="../styles/jquery.autocomplete.css" />
 	<script type="text/javascript" src="../javascripts/jquery.autocomplete.min-1.1.js"></script>
 	<script type="text/javascript" src="home.js"></script>
+	<style type="text/css">
+	a.checked{
+		background-color: #888888;
+	}
+	</style>
 </head>
 <%--
 最新问题：getLatestProblemList.go
@@ -19,6 +24,8 @@
 	<%@include file="../common/head.jsp" %>
 	<input type="hidden" id="onePageCount" value="20">
 	<input type="hidden" id="nowPage" value="1">
+	<input type="hidden" id="problemType" value="zui">
+	
 <div class="content">
 	<div class="c_left">
 	  <div class="search">
@@ -28,16 +35,15 @@
 	  </div>
       <div class="subMenu">
       	<ul>
-            <li class="zui"><a href="#">最新问题</a></li>
-            <li class="re"><a href="#">热门问题</a></li>
+            <li class="zui"><a href="javascript:void(0);" class="checked" onclick="getLastestProblemList();">最新问题</a></li>
+            <li class="re"><a href="javascript:void(0);" onclick="getHottestProblemList();">热门问题</a></li>
       	</ul>
       </div>
       <div class="line_1"></div>
       <div id="divList">
       </div>
-      <div class="tiao"><a href="#">更多 &gt;&gt;</a></div>
+      <div class="tiao"><a href="javascript:void(0);" onclick="getMoreProblemList();">更多 &gt;&gt;</a></div>
   </div>
-    
     
     <div class="c_right">
     	<div class="right_subMenu">

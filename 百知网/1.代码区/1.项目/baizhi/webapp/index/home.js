@@ -1,6 +1,6 @@
 $(document).ready(function(){
 	//获取数据列表
-	getLatestProblemList();
+	getProblemList(false);
 	
 	//新增问题弹出框
 	$("#item_a").fancybox({
@@ -67,21 +67,58 @@ $(document).ready(function(){
 			return parsed;
 		}
 	});
-	
-	
 });
 
+/**
+ * 最新问题
+ */
+function getLastestProblemList(){
+	$('#problemType').val('zui');
+	$('#nowPage').val(1);
+	getProblemList(false);	
+	$(".subMenu a").removeClass("checked");
+	$(".zui>a").addClass("checked");
+}
+
+/**
+ * 热门问题
+ */
+function getHottestProblemList(){
+	$('#problemType').val('re');
+	$('#nowPage').val(1);
+	getProblemList(false);	
+	$(".subMenu a").removeClass("checked");
+	$(".re>a").addClass("checked");
+}
+
+/**
+ * 更多
+ */
+function getMoreProblemList(){
+		getProblemList(true);
+}
+
 /* 获取数据列表*/
-function getLatestProblemList(){
+function getProblemList(more){
+	var action = ($('#problemType').val() == 'zui') ? "getLatestProblemList.go" : "getHottestProblemList.go";
 	var onePageCount=$("#onePageCount").val();
 	var nowPage=$("#nowPage").val();
-	$.post("getLatestProblemList.go",{
+	$.post(action,{
 		nowPage: nowPage,
 		onePageCount: onePageCount
 	}, function(result){
+		//将 nowPage 的值加 1
+		$("#nowPage").val(parseInt($("#nowPage").val()) + 1);
+		
+		if(!more){ //如果不是点的更多, 则先将 divList 的数据清空
+			$("#divList").html("&nbsp;");
+		}
+		
 		if(result==null||result==''){
+			$(".tiao").html("<span>更多 >></span>");
 			return;
 		}
+		
 		var data = eval("("+result+")");
 		var content = "";
 		if (data != null && data["list"] != null && data["list"].length > 0) {
@@ -101,6 +138,10 @@ function getLatestProblemList(){
 			var REPORT_COUNT = ""; //举报次数
 			var CREATE_TIME = ""; //创建时间
 			var MODIFY_TIME = ""; //修改时间
+			
+			var NAME = ""; //用户姓名
+			var IMAGE_PATH = ""; //头像路径
+			var WEBSITE = ""; //修改网址
 	
 			for(var i=0;i<data["list"].length;i++){
 				PROBLEM_ID = data["list"][i]["PROBLEM_ID"];//问题ID
@@ -118,19 +159,31 @@ function getLatestProblemList(){
 				CREATE_TIME = data["list"][i]["CREATE_TIME"];//创建时间
 				MODIFY_TIME = data["list"][i]["MODIFY_TIME"];//修改时间
 				
+				NAME = data["list"][i]["NAME"]; //用户姓名
+				IMAGE_PATH = data["list"][i]["IMAGE_PATH"]; //头像路径
+				WEBSITE = data["list"][i]["WEBSITE"]; //修改网址
+				
+				if(IMAGE_PATH==null || IMAGE_PATH==undefined || IMAGE_PATH=="null"){
+					IMAGE_PATH = "../images/main/rw_1.png";
+				}
+	
 				content += "<div class='title'>";
 				content += "  <div class='tit_tit'>";
 				content += "    <div class='tit_tit_1'><a href='#'>0</a></div>";
-				content += "    <div class='tit_tit_2' ><span><a href='#'><img src='../images/main/rw_1.png' /></a></span><a href='#'>"+CONTENT+"</a></div>";
+				content += "    <div class='tit_tit_2' ><span><a href='#'><img src='"+IMAGE_PATH+"' /></a></span><a href='#'>"+CONTENT+"</a></div>";
 				content += "  </div>";
 				content += "  <div class='tit_content'>"+RELEVANT_DETAILS+"</div>";
 				content += "  <div class='tit_bot'>";
-				content += "    <div class='tit_bot_zl'>张亮&nbsp;赞同该回答</div>";
+				content += "    <div class='tit_bot_zl'>&nbsp;</div>";
 				content += "    <div class='tit_bot_gz'><a href='#'>"+ANSWER_COUNT+" 个答案</a> • <a href='#'>"+ATTENTION_COUNT+"个关注</a> • <a href='#'>收藏</a> • <a href='#'>添加评论</a> • <a href='#'>分享</a></div>";
 				content += "  </div>";
 				content += "</div>";
 			}
 			$("#divList").append(content);
+			
+			$(".tiao").html('<a href="javascript:void(0);" onclick="getProblemList(true);">更多 &gt;&gt;</a>');
+		}else{ //查询到的记录条数为空,禁用"更多"
+			$(".tiao").html("<span>更多 &gt;&gt;</span>");
 		}
 	});
 	return;
