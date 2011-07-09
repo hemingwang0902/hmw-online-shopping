@@ -58,6 +58,7 @@ public class HomeDao extends DaoSupport{
 		StringBuffer sql = new StringBuffer()		
 		.append(" SELECT DISTINCT ")
 		.append(ALL_PROBLEM_FIELDS.replaceAll("a\\.", "T88."))
+		.append(", UB.NAME AS NAME, UB.IMAGE_PATH AS IMAGE_PATH, UB.WEBSITE AS WEBSITE")
 		.append(" FROM (SELECT ")
 		.append(ALL_PROBLEM_FIELDS)
 		.append(", A.CREATE_TIME AS LAST_TIME FROM T_PROBLEM A")
@@ -93,9 +94,12 @@ public class HomeDao extends DaoSupport{
 		.append(" (SELECT PROBLEM_ID, MAX(PA.CREATE_TIME) LAST_TIME FROM T_PROBLEM_ANSWER PA WHERE PA.USER_ID=? GROUP BY PA.PROBLEM_ID) T2")
 		.append(" )")
 		.append(" WHERE T1.PROBLEM_ID=T2.PROBLEM_ID AND T1.LAST_TIME>T2.LAST_TIME) B")
-		.append(" WHERE A.PROBLEM_ID=B.PROBLEM_ID) T88 GROUP BY T88.PROBLEM_ID  ORDER BY T88.LAST_TIME DESC");
+		.append(" WHERE A.PROBLEM_ID=B.PROBLEM_ID) T88, T_USER_BASIC UB")
+		.append(" WHERE T88.USER_ID=UB.USER_ID")
+		.append(" AND (T88.WAS_USERID IS NULL OR T88.WAS_USERID=?)")
+		.append(" GROUP BY T88.PROBLEM_ID  ORDER BY T88.LAST_TIME DESC");
 
-		Object[] params = new Object[5];
+		Object[] params = new Object[6];
 		for (int i = 0; i < params.length; i++) {
 			params[i] = userId;
 		}
@@ -113,10 +117,13 @@ public class HomeDao extends DaoSupport{
 		StringBuffer sql = new StringBuffer()		
 		.append("SELECT ")
 		.append(ALL_PROBLEM_FIELDS)
+		.append(", UB.NAME AS NAME, UB.IMAGE_PATH AS IMAGE_PATH, UB.WEBSITE AS WEBSITE")
 		.append(" FROM T_PROBLEM A")
 		.append(" LEFT JOIN")
 		.append(" (SELECT PA.PROBLEM_ID, COUNT(PROBLEM_ID) AS ANSWER_COUNT FROM T_PROBLEM_ANSWER PA GROUP BY PA.PROBLEM_ID) B")
 		.append(" ON A.PROBLEM_ID=B.PROBLEM_ID")
+		.append(" JOIN T_USER_BASIC UB")
+		.append(" ON A.USER_ID=UB.USER_ID")
 		.append(" ORDER BY B.ANSWER_COUNT DESC, A.BROWSE_COUNT DESC");
 		
 		return queryForListWithSQLQuery(sql.toString(), new Object[0], nowPage, onePageCount);

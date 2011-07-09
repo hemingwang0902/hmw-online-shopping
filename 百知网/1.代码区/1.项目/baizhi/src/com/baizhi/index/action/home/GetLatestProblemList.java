@@ -1,6 +1,5 @@
 package com.baizhi.index.action.home;
 
-import java.util.List;
 import java.util.Map;
 
 import com.baizhi.commons.ActionSupport;
@@ -41,23 +40,12 @@ public class GetLatestProblemList extends ActionSupport {
 		this.onePageCount = onePageCount;
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public String execute() throws Exception {
 		// 查询结果列表
 		Map<String, Object> returnMap = homeService.getLatestProblemList(getSessionUserId(), this.getNowPage(), this.getOnePageCount());
-		//判断是否存在查询记录
-		if (returnMap != null && returnMap.size() != 0) {
-			List<Map<String, Object>> list = (List<Map<String, Object>>) returnMap.get(KEY_LIST);
-			if(list != null){
-				Object RELEVANT_DETAILS = null;
-				for (Map<String, Object> map : list) {
-					RELEVANT_DETAILS = map.get("RELEVANT_DETAILS");
-					map.put("RELEVANT_DETAILS", RELEVANT_DETAILS == null ? "" : RELEVANT_DETAILS.toString());
-				}
-			}
-			this.setResult(returnMap);
-		}
+		this.setResult(returnMap);
+		
 		return JSONSUCCESS;
 	}
 
