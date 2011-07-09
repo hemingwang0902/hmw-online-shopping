@@ -38,5 +38,15 @@
 				<comment>创建时间</comment>
 			</column>
 		</property>
+		<property name="SHOW_CONDITION" type="int">
+			<column name="SHOW_CONDITION"  >
+				<comment>显示条件</comment>
+			</column>
+		</property>
+		<property name="IS_MYSELF" type="int">
+			<column name="IS_MYSELF"  >
+				<comment>主动被动</comment>
+			</column>
+		</property>
 	</class>
 </hibernate-mapping>

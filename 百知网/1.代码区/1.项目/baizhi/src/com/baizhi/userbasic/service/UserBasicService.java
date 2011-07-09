@@ -78,6 +78,15 @@ public class UserBasicService extends ServiceSupport{
 	}
 	
 	/**
+	 * 根据用户基本信息表ID获取用户基本信息表信息
+	 * @param params 参数
+	 * @return 返回用户基本信息表信息,如果无查询记录则返回null
+	 */
+	public Map<String, Object> getUserBasicMapById(Map<String, Object> params){
+		return userBasicDao.getUserBasicMapById(params);
+	}
+	
+	/**
 	 * 获取用户基本信息表列表信息
 	 * @param params 参数
 	 * @param nowPage 当前页

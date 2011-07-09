@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="wdzx" extends="json-default" namespace="/wdzx">
+		
+		<action name="initWdzxForm" class="com.baizhi.index.action.wdzx.InitWdzxForm">
+			<result name="success" type="dispatcher">../index/list_wdzx.jsp</result>
+		</action>
+		<action name="initWdzxDetailForm" class="com.baizhi.index.action.wdzx.InitWdzxDetailForm">
+			<result name="success" type="dispatcher">../index/list_wdzxdetail.jsp</result>
+		</action>
+	</package>
+</struts>

@@ -1,9 +1,12 @@
 package com.baizhi.userprivate.action;
 
+import java.util.HashMap;
+import java.util.Map;
 import org.dom4j.Element;
 import org.dom4j.tree.DefaultElement;
+import com.baizhi.commons.ActionSupport;
+import com.baizhi.commons.support.DateUtils;
 import com.baizhi.commons.support.Elements;
-import com.baizhi.commons.support.StringUtils;
 import com.baizhi.userprivate.service.UserPrivateService;
 /**
  * 
@@ -15,7 +18,7 @@ import com.baizhi.userprivate.service.UserPrivateService;
  * 修改者：
  * 修改日期：
  */
-public class SaveUserPrivate extends UserPrivateForm{
+public class SaveUserPrivate extends ActionSupport{
 	
 	private static final long serialVersionUID = -6058917527983240740L;
 	
@@ -29,44 +32,54 @@ public class SaveUserPrivate extends UserPrivateForm{
 		this.userPrivateService = userPrivateService;
 	}
 	
-	@Override
-	public String execute() throws Exception {
-		Element element = null;
-		String keyid="";
-		//如果用户私信信息表ID为""，则为新增用户私信信息表，否则更新用户私信信息表
-		if(StringUtils.isNotEmpty(this.getPRIVATE_ID())){
-			element = userPrivateService.getUserPrivateEleById("PRIVATE_ID");
-			Elements.setElementValue(element, "PRIVATE_ID", this.getPRIVATE_ID());// 私信ID
-			Elements.setElementValue(element, "USER_ID", this.getUSER_ID());// 收件人ID
-			Elements.setElementValue(element, "SEND_ID", this.getSEND_ID());// 发送人ID
-			Elements.setElementValue(element, "CONTENT", this.getCONTENT());// 发送内容
-			Elements.setElementValue(element, "IS_READ", this.getIS_READ());// 是否阅读(0否、1是)
-			Elements.setElementValue(element, "PPRIVATE_ID", this.getPPRIVATE_ID());// 父私信ID（私信、与私信回复为一张表）
-			Elements.setElementValue(element, "CREATE_TIME", this.getCREATE_TIME());// 创建时间
-			
-			//如果保存成功，返回主键
-			keyid = userPrivateService.saveOrUpdateUserPrivate(element);
-			//判断主键是否为空，如果不为空，则保存成功
-			if(StringUtils.isNotEmpty(keyid)){
-				this.setMessage("用户私信信息表信息编辑成功");
-				return UPDATESUCCESS;
-			}
-		}else{
-			element = new DefaultElement("T_USER_PRIVATE");
-			Elements.setElementValue(element, "USER_ID", this.getUSER_ID());// 收件人ID
-			Elements.setElementValue(element, "SEND_ID", this.getSEND_ID());// 发送人ID
-			Elements.setElementValue(element, "CONTENT", this.getCONTENT());// 发送内容
-			Elements.setElementValue(element, "IS_READ", this.getIS_READ());// 是否阅读(0否、1是)
-			Elements.setElementValue(element, "PPRIVATE_ID", this.getPPRIVATE_ID());// 父私信ID（私信、与私信回复为一张表）
-			Elements.setElementValue(element, "CREATE_TIME", this.getCREATE_TIME());// 创建时间
-			//如果保存成功，返回主键
-			keyid = userPrivateService.saveOrUpdateUserPrivate(element);
-			//判断主键是否为空，如果不为空，则保存成功
-			if(StringUtils.isNotEmpty(keyid)){
-				return SUCCESS;
-			}
-		}
-		return ERROR;
+	private String USER_ID;
+	
+	private String CONTENT;
+	
+	public void setUSER_ID(String user_ids) {
+		USER_ID = user_ids;
+	}
+	
+	public void setCONTENT(String content) {
+		CONTENT = content;
 	}
 
+	@Override
+	public String execute() throws Exception {
+		Map<String,Object> returnmap=new HashMap<String, Object>();
+		boolean flag=false;
+		String message="";
+		Element element1 = new DefaultElement("T_USER_PRIVATE");
+		//
+		Elements.setElementValue(element1, "USER_ID", USER_ID);// 收件人ID
+		Elements.setElementValue(element1, "SEND_ID", this.getSessionUserId());// 发送人ID
+		Elements.setElementValue(element1, "CONTENT", CONTENT);// 发送内容
+		Elements.setElementValue(element1, "IS_READ", 0);// 是否阅读(0否、1是)
+		Elements.setElementValue(element1, "PPRIVATE_ID", 0);// 父私信ID（私信、与私信回复为一张表）
+		Elements.setElementValue(element1, "CREATE_TIME", DateUtils.getCurrentTime(DateUtils.SHOW_DATE_FORMAT));// 创建时间
+		Elements.setElementValue(element1, "SHOW_CONDITION", 1);// 显示条件
+		Elements.setElementValue(element1, "IS_MYSELF", 1);// 主动
+		
+		Element element2 = new DefaultElement("T_USER_PRIVATE");
+		Elements.setElementValue(element2, "USER_ID", this.getSessionUserId());// 收件人ID
+		Elements.setElementValue(element2, "SEND_ID", USER_ID);// 发送人ID
+		Elements.setElementValue(element2, "CONTENT", CONTENT);// 发送内容
+		Elements.setElementValue(element2, "IS_READ", 1);// 是否阅读(0否、1是)
+		Elements.setElementValue(element2, "PPRIVATE_ID", 0);// 父私信ID（私信、与私信回复为一张表）
+		Elements.setElementValue(element2, "CREATE_TIME", DateUtils.getCurrentTime(DateUtils.SHOW_DATE_FORMAT));// 创建时间
+		Elements.setElementValue(element2, "SHOW_CONDITION", 1);// 显示条件
+		Elements.setElementValue(element2, "IS_MYSELF", 0);// 被动
+		
+		flag = userPrivateService.saveUserPrivate(element1,element2);
+		//判断主键是否为空，如果不为空，则保存成功
+		if(flag){
+			message="私信发送成功";
+		}else{
+			message="私信发送失败";
+		}
+		returnmap.put("flag", flag);
+		returnmap.put("message", message);
+		this.setResult(returnmap);
+		return JSONSUCCESS;
+	}
 }

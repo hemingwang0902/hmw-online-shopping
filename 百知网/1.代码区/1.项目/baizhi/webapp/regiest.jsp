@@ -33,22 +33,6 @@
     <div class="login_4">常用邮箱</div>
     <input class="login_5" value="" />
     </div>
-     <div class="login_3">
-    <div class="login_4">常用邮箱</div>
-    <input class="login_5" value="" />
-    </div> 
-     <div class="login_3">
-    <div class="login_4">常用邮箱</div>
-    <input class="login_5" value="" />
-    </div> 
-     <div class="login_3">
-    <div class="login_4">常用邮箱</div>
-    <input class="login_5" value="" />
-    </div> 
-     <div class="login_3">
-    <div class="login_4">常用邮箱</div>
-    <input class="login_5" value="" />
-    </div>
     <div class="login_3">
     <div class="login_4">密码（至少6位）</div>
     <input class="login_5" type="password" />

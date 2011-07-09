@@ -32,3 +32,8 @@ $(document).ready(function() {
 function load_person_image_102_102(obj){
 	obj.src='../images/main/list_sz.png';
 }
+
+//25*25 尺寸 头像
+function load_person_image_25_25(obj){
+	obj.src='../images/main/rw_1.png';
+}

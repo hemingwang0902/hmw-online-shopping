@@ -2,25 +2,25 @@ package com.baizhi.userprivate.action;
 
 import java.util.HashMap;
 import java.util.Map;
+
 import com.baizhi.commons.ActionSupport;
 import com.baizhi.userprivate.service.UserPrivateService;
+
 /**
- * 
- * 类名：UserPrivateDel.java<br>
- * 描述： 删除用户私信信息表信息
- * 创建者：江红
- * 创建日期：2011-07-05 00:26:42
- * 版本：V0.9 
- * 修改者： 
- * 修改日期：
+ * 类名： DelUserByPrivate.java<br>
+ * 描述：<br>
+ * 创建者：江红<br>
+ * 创建日期：2011-7-10 上午02:30:36<br>
+ * 版本：1.0<br>
+ * 修改者：<br>
+ * 修改日期：<br>
  */
-public class DelUserPrivate extends ActionSupport{
+public class DelUserByPrivate  extends ActionSupport{
 	
 	private static final long serialVersionUID = -4382432958928373263L;
 	
 	private Integer PRIVATE_ID;//主键ID
 	
-	private Integer SEND_ID;//发送人ID
 	
 	private UserPrivateService userPrivateService;//用户私信信息表业务类
 	
@@ -35,28 +35,16 @@ public class DelUserPrivate extends ActionSupport{
 	public void setPRIVATE_ID(int private_id) {
 		PRIVATE_ID = private_id;
 	}
-
-	public void setSEND_ID(int send_id) {
-		SEND_ID = send_id;
-	}
+	
 
 	@Override
 	public String execute() throws Exception {
 		Map<String,Object> returnmap=new HashMap<String, Object>();
 		boolean flag=false;
 		String message="";
-		Map<String, Object> params = new HashMap<String, Object>();
-		if(PRIVATE_ID!=null){
-			//设置查询条件
-			this.setMap(params, "PRIVATE_ID=?", PRIVATE_ID);// 收件人ID
-		}else{
-			//设置查询条件
-			this.setMap(params, "USER_ID=?", this.getSessionUserId());// 收件人ID
-			this.setMap(params, "SEND_ID=?", SEND_ID);// 收件人ID
-		}
 		
 		//删除私信
-		int count = userPrivateService.deleteUserPrivate(params);
+		int count = userPrivateService.deleteUserByPrivate(PRIVATE_ID,this.getSessionUserId());
 		//判断删除是否成功
 		if(count>0){
 			flag=true;

@@ -1,4 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<script type="text/javascript" language="javascript" src="../head.js"></script>
+
 <div class="top">
 	<div class="top_big">
 		<div class="logo">
@@ -6,11 +8,10 @@
 		</div>
 		<div class="nav">
 			<a href="#">首页</a>&nbsp;&nbsp;
-			<a href="#">通知</a>&nbsp;&nbsp;
-			<a href="#">私信</a>&nbsp;&nbsp;
-			<a href="#">设置</a>&nbsp;&nbsp;
-			<a href="#">登录</a>&nbsp;&nbsp;
-			<a href="#">注册</a>
+			<a href="../qbtz/initQbtzForm.go">通知</a>&nbsp;&nbsp;
+			<a href="../wdzx/initWdzxForm.go">私信<span id="userprivate_count"></span></a>&nbsp;&nbsp;
+			<a href="../sz/initSzForm.go">设置</a>&nbsp;&nbsp;
+			<a href="${basePath }/regiest.jsp">注册</a>
 		</div>
 	</div>
 </div>

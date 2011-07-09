@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="qbtz" extends="json-default" namespace="/qbtz">
+		<!-- 查询所有问题 -->
+		<action name="initQbtzForm" class="com.baizhi.index.action.qbtz.InitQbtzForm">
+			<result name="success" type="dispatcher">../index/list_qbtz.jsp</result>
+		</action>
+	</package>
+</struts>

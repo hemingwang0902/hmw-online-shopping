@@ -30,25 +30,35 @@ public class UserPrivateService extends ServiceSupport{
 	}
 	
 	/**
-	 * 新增或修改用户私信信息表信息
+	 * 保存用户私信信息表信息
 	 * 
-	 * @param element  实体对象
-	 * @return 返回主键ID,失败返回""
+	 * @param element1  主动实体对象
+	 * @param element2  被动实体对象
+	 * @return 成功返回true,失败返回false
 	 */
-	public String saveOrUpdateUserPrivate(Element element) {
-		return userPrivateDao.saveOrUpdateUserPrivate(element);
+	public boolean saveUserPrivate(Element element1,Element element2) {
+		return userPrivateDao.saveUserPrivate(element1,element2);
 	}
 	
 	/**
 	 *　删除用户私信信息表信息
 	 * 
-	 * @param PRIVATE_IDS  用户私信信息表ID值集合以","分隔
-	 * @return 返回boolean值,成功返回true,失败返回false
+	 * @param params  参数
+	 * @return 返回boolean值,成功返回执行记录数　,失败返回-1
 	 */
-	public boolean deleteUserPrivate(String PRIVATE_IDS) {
-		return userPrivateDao.deleteUserPrivate(PRIVATE_IDS);
+	public int deleteUserPrivate(Map<String, Object> params) {
+		return userPrivateDao.deleteUserPrivate(params);
 	}
 	
+	/**
+	 *　删除用户私信信息表信息
+	 * 
+	 * @param params  参数
+	 * @return 返回boolean值,成功返回执行记录数　,失败返回-1
+	 */
+	public int deleteUserByPrivate(Integer PRIVATE_ID,Integer USER_ID) {
+		return userPrivateDao.deleteUserByPrivate(PRIVATE_ID,USER_ID);
+	}
 	/**
 	 * 根据用户私信信息表ID获取用户私信信息表实体
 	 * @param PRIVATE_ID 用户私信信息表ID
@@ -69,6 +79,16 @@ public class UserPrivateService extends ServiceSupport{
 	}
 	
 	/**
+	 * 修改未阅读隐私
+	 * @param USER_ID 用户ID
+	 * @param SEND_ID 发件人ID
+	 * @return 返回用户基本信息
+	 */
+	public Map<String,Object> ModifyNoReadPrivate(int USER_ID,int SEND_ID){
+		return userPrivateDao.ModifyNoReadPrivate(USER_ID, SEND_ID);
+	}
+	
+	/**
 	 * 根据用户私信信息表ID获取用户私信信息表信息
 	 * @param PRIVATE_ID 用户私信信息表ID
 	 * @return 返回用户私信信息表信息,如果无查询记录则返回null
@@ -86,6 +106,17 @@ public class UserPrivateService extends ServiceSupport{
 	 */
 	public Map<String,Object> getUserPrivateList(Map<String, Object> params,int nowPage,int onePageCount){
 		return userPrivateDao.getUserPrivateList(params, nowPage, onePageCount);
+	}
+	
+	/**
+	 * 获取用户私信信息表列表信息
+	 * @param params 参数
+	 * @param nowPage 当前页
+	 * @param onePageCount 每页显示多少条
+	 * @return 返回用户私信信息表列表信息,如果无查询记录则返回null
+	 */
+	public Map<String,Object> getUserPrivateByList(Map<String, Object> params,int nowPage,int onePageCount){
+		return userPrivateDao.getUserPrivateByList(params, nowPage, onePageCount);
 	}
 	
 	/**
