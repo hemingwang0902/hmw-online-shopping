@@ -18,14 +18,25 @@ import org.apache.commons.lang.StringUtils;
  * 修改日期：   2011-06-20<br>
  */
 public class ParametersSupport {
+	
+	public final static String EXECUTETYPE="update";
+	
 	//条件
 	private String conditions;
+	
 	// 用 OR 关键词连接的条件 --何明旺 2011-06-20
 	private StringBuffer orConditions;
 	
 	//参数条件值
 	private Object[] values;
 	
+	//参数条件值
+	private List<Object> valuesList;
+	
+	/**
+	 * 查询条件支持方法
+	 * @param params
+	 */
 	public ParametersSupport(Map<String, Object> params){
 		StringBuffer cond = new StringBuffer();
 		orConditions = new StringBuffer();
@@ -53,6 +64,25 @@ public class ParametersSupport {
 		values = list.toArray();
 	};
 	
+	public ParametersSupport(Map<String, Object> params,String executeType){
+		if(executeType.equals(ParametersSupport.EXECUTETYPE)){
+			StringBuffer cond = new StringBuffer();
+			valuesList=new ArrayList<Object>();
+			//循环设置值
+			Map.Entry<String, Object> entry;
+			for (Iterator<Map.Entry<String, Object>> iter = params.entrySet().iterator(); iter.hasNext();) {
+				entry = iter.next();
+				if(StringUtils.isNotBlank(entry.getKey())){
+					cond.append(","+entry.getKey()+"=?");
+					valuesList.add(entry.getValue());
+				}
+			}
+			if(cond.toString().length()>0){
+				conditions=cond.toString().substring(1);
+			}
+		}
+	}
+	
 	public String getConditions() {
 		return conditions;
 	}
@@ -63,6 +93,10 @@ public class ParametersSupport {
 
 	public Object[] getValues() {
 		return values;
+	}
+
+	public List<Object> getValuesList() {
+		return valuesList;
 	}
 
 }

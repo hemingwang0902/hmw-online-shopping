@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="sz" extends="json-default" namespace="/sz">
+		<!--  -->
+		<action name="initSzForm" class="com.baizhi.index.action.sz.InitSzForm">
+			<result name="success" type="dispatcher">../index/list_sz.jsp</result>
+		</action>
+		<action name="saveBasic" class="com.baizhi.index.action.sz.SaveBasic">
+			<result name="jsonsuccess" type="json">
+		      <param name="root">result</param>
+		    </result>
+		</action>
+		<action name="uploadHeadImage" class="com.baizhi.index.action.sz.UploadHeadImage">
+			<result name="success" type="redirectAction">initSzForm</result>
+		</action>
+	</package>
+</struts>

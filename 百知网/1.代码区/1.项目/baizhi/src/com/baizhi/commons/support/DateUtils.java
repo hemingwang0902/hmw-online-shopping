@@ -463,6 +463,27 @@ public class DateUtils {
 		}
 		return 0;
 	}
+	
+	/**
+	 * 计算两个日期之间相差的时间（单位秒） add by linkx 2010-08-18
+	 * 
+	 * @param endDate 结束日期
+	 * @param srartDate  开始日期
+	 * @return 相差的天数
+	 */
+	public static long getMinusTimes(String endDate, String startDate,String format) {
+		Date date1 = null;
+		Date date2 = null;
+		try {
+			date1 = getDate(endDate, format);
+			date2 = getDate(startDate, format);
+			long thevalue = (long) (Math.abs(date1.getTime() - date2.getTime()) / (1000) + 0.5);
+			return thevalue;
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		return 0;
+	}
 
 	/**
 	 * 获取两个日期的时间差，包括时间单位（秒|分｜小时｜天） add by linkx 2010-08-18

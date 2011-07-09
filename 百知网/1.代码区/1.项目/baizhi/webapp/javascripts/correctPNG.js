@@ -27,3 +27,8 @@ $(document).ready(function() {
 		}
 	}
 });
+
+//102*102 尺寸 头像
+function load_person_image_102_102(obj){
+	obj.src='../images/main/list_sz.png';
+}

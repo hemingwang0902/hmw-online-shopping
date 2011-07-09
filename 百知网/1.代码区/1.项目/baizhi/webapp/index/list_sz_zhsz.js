@@ -9,7 +9,7 @@ $(document).ready(function(){
             CONFIRM_PASSWORD: {required: true,rangelength: [6,14],equalTo: "#PASSWORD"}
 		},
 		messages:{
-			EMAIL:{required:"请输入邮件地址",email:"请输入正确的邮件地址"} ,
+			R_PASSWORD:{required:"请输入当前密码",remote:""} ,
 			PASSWORD:{required:"请输入密码",rangelength: "密码长度在{0}-{1}之间"} ,
             CONFIRM_PASSWORD:{required:"请输入确认密码",rangelength: "确认密码长度在{0}-{1}之间" ,equalTo:"确认密码与密码不一致，请重新输入"}
 		},

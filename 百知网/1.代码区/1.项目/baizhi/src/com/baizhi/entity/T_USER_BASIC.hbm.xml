@@ -23,6 +23,11 @@
 				<comment>姓名/品牌名称</comment>
 			</column>
 		</property>
+		<property name="NAME_MODIFYTIME" type="java.util.Date">
+			<column name="NAME_MODIFYTIME"  >
+				<comment>姓名/品牌名称修改时间</comment>
+			</column>
+		</property>
 		<property name="SOURCE" type="string">
 			<column name="SOURCE" length="50" >
 				<comment>发源地(品牌特有)</comment>
@@ -76,6 +81,11 @@
 		<property name="WEBSITE" type="string">
 			<column name="WEBSITE" length="100" >
 				<comment>个性网址</comment>
+			</column>
+		</property>
+		<property name="WEBSITE_MODIFYTIME" type="java.util.Date">
+			<column name="WEBSITE_MODIFYTIME"  >
+				<comment>个性网址修改时间</comment>
 			</column>
 		</property>
 		<property name="PRIVATE_SET" type="string">

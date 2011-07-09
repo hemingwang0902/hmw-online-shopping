@@ -3,7 +3,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+	<link type="text/css" rel="stylesheet" href="../styles/style.css" />
 	<%@include file="../common/jsCss.jsp" %>
+	<script type="text/javascript" language="javascript" src="../index/list_sz.js"></script>
 </head>
 
 <body>
@@ -21,21 +23,27 @@
           </div>
     </div>
   </div>
+  
+  
 	<div class="c_left">
 	  <div class="list_xgwt_xght_sz">请使用真实姓名，填写“个人介绍”好让大家了解你
 </div>
       <div class="line_1"></div>
       <div class="title_xgwt_x_sz" style="margin-bottom:15px;">
-        <div class="title_xgwt_tu_sz"><img src="../images/main/list_sz.png" /></div>
+        <div class="title_xgwt_tu_sz"><img src="${basePath }/${returnMap.IMAGE_PATH}" height="102px" width="102px" onerror="load_person_image_102_102(this)" /></div>
+        <form action="uploadHeadImage.go" method="post" id="UPLOAD_FORM" enctype="multipart/form-data" >
         <div class="list_sz_1">
         	<ul>
-            	<li class="list_sz_li1"><input name="" type="text" />&nbsp;<input name="" type="button" value="浏览…" /></li>
+            	<li class="list_sz_li1"><input type="file"  id="upload" name="upload"  /></li>
                 <li class="list_sz_li1">支持 jpg, gif, png 格式的图片，不要超过 2MB。建议图片尺寸大于 100×100</li>
-                <li><input name="" type="button" class="list_kssc" value="开始上传" /></li>
+                <li><input type="submit" class="list_kssc" value="开始上传" /></li>
             </ul>
         </div>
+        </form>
         <div class="clear"></div>
       </div>
+      
+      <form  id="SETTING_FORM">
       <div class="title_xgwt_x_sz">
       	   <div class="title_xgwt_x_sz_2">
            	<ul>
@@ -46,16 +54,19 @@
         </div>
            <div class="title_xgwt_x_sz_3">
            	<ul>
-            	<li><input name="" type="text" />一个月只能修改一次 </li>
-                <li><textarea cols="" rows="1" class="list_sz_js"></textarea>
+            	<li><input name="NAME" id="NAME" type="text" value="${returnMap.NAME }" />一个月只能修改一次 </li>
+                <li><textarea cols="" rows="1" id="INTRODUCTION" name="INTRODUCTION" class="list_sz_js">${returnMap.INTRODUCTION }</textarea>
                 </li>
-                <li>http://www.zhihu.com/people/&nbsp;<input name="" type="text" /></li>
-                <li>可输入 4~20 位的英文或数字 , 30 天内只能修改一次（3周前修改过）</li>
-                <li><input name="" type="button" class="list_sz_an" value="保存设置"/></li>
+                <li>http://www.zhihu.com/people/&nbsp;<input name="WEBSITE" id="WEBSITE" type="text" value="${returnMap.WEBSITE }" /></li>
+                <li>可输入 4~20 位的英文或数字 , 一个月只能修改一次${returnMap.WEBSITE_NAME} </li>
+                <li><input name="" type="submit" class="list_sz_an" value="保存设置"/></li>
            	</ul>
            </div>
       </div>
+       </form>
   </div>
+ 
+  
 	<div class="clear"></div>
 </div>
 	<%@include file="../common/foot.jsp" %>

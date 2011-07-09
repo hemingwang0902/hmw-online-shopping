@@ -30,5 +30,5 @@
 	<include file="struts2/index/s-wgzdwt.xml" />
 	<include file="struts2/index/s-hyym.xml" />
 	<include file="struts2/index/s-wtymtit.xml" />
-	
+	<include file="struts2/index/s-sz.xml" />
 </struts>
