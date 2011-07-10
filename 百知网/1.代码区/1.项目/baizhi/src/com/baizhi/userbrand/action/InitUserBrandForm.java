@@ -12,7 +12,9 @@ import com.baizhi.commons.ActionSupport;
  * 修改日期：
  */
 public class InitUserBrandForm extends ActionSupport{
-	
+
+	private static final long serialVersionUID = 2755255377975005645L;
+
 	private String CURR_CREATE_BY;//创建人
 	
 	private String CURR_CREATE_TIME;//创建时间

@@ -77,6 +77,7 @@ public class Login extends ActionSupport{
 		HttpSession session = request.getSession();
 		//将值设置到Session对象中
 		session.setAttribute("userinfo", data);
+		session.setAttribute("USER_ID", data.get("USER_ID"));
 		//判断用户类型，如果为普通用户则跳转到主页，否则跳转到后台管理页
 		int USER_TYPE=Integer.valueOf(this.getValue(data, "USER_TYPE"));
 		if(USER_TYPE>2){

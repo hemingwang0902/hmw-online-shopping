@@ -26,8 +26,32 @@
 		      <param name="root">result</param>
 		    </result>
 		</action>
-		<!-- 查询关注的用户(或品牌) -->
+		<!-- 查询关注的用户 -->
 		<action name="getAttentionUser" class="com.baizhi.index.action.home.GetAttentionUser">
+			<result name="jsonsuccess" type="json">
+		      <param name="root">result</param>
+		    </result>
+		</action>
+		<!-- 查询关注的品牌 -->
+		<action name="getAttentionBrand" class="com.baizhi.index.action.home.GetAttentionBrand">
+			<result name="jsonsuccess" type="json">
+		      <param name="root">result</param>
+		    </result>
+		</action>
+		<!-- 关注问题 -->
+		<action name="attentionProblem" class="com.baizhi.index.action.home.AttentionProblem">
+			<result name="jsonsuccess" type="json">
+		      <param name="root">result</param>
+		    </result>
+		</action>
+		<!-- 收藏问题 -->
+		<action name="collectionProblem" class="com.baizhi.index.action.home.CollectionProblem">
+			<result name="jsonsuccess" type="json">
+		      <param name="root">result</param>
+		    </result>
+		</action>
+		<!-- 邀请注册(发送邮件) -->
+		<action name="sendInviteEmail" class="com.baizhi.index.action.home.SendInviteEmail">
 			<result name="jsonsuccess" type="json">
 		      <param name="root">result</param>
 		    </result>

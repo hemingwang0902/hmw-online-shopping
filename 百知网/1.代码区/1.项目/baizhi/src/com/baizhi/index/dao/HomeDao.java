@@ -2,7 +2,6 @@ package com.baizhi.index.dao;
 
 import java.util.Map;
 
-import com.baizhi.IConstants;
 import com.baizhi.commons.DaoSupport;
 
 /**
@@ -16,6 +15,8 @@ import com.baizhi.commons.DaoSupport;
  */
 public class HomeDao extends DaoSupport{
 	private final String ALL_PROBLEM_FIELDS = " a.PROBLEM_ID as PROBLEM_ID,a.PROBLEM_TYPE as PROBLEM_TYPE,a.CONTENT as CONTENT,a.IS_ANONYMITY as IS_ANONYMITY,a.RELEVANT_DETAILS as RELEVANT_DETAILS,a.USER_ID as USER_ID,a.WAS_USERID as WAS_USERID,a.ANSWER_COUNT as ANSWER_COUNT,a.REVIEW_COUNT as REVIEW_COUNT,a.ATTENTION_COUNT as ATTENTION_COUNT,a.COLLECTION_COUNT as COLLECTION_COUNT,a.BROWSE_COUNT as BROWSE_COUNT,a.IS_REPORT as IS_REPORT,a.REPORT_COUNT as REPORT_COUNT,a.CREATE_TIME as CREATE_TIME,a.MODIFY_TIME as MODIFY_TIME ";
+	private final String ALL_USER_BASIC_FIELDS = " UB.BASIC_ID as BASIC_ID, UB.USER_ID as USER_ID, UB.USER_TYPE as USER_TYPE, UB.NAME as NAME, UB.SOURCE as SOURCE, UB.PROVINCE as PROVINCE, UB.CITY as CITY, UB.INDUSTRY as INDUSTRY, UB.YEARS as YEARS, UB.LINK_MODE as LINK_MODE, UB.IS_OPEN as IS_OPEN, UB.INTRODUCTION as INTRODUCTION, UB.MOTTO as MOTTO, UB.IMAGE_PATH as IMAGE_PATH, UB.WEBSITE as WEBSITE, UB.PRIVATE_SET as PRIVATE_SET, UB.LEVEL as LEVEL, UB.SCORE as SCORE, UB.REMARK as REMARK, UB.CREATE_TIME as CREATE_TIME, UB.MODIFY_TIME as MODIFY_TIME ";
+	private final String ALL_USER_BRAND_FIELDS = " UB.BRAND_ID as BRAND_ID, UB.USER_ID as USER_ID, UB.NAME as NAME, UB.INTRODUCTION as INTRODUCTION, UB.SOURCE as SOURCE, UB.PROVINCE as PROVINCE, UB.CITY as CITY, UB.INDUSTRY as INDUSTRY, UB.LINK_NAME as LINK_NAME, UB.LINK_MODE as LINK_MODE, UB.EMAIL as EMAIL, UB.IMAGE_PATH as IMAGE_PATH, UB.STAUS as STAUS, UB.AUDIT_ID as AUDIT_ID, UB.AUDIT_TIME as AUDIT_TIME, UB.REASON as REASON, UB.REMARK as REMARK, UB.CREATE_TIME as CREATE_TIME, UB.MODIFY_TIME as MODIFY_TIME ";
 	
 	/**
 	 * 根据名称模糊查询会员、品牌和问题
@@ -130,24 +131,22 @@ public class HomeDao extends DaoSupport{
 	}
 	
 	/**
-	 * 根据登录用户的ID，查询该用户可能感兴趣的人（或品牌）
+	 * 根据用户的ID，查询该用户可能感兴趣的人
 	 * @param userId 用户ID
-	 * @param userType 用户类型，参见 <code>com.baizhi.IConstants.USER_TYPE_*</code>
 	 * @param nowPage 当前页
 	 * @param onePageCount 每页显示的记录条数
 	 * @return 查询到的结果集
 	 */
-	public Map<String,Object> getMayInterestedUser(int userId, int userType, int nowPage, int onePageCount){
-		String allFields = " UB.BUBSIC_ID UBs BUBSIC_ID, UB.USER_ID UBs USER_ID, UB.USER_TYPE UBs USER_TYPE, UB.NUBME UBs NUBME, UB.SOURCE UBs SOURCE, UB.PROVINCE UBs PROVINCE, UB.CITY UBs CITY, UB.INDUSTRY UBs INDUSTRY, UB.YEUBRS UBs YEUBRS, UB.LINK_MODE UBs LINK_MODE, UB.IS_OPEN UBs IS_OPEN, UB.INTRODUCTION UBs INTRODUCTION, UB.MOTTO UBs MOTTO, UB.IMUBGE_PUBTH UBs IMUBGE_PUBTH, UB.WEBSITE UBs WEBSITE, UB.PRIVUBTE_SET UBs PRIVUBTE_SET, UB.LEVEL UBs LEVEL, UB.SCORE UBs SCORE, UB.REMUBRK UBs REMUBRK, UB.CREUBTE_TIME UBs CREUBTE_TIME, UB.MODIFY_TIME UBs MODIFY_TIME ";
+	public Map<String,Object> getMayInterestedUser(int userId, int nowPage, int onePageCount){
 		//组织查询语句
 		StringBuffer sql = new StringBuffer()
-		.append("SELECT").append(allFields).append(" FROM (")
-		.append(" SELECT").append(allFields).append(" FROM T_USER_BASIC UB, T_USER_BASIC UB2")
+		.append("SELECT").append(ALL_USER_BASIC_FIELDS).append(" FROM (")
+		.append(" SELECT").append(ALL_USER_BASIC_FIELDS).append(" FROM T_USER_BASIC UB, T_USER_BASIC UB2")
 		.append(" WHERE UB.CITY=UB2.CITY")
 		.append(" AND UB.BASIC_ID<>UB2.BASIC_ID")
 		.append(" AND UB2.USER_ID=?")
 		.append(" UNION")
-		.append(" SELECT").append(allFields).append(" FROM T_USER_BASIC UB")
+		.append(" SELECT").append(ALL_USER_BASIC_FIELDS).append(" FROM T_USER_BASIC UB")
 		.append(" WHERE UB.USER_ID IN(")
 		.append(" SELECT UA1.USER_ID FROM T_USER_ATTENTION UA1, T_USER_ATTENTION UA2")
 		.append(" WHERE UA1.WAS_USERID=UA2.WAS_USERID")
@@ -155,7 +154,7 @@ public class HomeDao extends DaoSupport{
 		.append(" AND UA2.USER_ID=?")
 		.append(" )")
 		.append(" UNION")
-		.append(" SELECT").append(allFields).append(" FROM T_USER_BASIC UB")
+		.append(" SELECT").append(ALL_USER_BASIC_FIELDS).append(" FROM T_USER_BASIC UB")
 		.append(" WHERE UB.USER_ID IN(")
 		.append(" SELECT UA1.USER_ID FROM T_USER_ATTENTIONTALK UA1, T_USER_ATTENTIONTALK UA2")
 		.append(" WHERE UA1.TALK_ID=UA2.TALK_ID")
@@ -165,48 +164,49 @@ public class HomeDao extends DaoSupport{
 		.append(" SELECT UA.WAS_USERID FROM T_USER_ATTENTION UA where user_id=?")
 		.append(" )");
 		
-		Object[] params = null;
-		if(userType != IConstants.USER_TYPE_ALL){
-			sql.append(" AND UB.USER_TYPE=?");
-			params = new Object[5];
-			for (int i = 0; i < params.length - 1; i++) {
-				params[i] = userId;
-			}
-			params[params.length - 1] = userType;
-		}else{
-			params = new Object[4];
-			for (int i = 0; i < params.length; i++) {
-				params[i] = userId;
-			}
+		Object[] params = new Object[4];
+		for (int i = 0; i < params.length; i++) {
+			params[i] = userId;
 		}
 		
 		return queryForListWithSQLQuery(sql.toString(), params, nowPage, onePageCount);
 	}
 	
 	/**
-	 * 根据登录用户的ID，查询该用户关注的会员或品牌
+	 * 根据用户的ID，查询该用户关注的会员
 	 * @param userId 用户ID
 	 * @param userType 用户类型，参见 <code>com.baizhi.IConstants.USER_TYPE_*</code>
 	 * @param 当前页
 	 * @param onePageCount 每页显示的记录条数
 	 * @return 查询到的结果集
 	 */
-	public Map<String,Object> getAttentionUser(int userId, int userType, int nowPage, int onePageCount){
+	public Map<String,Object> getAttentionUser(int userId, int nowPage, int onePageCount){
 		StringBuffer sql = new StringBuffer()		
-		.append("SELECT UA.USER_ID FROM T_USER_ATTENTION UA, T_USER U")
-		.append(" WHERE UA.USER_ID=U.USER_ID")
+		.append("SELECT ").append(ALL_USER_BASIC_FIELDS)
+		.append(" FROM T_USER_ATTENTION UA, T_USER_BASIC UB")
+		.append(" WHERE UA.USER_ID=UB.USER_ID")
 		.append(" AND UA.USER_ID=?");
 		
-		Object[] params = null;
-		if(userType != IConstants.USER_TYPE_ALL){
-			sql.append(" AND U.USER_TYPE=?");
-			params = new Object[2];
-			params[0] = userId;
-			params[1] = userType;
-		}else{
-			params = new Object[1];
-			params[0] = userId;
-		}
+		Object[] params = new Object[]{userId};
+		
+		return queryForListWithSQLQuery(sql.toString(), params, nowPage, onePageCount);
+	}
+	
+	/**
+	 * 根据用户的ID，查询该用户关注的品牌
+	 * @param userId 用户ID
+	 * @param 当前页
+	 * @param onePageCount 每页显示的记录条数
+	 * @return 查询到的结果集
+	 */
+	public Map<String,Object> getAttentionBrand(int userId, int nowPage, int onePageCount){
+		StringBuffer sql = new StringBuffer()		
+		.append("SELECT ").append(ALL_USER_BRAND_FIELDS)
+		.append(" FROM T_USER_BATTENTION UA, T_USER_BRAND UB")
+		.append(" WHERE UA.BRAND_ID=UB.BRAND_ID")
+		.append(" AND UA.USER_ID=?");
+		
+		Object[] params = new Object[]{userId};
 		
 		return queryForListWithSQLQuery(sql.toString(), params, nowPage, onePageCount);
 	}

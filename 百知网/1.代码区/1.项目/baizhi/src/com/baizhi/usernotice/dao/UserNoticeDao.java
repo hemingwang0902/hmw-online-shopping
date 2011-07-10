@@ -2,8 +2,7 @@ package com.baizhi.usernotice.dao;
 
 import java.util.List;
 import java.util.Map;
-import org.dom4j.Element;
-import org.hibernate.EntityMode;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 

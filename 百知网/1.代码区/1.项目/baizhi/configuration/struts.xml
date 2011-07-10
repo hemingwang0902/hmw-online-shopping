@@ -25,11 +25,23 @@
 	<include file="struts2/s/s-usernotice.xml" />
 	<include file="struts2/s/s-userbrand.xml" />
 	
+	<include file="struts2/s/s-problemattention.xml" />
+	<include file="struts2/s/s-problemcollection.xml" />
+	<include file="struts2/s/s-userbattention.xml" />
+	<include file="struts2/s/s-userbrand.xml" />
+	
 	<include file="struts2/index/s-pqlb.xml" />
+	<!-- 首页 -->
 	<include file="struts2/index/s-home.xml" />
+	<!-- 所有问题 -->
 	<include file="struts2/index/s-sywt.xml" />
+	<!-- 我关注的问题 -->
 	<include file="struts2/index/s-wgzdwt.xml" />
+	<!-- 会员页面 -->
 	<include file="struts2/index/s-hyym.xml" />
+	<!-- 品牌页面 -->
+	<include file="struts2/index/s-ppym.xml" />
+	<!-- 问题页面 -->
 	<include file="struts2/index/s-wtymtit.xml" />
 	<include file="struts2/index/s-sz.xml" />
 	

@@ -105,6 +105,7 @@ public class SendEmailUtils {
 			Template temp=freeMarkerConfiguration.getTemplate(templateName);
 			temp.process(rootMap, out);
 			mimeMessageHelper.setText(out.getBuffer().toString(), true);
+			mimeMessageHelper.setFrom(simpleMailMessage.getFrom());
 		} catch (Exception e) {
 			throw new BaizhiException(e);
 		}finally{

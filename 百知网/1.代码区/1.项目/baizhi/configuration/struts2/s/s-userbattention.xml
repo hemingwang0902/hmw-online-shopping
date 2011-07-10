@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="userbattention" extends="json-default" namespace="/userbattention">
+		<action name="getUserBattentionList" class="com.baizhi.userbattention.action.GetUserBattentionList">
+			<result name="jsonsuccess" type="json">
+		      <param name="root">result</param>
+		    </result>
+		</action>
+		<action name="initUserBattentionForm" class="com.baizhi.userbattention.action.InitUserBattentionForm">
+			<result name="success" type="dispatcher">userbattentionform.jsp</result>
+		</action>
+		<action name="saveUserBattention" class="com.baizhi.userbattention.action.SaveUserBattention">
+			<result name="error"  type="dispatcher" >userbattentionform.jsp</result>
+			<result name="success" type="redirect" >userbattentionlist.jsp</result>
+			<result name="update" type="dispatcher" >userbattentionform.jsp</result>
+			<result name="invalid.token" type="freemarker">userbattentionform.jsp</result> 
+			<interceptor-ref name="defaultStack"><param name="workflow.excludeMethods">default</param></interceptor-ref> 
+			<interceptor-ref name="tokenSession"><param name="excludeMethods">default</param></interceptor-ref>
+		</action>
+		<action name="delUserBattention" class="com.baizhi.userbattention.action.DelUserBattention">
+			<result name="jsonsuccess" type="json">
+		      <param name="root">result</param>
+		    </result>
+		</action>
+		<action name="getUserBattentionById" class="com.baizhi.userbattention.action.GetUserBattentionById">
+			<result name="success" type="dispatcher" >userbattentionform.jsp</result>
+		</action>
+	</package>
+</struts>

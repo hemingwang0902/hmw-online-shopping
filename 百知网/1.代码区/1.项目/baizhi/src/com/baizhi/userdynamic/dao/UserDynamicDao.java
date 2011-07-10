@@ -97,6 +97,7 @@ public class UserDynamicDao extends DaoSupport{
 	 * @param onePageCount 每页显示多少条
 	 * @return 返回用户动态信息表列表信息,如果无查询记录则返回null
 	 */
+	@SuppressWarnings("unchecked")
 	public Map<String,Object> getUserDynamicList(Map<String, Object> params,int nowPage,int onePageCount){
 		Map<String, Object> returnmap=new HashMap<String, Object>();
 		List<Map<String,Object>> returnlist=null;

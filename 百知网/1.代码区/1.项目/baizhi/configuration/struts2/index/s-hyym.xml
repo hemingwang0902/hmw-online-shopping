@@ -4,6 +4,10 @@
         "http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
 	<package name="hyym" extends="json-default" namespace="/index">
+		<!-- 跳转到会员页面 -->
+		<action name="initHyym" class="com.baizhi.index.action.hyym.InitHyym">
+			<result name="success" type="redirect">list_hyym.jsp</result>
+		</action>
 		<!-- 根据会员ID查询他问过的问题 -->
 		<action name="getProblemListByUserId" class="com.baizhi.index.action.hyym.GetProblemListByUserId">
 			<result name="jsonsuccess" type="json">

@@ -12,5 +12,6 @@ import com.baizhi.commons.DaoImplSupport;
  * 修改日期： 
  */
 public class UserBrandImplDao extends DaoImplSupport{
+	private static final long serialVersionUID = 3811012808895225071L;
 
 }

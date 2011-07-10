@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+	
+<hibernate-mapping>
+	<class entity-name="T_USER_BATTENTION" table="T_USER_BATTENTION" lazy="false">
+		<comment>用户关注品牌信息表</comment>
+		<id name="BATTENTION_ID" column="BATTENTION_ID" type="int" >
+			<generator class="identity" />
+		</id>
+		<property name="USER_ID" type="int">
+			<column name="USER_ID"  >
+				<comment>用户ID</comment>
+			</column>
+		</property>
+		<property name="BRAND_ID" type="int">
+			<column name="BRAND_ID"  >
+				<comment>被关注品牌</comment>
+			</column>
+		</property>
+		<property name="IS_ATTENTION" type="int">
+			<column name="IS_ATTENTION"  >
+				<comment>是否关注(0否、1是)</comment>
+			</column>
+		</property>
+		<property name="CREATE_TIME" type="java.util.Date">
+			<column name="CREATE_TIME"  >
+				<comment>创建时间</comment>
+			</column>
+		</property>
+		<property name="MODIFY_TIME" type="java.util.Date">
+			<column name="MODIFY_TIME"  >
+				<comment>修改时间</comment>
+			</column>
+		</property>
+	</class>
+</hibernate-mapping>

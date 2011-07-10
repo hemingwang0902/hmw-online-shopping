@@ -2,11 +2,13 @@ package com.baizhi.user.action;
 
 import java.util.HashMap;
 import java.util.Map;
+
 import javax.mail.MessagingException;
-import org.apache.log4j.Logger;
+
 import org.dom4j.Element;
 import org.dom4j.tree.DefaultElement;
 import org.springframework.mail.javamail.MimeMessageHelper;
+
 import com.baizhi.commons.component.SendEmailUtils;
 import com.baizhi.commons.support.DateUtils;
 import com.baizhi.commons.support.Elements;
@@ -27,7 +29,6 @@ import com.baizhi.user.service.UserService;
 public class SaveUser extends UserForm{
 
 	private static final long serialVersionUID = -8075832185081472628L;
-	private static final Logger logger = Logger.getLogger(SaveUser.class);
 	
 	private UserService  userService;//用户信息表业务类
 	private SendEmailUtils  sendEmailUtils;
@@ -85,13 +86,11 @@ public class SaveUser extends UserForm{
 		
 		try {
 			MimeMessageHelper helper = sendEmailUtils.getMimeMessageHelper();
-			// TODO 如果需要的话，将下面这几行硬编码改为从配置文件读取
-			helper.setFrom("hemingwang0902@qq.com");
 			helper.setTo(this.getEMAIL());
 			helper.setSubject("欢迎注册百知网");
 			sendEmailUtils.sendTemplateMail("AfterUserRegist.ftl", rootMap);
 		} catch (MessagingException e) {
-			logger.error("发送注册通知邮件至" + this.getEMAIL() + "失败。", e);
+			log.error("发送注册通知邮件至" + this.getEMAIL() + "失败。", e);
 		}
 	}
 }

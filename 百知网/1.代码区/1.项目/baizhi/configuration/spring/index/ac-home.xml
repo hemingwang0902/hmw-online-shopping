@@ -4,8 +4,9 @@
 	<bean id="homeDao" class="com.baizhi.index.dao.HomeDao" parent="daoSupport"></bean>
 	
 	<bean id="homeService" class="com.baizhi.index.service.HomeService" parent="serviceSupport">
-		<property name="homeDao">
-			<ref local="homeDao" />
-		</property>
+		<property name="homeDao" ref="homeDao" />
+		<property name="problemDao" ref="problemDao"/>
+		<property name="problemAttentionDao" ref="problemAttentionDao"/>
+		<property name="problemCollectionDao" ref="problemCollectionDao"/>
 	</bean>
 </beans>

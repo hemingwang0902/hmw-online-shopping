@@ -11,7 +11,8 @@ import com.baizhi.commons.ActionSupport;
  * 修改日期：
  */
 public abstract class UserBrandForm extends ActionSupport {
-	
+
+	private static final long serialVersionUID = -207481668166999681L;
 	private String BRAND_ID;//品牌ID
 	private String USER_ID;//用户ID
 	private String NAME;//品牌名称

@@ -17,42 +17,27 @@ import com.baizhi.index.service.HomeService;
 public class GetMayInterestedUser extends ActionSupport {
 	private static final long serialVersionUID = 8706160028949988103L;
 	private HomeService homeService;
-	private int userType;
-	private int nowPage;
-	private int onePageCount;
-
+	private int userId;
+	
 	public void setHomeService(HomeService homeService) {
 		this.homeService = homeService;
 	}
 
-	public int getUserType() {
-		return userType;
+	public int getUserId() {
+		return userId;
 	}
 
-	public void setUserType(int userType) {
-		this.userType = userType;
-	}
-
-	public int getNowPage() {
-		return nowPage;
-	}
-
-	public void setNowPage(int nowPage) {
-		this.nowPage = nowPage;
-	}
-
-	public int getOnePageCount() {
-		return onePageCount;
-	}
-
-	public void setOnePageCount(int onePageCount) {
-		this.onePageCount = onePageCount;
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 
 	@Override
 	public String execute() throws Exception {
+		if(userId == 0){
+			userId = getSessionUserId();
+		}
 		// 查询结果列表
-		Map<String, Object> returnMap = homeService.getMayInterestedUser(getSessionUserId(), getUserType(), this.getNowPage(), this.getOnePageCount());
+		Map<String, Object> returnMap = homeService.getMayInterestedUser(userId, this.getNowPage(), this.getOnePageCount());
 		//判断是否存在查询记录
 		if (returnMap != null && returnMap.size() != 0) {
 			this.setResult(returnMap);
