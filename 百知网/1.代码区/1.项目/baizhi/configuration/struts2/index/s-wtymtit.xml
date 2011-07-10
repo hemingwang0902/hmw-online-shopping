@@ -3,7 +3,7 @@
 <struts>
 	<package name="wtymtit" extends="json-default" namespace="/index">
 		<action name="wtymDetail" class="com.baizhi.index.action.wtymtit.WtymDetail">
-			<result name="success" type="redirect" >list_wtymtit.jsp</result>
+			<result name="success" >list_wtymtit.jsp</result>
 		</action>
 	</package>
 </struts>
