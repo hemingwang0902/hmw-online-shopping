@@ -46,21 +46,19 @@
   </div>
     
     <div class="c_right">
-    	<div class="right_subMenu">
-            <ul>
-                <li><a href="#">所有问题</a></li>
-                <li><a href="#">我关注的问题</a></li>
-                <li><a href="#">问我的问题</a></li>
-                <li><a href="#">邀请我回答的问题</a></li>
-            </ul>
-        </div>
+    	<%@include file="../common/navigationMenu.jsp" %>
         <div class="r_column">
             <div class="column"><a href="#">邀请好友</a></div>
             <div class="column_content">
                 <div class="coulumn_c_left">
                     <ul>
-                        <li><a href="#">发送邮件邀请好友</a></li>
-                        <li><a href="#">生成代码邀请好友</a></li>
+                        <li><a href="invite.jsp">发送邮件邀请好友</a></li>
+                        <li>
+						<div id="d_clip_container" style="position:relative"> 
+							<input id="invite" type="hidden" value="${basePath }/regiest.jsp?invite=${USER_ID}">
+                        	<a id="d_clip_button" href="javascript:void(0);">生成代码邀请好友</a>
+						</div> 
+                        </li>
                     </ul>
                 </div>
                 <div class="coulumn_c_right"><img src="../images/main/youjian.png" /></div>	
@@ -68,78 +66,12 @@
         </div>
         <div class="r_column">
             <div class="column">你可能感兴趣的人</div>
-          <div class="column_contentgxq">
-              <div class="colun_c_gxq">
-                <div style="float:left;"><a href="#"><img src="../images/main/rw_1.png" width="25" height="25" border="0" /></a></div>
-                    <div class="colun_l"><a href="#">刘阳</a></div>
-                </div>
-                <div class=" colun_c_main">拉近远方的人的距离，却偶尔推远离，却偶尔推远</div>
-          </div>
-          <div class="column_contentgxq">
-              <div class="colun_c_gxq">
-                <div style="float:left;"><a href="#"><img src="../images/main/rw_1.png" width="25" height="25" border="0" /></a></div>
-                    <div class="colun_l"><a href="#">刘阳</a></div>
-                </div>
-                <div class=" colun_c_main">拉近远方的人的距离，却偶尔推远离，却偶尔推远</div>
-          </div>
-          <div class="column_contentgxq">
-              <div class="colun_c_gxq">
-                <div style="float:left;"><a href="#"><img src="../images/main/rw_1.png" width="25" height="25" border="0" /></a></div>
-                    <div class="colun_l"><a href="#">刘阳</a></div>
-                </div>
-                <div class=" colun_c_main">拉近远方的人的距离，却偶尔推远离，却偶尔推远</div>
-          </div>
-          <div class="column_contentgxq" style="border:0; margin-bottom:0px;">
-              <div class="colun_c_gxq">
-                <div style="float:left;"><a href="#"><img src="../images/main/rw_1.png" width="25" height="25" border="0" /></a></div>
-                    <div class="colun_l"><a href="#">刘阳</a></div>
-                </div>
-                <div class=" colun_c_main">拉近远方的人的距离，却偶尔推远离，却偶尔推远</div>
-          </div>
+            <div id="mayInterestedUserList"></div>
           <div class="more"><a href="#">更多 &gt;&gt;</a></div>
         </div>
         <div class="r_column">
           <div class="column">关注品牌</div>
-            <div class="column_contentgxq">
-              <div class="colun_c_pptu"><a href="#"><img src="../images/main/pptp_1.png" /></a>
-                
-              </div>
-                <div class=" colun_c_ppwz">
-                    <div class="colun_c_xnr"><a href="#">香奈儿</a></div>
-                    <div class="colun_c_xnrcon">流行稍纵即逝，风格永存</div>
-              </div>
-                <div style=" clear:both;font-size:0;"></div>
-          </div>
-          <div class="column_contentgxq">
-              <div class="colun_c_pptu"><a href="#"><img src="../images/main/pptp_1.png" /></a>
-                
-              </div>
-                <div class=" colun_c_ppwz">
-                    <div class="colun_c_xnr"><a href="#">香奈儿</a></div>
-                    <div class="colun_c_xnrcon">流行稍纵即逝，风格永存</div>
-              </div>
-                <div style=" clear:both;font-size:0;"></div>
-          </div>
-          <div class="column_contentgxq">
-              <div class="colun_c_pptu"><a href="#"><img src="../images/main/pptp_1.png" /></a>
-                
-              </div>
-                <div class=" colun_c_ppwz">
-                    <div class="colun_c_xnr"><a href="#">香奈儿</a></div>
-                    <div class="colun_c_xnrcon">流行稍纵即逝，风格永存</div>
-              </div>
-                <div style=" clear:both; font-size:0;"></div>
-          </div>
-          <div class="column_contentgxq" style="border:0; margin-bottom:0;">
-              <div class="colun_c_pptu"><a href="#"><img src="../images/main/pptp_1.png" /></a>
-                
-              </div>
-                <div class=" colun_c_ppwz">
-                    <div class="colun_c_xnr"><a href="#">香奈儿</a></div>
-                    <div class="colun_c_xnrcon">流行稍纵即逝，风格永存</div>
-              </div>
-                <div style="clear:both; font-size:0;"></div>
-          </div>
+          <div id="attentionUserList"></div>
           <div class="more"><a href="#">更多 &gt;&gt;</a></div>
         </div>
         <div class="left_b_tp"><img src="../images/main/tupian.png" /></div>

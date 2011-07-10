@@ -1,6 +1,9 @@
 $(document).ready(function(){
+	initZeroClipboard();
 	//获取数据列表
 	getProblemList(false);
+	getMayInterestedUserList();
+	getAttentionUserList();
 	
 	//新增问题弹出框
 	$("#item_a").fancybox({
@@ -32,7 +35,7 @@ $(document).ready(function(){
 		},
 		formatItem: function(row, i, max) {
 			var url = "javascript:void(0);";
-			if(row.TYPE == '0'){ //查看搜索结果：XXX
+			if(row.TYPE == '0'){ //查看搜索结果：aaa
 				 url = "http://www.google.com";
 			}else if(row.TYPE == '1'){ //会员
 				 url = "http://news.163.com";
@@ -70,6 +73,31 @@ $(document).ready(function(){
 });
 
 /**
+ * 初始化 ZeroClipboard，用于复制链接至粘贴板
+ */
+function initZeroClipboard() {
+	ZeroClipboard.setMoviePath('../javascripts/zeroclipboard/ZeroClipboard.swf' );
+	
+	// Create our clipboard object as per usual
+	clip = new ZeroClipboard.Client();
+	clip.setHandCursor( true );
+	
+	clip.addEventListener('load', function (client) {
+		//alert("load");
+	});
+	
+	clip.addEventListener('mouseOver', function (client) {
+		clip.setText($("#invite").val());
+	});
+	
+	clip.addEventListener('complete', function (client, text) {
+		showmessage({message:"邀请链接已经复制至粘贴板!",type:"info"});
+	});
+	
+	clip.glue( 'd_clip_button', 'd_clip_container' );
+}
+
+/**
  * 最新问题
  */
 function getLastestProblemList(){
@@ -98,10 +126,27 @@ function getMoreProblemList(){
 		getProblemList(true);
 }
 
+/**
+ * 关注
+ */
+function guanZhu(problemId){
+	var gzCount = parseInt($("#gz_" + problemId).html()) + 1;
+	$.get("attentionProblem.go?problemId=" + problemId);
+	$("#gz_sp_" + problemId).html(gzCount + "个关注");
+}
+
+/**
+ * 收藏
+ */
+function shouCang(problemId){
+	$.get("collectionProblem.go?problemId=" + problemId);
+	$("#sc_" + problemId).html("收藏");
+}
+
 /* 获取数据列表*/
 function getProblemList(more){
 	var action = ($('#problemType').val() == 'zui') ? "getLatestProblemList.go" : "getHottestProblemList.go";
-	var onePageCount=$("#onePageCount").val();
+	var onePageCount=parseInt($("#onePageCount").val());
 	var nowPage=$("#nowPage").val();
 	$.post(action,{
 		nowPage: nowPage,
@@ -141,14 +186,15 @@ function getProblemList(more){
 			
 			var NAME = ""; //用户姓名
 			var IMAGE_PATH = ""; //头像路径
-			var WEBSITE = ""; //修改网址
+			var WEBSITE = ""; //个性网址
 	
 			for(var i=0;i<data["list"].length;i++){
 				PROBLEM_ID = data["list"][i]["PROBLEM_ID"];//问题ID
 				PROBLEM_TYPE = data["list"][i]["PROBLEM_TYPE"];//问题类型(字典：1普通、2我问的问题)
 				CONTENT = data["list"][i]["CONTENT"];//问题内容
 				IS_ANONYMITY = data["list"][i]["IS_ANONYMITY"];//是否匿名(0否、1是)
-				RELEVANT_DETAILS = data["list"][i]["RELEVANT_DETAILS"];//用户ID
+				RELEVANT_DETAILS = data["list"][i]["RELEVANT_DETAILS"];
+				USER_ID = data["list"][i]["USER_ID"];//用户ID
 				ANSWER_COUNT = data["list"][i]["ANSWER_COUNT"];//答案数量
 				REVIEW_COUNT = data["list"][i]["REVIEW_COUNT"];//评论数量
 				ATTENTION_COUNT = data["list"][i]["ATTENTION_COUNT"];//关注数量
@@ -167,26 +213,121 @@ function getProblemList(more){
 					IMAGE_PATH = "../images/main/rw_1.png";
 				}
 	
+				var url = "";
+				
 				content += "<div class='title'>";
 				content += "  <div class='tit_tit'>";
-				content += "    <div class='tit_tit_1'><a href='#'>0</a></div>";
-				content += "    <div class='tit_tit_2' ><span><a href='#'><img src='"+IMAGE_PATH+"' /></a></span><a href='#'>"+CONTENT+"</a></div>";
+				content += "    <div class='tit_tit_1'></div>";
+				content += "    <div class='tit_tit_2' ><span><a href='initHyym.go?userId="+USER_ID+"'><img src='"+IMAGE_PATH+"' width='25' height='25'/></a></span><a href='wtymDetail.go?problemId="+PROBLEM_ID+"'>"+CONTENT+"</a></div>";
 				content += "  </div>";
 				content += "  <div class='tit_content'>"+RELEVANT_DETAILS+"</div>";
 				content += "  <div class='tit_bot'>";
 				content += "    <div class='tit_bot_zl'>&nbsp;</div>";
-				content += "    <div class='tit_bot_gz'><a href='#'>"+ANSWER_COUNT+" 个答案</a> • <a href='#'>"+ATTENTION_COUNT+"个关注</a> • <a href='#'>收藏</a> • <a href='#'>添加评论</a> • <a href='#'>分享</a></div>";
+				content += "    <div class='tit_bot_gz'>"+ANSWER_COUNT+" 个答案 • <span id='gz_sp_"+PROBLEM_ID+"'><a href='javascript:void(0);' onclick='guanZhu("+PROBLEM_ID+")'><label id='gz_"+PROBLEM_ID+"'>"+ATTENTION_COUNT+"</label>个关注</a></span> • <span id='sc_"+PROBLEM_ID+"'><a href='javascript:void(0);' onclick='shouCang("+PROBLEM_ID+")'>收藏</a></span> • <a href='#'>分享</a></div>";
 				content += "  </div>";
 				content += "</div>";
 			}
 			$("#divList").append(content);
-			
-			$(".tiao").html('<a href="javascript:void(0);" onclick="getProblemList(true);">更多 &gt;&gt;</a>');
-		}else{ //查询到的记录条数为空,禁用"更多"
+		}
+		
+		if(data["list"].length < onePageCount){
 			$(".tiao").html("<span>更多 &gt;&gt;</span>");
+		} else{ //查询到的记录条数为空,禁用"更多"
+			$(".tiao").html('<a href="javascript:void(0);" onclick="getProblemList(true);">更多 &gt;&gt;</a>');
 		}
 	});
 	return;
 }
 
+/**
+ * 你可能感兴趣的人
+ */
+function getMayInterestedUserList(){
+	$.post("getMayInterestedUser.go",{
+		nowPage: 1,
+		onePageCount: 4
+	}, function(result){
+		if(result==null||result==''){
+			return;
+		}
+		
+		var data = eval("("+result+")");
+		var content = "";
+		if (data != null && data["list"] != null && data["list"].length > 0) {
+			var USER_ID = ""; //用户ID
+			var NAME = ""; //用户姓名
+			var INTRODUCTION = ""; //介绍
+			var IMAGE_PATH = ""; //头像路径
+			var WEBSITE = ""; //个性网址
+	
+			for(var i=0;i<data["list"].length;i++){
+				USER_ID = data["list"][i]["USER_ID"];
+				NAME = data["list"][i]["NAME"]; //用户姓名
+				INTRODUCTION = data["list"][i]["INTRODUCTION"];
+				IMAGE_PATH = data["list"][i]["IMAGE_PATH"]; //头像路径
+				WEBSITE = data["list"][i]["WEBSITE"]; //修改网址
+				
+				if(IMAGE_PATH==null || IMAGE_PATH==undefined || IMAGE_PATH=="null"){
+					IMAGE_PATH = "../images/main/rw_1.png";
+				}
+				
+				var url = 'initHyym.go?userId='+USER_ID;
+				
+				content += '<div class="column_contentgxq">';
+				content += '	<div class="colun_c_gxq">';
+				content += '		<div style="float:left;"><a href="'+url+'"><img src="'+IMAGE_PATH+'" width="25" height="25" border="0" /></a></div>';
+				content += '    		<div class="colun_l"><a href="'+url+'">'+NAME+'</a></div>';
+				content += '		</div>';
+				content += '	<div class=" colun_c_main">'+INTRODUCTION+'</div>';
+				content += '</div>';
+			}
+			$("#mayInterestedUserList").append(content);
+		}
+	});
+}
 
+/**
+ * 关注品牌
+ */
+function getAttentionUserList(){
+	$.post("getAttentionUser.go",{
+		nowPage: 1,
+		onePageCount: 4
+	}, function(result){
+		if(result==null||result==''){
+			return;
+		}
+		
+		var data = eval("("+result+")");
+		var content = "";
+		if (data != null && data["list"] != null && data["list"].length > 0) {
+			var BRAND_ID = ""; //用户ID
+			var NAME = ""; //用户姓名
+			var INTRODUCTION = ""; //介绍
+			var IMAGE_PATH = ""; //头像路径
+	
+			for(var i=0;i<data["list"].length;i++){
+				BRAND_ID = data["list"][i]["BRAND_ID"];
+				NAME = data["list"][i]["NAME"]; //用户姓名
+				INTRODUCTION = data["list"][i]["INTRODUCTION"];
+				IMAGE_PATH = data["list"][i]["IMAGE_PATH"]; //头像路径
+				
+				if(IMAGE_PATH==null || IMAGE_PATH==undefined || IMAGE_PATH=="null"){
+					IMAGE_PATH = "../images/main/pptp_1.png";
+				}
+				
+				var url = 'initPpym.go?BRAND_ID='+BRAND_ID;
+				
+				content += '<div class="column_contentgxq" style="border:0; margin-bottom:0;">';
+				content += '	<div class="colun_c_pptu"><a href="'+url+'"><img src="'+IMAGE_PATH+'" width="60" height="53"/></a>';
+				content += '</div>';
+				content += '<div class=" colun_c_ppwz">';
+				content += '	<div class="colun_c_xnr"><a href="'+url+'">'+NAME+'</a></div>';
+				content += '	<div class="colun_c_xnrcon">'+INTRODUCTION+'</div>';
+				content += '</div>';
+				content += '<div style="clear:both; font-size:0;"></div>';
+			}
+			$("#attentionUserList").append(content);
+		}
+	});
+}

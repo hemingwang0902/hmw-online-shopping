@@ -14,7 +14,7 @@
 	<%@include file="../common/head.jsp" %>
 	<input type="hidden" id="onePageCount" value="20">
 	<input type="hidden" id="nowPage" value="1">
-	<input type="hidden" id="userId" value="${param.userId}">
+	<input type="hidden" id="userId" value="<s:property value="userId"/>">
 <div class="content">
 	<div class="c_left">
 	  <div class="search">

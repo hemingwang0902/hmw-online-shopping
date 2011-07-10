@@ -18,3 +18,4 @@
 <script type="text/javascript" language="javascript" src="${jsBasePath }/jquery.lightbox.js"></script>
 <script type="text/javascript" language="javascript" src="${jsBasePath }/jquery.lightboxmousewheel.js"></script>
 <script type="text/javascript" language="javascript" src="${jsBasePath }/correctPNG.js"></script>
+<script type="text/javascript" language="javascript" src="${jsBasePath }/zeroclipboard/ZeroClipboard.js"></script>
