@@ -3,7 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-	<link type="text/css" rel="stylesheet" href="../styles/style.css" />
+	<link type="text/css" rel="stylesheet" href="../styles/message.css" />
 	<%@include file="../common/jsCss.jsp" %>
 	<script type="text/javascript" language="javascript" src="../index/list_sz.js"></script>
 </head>
