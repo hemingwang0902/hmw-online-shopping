@@ -48,7 +48,7 @@
     <div class="c_right">
     	<%@include file="../common/navigationMenu.jsp" %>
         <div class="r_column">
-            <div class="column"><a href="#">邀请好友</a></div>
+            <div class="column"><a href="javascript:void(0);">邀请好友</a></div>
             <div class="column_content">
                 <div class="coulumn_c_left">
                     <ul>
@@ -67,12 +67,12 @@
         <div class="r_column">
             <div class="column">你可能感兴趣的人</div>
             <div id="mayInterestedUserList"></div>
-          <div class="more"><a href="#">更多 &gt;&gt;</a></div>
+          <div class="more"><a href="javascript:void(0);">更多 &gt;&gt;</a></div>
         </div>
         <div class="r_column">
           <div class="column">关注品牌</div>
           <div id="attentionUserList"></div>
-          <div class="more"><a href="#">更多 &gt;&gt;</a></div>
+          <div class="more"><a href="javascript:void(0);">更多 &gt;&gt;</a></div>
         </div>
         <div class="left_b_tp"><img src="../images/main/tupian.png" /></div>
     </div>

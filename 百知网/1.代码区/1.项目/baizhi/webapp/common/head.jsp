@@ -15,5 +15,6 @@
 		</div>
 	</div>
 </div>
+<input type="hidden" id="basePath" value="${basePath }" />
 <div id="page_shadow" class="page_shadow"></div>
 <div id="page_loading" class="page_loading"></div>

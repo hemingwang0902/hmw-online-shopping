@@ -210,8 +210,9 @@ function getProblemList(more){
 				WEBSITE = data["list"][i]["WEBSITE"]; //修改网址
 				
 				if(IMAGE_PATH==null || IMAGE_PATH==undefined || IMAGE_PATH=="null"){
-					IMAGE_PATH = "../images/main/rw_1.png";
+					IMAGE_PATH = "/images/main/rw_1.png";
 				}
+				IMAGE_PATH = $("#basePath").val() + "/images/main/rw_1.png";
 	
 				var url = "";
 				
@@ -268,8 +269,9 @@ function getMayInterestedUserList(){
 				WEBSITE = data["list"][i]["WEBSITE"]; //修改网址
 				
 				if(IMAGE_PATH==null || IMAGE_PATH==undefined || IMAGE_PATH=="null"){
-					IMAGE_PATH = "../images/main/rw_1.png";
+					IMAGE_PATH = "/images/main/rw_1.png";
 				}
+				IMAGE_PATH = $("#basePath").val() + "/images/main/rw_1.png";
 				
 				var url = 'initHyym.go?userId='+USER_ID;
 				
@@ -313,8 +315,9 @@ function getAttentionUserList(){
 				IMAGE_PATH = data["list"][i]["IMAGE_PATH"]; //头像路径
 				
 				if(IMAGE_PATH==null || IMAGE_PATH==undefined || IMAGE_PATH=="null"){
-					IMAGE_PATH = "../images/main/pptp_1.png";
+					IMAGE_PATH = "/images/main/rw_1.png";
 				}
+				IMAGE_PATH = $("#basePath").val() + "/images/main/rw_1.png";
 				
 				var url = 'initPpym.go?BRAND_ID='+BRAND_ID;
 				
