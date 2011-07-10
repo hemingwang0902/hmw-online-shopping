@@ -8,5 +8,7 @@
 	<bean id="uploadFilePath" class="com.baizhi.commons.configure.UploadFilePath" init-method="init">
 		<!--上传照片、Logo-->
 		<property name="logo_path" value="/upload/logo" />
+		<!--上传品牌Logo-->
+		<property name="brand_path" value="/upload/brand" />
 	</bean>
 </beans>

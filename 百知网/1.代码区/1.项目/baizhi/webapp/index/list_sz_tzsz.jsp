@@ -16,8 +16,12 @@
           <div class="list_sz">
           	<ul>
             	<li><a href="../sz/initSzForm.go">基本资料</a></li>
+            	<s:if test="#session.userinfo.USER_TYPE==2">
+            	<li><a href="../index/list_sz_pplb.jsp" >品牌资料</a></li>
+            	</s:if>
+            	
                 <li><a href="../index/list_sz_zhsz.jsp">账户设置</a></li>
-                <li><a href="javascript:;">通知设置</a></li>
+                <li style="background-color:#CCDBA2;"><font color="#FF6633"><a href="javascript:;">通知设置</a></font></li>
             </ul>
           </div>
     </div>

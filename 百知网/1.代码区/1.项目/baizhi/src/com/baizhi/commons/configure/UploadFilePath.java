@@ -18,6 +18,9 @@ public class UploadFilePath implements Serializable {
 	//上传照片、Logo
 	public String logo_path ;
 	
+	//上传品牌照片
+	public String brand_path ;
+	
 	
 	public void init(){}
 
@@ -27,6 +30,14 @@ public class UploadFilePath implements Serializable {
 
 	public void setLogo_path(String logo_path) {
 		this.logo_path = logo_path;
+	}
+
+	public String getBrand_path() {
+		return brand_path;
+	}
+
+	public void setBrand_path(String brand_path) {
+		this.brand_path = brand_path;
 	}
 	
 }

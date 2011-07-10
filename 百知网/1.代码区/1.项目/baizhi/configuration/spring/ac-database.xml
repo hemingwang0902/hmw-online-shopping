@@ -41,6 +41,7 @@
 				<value>com/baizhi/entity/T_USER_PRIVATE.hbm.xml</value>
 				<value>com/baizhi/entity/T_USER_DYNAMIC.hbm.xml</value>
 				<value>com/baizhi/entity/T_USER_NOTICE.hbm.xml</value>
+				<value>com/baizhi/entity/T_USER_BRAND.hbm.xml</value>
 			</list>
 		</property>
 	</bean>

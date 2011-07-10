@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="userbrand" extends="json-default" namespace="/userbrand">
+		<action name="getUserBrandList" class="com.baizhi.userbrand.action.GetUserBrandList">
+			<result name="jsonsuccess" type="json">
+		      <param name="root">result</param>
+		    </result>
+		</action>
+		<action name="getUserBrandByList" class="com.baizhi.userbrand.action.GetUserBrandByList">
+			<result name="jsonsuccess" type="json">
+		      <param name="root">result</param>
+		    </result>
+		</action>
+		<action name="initUserBrandForm" class="com.baizhi.userbrand.action.InitUserBrandForm">
+			<result name="success" type="dispatcher">userbrandform.jsp</result>
+		</action>
+		<action name="saveUserBrand" class="com.baizhi.userbrand.action.SaveUserBrand">
+			<result name="success" type="redirect">../index/list_sz_pplb.jsp</result>
+			<result name="update" type="redirect">../index/list_sz_pplb.jsp</result>
+			<result name="error" >../index/list_sz_pp.jsp</result>
+		</action>
+		<action name="delUserBrand" class="com.baizhi.userbrand.action.DelUserBrand">
+			<result name="jsonsuccess" type="json">
+		      <param name="root">result</param>
+		    </result>
+		</action>
+		<action name="auditBrand" class="com.baizhi.userbrand.action.AuditBrand">
+			<result name="jsonsuccess" type="json">
+		      <param name="root">result</param>
+		    </result>
+		</action>
+		<action name="getUserBrandById" class="com.baizhi.userbrand.action.GetUserBrandById">
+			<result name="success" type="dispatcher">../index/list_sz_pp.jsp</result>
+		</action>
+		<action name="checkName" class="com.baizhi.userbrand.action.CheckName">
+			<result name="jsonsuccess" type="json">
+		      <param name="root">result</param>
+		    </result>
+		</action>
+	</package>
+</struts>

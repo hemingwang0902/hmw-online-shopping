@@ -127,7 +127,7 @@ public abstract class ActionSupport extends com.opensymphony.xwork2.ActionSuppor
 	 * @return
 	 */
 	public String getSessionUserName() {
-		return String.valueOf(getSessionUserInfo().get("USER_NAME"));
+		return String.valueOf(getSessionUserInfo().get("NAME"));
 	}
 	
 

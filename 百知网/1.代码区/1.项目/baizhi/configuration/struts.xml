@@ -23,6 +23,7 @@
 	<include file="struts2/s/s-userprivate.xml" />
 	<include file="struts2/s/s-userdynamic.xml" />
 	<include file="struts2/s/s-usernotice.xml" />
+	<include file="struts2/s/s-userbrand.xml" />
 	
 	<include file="struts2/index/s-pqlb.xml" />
 	<include file="struts2/index/s-home.xml" />

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+	
+<hibernate-mapping>
+	<class entity-name="T_USER_BRAND" table="T_USER_BRAND" lazy="false">
+		<comment>用户品牌信息表</comment>
+		<id name="BRAND_ID" column="BRAND_ID" type="int" >
+			<generator class="identity" />
+		</id>
+		<property name="USER_ID" type="int">
+			<column name="USER_ID"  >
+				<comment>用户ID</comment>
+			</column>
+		</property>
+		<property name="NAME" type="string">
+			<column name="NAME" length="50" >
+				<comment>品牌名称</comment>
+			</column>
+		</property>
+		<property name="INTRODUCTION" type="string">
+			<column name="INTRODUCTION" length="1000" >
+				<comment>品牌介绍</comment>
+			</column>
+		</property>
+		<property name="SOURCE" type="string">
+			<column name="SOURCE" length="50" >
+				<comment>发源地(品牌特有)</comment>
+			</column>
+		</property>
+		<property name="PROVINCE" type="int">
+			<column name="PROVINCE"  >
+				<comment>所在地区(省：地区信息表ID)</comment>
+			</column>
+		</property>
+		<property name="CITY" type="int">
+			<column name="CITY"  >
+				<comment>所在地区(市：地区信息表ID)</comment>
+			</column>
+		</property>
+		<property name="INDUSTRY" type="string">
+			<column name="INDUSTRY" length="10" >
+				<comment>从事行业(字典)</comment>
+			</column>
+		</property>
+		<property name="LINK_NAME" type="string">
+			<column name="LINK_NAME" length="10" >
+				<comment>联系人姓名</comment>
+			</column>
+		</property>
+		<property name="LINK_MODE" type="string">
+			<column name="LINK_MODE" length="20" >
+				<comment>联系方式</comment>
+			</column>
+		</property>
+		<property name="EMAIL" type="string">
+			<column name="EMAIL" length="50" >
+				<comment>电子邮箱</comment>
+			</column>
+		</property>
+		<property name="IMAGE_PATH" type="string">
+			<column name="IMAGE_PATH" length="100" >
+				<comment>相片路径/LOGO路径</comment>
+			</column>
+		</property>
+		<property name="STAUS" type="int">
+			<column name="STAUS"  >
+				<comment>状态(1：未申请、2：申请、3：通过、4：未通过)</comment>
+			</column>
+		</property>
+		<property name="AUDIT_ID" type="int">
+			<column name="AUDIT_ID"  >
+				<comment>审核人</comment>
+			</column>
+		</property>
+		<property name="AUDIT_TIME" type="java.util.Date">
+			<column name="AUDIT_TIME"  >
+				<comment>审核时间</comment>
+			</column>
+		</property>
+		<property name="REASON" type="string">
+			<column name="REASON" length="1000" >
+				<comment>不通过原因</comment>
+			</column>
+		</property>
+		<property name="REMARK" type="string">
+			<column name="REMARK" length="1000" >
+				<comment>备注</comment>
+			</column>
+		</property>
+		<property name="BRAND_LABEL" type="string">
+			<column name="BRAND_LABEL" length="1000" >
+				<comment>标签</comment>
+			</column>
+		</property>
+		<property name="CREATE_TIME" type="java.util.Date">
+			<column name="CREATE_TIME"  >
+				<comment>创建时间</comment>
+			</column>
+		</property>
+		<property name="MODIFY_TIME" type="java.util.Date">
+			<column name="MODIFY_TIME"  >
+				<comment>修改时间</comment>
+			</column>
+		</property>
+	</class>
+</hibernate-mapping>

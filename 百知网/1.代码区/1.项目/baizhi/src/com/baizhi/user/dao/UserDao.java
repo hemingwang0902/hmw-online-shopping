@@ -112,8 +112,9 @@ public class UserDao extends DaoSupport{
 		   .append("a.LAST_LOGINTIME as LAST_LOGINTIME,")//最后登录时间
 		   .append("a.IP as IP,")//最后登录IP
 		   .append("a.MAC as MAC,")//最后登录MAC
-		   .append("a.LAST_FREEZETIME as LAST_FREEZETIME) ")//最后冻结时间
-		   .append("FROM T_USER a WHERE a.EMAIL=? and a.PASSWORD=? ");
+		   .append("a.LAST_FREEZETIME as LAST_FREEZETIME, ")//最后冻结时间
+		   .append("b.NAME as NAME) ")//姓名
+		   .append("FROM T_USER a,T_USER_BASIC b WHERE a.EMAIL=? and a.PASSWORD=? and a.USER_ID=b.USER_ID ");
 		
 		try {
 			List<Map<String,Object>> list=setQueryParameters(session.createQuery(sql.toString()), new Object[]{EMAIL,PASSWORD}).list();

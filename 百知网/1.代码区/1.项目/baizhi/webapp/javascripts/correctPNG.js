@@ -37,3 +37,8 @@ function load_person_image_102_102(obj){
 function load_person_image_25_25(obj){
 	obj.src='../images/main/rw_1.png';
 }
+
+//74*74 尺寸 品牌
+function load_brand_image_74_74(obj){
+	obj.src='../images/main/xner.jpg';
+}
