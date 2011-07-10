@@ -1,4 +1,6 @@
 $(document).ready(function(){
+	$("#CONTENT").val(parent.$("#title").val());
+	
 	$("#ProblemForm").validate({
 		rules:{
 			CONTENT: {required: true}
@@ -27,7 +29,8 @@ $(document).ready(function(){
 				var content = "";
 				if (data != null && data["id"] != null && data["id"].length > 0) {
 					//showmessage({message:"添加问题成功",type:"info"});
-					parent.$.fancybox.close();
+					//parent.$.fancybox.close();
+					parent.document.location="wtymDetail.go?problemId=" + data["id"];
 				}else{
 					showmessage({message:"添加问题失败！",type:"error"});
 				}
