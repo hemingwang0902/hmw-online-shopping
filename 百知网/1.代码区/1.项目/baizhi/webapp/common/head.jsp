@@ -19,3 +19,5 @@
 <input type="hidden" id="basePath" value="${basePath }" />
 <div id="page_shadow" class="page_shadow"></div>
 <div id="page_loading" class="page_loading"></div>
+<div id="show_page_loading" class="show_page_loading"></div>
+<a href="#show_page_loading" id="show_message"></a>

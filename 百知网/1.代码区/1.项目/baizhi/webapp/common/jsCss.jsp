@@ -15,9 +15,9 @@
 <script type="text/javascript" language="javascript" src="${basePath }/calendar/WdatePicker.js"></script>
 <script type="text/javascript" language="javascript" src="${jsBasePath }/jquery-1.6.1.js"></script>
 <script type="text/javascript" language="javascript" src="${jsBasePath }/jquery.validate.js"></script>
-<script type="text/javascript" language="javascript"  src="${jsBasePath }/jquery.message.js"></script>
 <script type="text/javascript" language="javascript" src="${jsBasePath }/jquery.lightbox.js"></script>
 <script type="text/javascript" language="javascript" src="${jsBasePath }/jquery.lightboxmousewheel.js"></script>
 <script type="text/javascript" language="javascript" src="${jsBasePath }/jquery.autocomplete.min-1.1.js"></script>
 <script type="text/javascript" language="javascript" src="${jsBasePath }/correctPNG.js"></script>
 <script type="text/javascript" language="javascript" src="${jsBasePath }/zeroclipboard/ZeroClipboard.js"></script>
+<script type="text/javascript" language="javascript"  src="${jsBasePath }/jquery.showmessage.js"></script>
