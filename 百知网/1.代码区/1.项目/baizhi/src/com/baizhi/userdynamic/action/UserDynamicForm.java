@@ -20,7 +20,7 @@ public abstract class UserDynamicForm extends ActionSupport {
 	private String DYNAMIC_TYPE;//动态类型(字典：1回答问题、2关注会员)
 	private String CONTENT;//动态内容(存放组织好的html内容)
 	private String WARN_USERID;//提醒用户ID
-	private String IS_OPEN;//是否查看(0否、1是)
+	private Integer IS_OPEN;//是否查看(0否、1是)
 	private String CREATE_TIME;//创建时间
 	private String MODIFY_TIME;//修改时间
 	
@@ -80,14 +80,14 @@ public abstract class UserDynamicForm extends ActionSupport {
 		this.WARN_USERID = WARN_USERID;
 	}
 	
-	public String getIS_OPEN() {
+	public Integer getIS_OPEN() {
 		return IS_OPEN;
 	}
 
-	public void setIS_OPEN(String IS_OPEN) {
-		this.IS_OPEN = IS_OPEN;
+	public void setIS_OPEN(Integer is_open) {
+		IS_OPEN = is_open;
 	}
-	
+
 	public String getCREATE_TIME() {
 		return CREATE_TIME;
 	}

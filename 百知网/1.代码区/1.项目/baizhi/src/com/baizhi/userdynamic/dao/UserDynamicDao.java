@@ -1,12 +1,8 @@
 package com.baizhi.userdynamic.dao;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.dom4j.Element;
-import org.hibernate.Query;
-import org.hibernate.Session;
-
 import com.baizhi.commons.DaoSupport;
 import com.baizhi.commons.ParametersSupport;
  /**
@@ -97,52 +93,45 @@ public class UserDynamicDao extends DaoSupport{
 	 * @param onePageCount 每页显示多少条
 	 * @return 返回用户动态信息表列表信息,如果无查询记录则返回null
 	 */
-	@SuppressWarnings("unchecked")
 	public Map<String,Object> getUserDynamicList(Map<String, Object> params,int nowPage,int onePageCount){
-		Map<String, Object> returnmap=new HashMap<String, Object>();
-		List<Map<String,Object>> returnlist=null;
-		Session session = getSession();
-		try {
-			//我的问题有了新答案
-			StringBuffer sql = new StringBuffer();
-			sql.append("SELECT ")
-			   .append("a.DYNAMIC_ID as DYNAMIC_ID,")//用户动态ID
-			   .append("a.USER_ID as USER_ID,")//用户ID
-			   .append("a.TITLE as TITLE,")//动态主题
-			   .append("a.BUSINESS_ID as BUSINESS_ID,")//业务主键(回复问题ID、关注会员ID)
-			   .append("a.DYNAMIC_TYPE as DYNAMIC_TYPE,")//动态类型(字典：1回答问题、2关注会员)
-			   .append("a.CONTENT as CONTENT,")//动态内容(存放组织好的html内容)
-			   .append("a.WARN_USERID as WARN_USERID,")//提醒用户ID
-			   .append("a.IS_OPEN as IS_OPEN,")
-			   .append("a.CREATE_TIME as CREATE_TIME,")//创建时间
-			   .append("b.NAME as NAME,")//姓名
-			   .append("b.IMAGE_PATH as IMAGE_PATH ")//路径
-			   .append("FROM T_USER_DYNAMIC a,T_USER_BASIC b WHERE a.USER_ID=b.USER_ID and a.WARN_USERID=? and a.IS_OPEN=0 and a.DYNAMIC_TYPE=1 ");
-			//我关注的问题有了新答案
-			sql.append("union SELECT new Map(")
-			   .append("a.DYNAMIC_ID as DYNAMIC_ID,")//用户动态ID
-			   .append("a.USER_ID as USER_ID,")//用户ID
-			   .append("a.TITLE as TITLE,")//动态主题
-			   .append("a.BUSINESS_ID as BUSINESS_ID,")//业务主键(回复问题ID、关注会员ID)
-			   .append("a.DYNAMIC_TYPE as DYNAMIC_TYPE,")//动态类型(字典：1回答问题、2关注会员)
-			   .append("a.CONTENT as CONTENT,")//动态内容(存放组织好的html内容)
-			   .append("a.WARN_USERID as WARN_USERID,")//提醒用户ID
-			   .append("a.IS_OPEN as IS_OPEN,")
-			   .append("a.CREATE_TIME as CREATE_TIME,")//创建时间
-			   .append("FROM T_USER_DYNAMIC a,T_PROBLEM_ATTENTION b WHERE")
-			   .append(" b.USER_ID=? and a.IS_OPEN=0 and a.DYNAMIC_TYPE=2 and b.ATTENTION_ID=a.BUSINESS_ID ");
-			
-			Query query = setQueryParameters(session.createQuery(sql.toString()), new Object[]{params.get("CUR_USER_ID")});
-			returnlist=query.list();
-			if(returnlist!=null&&returnlist.size()>0){
-				returnmap.put("list", returnlist);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			session.close();
+		StringBuffer sql = new StringBuffer();
+		sql.append("SELECT ")
+		   .append("new Map(a.DYNAMIC_ID as DYNAMIC_ID,")//用户动态ID
+		   .append("a.USER_ID as USER_ID,")//用户ID
+		   .append("a.TITLE as TITLE,")//动态主题
+		   .append("a.BUSINESS_ID as BUSINESS_ID,")//业务主键(回复问题ID、关注会员ID)
+		   .append("a.DYNAMIC_TYPE as DYNAMIC_TYPE,")//动态类型(字典：1回答问题、2关注会员)
+		   .append("a.CONTENT as CONTENT,")//动态内容(存放组织好的html内容)
+		   .append("a.WARN_USERID as WARN_USERID,")//提醒用户ID
+		   .append("a.IS_OPEN as IS_OPEN,")
+		   .append("a.CREATE_TIME as CREATE_TIME,")//创建时间
+		   .append("b.NAME as USER_NAME,")//姓名
+		   .append("b.IMAGE_PATH as IMAGE_PATH) ")//路径
+		   .append("FROM T_USER_DYNAMIC a,T_USER_BASIC b WHERE a.USER_ID=b.USER_ID ")
+		   .append("and a.WARN_USERID=? ");
+		Object[] values=null;
+		if(params.get("IS_OPEN")!=null){
+			sql.append("and a.IS_OPEN=?");	
+			values=new Object[]{params.get("WARN_USERID"),params.get("IS_OPEN")};
+		}else{
+			values=new Object[]{params.get("WARN_USERID")};
 		}
-		return returnmap;
+		sql.append("order by CREATE_TIME DESC");
+		
+		
+		return this.getByList(sql.toString(), values, "T_USER_DYNAMIC", nowPage, onePageCount);
+	}
+	
+	/**
+	 * 修改是否查看
+	 * @param DYNAMIC_ID 消息ID
+	 * @return 成功返回执行数量，失败返回-1
+	 */
+	public int ModifyIsOpen(int DYNAMIC_ID){
+		int count=-1;
+		count=this.executeUpdate("update T_USER_DYNAMIC set IS_OPEN=1 where DYNAMIC_ID=?", new Object[]{DYNAMIC_ID});
+		return count;
+		
 	}
 	
 	/**

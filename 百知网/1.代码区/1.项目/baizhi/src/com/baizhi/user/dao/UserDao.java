@@ -1,5 +1,6 @@
 package com.baizhi.user.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.dom4j.Element;
@@ -9,6 +10,7 @@ import com.baizhi.commons.DaoSupport;
 import com.baizhi.commons.ParametersSupport;
 import com.baizhi.commons.constant.Diclist;
 import com.baizhi.commons.support.DateUtils;
+import com.baizhi.commons.support.Elements;
 import com.baizhi.userlog.dao.UserLogDao;
 /**
  * 
@@ -40,6 +42,33 @@ public class UserDao extends DaoSupport{
 	 */
 	public String saveOrUpdateUser(Element element) {
 		return this.saveOrUpdate(element, "USER_ID");
+	}
+	
+	/**
+	 * 注册用户信息表信息
+	 * 
+	 * @param userelement  用户实体对象
+	 * @param basicelement 基本信息实体对象
+	 * @return 返回主键ID,失败返回""
+	 */
+	public Map<String, Object> regiest(Element userelement,Element basicelement) {
+		Session session = getSession();
+		Session dom4jSession = session.getSession(EntityMode.DOM4J);
+		Map<String, Object> returnMap=new HashMap<String, Object>();
+		try {
+			dom4jSession.beginTransaction();
+			dom4jSession.save(userelement);
+			Elements.setElementValue(basicelement, "USER_ID", userelement.elementText("USER_ID"));// 用户ID
+			dom4jSession.save(basicelement);
+			dom4jSession.getTransaction().commit();
+			returnMap.put("USER_ID",userelement.elementText("USER_ID"));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			dom4jSession.close();
+			session.close();
+		}
+		return returnMap;
 	}
 	
 	/**

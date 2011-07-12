@@ -41,6 +41,17 @@ public class UserService extends ServiceSupport{
 	}
 	
 	/**
+	 * 注册用户信息表信息
+	 * 
+	 * @param userelement  用户实体对象
+	 * @param basicelement 基本信息实体对象
+	 * @return 返回主键ID,失败返回""
+	 */
+	public Map<String, Object> regiest(Element userelement,Element basicelement) {
+		return userDao.regiest(userelement, basicelement);
+	}
+	
+	/**
 	 * 修改密码
 	 * 
 	 * @param USER_ID  用户ID

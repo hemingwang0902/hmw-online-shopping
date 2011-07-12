@@ -37,7 +37,6 @@ public class GetUserDynamicById extends UserDynamicForm{
 			this.setDYNAMIC_TYPE(this.getValue(returnMap,"DYNAMIC_TYPE"));// 动态类型(字典：1回答问题、2关注会员)
 			this.setCONTENT(this.getValue(returnMap,"CONTENT"));// 动态内容(存放组织好的html内容)
 			this.setWARN_USERID(this.getValue(returnMap,"WARN_USERID"));// 提醒用户ID
-			this.setIS_OPEN(this.getValue(returnMap,"IS_OPEN"));// 是否查看(0否、1是)
 			this.setCREATE_TIME(this.getValue(returnMap,"CREATE_TIME"));// 创建时间
 			this.setMODIFY_TIME(this.getValue(returnMap,"MODIFY_TIME"));// 修改时间
 		}

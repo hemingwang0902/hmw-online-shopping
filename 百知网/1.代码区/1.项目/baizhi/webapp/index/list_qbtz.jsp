@@ -4,6 +4,7 @@
 <html>
 <head>
 	<%@include file="../common/jsCss.jsp" %>
+	<script type="text/javascript" language="javascript" src="../index/list_qbtz.js"></script>
 </head>
 
 <body>
@@ -12,119 +13,22 @@
 	<div class="c_left">
 	  <div class="subMenu">
       	<ul>
-            <li class="zui"><a href="#">未读通知</a></li>
-            <li class="re"><a href="#">全部通知</a></li>
+            <li class="zui" id="noreadmessage"><a href="javascript:;">未读通知</a></li>
+            <li class="re" id="allreadmessage"><a href="javascript:;">全部通知</a></li>
       	</ul>
       </div>
       <div class="line_1"></div>
-      <div class="su" style="background:#f7ffe1;">
-        <a href="#" class="qu">
-        <img class="eu" src="../images/main/rw_1.png" />
-        </a>
-        <div class="nu"><div class="x-d"><a href="#" class="x-a"> 姜文浩 </a>回答了问题 <a href="#">马化腾为什么不做天使投资？</a>
-        <span class="x-c">09:54</span></div></div>
-        </div>
-        <div class="su" style="background:#f7ffe1;">
-        <a href="#" class="qu">
-        <img class="eu" src="../images/main/rw_1.png" />
-        </a>
-        <div class="nu"><div class="x-d"><a href="#" class="x-a"> 姜文浩 </a>回答了问题 <a href="#">马化腾为什么不做天使投资？</a>
-        <span class="x-c">09:54</span></div></div>
-        </div>
-        <div class="su">
-        <a href="#" class="qu">
-        <img class="eu" src="../images/main/rw_1.png" />
-        </a>
-        <div class="nu"><div class="x-d"><a href="#" class="x-a"> 姜文浩 </a>回答了问题 <a href="#">马化腾为什么不做天使投资？</a>
-        <span class="x-c">09:54</span></div></div>
-        </div>
-        <div class="su">
-        <a href="#" class="qu">
-        <img class="eu" src="../images/main/rw_1.png" />
-        </a>
-        <div class="nu"><div class="x-d"><a href="#" class="x-a"> 姜文浩 </a>回答了问题 <a href="#">马化腾为什么不做天使投资？</a>
-        <span class="x-c">09:54</span></div></div>
-        </div>
-        <div class="su">
-        <a href="#" class="qu">
-        <img class="eu" src="../images/main/rw_1.png" />
-        </a>
-        <div class="nu"><div class="x-d"><a href="#" class="x-a"> 姜文浩 </a>回答了问题 <a href="#">马化腾为什么不做天使投资？</a>
-        <span class="x-c">09:54</span></div></div>
-        </div>
-        <div class="su">
-        <a href="#" class="qu">
-        <img class="eu" src="../images/main/rw_1.png" />
-        </a>
-        <div class="nu"><div class="x-d"><a href="#" class="x-a"> 姜文浩 </a>回答了问题 <a href="#">马化腾为什么不做天使投资？</a>
-        <span class="x-c">09:54</span></div></div>
-        </div>
-        <div class="su">
-        <a href="#" class="qu">
-        <img class="eu" src="../images/main/rw_1.png" />
-        </a>
-        <div class="nu"><div class="x-d"><a href="#" class="x-a"> 姜文浩 </a>回答了问题 <a href="#">马化腾为什么不做天使投资？</a>
-        <span class="x-c">09:54</span></div></div>
-        </div>
-        <div class="su">
-        <a href="#" class="qu">
-        <img class="eu" src="../images/main/rw_1.png" />
-        </a>
-        <div class="nu"><div class="x-d"><a href="#" class="x-a"> 姜文浩 </a>回答了问题 <a href="#">马化腾为什么不做天使投资？</a>
-        <span class="x-c">09:54</span></div></div>
-        </div>
-        <div class="su">
-        <a href="#" class="qu">
-        <img class="eu" src="../images/main/rw_1.png" />
-        </a>
-        <div class="nu"><div class="x-d"><a href="#" class="x-a"> 姜文浩 </a>回答了问题 <a href="#">马化腾为什么不做天使投资？</a>
-        <span class="x-c">09:54</span></div></div>
-        </div>
-        <div class="su">
-        <a href="#" class="qu">
-        <img class="eu" src="../images/main/rw_1.png" />
-        </a>
-        <div class="nu"><div class="x-d"><a href="#" class="x-a"> 姜文浩 </a>回答了问题 <a href="#">马化腾为什么不做天使投资？</a>
-        <span class="x-c">09:54</span></div></div>
-        </div>
-        <div class="su">
-        <a href="#" class="qu">
-        <img class="eu" src="../images/main/rw_1.png" />
-        </a>
-        <div class="nu"><div class="x-d"><a href="#" class="x-a"> 姜文浩 </a>回答了问题 <a href="#">马化腾为什么不做天使投资？</a>
-        <span class="x-c">09:54</span></div></div>
-        </div>
-        <div class="su">
-        <a href="#" class="qu">
-        <img class="eu" src="../images/main/rw_1.png" />
-        </a>
-        <div class="nu"><div class="x-d"><a href="#" class="x-a"> 姜文浩 </a>回答了问题 <a href="#">马化腾为什么不做天使投资？</a>
-        <span class="x-c">09:54</span></div></div>
-        </div>
-        <div class="su">
-        <a href="#" class="qu">
-        <img class="eu" src="../images/main/rw_1.png" />
-        </a>
-        <div class="nu"><div class="x-d"><a href="#" class="x-a"> 姜文浩 </a>回答了问题 <a href="#">马化腾为什么不做天使投资？</a>
-        <span class="x-c">09:54</span></div></div>
-        </div>
-        <div class="su">
-        <a href="#" class="qu">
-        <img class="eu" src="../images/main/rw_1.png" />
-        </a>
-        <div class="nu"><div class="x-d"><a href="#" class="x-a"> 姜文浩 </a>回答了问题 <a href="#">马化腾为什么不做天使投资？</a>
-        <span class="x-c">09:54</span></div></div>
-        </div>
-        <div class="su">
-        <a href="#" class="qu">
-        <img class="eu" src="../images/main/rw_1.png" />
-        </a>
-        <div class="nu"><div class="x-d"><a href="#" class="x-a"> 姜文浩 </a>回答了问题 <a href="#">马化腾为什么不做天使投资？</a>
-        <span class="x-c">09:54</span></div></div>
-        </div>
-
+      	<input type="hidden" id="nowPage" name="nowPage" value="1" />
+      	<input type="hidden" id="onePageCount" name="onePageCount" value="10" />
+      	<input type="hidden" id="IS_OPEN" value="0" />
+      	<div id="userdynamiclist">
+      	
+      	</div>
         
-      <div class="tiao"><a href="#">更多 &gt;&gt;</a></div>
+       
+        
+        
+      <div class="tiao"><a href="javascript:;" id="list_pqlb_more">更多 &gt;&gt;</a></div>
   </div>
     
     

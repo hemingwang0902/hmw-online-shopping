@@ -15,10 +15,6 @@
 		<action name="saveUserDynamic" class="com.baizhi.userdynamic.action.SaveUserDynamic">
 			<result name="error"  type="dispatcher" >userdynamicform.jsp</result>
 			<result name="success" type="redirect" >userdynamiclist.jsp</result>
-			<result name="update" type="dispatcher" >userdynamicform.jsp</result>
-			<result name="invalid.token" type="freemarker">userdynamicform.jsp</result> 
-			<interceptor-ref name="defaultStack"><param name="workflow.excludeMethods">default</param></interceptor-ref> 
-			<interceptor-ref name="tokenSession"><param name="excludeMethods">default</param></interceptor-ref>
 		</action>
 		<action name="delUserDynamic" class="com.baizhi.userdynamic.action.DelUserDynamic">
 			<result name="jsonsuccess" type="json">

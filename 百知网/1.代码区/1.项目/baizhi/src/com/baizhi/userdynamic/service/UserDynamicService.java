@@ -89,6 +89,15 @@ public class UserDynamicService extends ServiceSupport{
 	}
 	
 	/**
+	 * 修改是否查看
+	 * @param DYNAMIC_ID 消息ID
+	 * @return 成功返回执行数量，失败返回-1
+	 */
+	public int ModifyIsOpen(int DYNAMIC_ID){
+		return userDynamicDao.ModifyIsOpen(DYNAMIC_ID);
+	}
+	
+	/**
      * 获取用户动态信息表信息
      * 
      * @param  params 参数
