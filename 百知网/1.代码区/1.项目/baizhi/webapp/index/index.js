@@ -13,6 +13,8 @@ $(document).ready(function(){
 			collection	: basePath + "/index/collectionProblem.go?problemId=",
 			lastest		: basePath + "/index/getLatestProblemList.go",
 			hottest		: basePath + "/index/getHottestProblemList.go",
+			inviteList	: basePath + "/index/getInviteProblemList.go",
+			askMeList	: basePath + "/index/getAskMeProblemList.go",
 			all		: basePath + "/index/getAllProblemList.go"
 		},
 		

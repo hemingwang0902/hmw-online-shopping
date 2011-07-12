@@ -4,16 +4,29 @@
 <html>
 <head>
 	<%@include file="../common/jsCss.jsp" %>
+	<script type="text/javascript" src="index.js"></script>
+	<script type="text/javascript" src="list_yqwhddwt.js"></script>
 </head>
 
 <body>
 	<%@include file="../common/head.jsp" %>
 <div class="content">
 	<div class="c_left">
-  	</div>
+	  <%@include file="../common/search.jsp" %>
+      <div class="subMenu">
+      <ul><li class="re" style="width: 150px;"><a href="javascript:void(0);">邀请我回答的问题</a></li></ul>
+      </div>
+      <div class="line_1"></div>
+      <%@include file="../common/problemList.jsp" %>
+  </div>
     
     
     <div class="c_right">
+    	<%@include file="../common/navigationMenu.jsp" %>
+    	<%@include file="../common/inviteFriends.jsp" %>
+    	<%@include file="../common/interestUsers.jsp" %>
+    	<%@include file="../common/attentionBrands.jsp" %>
+        <div class="left_b_tp"><img src="../images/main/tupian.png" /></div>
     </div>
 	<div class="clear"></div>
 </div>

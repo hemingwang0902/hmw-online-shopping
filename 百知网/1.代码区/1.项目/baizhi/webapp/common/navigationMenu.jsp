@@ -1,5 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-
+<!-- 页面右上角的导航菜单 -->
 <div class="right_subMenu">
     <ul>
         <li><a href="${basePath }/index/list_sywt.jsp">所有问题</a></li>
