@@ -27,7 +27,7 @@ public class SywtService extends ServiceSupport{
 		return sywtDao.getAskMeProblemList(userId, nowPage, onePageCount);
 	}
 	
-	public Map<String,Object> getAnsweredProblemList(int userId, int nowPage, int onePageCount){
-		return sywtDao.getAnsweredProblemList(userId, nowPage, onePageCount);
+	public Map<String,Object> getInviteProblemList(int userId, int nowPage, int onePageCount){
+		return sywtDao.getInviteProblemList(userId, nowPage, onePageCount);
 	}
 }

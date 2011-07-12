@@ -8,5 +8,17 @@
 		      <param name="root">result</param>
 		    </result>
 		</action>
+		<!-- 问我的问题 -->
+		<action name="getAskMeProblemList" class="com.baizhi.index.action.sywt.GetAskMeProblemList">
+			<result name="jsonsuccess" type="json">
+		      <param name="root">result</param>
+		    </result>
+		</action>
+		<!-- 邀请我回答的问题 -->
+		<action name="getInviteProblemList" class="com.baizhi.index.action.sywt.GetInviteProblemList">
+			<result name="jsonsuccess" type="json">
+		      <param name="root">result</param>
+		    </result>
+		</action>
 	</package>
 </struts>

@@ -29,6 +29,7 @@
 	<include file="struts2/s/s-problemcollection.xml" />
 	<include file="struts2/s/s-userbattention.xml" />
 	<include file="struts2/s/s-userbrand.xml" />
+	<include file="struts2/s/s-probleminvite.xml" />
 	
 	<include file="struts2/index/s-pqlb.xml" />
 	<!-- 首页 -->

@@ -46,23 +46,23 @@ public class SywtDao extends DaoSupport{
 	}
 	
 	/**
-	 * 根据用户ID查询“我回答过的问题”
+	 * 根据用户ID查询“邀请我回答的问题”
 	 * @param userId
 	 * @param nowPage
 	 * @param onePageCount
 	 * @return
 	 */
-	public Map<String,Object> getAnsweredProblemList(int userId, int nowPage, int onePageCount){
+	public Map<String,Object> getInviteProblemList(int userId, int nowPage, int onePageCount){
 		//组织查询语句
 		StringBuffer sql = new StringBuffer()		
 		.append(" SELECT ").append(ALL_PROBLEM_FIELDS).append(", UB.NAME AS NAME, UB.IMAGE_PATH AS IMAGE_PATH, UB.WEBSITE AS WEBSITE")
 		.append(" FROM T_PROBLEM a")
 		.append(" JOIN")
-		.append(" (SELECT PA.PROBLEM_ID, max(PA.CREATE_TIME) AS ANSWER_TIME FROM T_PROBLEM_ANSWER PA where pa.user_id=? GROUP BY PA.PROBLEM_ID) B")
+		.append(" (SELECT PA.PROBLEM_ID, MAX(PA.CREATE_TIME) AS INVITE_TIME FROM T_PROBLEM_INVITE PA WHERE PA.WAS_USER_ID=? GROUP BY PA.PROBLEM_ID) B")
 		.append(" ON a.PROBLEM_ID=B.PROBLEM_ID")
 		.append(" JOIN T_USER_BASIC UB")
 		.append(" ON a.USER_ID=UB.USER_ID")
-		.append(" ORDER BY B.ANSWER_TIME DESC");
+		.append(" ORDER BY B.INVITE_TIME DESC");
 		
 		return queryForListWithSQLQuery(sql.toString(), new Object[]{userId}, nowPage, onePageCount);
 	}

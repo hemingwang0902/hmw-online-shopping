@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+	
+<hibernate-mapping>
+	<class entity-name="T_PROBLEM_INVITE" table="T_PROBLEM_INVITE" lazy="false">
+		<comment>问题邀请人信息表</comment>
+		<id name="INVITE_ID" column="INVITE_ID" type="int" >
+			<generator class="identity" />
+		</id>
+		<property name="PROBLEM_ID" type="int">
+			<column name="PROBLEM_ID"  >
+				<comment>问题ID</comment>
+			</column>
+		</property>
+		<property name="IS_ATTENTION" type="int">
+			<column name="IS_ATTENTION"  >
+				<comment>是否回答(0否、1是)</comment>
+			</column>
+		</property>
+		<property name="USER_ID" type="int">
+			<column name="USER_ID"  >
+				<comment>用户ID</comment>
+			</column>
+		</property>
+		<property name="WAS_USER_ID" type="int">
+			<column name="WAS_USER_ID"  >
+				<comment>被邀请的用户ID</comment>
+			</column>
+		</property>
+		<property name="CREATE_TIME" type="java.util.Date">
+			<column name="CREATE_TIME"  >
+				<comment>创建时间</comment>
+			</column>
+		</property>
+		<property name="MODIFY_TIME" type="java.util.Date">
+			<column name="MODIFY_TIME"  >
+				<comment>修改时间</comment>
+			</column>
+		</property>
+	</class>
+</hibernate-mapping>
