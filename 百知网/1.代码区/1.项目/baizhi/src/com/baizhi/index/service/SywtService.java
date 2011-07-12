@@ -19,7 +19,15 @@ public class SywtService extends ServiceSupport{
 		this.sywtDao = sywtDao;
 	}
 	
-	public Map<String,Object> getAllProblemList(int nowPage, int onePageCount){
-		return sywtDao.getAllProblemList(nowPage, onePageCount);
+	public Map<String,Object> getAllProblemList(int userId, int nowPage, int onePageCount){
+		return sywtDao.getAllProblemList(userId, nowPage, onePageCount);
+	}
+	
+	public Map<String,Object> getAskMeProblemList(int userId, int nowPage, int onePageCount){
+		return sywtDao.getAskMeProblemList(userId, nowPage, onePageCount);
+	}
+	
+	public Map<String,Object> getAnsweredProblemList(int userId, int nowPage, int onePageCount){
+		return sywtDao.getAnsweredProblemList(userId, nowPage, onePageCount);
 	}
 }

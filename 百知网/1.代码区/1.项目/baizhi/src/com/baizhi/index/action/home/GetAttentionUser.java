@@ -38,7 +38,7 @@ public class GetAttentionUser extends ActionSupport {
 			userId = getSessionUserId();
 		} 
 		// 查询结果列表
-		Map<String, Object> returnMap = homeService.getAttentionBrand(userId, getNowPage(), getOnePageCount());
+		Map<String, Object> returnMap = homeService.getAttentionUser(userId, getNowPage(), getOnePageCount());
 		//判断是否存在查询记录
 		if (returnMap != null && returnMap.size() != 0) {
 			this.setResult(returnMap);

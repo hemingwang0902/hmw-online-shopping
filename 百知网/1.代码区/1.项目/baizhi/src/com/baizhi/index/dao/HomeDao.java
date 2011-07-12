@@ -27,16 +27,20 @@ public class HomeDao extends DaoSupport{
 		//组织查询语句
 		
 		StringBuffer sql = new StringBuffer();
-		sql.append("SELECT U.USER_ID AS ID, UB.NAME AS TITLE, U.USER_TYPE AS TYPE")
+		sql.append("SELECT U.USER_ID AS ID, UB.NAME AS TITLE, '1' AS TYPE")
 		   .append(" FROM T_USER U, T_USER_BASIC UB")
 		   .append(" WHERE U.USER_ID=UB.USER_ID")
 		   .append(" AND UB.NAME LIKE ?")
+		   .append(" UNION")
+		   .append(" SELECT ub.BRAND_ID AS ID, ub.NAME AS TITLE, '2' AS TYPE")
+		   .append(" FROM T_USER_BRAND ub")
+		   .append(" WHERE ub.NAME LIKE ?")
 		   .append(" UNION")
 		   .append(" SELECT P.PROBLEM_ID AS ID, P.CONTENT AS TITLE, '3' AS TYPE")
 		   .append(" FROM T_PROBLEM P")
 		   .append(" WHERE P.CONTENT LIKE ?");
 		
-		Object[] params = new Object[] { title, title };
+		Object[] params = new Object[] { title, title, title };
 		return queryForListWithSQLQuery(sql.toString(), params, nowPage, onePageCount);
 	}
 	
@@ -113,25 +117,31 @@ public class HomeDao extends DaoSupport{
 	 * @param onePageCount 每页显示的记录条数
 	 * @return 查询到的结果集
 	 */
-	public Map<String,Object> getHottestProblemList(int nowPage, int onePageCount){
+	public Map<String,Object> getHottestProblemList(int userId, int nowPage, int onePageCount){
 		//组织查询语句
 		StringBuffer sql = new StringBuffer()		
 		.append("SELECT ")
 		.append(ALL_PROBLEM_FIELDS)
 		.append(", UB.NAME AS NAME, UB.IMAGE_PATH AS IMAGE_PATH, UB.WEBSITE AS WEBSITE")
-		.append(" FROM T_PROBLEM A")
+		.append(" FROM T_PROBLEM a")
 		.append(" LEFT JOIN")
 		.append(" (SELECT PA.PROBLEM_ID, COUNT(PROBLEM_ID) AS ANSWER_COUNT FROM T_PROBLEM_ANSWER PA GROUP BY PA.PROBLEM_ID) B")
-		.append(" ON A.PROBLEM_ID=B.PROBLEM_ID")
+		.append(" ON a.PROBLEM_ID=B.PROBLEM_ID")
 		.append(" JOIN T_USER_BASIC UB")
-		.append(" ON A.USER_ID=UB.USER_ID")
+		.append(" ON a.USER_ID=UB.USER_ID")
+		.append(" WHERE (a.WAS_USERID IS NULL OR a.WAS_USERID=?)")
 		.append(" ORDER BY B.ANSWER_COUNT DESC, A.BROWSE_COUNT DESC");
 		
-		return queryForListWithSQLQuery(sql.toString(), new Object[0], nowPage, onePageCount);
+		return queryForListWithSQLQuery(sql.toString(), new Object[]{userId}, nowPage, onePageCount);
 	}
 	
 	/**
-	 * 根据用户的ID，查询该用户可能感兴趣的人
+	 * 根据用户的ID，查询该用户可能感兴趣的人，返回的结果集中包含如下的人：
+	 * <ol>
+	 * <li>同一个城市的人</li>
+	 * <li>与自己关注同一个人的人</li>
+	 * <li>与自己关注同一个话题的人</li>
+	 * </ol>
 	 * @param userId 用户ID
 	 * @param nowPage 当前页
 	 * @param onePageCount 每页显示的记录条数

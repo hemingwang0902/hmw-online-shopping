@@ -43,7 +43,7 @@ public class GetHottestProblemList extends ActionSupport {
 	@Override
 	public String execute() throws Exception {
 		// 查询结果列表
-		Map<String, Object> returnMap = homeService.getHottestProblemList(this.getNowPage(), this.getOnePageCount());
+		Map<String, Object> returnMap = homeService.getHottestProblemList(getSessionUserId(), this.getNowPage(), this.getOnePageCount());
 		//判断是否存在查询记录
 		if (returnMap != null && returnMap.size() != 0) {
 			this.setResult(returnMap);
