@@ -4,132 +4,28 @@
 <html>
 <head>
 	<%@include file="../common/jsCss.jsp" %>
-	<link rel="stylesheet" type="text/css" href="../styles/jquery.autocomplete.css" />
-	<script type="text/javascript" src="../javascripts/jquery.autocomplete.min-1.1.js"></script>
+	<script type="text/javascript" src="index.js"></script>
 	<script type="text/javascript" src="list_sywt.js"></script>
 </head>
-<%--
-你可能感兴趣的人：getMayInterestedUser.go?userType=1
-关注品牌：getAttentionUser.go?userType=2
---%>
+
 <body>
 	<%@include file="../common/head.jsp" %>
-	<input type="hidden" id="onePageCount" value="20">
-	<input type="hidden" id="nowPage" value="1">
 <div class="content">
 	<div class="c_left">
-	  <div class="search">
-	  	<a href="addProblem.jsp" id="item_a"></a>
-	    <input type="text" id="title" name="title" value="搜索问题、品牌或会员 >>" style="height:21px; float:left; color:#999; padding-top:5px;  padding-left:5px; width:450px;"/>  
-	    <input type="button" class="bot_t" value="" style=" bottom:0px; float:right;cursor: pointer;" onclick="$('#item_a').click();"/>
-	  </div>
+	  <%@include file="../common/search.jsp" %>
       <div class="subMenu">
-      <ul><li class="re"><a href="#">所有问题</a></li></ul>
+      <ul><li class="re"><a href="javascript:void(0);">所有问题</a></li></ul>
       </div>
       <div class="line_1"></div>
-      <div id="divList">
-      </div>
-      <div class="tiao"><a href="#">更多 &gt;&gt;</a></div>
+      <%@include file="../common/problemList.jsp" %>
   </div>
     
     
     <div class="c_right">
-    	<div class="right_subMenu">
-            <ul>
-                <li><a href="#">所有问题</a></li>
-                <li><a href="#">我关注的问题</a></li>
-                <li><a href="#">问我的问题</a></li>
-                <li><a href="#">邀请我回答的问题</a></li>
-            </ul>
-        </div>
-        <div class="r_column">
-            <div class="column"><a href="#">邀请好友</a></div>
-            <div class="column_content">
-                <div class="coulumn_c_left">
-                    <ul>
-                        <li><a href="#">发送邮件邀请好友</a></li>
-                        <li><a href="#">生成代码邀请好友</a></li>
-                    </ul>
-                </div>
-                <div class="coulumn_c_right"><img src="../images/main/youjian.png" /></div>	
-            </div>
-        </div>
-        <div class="r_column">
-            <div class="column">你可能感兴趣的人</div>
-          <div class="column_contentgxq">
-              <div class="colun_c_gxq">
-                <div style="float:left;"><a href="#"><img src="../images/main/rw_1.png" width="25" height="25" border="0" /></a></div>
-                    <div class="colun_l"><a href="#">刘阳</a></div>
-                </div>
-                <div class=" colun_c_main">拉近远方的人的距离，却偶尔推远离，却偶尔推远</div>
-          </div>
-          <div class="column_contentgxq">
-              <div class="colun_c_gxq">
-                <div style="float:left;"><a href="#"><img src="../images/main/rw_1.png" width="25" height="25" border="0" /></a></div>
-                    <div class="colun_l"><a href="#">刘阳</a></div>
-                </div>
-                <div class=" colun_c_main">拉近远方的人的距离，却偶尔推远离，却偶尔推远</div>
-          </div>
-          <div class="column_contentgxq">
-              <div class="colun_c_gxq">
-                <div style="float:left;"><a href="#"><img src="../images/main/rw_1.png" width="25" height="25" border="0" /></a></div>
-                    <div class="colun_l"><a href="#">刘阳</a></div>
-                </div>
-                <div class=" colun_c_main">拉近远方的人的距离，却偶尔推远离，却偶尔推远</div>
-          </div>
-          <div class="column_contentgxq" style="border:0; margin-bottom:0;">
-              <div class="colun_c_gxq">
-                <div style="float:left;"><a href="#"><img src="../images/main/rw_1.png" width="25" height="25" border="0" /></a></div>
-                    <div class="colun_l"><a href="#">刘阳</a></div>
-                </div>
-                <div class=" colun_c_main">拉近远方的人的距离，却偶尔推远离，却偶尔推远</div>
-          </div>
-          <div class="more"><a href="#">更多 &gt;&gt;</a></div>
-        </div>
-        <div class="r_column">
-          <div class="column">关注品牌</div>
-            <div class="column_contentgxq">
-              <div class="colun_c_pptu"><a href="#"><img src="../images/main/pptp_1.png" /></a>
-                
-              </div>
-                <div class=" colun_c_ppwz">
-                    <div class="colun_c_xnr"><a href="#">香奈儿</a></div>
-                    <div class="colun_c_xnrcon">流行稍纵即逝，风格永存</div>
-              </div>
-                <div style=" clear:both;font-size:0;"></div>
-          </div>
-          <div class="column_contentgxq">
-              <div class="colun_c_pptu"><a href="#"><img src="../images/main/pptp_1.png" /></a>
-                
-              </div>
-                <div class=" colun_c_ppwz">
-                    <div class="colun_c_xnr"><a href="#">香奈儿</a></div>
-                    <div class="colun_c_xnrcon">流行稍纵即逝，风格永存</div>
-              </div>
-                <div style=" clear:both;font-size:0;"></div>
-          </div>
-          <div class="column_contentgxq">
-              <div class="colun_c_pptu"><a href="#"><img src="../images/main/pptp_1.png" /></a>
-                
-              </div>
-                <div class=" colun_c_ppwz">
-                    <div class="colun_c_xnr"><a href="#">香奈儿</a></div>
-                    <div class="colun_c_xnrcon">流行稍纵即逝，风格永存</div>
-              </div>
-                <div style=" clear:both; font-size:0;"></div>
-          </div>
-          <div class="column_contentgxq" style="border:0; margin-bottom:0;">
-              <div class="colun_c_pptu"><a href="#"><img src="../images/main/pptp_1.png" /></a>
-                
-              </div>
-                <div class=" colun_c_ppwz">
-                    <div class="colun_c_xnr"><a href="#">香奈儿</a></div>
-                    <div class="colun_c_xnrcon">流行稍纵即逝，风格永存</div>
-              </div>
-                <div style="clear:both; font-size:0;"></div>
-          </div>
-          <div class="more"><a href="#">更多 &gt;&gt;</a></div>
-        </div>
+    	<%@include file="../common/navigationMenu.jsp" %>
+    	<%@include file="../common/inviteFriends.jsp" %>
+    	<%@include file="../common/interestUsers.jsp" %>
+    	<%@include file="../common/attentionBrands.jsp" %>
         <div class="left_b_tp"><img src="../images/main/tupian.png" /></div>
     </div>
 	<div class="clear"></div>
