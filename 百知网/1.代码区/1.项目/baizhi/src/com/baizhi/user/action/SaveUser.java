@@ -4,12 +4,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.mail.MessagingException;
+import javax.servlet.http.HttpServletRequest;
 
+import org.apache.struts2.ServletActionContext;
 import org.dom4j.Element;
 import org.dom4j.tree.DefaultElement;
 import org.springframework.mail.javamail.MimeMessageHelper;
 
 import com.baizhi.commons.component.SendEmailUtils;
+import com.baizhi.commons.ip.IPSeeker;
 import com.baizhi.commons.support.DateUtils;
 import com.baizhi.commons.support.Elements;
 import com.baizhi.commons.support.Encrypt;
@@ -33,6 +36,8 @@ public class SaveUser extends UserForm{
 	private UserService  userService;//用户信息表业务类
 	private SendEmailUtils  sendEmailUtils;
 	
+	private String NAME;//姓名　
+	
 	public void setUserService(UserService userService) {
 		this.userService = userService;
 	}
@@ -40,34 +45,50 @@ public class SaveUser extends UserForm{
 	public void setSendEmailUtils(SendEmailUtils sendEmailUtils) {
 		this.sendEmailUtils = sendEmailUtils;
 	}
+	
+	public String getNAME() {
+		return NAME;
+	}
+
+	public void setNAME(String name) {
+		NAME = name;
+	}
 
 	@Override
 	public String execute() throws Exception {
-		Element element = null;
-		String keyid="";
+		//获取IP地址
+		HttpServletRequest request = ServletActionContext.getRequest();
+		IPSeeker ipSeeker = IPSeeker.getInstance();
+		String IP = ipSeeker.getRemoteAddr(request);
 		
 		//如果用户ID为""，则为新增用户信息表，否则更新用户信息表
 		if(StringUtils.isNotEmpty(this.getUSER_ID())){
-			element = userService.getUserEleById("USER_ID");
-			Elements.setElementValue(element, "PASSWORD",  Encrypt.edcryptMD5(this.getPASSWORD()));
-			
+			Map<String, Object> params=new HashMap<String, Object>();
+			params.put("USER_ID", this.getUSER_ID());
+			params.put("PASSWORD", Encrypt.edcryptMD5(this.getPASSWORD()));
+			params.put("NAME", NAME);
 			//如果保存成功，返回主键
-			keyid = userService.saveOrUpdateUser(element);
+			boolean flag = userService.modifyUser(params);
 			//判断主键是否为空，如果不为空，则保存成功
-			if(StringUtils.isNotEmpty(keyid)){
+			if(flag){
 				this.setMessage("用户信息编辑成功");
 				return UPDATESUCCESS;
 			}
 		}else{
-			element = new DefaultElement("T_USER");
+			Element element = new DefaultElement("T_USER");
 			Elements.setElementValue(element, "USER_TYPE", this.getUSER_TYPE());
 			Elements.setElementValue(element, "EMAIL", this.getEMAIL());
 			Elements.setElementValue(element, "PASSWORD",  Encrypt.edcryptMD5(this.getPASSWORD()));
 			Elements.setElementValue(element, "REG_TIME", DateUtils.getCurrentTime(DateUtils.SHOW_DATE_FORMAT));
-			Elements.setElementValue(element, "IP", this.getIP());
+			Elements.setElementValue(element, "IP", IP);
 			Elements.setElementValue(element, "MAC", this.getMAC());
+			
+			Element basicelement = new DefaultElement("T_USER_BASIC");
+			Elements.setElementValue(basicelement, "NAME", NAME);// 姓名/品牌名称
+			Elements.setElementValue(basicelement, "USER_TYPE", this.getUSER_TYPE());
+			
 			//如果保存成功，返回主键
-			keyid = userService.saveOrUpdateUser(element);
+			String keyid = userService.saveUser(element,basicelement);
 			//判断主键是否为空，如果不为空，则保存成功
 			if(StringUtils.isNotEmpty(keyid)){
 				// 发送邮件通知用户注册成功

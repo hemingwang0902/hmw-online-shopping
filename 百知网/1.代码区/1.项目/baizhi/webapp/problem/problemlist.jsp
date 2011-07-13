@@ -33,7 +33,7 @@
 						</td>
 					</tr>
 					<tr>
-						<td class="lightbox_title">会员名称：</td>
+						<td class="lightbox_title">姓名：</td>
 						<td class="lightbox_content"><input type="text" class="input_width3" name="NAME" id="NAME" /> </td>
 					</tr>
 		   			<tr>
@@ -84,7 +84,7 @@
 		</div>
 		<div class="table_box">
 			<div class="lightbox_header">
-				<span class="font_span">问题信息表列表</span>
+				<span class="font_span">问题信息列表</span>
 			</div>
 			<div class="lightbox_opt">
 				<input type="button"  value="新增" class="button_box" onclick="location.href='initProblemForm.go';"/>
@@ -98,7 +98,7 @@
 						<td width="10%"><div style="width:60px;">操作</div></td>
 		   				<td width="10%">问题类型</td>
 		   				<td width="10%">问题内容</td>
-		   				<td width="10%">会员姓名</td>
+		   				<td width="10%">姓名</td>
 		   				<td width="10%">答案数量</td>
 		   				<td width="10%">评论数量</td>
 		   				<td width="10%">关注数量</td>

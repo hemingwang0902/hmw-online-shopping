@@ -31,13 +31,25 @@ public class UserService extends ServiceSupport{
 	}
 	
 	/**
-	 * 新增或修改用户信息表信息
+	 * 新增用户信息表信息
 	 * 
 	 * @param element  实体对象
+	 * @param basicelement  基本信息实体对象
 	 * @return 返回主键ID,失败返回""
 	 */
-	public String saveOrUpdateUser(Element element) {
-		return userDao.saveOrUpdateUser(element);
+	public String saveUser(Element element,Element basicelement) {
+		return userDao.saveUser(element, basicelement);
+	}
+	
+	/**
+	 * 修改用户信息表信息
+	 * 
+	 * @param element  实体对象
+	 * @param basicelement  基本信息实体对象
+	 * @return 返回true,失败false
+	 */
+	public boolean modifyUser(Map<String, Object> params) {
+		return userDao.modifyUser(params);
 	}
 	
 	/**

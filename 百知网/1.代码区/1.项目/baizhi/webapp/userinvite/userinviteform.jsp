@@ -22,7 +22,7 @@
 			<input type="hidden"  id="INVITE_ID" name="INVITE_ID" value='<s:property value="INVITE_ID"/>' />
 			<s:token></s:token>
 			<input type="hidden" id="ID" name="ID" value='<s:property value="ID"/>'/>
-			<div class="lightbox_header"><span class="font_span">用户邀请信息表表单</span></div>
+			<div class="lightbox_header"><span class="font_span">用户邀请信息表单</span></div>
 			<div class="btn_box">
 				<input type="submit" value="发送邀请" class="button_box"/>
 				<input type="button" value="返回" onclick="location.href='userinvitelist.jsp';" class="button_box"/>
@@ -30,8 +30,10 @@
 			<div class="form_style">
 				<table width="100%;" border="0" cellspacing="0" cellpadding="0" class="lightbox_table">
 					<tr>
-						<td class="lightbox_title"><span class="font_red">*</span>邀请Email：</td>
-						<td colspan="3" class="lightbox_content"><textarea  class="textarea_box"  id="REMARK" name="EMAIL" ><s:property value="EMAIL"/></textarea></td>
+						<td class="lightbox_title"><span class="font_red">*</span>邀请Email<span class="font_red">(多个邀请以","分隔)</span>：</td>
+						<td colspan="3" class="lightbox_content">
+						<textarea  class="textarea_box"  id="REMARK" name="EMAIL" ><s:property value="EMAIL"/></textarea>
+						</td>
 					</tr>
 				</table>
 			</div>

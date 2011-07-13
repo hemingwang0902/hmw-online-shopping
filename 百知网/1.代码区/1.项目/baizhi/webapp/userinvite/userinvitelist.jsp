@@ -23,7 +23,7 @@
 			<form id="UserInviteList" >
 				<table width="100%;" border="0" cellspacing="0" cellpadding="0" class="lightbox_table">
 		   			<tr>
-						<td class="lightbox_title">会员姓名：</td>
+						<td class="lightbox_title">姓名：</td>
 						<td class="lightbox_content"><input type="text" class="input_width3" name="NAME" id="NAME" /> </td>
 					</tr>
 		   			<tr>
@@ -60,7 +60,7 @@
 		</div>
 		<div class="table_box">
 			<div class="lightbox_header">
-				<span class="font_span">用户邀请信息表列表</span>
+				<span class="font_span">用户邀请信息列表</span>
 			</div>
 			<div class="lightbox_opt">
 				<input type="button"  value="邀请" class="button_box" onclick="location.href='initUserInviteForm.go';"/>
@@ -72,7 +72,7 @@
 					<tr class="tr_bg">
 						<!--<td width="6%"><input type="checkbox" /></td>
 						<td width="10%">操作</td>-->
-		   				<td width="10%">会员姓名</td>
+		   				<td width="10%">姓名</td>
 		   				<td width="10%">是否邀请成功</td>
 		   				<td width="10%">邀请Email</td>
 		   				<td width="10%">邀请时间</td>

@@ -34,7 +34,9 @@ public class GetUserBasicList  extends UserBasicForm {
 		Map<String, Object> params = new HashMap<String, Object>();
 		//设置查询条件
 		this.setMap(params, "USER_TYPE=?", this.getUSER_TYPE());// 用户类型(字典：1用户、2品牌)冗余字段
-		this.setMap(params, "NAME=?", this.getNAME());// 姓名/品牌名称
+		if(getNAME()!=null&&!getNAME().trim().equals("")){
+			this.setMap(params, "NAME like ?", "%"+this.getNAME()+"%");// 姓名/品牌名称
+		}
 		this.setMap(params, "PROVINCE=?", this.getPROVINCE());// 所在地区(省：地区信息表ID)
 		this.setMap(params, "CITY=?", this.getCITY());// 所在地区(市：地区信息表ID)
 		this.setMap(params, "INDUSTRY=?", this.getINDUSTRY());// 从事行业(字典)

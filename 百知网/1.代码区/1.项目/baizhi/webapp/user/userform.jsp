@@ -22,7 +22,7 @@
 			<input type="hidden"  id="USER_ID" name="USER_ID" value='<s:property value="USER_ID"/>' />
 			<s:token></s:token>
 			<input type="hidden" id="ID" name="ID" value='<s:property value="ID"/>'/>
-			<div class="lightbox_header"><span class="font_span">会员信息表表单</span></div>
+			<div class="lightbox_header"><span class="font_span">会员信息表单</span></div>
 			<div class="btn_box">
 				<input type="submit" value="保存" class="button_box"/>
 				<input type="button" value="返回" onclick="location.href='userlist.jsp';" class="button_box"/>
@@ -41,6 +41,10 @@
 				      	</td>
 				 		<td class="lightbox_title"><span class="font_red">*</span>Email:</td>
 				      	<td class="lightbox_content"><input type="text" class="input_width" id="EMAIL" name="EMAIL" value='<s:property value="EMAIL"/>'/></td>
+				   </tr>
+				   <tr>
+				 		<td class="lightbox_title"><span class="font_red">*</span>姓名:</td>
+				      	<td class="lightbox_content" colspan="3"><input type="text" class="input_width" id="NAME" name="NAME" value='<s:property value="NAME"/>'/></td>
 				   </tr>
 				  <tr>
 				    	<td class="lightbox_title"><span class="font_red">*</span>密码:</td>

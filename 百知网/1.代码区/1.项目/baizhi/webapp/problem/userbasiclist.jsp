@@ -41,23 +41,35 @@
 					</tr>
 		   			<tr>
 						<td class="lightbox_title">所在地区(省)：</td>
-						<td class="lightbox_content"><input type="text" class="input_width3" name="PROVINCE" id="PROVINCE" /> </td>
+						<td class="lightbox_content">
+							<select  name="PROVINCE" id="PROVINCE"  class="select_box3" >
+								<option value=""></option>
+								<option value="1">北京</option>
+							</select>
+						</td>
 					</tr>
 		   			<tr>
 						<td class="lightbox_title">所在地区(市)：</td>
-						<td class="lightbox_content"><input type="text" class="input_width3" name="CITY" id="CITY" /> </td>
+						<td class="lightbox_content">
+							<select  name="CITY" id="CITY"  class="select_box3"  >
+								<option value=""></option>
+								<option value="1">北京</option>
+							</select>
+						</td>
 					</tr>
 		   			<tr>
 						<td class="lightbox_title">从事行业：</td>
 						<td class="lightbox_content">
-							<select id="INDUSTRY" name="INDUSTRY" class="select_box3"  >
+							<!--<select id="INDUSTRY" name="INDUSTRY" class="select_box3"  >
 								<option value=""></option>
 					      		<option value="001">计算机</option>
 					      		<option value="002">医药</option>
 				      		</select>
+				      	-->
+				      	<input type="text" class="input_width3" name="INDUSTRY" id="INDUSTRY" />
 				      	</td>
 					</tr>
-		   			<tr>
+		   			<!--<tr>
 						<td class="lightbox_title">所在年代：</td>
 						<td class="lightbox_content">
 							<select id="YEARS" name="YEARS" class="select_box3"  >
@@ -67,7 +79,7 @@
 				      		</select>
 						</td>
 					</tr>
-		   			<tr>
+		   			--><tr>
 						<td class="lightbox_title">联系方式：</td>
 						<td class="lightbox_content"><input type="text" class="input_width3" name="LINK_MODE" id="LINK_MODE" /> </td>
 					</tr>
@@ -83,7 +95,7 @@
 		</div>
 		<div class="table_box">
 			<div class="lightbox_header">
-				<span class="font_span">用户信息列表</span>
+				<span class="font_span">会员信息列表</span>
 			</div>
 			<div id="Pagination" class="pagination"><!-- 这里显示分页 --></div>
 			<div class="list_style">
@@ -95,8 +107,8 @@
 		   				<td width="10%">所在地区(省)</td>
 		   				<td width="10%">所在地区(市)</td>
 		   				<td width="10%">从事行业</td>
-		   				<td width="10%">所在年代</td>
-		   				<td width="10%">联系方式</td>
+		   				<!--<td width="10%">所在年代</td>
+		   				--><td width="10%">联系方式</td>
 					</tr>
 				</table> 
 			</div>   

@@ -219,6 +219,28 @@ public abstract class DaoSupport extends HibernateDaoSupport {
 	}
 	
 	/**
+	 * 获取in 字符串
+	 * @param idValue
+	 * @return
+	 */
+	public String getSplitStr(String idValue){
+		StringBuffer str=new StringBuffer();
+		String[] ids=idValue.split(",");
+		int length=ids.length;
+		if(length==1){
+			str.append("=?");
+		}else{
+			StringBuffer condition=new StringBuffer("");
+			condition.append("?");
+			for (int i = 1; i <length; i++) {
+				condition.append(",?");
+			}
+			str.append("in("+condition+")");
+		}
+		return str.toString();
+	}
+	
+	/**
 	 * 公共批量删除表信息
 	 * 
 	 * @param tableName 表名

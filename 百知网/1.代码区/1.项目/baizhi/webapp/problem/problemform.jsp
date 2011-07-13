@@ -25,7 +25,7 @@
 			<input type="hidden"  id="PROBLEM_ID" name="PROBLEM_ID" value='<s:property value="PROBLEM_ID"/>' />
 			<s:token></s:token>
 			<input type="hidden" id="ID" name="ID" value='<s:property value="ID"/>'/>
-			<div class="lightbox_header"><span class="font_span">问题信息表表单</span></div>
+			<div class="lightbox_header"><span class="font_span">问题信息表单</span></div>
 			<div class="btn_box">
 				<input type="submit" value="保存" class="button_box"/>
 				<input type="button" value="返回" onclick="location.href='problemlist.jsp';" class="button_box"/>
@@ -51,7 +51,7 @@
 						</td>
 					</tr>
 					<tr>
-						<td class="lightbox_title">&nbsp;回答会员：</td>
+						<td class="lightbox_title">&nbsp;回答人：</td>
 						<td class="lightbox_content" colspan="3">
 							<a id="basic_a" href="userbasiclist.jsp?id=WAS_USERID&name=WAS_USERID_TEXT"></a>
 							<input type="text" class="input_width Wlightbox" id="WAS_USERID_TEXT" name="WAS_USERID_TEXT"  onclick="$('#basic_a').click();" />

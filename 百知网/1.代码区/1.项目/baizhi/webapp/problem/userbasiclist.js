@@ -62,7 +62,7 @@ function getDataList(){
 						content += "  <td>"+PROVINCE+"</td>";
 						content += "  <td>"+CITY+"</td>";
 						content += "  <td>"+INDUSTRY+"</td>";
-						content += "  <td>"+YEARS+"</td>";
+						/*content += "  <td>"+YEARS+"</td>";*/
 						content += "  <td>"+LINK_MODE+"</td>";
 						content += "</tr>"
 					}

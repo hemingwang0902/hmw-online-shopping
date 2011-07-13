@@ -13,8 +13,9 @@ function getDataList(){
 	var REG_TIME_END = $("#REG_TIME_END").val();
 	var LAST_LOGINTIME = $("#LAST_LOGINTIME").val();
 	var LAST_LOGINTIME_END = $("#LAST_LOGINTIME_END").val();
-	var LAST_FREEZETIME = $("#LAST_FREEZETIME").val();
-	var LAST_FREEZETIME_END = $("#LAST_FREEZETIME_END").val();
+	var NAME = $("#NAME").val();
+	/*var LAST_FREEZETIME = $("#LAST_FREEZETIME").val();
+	var LAST_FREEZETIME_END = $("#LAST_FREEZETIME_END").val();*/
 	$.post("getUserList.go",{
 		USER_TYPE: USER_TYPE,
 		EMAIL: EMAIL,
@@ -22,8 +23,9 @@ function getDataList(){
 		REG_TIME_END:REG_TIME_END,
 		LAST_LOGINTIME: LAST_LOGINTIME,
 		LAST_LOGINTIME_END:LAST_LOGINTIME_END,
-		LAST_FREEZETIME:LAST_FREEZETIME,
-		LAST_FREEZETIME_END:LAST_FREEZETIME_END,
+		NAME:NAME,
+		/*LAST_FREEZETIME:LAST_FREEZETIME,
+		LAST_FREEZETIME_END:LAST_FREEZETIME_END,*/
 		nowPage: nowPage,
 		onePageCount: onePageCount},
 		function(result){
@@ -39,6 +41,7 @@ function getDataList(){
 					var USER_ID = ""; //用户ID
 					var USER_TYPE_NAME = ""; //用户类型(字典：1用户、2品牌)
 					var EMAIL = ""; //Email
+					var NAME="";
 					var REG_TIME = ""; //注册时间
 					var LAST_LOGINTIME = ""; //最后登录时间
 					var LAST_FREEZETIME = ""; //最后冻结时间
@@ -47,6 +50,7 @@ function getDataList(){
 					USER_ID = data["list"][i]["USER_ID"];//用户ID
 					USER_TYPE_NAME = data["list"][i]["USER_TYPE_NAME"];//用户类型(字典：1用户、2品牌)
 					EMAIL = data["list"][i]["EMAIL"];//Email
+					NAME = data["list"][i]["NAME"];//Email
 					REG_TIME = data["list"][i]["REG_TIME"];//注册时间
 					LAST_LOGINTIME = data["list"][i]["LAST_LOGINTIME"];//最后登录时间
 					LAST_FREEZETIME = data["list"][i]["LAST_FREEZETIME"];//最后冻结时间
@@ -59,10 +63,11 @@ function getDataList(){
 						content += "    <a href='javascript:;' class='sc_btn' title='删除' onclick=\"delData('"+USER_ID+"')\"/>";
 						content += "  </td>";
 						content += "  <td>"+USER_TYPE_NAME+"</td>";
+						content += "  <td>"+NAME+"</td>";
 						content += "  <td>"+EMAIL+"</td>";
 						content += "  <td>"+REG_TIME+"</td>";
 						content += "  <td>"+LAST_LOGINTIME+"</td>";
-						content += "  <td>"+LAST_FREEZETIME+"</td>";
+						//content += "  <td>"+LAST_FREEZETIME+"</td>";
 						content += "</tr>"
 					}
 				}

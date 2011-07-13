@@ -25,6 +25,8 @@ public class GetUserList extends UserForm {
 	private String LAST_LOGINTIME_END;//最后登录时间(止)
 	
 	private String LAST_FREEZETIME_END;//最后冻结时间(止)
+	
+	private String NAME;//姓名　
 
 	public UserService getUserService() {
 		return userService;
@@ -58,6 +60,14 @@ public class GetUserList extends UserForm {
 		LAST_FREEZETIME_END = last_freezetime_end;
 	}
 	
+	public String getNAME() {
+		return NAME;
+	}
+
+	public void setNAME(String name) {
+		NAME = name;
+	}
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public String execute() throws Exception {
@@ -71,7 +81,9 @@ public class GetUserList extends UserForm {
 		this.setMap(params, "REG_TIME<=?", REG_TIME_END);// 注册时间(止)
 		this.setMap(params, "LAST_LOGINTIME<=?", LAST_LOGINTIME_END);// 最后登录时间(止)
 		this.setMap(params, "LAST_FREEZETIME<=?", LAST_FREEZETIME_END);// 最后冻结时间(止)
-		
+		if(NAME!=null&&!NAME.trim().equals("")){
+			this.setMap(params, "NAME like ?", "%"+NAME+"%");// Email
+		}
 		
 		// 查询用户信息表列表
 		Map<String, Object> returnMap = userService.getUserList(params, this.getNowPage(), this.getOnePageCount());

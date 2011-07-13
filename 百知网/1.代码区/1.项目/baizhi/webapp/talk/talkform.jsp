@@ -22,7 +22,7 @@
 			<input type="hidden"  id="TALK_ID" name="TALK_ID" value='<s:property value="TALK_ID"/>' />
 			<s:token></s:token>
 			<input type="hidden" id="ID" name="ID" value='<s:property value="ID"/>'/>
-			<div class="lightbox_header"><span class="font_span">话题信息表表单</span></div>
+			<div class="lightbox_header"><span class="font_span">话题信息表单</span></div>
 			<div class="btn_box">
 				<input type="submit" value="保存" class="button_box"/>
 				<input type="button" value="返回" class="button_box" onclick="location.href='talklist.jsp';"/>

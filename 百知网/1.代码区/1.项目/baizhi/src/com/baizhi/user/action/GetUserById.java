@@ -18,12 +18,22 @@ public class GetUserById  extends UserForm{
 	
 	private UserService  userService;//用户信息表业务类
 	
+	private String NAME;//姓名　
+	
 	public UserService getUserService() {
 		return userService;
 	}
 
 	public void setUserService(UserService userService) {
 		this.userService = userService;
+	}
+	
+	public String getNAME() {
+		return NAME;
+	}
+
+	public void setNAME(String name) {
+		NAME = name;
 	}
 	
 	@Override
@@ -33,6 +43,7 @@ public class GetUserById  extends UserForm{
 		if(returnMap!=null&&returnMap.size()>0){
 			this.setUSER_TYPE(this.getValue(returnMap,"USER_TYPE"));//用户类型(字典：1用户、2品牌)
 			this.setEMAIL(this.getValue(returnMap,"EMAIL"));//Email
+			this.setNAME(this.getValue(returnMap,"NAME"));//NAME
 			this.setPASSWORD(this.getValue(returnMap,"PASSWORD"));//密码
 			this.setREG_TIME(this.getValue(returnMap,"REG_TIME"));//注册时间
 			this.setLAST_LOGINTIME(this.getValue(returnMap,"LAST_LOGINTIME"));//最后登录时间

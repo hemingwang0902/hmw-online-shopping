@@ -78,6 +78,11 @@ public class GetProblemList extends ProblemForm {
 				List<Map<String, Object>> list = (List<Map<String,Object>>)returnMap.get("list");
 				for (int i = 0; i < list.size(); i++) {
 					Map<String, Object> newmap = list.get(i);
+					
+					/*String CONTENT=getTime(newmap, "CONTENT");
+					newmap.put("SHORT_CONTENT",this.splitString(CONTENT, 20,"..."));*/
+					
+					
 					String CREATE_TIME=getTime(newmap, "CREATE_TIME");
 					String MODIFY_TIME=getTime(newmap, "MODIFY_TIME");
 					
@@ -96,7 +101,35 @@ public class GetProblemList extends ProblemForm {
 		}
 		return JSONSUCCESS;
 	}
-
 	
+	/**
+	 * 字符串按字节截取
+	 * 
+	 * @param str    原字符
+	 * @param len    截取长度
+	 * @param elide  省略符
+	 * @return 截取字符串
+	 */
+	public  String splitString(String str, int len, String elide) {
+		if (str == null) {
+			return "";
+		}
+		byte[] strByte = str.getBytes();
+		int strLen = strByte.length;
+		if (len >= strLen || len < 1) {
+			return str;
+		}
+		int count = 0;
+		for (int i = 0; i < len; i++) {
+			int value = (int) strByte[i];
+			if (value < 0) {
+				count++;
+			}
+		}
+		if (count % 2 != 0) {
+			len = (len == 1) ? len + 1 : len - 1;
+		}
+		return new String(strByte, 0, len) + elide.trim();
+	}  
 	
 }

@@ -35,13 +35,60 @@ public class UserDao extends DaoSupport{
 	}
 
 	/**
-	 * 新增或修改用户信息表信息
+	 * 新增用户信息表信息
 	 * 
 	 * @param element  实体对象
+	 * @param basicelement  基本信息实体对象
 	 * @return 返回主键ID,失败返回""
 	 */
-	public String saveOrUpdateUser(Element element) {
-		return this.saveOrUpdate(element, "USER_ID");
+	public String saveUser(Element element,Element basicelement) {
+		Session session = getSession();
+		Session dom4jSession = session.getSession(EntityMode.DOM4J);
+		String idValue = "";
+		try {
+			dom4jSession.beginTransaction();
+			dom4jSession.save(element);
+			Elements.setElementValue(basicelement, "USER_ID", element.elementText("USER_ID"));// 姓名/品牌名称
+			dom4jSession.save(basicelement);
+			dom4jSession.getTransaction().commit();
+			idValue = element.elementText("USER_ID");
+		} catch (Exception e) {
+			dom4jSession.beginTransaction().rollback();
+			e.printStackTrace();
+		} finally {
+			dom4jSession.close();
+			session.close();
+		}
+		return idValue;
+		
+	}
+	
+	/**
+	 * 修改用户信息表信息
+	 * 
+	 * @param element  实体对象
+	 * @param basicelement  基本信息实体对象
+	 * @return 返回true,失败false
+	 */
+	public boolean modifyUser(Map<String, Object> params) {
+		Session session = getSession();
+		boolean flag = false;
+		try {
+			session.beginTransaction();
+			setQueryParameters(session.createQuery("update T_USER set PASSWORD=? where USER_ID=? "),
+					new Object[]{ params.get("PASSWORD"),params.get("USER_ID")}).executeUpdate();
+			setQueryParameters(session.createQuery("update T_USER_BASIC set NAME=? where USER_ID=? "),
+					new Object[]{ params.get("NAME"),params.get("USER_ID")}).executeUpdate();
+			session.getTransaction().commit();
+			flag=true;
+		} catch (Exception e) {
+			session.beginTransaction().rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return flag;
+		
 	}
 	
 	/**
@@ -89,7 +136,21 @@ public class UserDao extends DaoSupport{
 	 * @return 返回boolean值,成功返回true,失败返回false
 	 */
 	public boolean deleteUser(String USER_IDS) {
-		return this.delete("T_USER","USER_ID", USER_IDS);
+		Session session = getSession();
+		boolean flag = false;
+		try {
+			session.beginTransaction();
+			setQueryParameters(session.createQuery("update T_USER set LAST_FREEZETIME='9999-09-09' where USER_ID "+getSplitStr(USER_IDS)),
+					USER_IDS.split(",")).executeUpdate();
+			session.getTransaction().commit();
+			flag=true;
+		} catch (Exception e) {
+			session.beginTransaction().rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return flag;
 	}
 	
 	/**
@@ -189,8 +250,9 @@ public class UserDao extends DaoSupport{
 		   .append("a.LAST_LOGINTIME as LAST_LOGINTIME,")//最后登录时间
 		   .append("a.IP as IP,")//最后登录IP
 		   .append("a.MAC as MAC,")//最后登录MAC
-		   .append("a.LAST_FREEZETIME as LAST_FREEZETIME) ")//最后冻结时间
-		   .append("FROM T_USER a WHERE a.USER_ID=? ");
+		   .append("a.LAST_FREEZETIME as LAST_FREEZETIME,")//最后冻结时间
+		   .append("b.NAME as NAME) ")//姓名　
+		   .append("FROM T_USER a,T_USER_BASIC b WHERE a.USER_ID=b.USER_ID and a.USER_ID=? ");
 		return this.getById(sql.toString(), new Object[]{USER_ID});
 	}
 	
@@ -214,8 +276,9 @@ public class UserDao extends DaoSupport{
 		   .append("a.LAST_LOGINTIME as LAST_LOGINTIME,")//最后登录时间
 		   .append("a.IP as IP,")//最后登录IP
 		   .append("a.MAC as MAC,")//最后登录MAC
-		   .append("a.LAST_FREEZETIME as LAST_FREEZETIME) ")//最后冻结时间
-		   .append("FROM T_USER a WHERE 1=1");
+		   .append("a.LAST_FREEZETIME as LAST_FREEZETIME, ")//最后冻结时间
+		   .append("b.NAME as NAME) ")//姓名　
+		   .append("FROM T_USER a,T_USER_BASIC b WHERE a.USER_ID=b.USER_ID and ('"+DateUtils.getCurrentTime(DateUtils.SHOW_DATE_FORMAT)+"'>LAST_FREEZETIME or LAST_FREEZETIME is null) ");
 		//设置查询条件,及初始化查询条件值
 		ParametersSupport ps=new ParametersSupport(params);
 		sql.append(ps.getConditions());

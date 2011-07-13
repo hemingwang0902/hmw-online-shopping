@@ -38,7 +38,7 @@
 		</div>
 		<div class="table_box">
 			<div class="lightbox_header">
-				<span class="font_span">积分级别信息表列表</span>
+				<span class="font_span">积分级别信息列表</span>
 			</div>
 			<div class="lightbox_opt">
 				<input type="button"  value="新增" class="button_box" onclick="location.href='initScoreLevelForm.go';"/>

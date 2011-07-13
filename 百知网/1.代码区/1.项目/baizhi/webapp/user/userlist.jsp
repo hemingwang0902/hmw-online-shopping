@@ -33,6 +33,10 @@
 						</td>
 					</tr>
 					<tr>
+						<td nowrap="nowrap" class="lightbox_title">姓名：</td>
+						<td class="lightbox_content"><input type="text" class="input_width3" name="NAME" id="NAME" /> </td>
+					</tr>
+					<tr>
 						<td nowrap="nowrap" class="lightbox_title">Email：</td>
 						<td class="lightbox_content"><input type="text" class="input_width3" name="EMAIL" id="EMAIL" /> </td>
 					</tr>
@@ -51,7 +55,7 @@
 					<tr>
 						<td nowrap="nowrap" class="lightbox_title">登录时间(止)：</td>
 						<td class="lightbox_content"><input type="text" class="input_width3 Wdate" name="LAST_LOGINTIME_END" id="LAST_LOGINTIME_END" onclick="WdatePicker()" /> </td>
-					</tr>
+					</tr><!--
 					<tr>
 						<td nowrap="nowrap" class="lightbox_title">冻结时间(起)：</td>
 						<td class="lightbox_content"><input type="text" class="input_width3 Wdate" name="LAST_FREEZETIME" id="LAST_FREEZETIME" onclick="WdatePicker()" /> </td>
@@ -60,7 +64,7 @@
 						<td nowrap="nowrap" class="lightbox_title">冻结时间(止)：</td>
 						<td class="lightbox_content"><input type="text" class="input_width3 Wdate" name="LAST_FREEZETIME_END" id="LAST_FREEZETIME_END" onclick="WdatePicker()" /> </td>
 					</tr>
-					<tr>
+					--><tr>
 						<td>&nbsp;</td>
 						<td style="padding-top:5px; padding-bottom:5px;">
 							<input type="button"  value="查询"  class="button_box" onclick="getDataList()"/>
@@ -85,11 +89,12 @@
 						<td width="6%"><input type="checkbox" /></td>
 						<td width="10%">操作</td>
 						<td width="10%">会员类型</td>
+						<td width="10%">姓名</td>
 						<td width="10%">Email</td>
 						<td width="10%">注册时间</td>
-						<td width="10%">登录时间</td>
-						<td width="10%">冻结时间</td>
-					</tr>
+						<td width="10%">最后登录时间</td>
+						<!--<td width="10%">冻结时间</td>
+					--></tr>
 				</table> 
 			</div>   
 		</div>

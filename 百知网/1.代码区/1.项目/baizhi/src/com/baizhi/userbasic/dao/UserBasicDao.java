@@ -5,6 +5,8 @@ import java.util.Map;
 import org.dom4j.Element;
 import com.baizhi.commons.DaoSupport;
 import com.baizhi.commons.ParametersSupport;
+import com.baizhi.commons.constant.Diclist;
+import com.baizhi.commons.support.DateUtils;
  /**
  * 
  * 类名：UserBasicDao.java
@@ -148,14 +150,14 @@ public class UserBasicDao extends DaoSupport{
 		sql.append("SELECT new Map(")
 		   .append("a.BASIC_ID as BASIC_ID,")//用户基本信息ID
 		   .append("a.USER_ID as USER_ID,")//用户ID
-		   .append("a.USER_TYPE as USER_TYPE,")//用户类型(字典：1用户、2品牌)冗余字段
+		   .append("(select DIC_NAME from T_DICITEM where a.USER_TYPE=DIC_CODE and CODE='"+Diclist.BZ000001+"') as USER_TYPE,")//用户类型(字典：1用户、2品牌)
 		   .append("a.NAME as NAME,")//姓名/品牌名称
 		   .append("a.PROVINCE as PROVINCE,")//所在地区(省：地区信息表ID)
 		   .append("a.CITY as CITY,")//所在地区(市：地区信息表ID)
 		   .append("a.INDUSTRY as INDUSTRY,")//从事行业(字典)
 		   .append("a.YEARS as YEARS,")//所在年代(字典、用户特有)
 		   .append("a.LINK_MODE as LINK_MODE) ")//联系方式
-		   .append("FROM T_USER_BASIC a WHERE 1=1");
+		   .append("FROM T_USER_BASIC a,T_USER b WHERE a.USER_ID=b.USER_ID and  ('"+DateUtils.getCurrentTime(DateUtils.SHOW_DATE_FORMAT)+"'>b.LAST_FREEZETIME or b.LAST_FREEZETIME is null) ");
 		//设置查询条件,及初始化查询条件值
 		ParametersSupport ps=new ParametersSupport(params);
 		sql.append(ps.getConditions());
