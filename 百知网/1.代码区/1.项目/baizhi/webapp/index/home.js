@@ -2,7 +2,7 @@ $(document).ready(function(){
 	//获取数据列表
 	getLastestProblemList();
 	getMayInterestedUserList();
-	getAttentionUserList();
+	getAttentionBrandList(0);
 	
 	//初始化 ZeroClipboard
 	initZeroClipboard(); 

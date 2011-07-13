@@ -1,5 +1,8 @@
 $(document).ready(function(){
-	$("#CONTENT").val(parent.$("#title").val());
+	var q = parent.$("#q").val();
+	if(q != "搜索问题、品牌或会员 >>"){
+		$("#CONTENT").val(q);
+	}
 	
 	$("#ProblemForm").validate({
 		rules:{

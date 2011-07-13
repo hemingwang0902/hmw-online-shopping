@@ -15,7 +15,7 @@ $(document).ready(function(){
 			hottest		: basePath + "/index/getHottestProblemList.go",
 			inviteList	: basePath + "/index/getInviteProblemList.go",
 			askMeList	: basePath + "/index/getAskMeProblemList.go",
-			all		: basePath + "/index/getAllProblemList.go"
+			all			: basePath + "/index/getAllProblemList.go"
 		},
 		
 		user: {
@@ -28,10 +28,11 @@ $(document).ready(function(){
 			attention	: "",
 			attentionList: basePath + "/index/getAttentionBrand.go"
 		},
-		
+		talk: {
+			detail		: basePath + "/index/initHtym.go?TALK_ID="
+		},
 		all: {
-			query		: basePath + "/index/getUserOrProblemByTitleList.go",
-			allResult	: basePath + "/index/list_ssjg.jsp?q="
+			query		: basePath + "/index/getUserOrProblemByTitleList.go"
 		}
 	}
 	
@@ -44,7 +45,7 @@ $(document).ready(function(){
 		'transitionOut'	    : 'elastic'//弹出方式
 	});
 	
-	$("#title").bind({
+	$("#q").bind({
 	  focus: function(){
 	    if($(this).val() == "搜索问题、品牌或会员 >>"){
 	    	$(this).val("");
@@ -62,18 +63,20 @@ $(document).ready(function(){
 			"onePageCount": 10
 		},
 		formatItem: function(row, i, max) {
-			var url = "javascript:void(0);";
+			var eve = "";
 			var id = row["ID"];
 			if(row.TYPE == '0'){ //查看搜索结果：aaa
-				 url = path.all.allResult + $("#title").val();
+				 eve = "onclick=\"$('#searchForm').submit();\"";
 			}else if(row.TYPE == '1'){ //会员
-				 url = path.user.detail + id;
+				 eve = "onclick=\"document.location='" + path.user.detail + id + "'\"";
 			}else if(row.TYPE == '2'){ //品牌
-				 url = path.brand.detaill + id;
+				 eve = "onclick=\"document.location='" + path.brand.detaill + id + "'\"";
 			}else if(row.TYPE == '3'){ //问题
-				 url = path.problem.detail + id;
+				 eve = "onclick=\"document.location='" + path.problem.detail + id + "'\"";
+			}else if(row.TYPE == '4'){ //话题
+				 eve = "onclick=\"document.location='" + path.talk.detail + id + "'\"";
 			}
-			return "<a href='javascript:void(0);' onclick='document.location=\"" + url + "\"' style='width:100%;'>" + row.TITLE + "</a>";
+			return "<a href='javascript:void(0);' "+eve+" style='width:100%;'>" + row.TITLE + "</a>";
 		},
 		parse:function(result){ //将从后台返回的数据转化为候选项数组
 			var parsed = [];
@@ -92,7 +95,7 @@ $(document).ready(function(){
 			}
 			
 			parsed[parsed.length] = {
-				data: {ID:0, TITLE:"查看搜索结果：" + $("#title").val(), TYPE:'0'},
+				data: {ID:0, TITLE:"查看搜索结果：" + $("#q").val(), TYPE:'0'},
 				value: "",
 				result: ""
 			};
@@ -218,7 +221,7 @@ function getProblemList(action, more){
 				if(IMAGE_PATH==null || IMAGE_PATH==undefined || IMAGE_PATH=="null"){
 					IMAGE_PATH = "/images/main/rw_1.png";
 				}
-				IMAGE_PATH = path.basePath + "/images/main/rw_1.png";
+				IMAGE_PATH = path.basePath + IMAGE_PATH;
 				
 				content += "<div class='title'>";
 				content += "  <div class='tit_tit'>";
@@ -295,11 +298,17 @@ function getMayInterestedUserList(){
 /**
  * 关注品牌
  */
-function getAttentionUserList(){
-	$.post(path.brand.attentionList,{
+function getAttentionBrandList(userId){
+	var jsonData = {
 		nowPage: 1,
 		onePageCount: 4
-	}, function(result){
+	};
+	var userId = parseInt(userId);
+	if(!!userId && userId > 0){
+		jsonData.userId=userId;
+	}
+	
+	$.post(path.brand.attentionList, jsonData, function(result){
 		if(result==null||result==''){
 			return;
 		}

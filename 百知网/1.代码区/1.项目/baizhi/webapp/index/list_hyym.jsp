@@ -5,23 +5,16 @@
 <html>
 <head>
 	<%@include file="../common/jsCss.jsp" %>
-	<link rel="stylesheet" type="text/css" href="../styles/jquery.autocomplete.css" />
-	<script type="text/javascript" src="../javascripts/jquery.autocomplete.min-1.1.js"></script>
+	<script type="text/javascript" src="index.js"></script>
 	<script type="text/javascript" src="list_hyym.js"></script>
 </head>
 
 <body>
 	<%@include file="../common/head.jsp" %>
-	<input type="hidden" id="onePageCount" value="20">
-	<input type="hidden" id="nowPage" value="1">
 	<input type="hidden" id="userId" value="<s:property value="userId"/>">
 <div class="content">
 	<div class="c_left">
-	  <div class="search">
-	  	<a href="addProblem.jsp" id="item_a"></a>
-	    <input type="text" id="title" name="title" value="搜索问题、品牌或会员 >>" style="height:21px; float:left; color:#999; padding-top:5px;  padding-left:5px; width:450px;"/>  
-	    <input type="button" class="bot_t" value="" style=" bottom:0px; float:right;cursor: pointer;" onclick="$('#item_a').click();"/>
-	  </div>
+		<%@include file="../common/search.jsp" %>
       <div class="subMenu_hyym">
       </div>
       <div class="line_1"></div>
@@ -128,50 +121,7 @@
               </ul>
           </div>
         </div>
-        <div class="r_column">
-          <div class="column">关注品牌</div>
-            <div class="column_contentgxq">
-              <div class="colun_c_pptu"><a href="#"><img src="../images/main/pptp_1.png" /></a>
-                
-              </div>
-                <div class=" colun_c_ppwz">
-                    <div class="colun_c_xnr"><a href="#">香奈儿</a></div>
-                    <div class="colun_c_xnrcon">流行稍纵即逝，风格永存</div>
-              </div>
-                <div style=" clear:both;font-size:0;"></div>
-          </div>
-          <div class="column_contentgxq">
-              <div class="colun_c_pptu"><a href="#"><img src="../images/main/pptp_1.png" /></a>
-                
-              </div>
-                <div class=" colun_c_ppwz">
-                    <div class="colun_c_xnr"><a href="#">香奈儿</a></div>
-                    <div class="colun_c_xnrcon">流行稍纵即逝，风格永存</div>
-              </div>
-                <div style=" clear:both;font-size:0;"></div>
-          </div>
-          <div class="column_contentgxq">
-              <div class="colun_c_pptu"><a href="#"><img src="../images/main/pptp_1.png" /></a>
-                
-              </div>
-                <div class=" colun_c_ppwz">
-                    <div class="colun_c_xnr"><a href="#">香奈儿</a></div>
-                    <div class="colun_c_xnrcon">流行稍纵即逝，风格永存</div>
-              </div>
-                <div style=" clear:both; font-size:0;"></div>
-          </div>
-          <div class="column_contentgxq" style="border:0; margin-bottom:0;">
-              <div class="colun_c_pptu"><a href="#"><img src="../images/main/pptp_1.png" /></a>
-                
-              </div>
-                <div class=" colun_c_ppwz">
-                    <div class="colun_c_xnr"><a href="#">香奈儿</a></div>
-                    <div class="colun_c_xnrcon">流行稍纵即逝，风格永存</div>
-              </div>
-                <div style="clear:both; font-size:0;"></div>
-          </div>
-          <div class="more"><a href="#">更多 &gt;&gt;</a></div>
-        </div>
+        <%@include file="../common/attentionBrands.jsp" %>
     </div>
 	<div class="clear"></div>
 </div>
