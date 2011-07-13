@@ -19,8 +19,8 @@ public class HomeDao extends DaoSupport{
 	private final String ALL_USER_BRAND_FIELDS = " UB.BRAND_ID as BRAND_ID, UB.USER_ID as USER_ID, UB.NAME as NAME, UB.INTRODUCTION as INTRODUCTION, UB.SOURCE as SOURCE, UB.PROVINCE as PROVINCE, UB.CITY as CITY, UB.INDUSTRY as INDUSTRY, UB.LINK_NAME as LINK_NAME, UB.LINK_MODE as LINK_MODE, UB.EMAIL as EMAIL, UB.IMAGE_PATH as IMAGE_PATH, UB.STAUS as STAUS, UB.AUDIT_ID as AUDIT_ID, UB.AUDIT_TIME as AUDIT_TIME, UB.REASON as REASON, UB.REMARK as REMARK, UB.CREATE_TIME as CREATE_TIME, UB.MODIFY_TIME as MODIFY_TIME ";
 	
 	/**
-	 * 根据名称模糊查询会员、品牌和问题
-	 * @param title 会员姓名、品牌名称或问题标题
+	 * 根据名称模糊查询会员、品牌、问题和话题
+	 * @param title 会员姓名、品牌名称、问题或话题标题
 	 * @return
 	 */
 	public Map<String,Object> getUserOrProblemByTitleList(String title, int nowPage, int onePageCount){
@@ -38,9 +38,44 @@ public class HomeDao extends DaoSupport{
 		   .append(" UNION")
 		   .append(" SELECT P.PROBLEM_ID AS ID, P.CONTENT AS TITLE, '3' AS TYPE")
 		   .append(" FROM T_PROBLEM P")
-		   .append(" WHERE P.CONTENT LIKE ?");
+		   .append(" WHERE P.CONTENT LIKE ?")
+		   .append(" UNION")
+		   .append(" SELECT t.TALK_ID AS ID, t.CONTENT AS TITLE, '4' AS TYPE")
+		   .append(" FROM T_TALK t")
+		   .append(" WHERE t.CONTENT LIKE ?");
 		
-		Object[] params = new Object[] { title, title, title };
+		Object[] params = new Object[] { title, title, title, title };
+		return queryForListWithSQLQuery(sql.toString(), params, nowPage, onePageCount);
+	}
+	
+	/**
+	 * 根据名称模糊查询会员、品牌、问题和话题(用于搜索结果页)
+	 * @param title 会员姓名、品牌名称、问题或话题标题
+	 * @return
+	 */
+	public Map<String,Object> getListByTitleWithFull(String title, int nowPage, int onePageCount){
+		StringBuffer sql = new StringBuffer();
+		sql.append("SELECT ub.USER_ID AS ID, UB.NAME AS TITLE, '1' AS TYPE, ub.INTRODUCTION as INTRODUCTION, ub.IMAGE_PATH as IMAGE_PATH, ub.WEBSITE as WEBSITE")
+		.append(", (SELECT COUNT(ua.ATTENTION_ID) FROM T_USER_ATTENTION ua WHERE ua.WAS_USERID=ub.USER_ID) as ATTENTION_COUNT")
+		.append(" FROM T_USER_BASIC UB")
+		.append(" WHERE UB.NAME LIKE ?")
+		.append(" UNION")
+		.append(" SELECT b.BRAND_ID AS ID, b.NAME AS TITLE, '2' AS TYPE, b.INTRODUCTION as INTRODUCTION, b.IMAGE_PATH as IMAGE_PATH, null as WEBSITE")
+		.append(", (SELECT COUNT(uba.BATTENTION_ID) FROM T_USER_BATTENTION uba WHERE uba.BRAND_ID=b.BRAND_ID) as ATTENTION_COUNT")
+		.append(" FROM T_USER_BRAND b")
+		.append(" WHERE b.NAME LIKE ?")
+		.append(" UNION")
+		.append(" SELECT P.PROBLEM_ID AS ID, P.CONTENT AS TITLE, '3' AS TYPE, p.RELEVANT_DETAILS as INTRODUCTION, null as IMAGE_PATH, null as WEBSITE")
+		.append(", (SELECT COUNT(pa.ATTENTION_ID) FROM T_PROBLEM_ATTENTION pa WHERE pa.PROBLEM_ID=P.PROBLEM_ID) as ATTENTION_COUNT")
+		.append(" FROM T_PROBLEM P")
+		.append(" WHERE P.CONTENT LIKE ?")
+		.append(" UNION")
+		.append(" SELECT t.TALK_ID AS ID, t.CONTENT AS TITLE, '4' AS TYPE, t.INTRODUCTION as INTRODUCTION, t.IMAGE_PATH as IMAGE_PATH, null as WEBSITE")
+		.append(", (SELECT COUNT(uat.ATTENTIONTALK_ID) FROM T_USER_ATTENTIONTALK uat WHERE uat.TALK_ID=t.TALK_ID) as ATTENTION_COUNT")
+		.append(" FROM T_TALK t")
+		.append(" WHERE t.CONTENT LIKE ?");
+		
+		Object[] params = new Object[] { title, title, title, title };
 		return queryForListWithSQLQuery(sql.toString(), params, nowPage, onePageCount);
 	}
 	

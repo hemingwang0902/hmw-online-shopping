@@ -12,7 +12,7 @@ import com.baizhi.commons.ActionSupport;
  * 修改日期：
  */
 public abstract class ProblemInviteForm extends ActionSupport {
-	
+	private static final long serialVersionUID = -1081542198434937521L;
 	private String INVITE_ID;//问题邀请人ID
 	private String PROBLEM_ID;//问题ID
 	private String IS_ATTENTION;//是否回答(0否、1是)

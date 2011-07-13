@@ -16,7 +16,7 @@ import com.baizhi.probleminvite.dao.ProblemInviteDao;
  * 修改日期：
  */
 public class ProblemInviteService extends ServiceSupport{
-	
+	private static final long serialVersionUID = 4923774206169789684L;
 	private ProblemInviteDao problemInviteDao;
 	
 	public ProblemInviteDao getProblemInviteDao() {

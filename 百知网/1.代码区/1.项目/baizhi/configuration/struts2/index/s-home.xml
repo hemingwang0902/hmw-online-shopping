@@ -2,8 +2,18 @@
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" "http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
 	<package name="home" extends="json-default" namespace="/index">
-		<!-- 模糊搜索用户、品牌和问题 -->
+		<!-- 模糊搜索用户、品牌、问题和话题 -->
 		<action name="getUserOrProblemByTitleList" class="com.baizhi.index.action.home.GetUserOrProblemByTitleList">
+			<result name="jsonsuccess" type="json">
+		      <param name="root">result</param>
+		    </result>
+		</action>
+		<!-- 跳转到模糊搜索用户、品牌、问题和话题的结果页 -->
+		<action name="search" class="com.baizhi.index.action.home.Search">
+			<result name="success">list_ssjg.jsp</result>
+		</action>
+		<!-- 模糊搜索用户、品牌、问题和话题（用于搜索结果页） -->
+		<action name="getListByTitleWithFull" class="com.baizhi.index.action.home.GetListByTitleWithFull">
 			<result name="jsonsuccess" type="json">
 		      <param name="root">result</param>
 		    </result>

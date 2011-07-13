@@ -13,7 +13,7 @@ import com.baizhi.probleminvite.service.ProblemInviteService;
  * 修改日期：
  */
 public class GetProblemInviteById extends ProblemInviteForm{
-	
+	private static final long serialVersionUID = -5912531951129686100L;
 	private ProblemInviteService problemInviteService;//问题邀请人信息表业务类
 	
 	public ProblemInviteService getProblemInviteService() {

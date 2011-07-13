@@ -15,7 +15,8 @@ import com.baizhi.probleminvite.service.ProblemInviteService;
  * 修改日期：
  */
 public class DelProblemInvite extends ActionSupport{
-	
+	private static final long serialVersionUID = 2836642981041223146L;
+
 	private String IDS;//用户信息表ID集合以","分隔
 	
 	private ProblemInviteService problemInviteService;//问题邀请人信息表业务类

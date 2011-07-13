@@ -44,6 +44,10 @@ public class HomeService  extends ServiceSupport{
 		return homeDao.getUserOrProblemByTitleList(title, nowPage, onePageCount);
 	}
 	
+	public Map<String,Object> getListByTitleWithFull(String title, int nowPage, int onePageCount){
+		return homeDao.getListByTitleWithFull(title, nowPage, onePageCount);
+	}
+	
 	public Map<String,Object> getLatestProblemList(int userId, int nowPage, int onePageCount){
 		return homeDao.getLatestProblemList(userId, nowPage, onePageCount);
 	}
