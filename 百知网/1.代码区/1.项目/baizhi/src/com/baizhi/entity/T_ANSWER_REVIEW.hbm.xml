@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+	
+<hibernate-mapping>
+	<class entity-name="T_ANSWER_REVIEW" table="T_ANSWER_REVIEW" lazy="false">
+		<comment>问题答案评论信息表</comment>
+		<id name="REVIEW_ID" column="REVIEW_ID" type="int" >
+			<generator class="identity" />
+		</id>
+		<property name="ANSWER_ID" type="int">
+			<column name="ANSWER_ID"  >
+				<comment>问题答案ID</comment>
+			</column>
+		</property>
+		<property name="PROBLEM_ID" type="int">
+			<column name="PROBLEM_ID"  >
+				<comment>问题ID(冗余字段)</comment>
+			</column>
+		</property>
+		<property name="CONTENT" type="string">
+			<column name="CONTENT" length="1000" >
+				<comment>内容</comment>
+			</column>
+		</property>
+		<property name="PREVIEW_ID" type="int">
+			<column name="PREVIEW_ID"  >
+				<comment>问题答案评论ID父ID</comment>
+			</column>
+		</property>
+		<property name="USER_ID" type="int">
+			<column name="USER_ID"  >
+				<comment>用户ID</comment>
+			</column>
+		</property>
+		<property name="CREATE_TIME" type="java.util.Date">
+			<column name="CREATE_TIME"  >
+				<comment>创建时间</comment>
+			</column>
+		</property>
+		<property name="MODIFY_TIME" type="java.util.Date">
+			<column name="MODIFY_TIME"  >
+				<comment>修改时间</comment>
+			</column>
+		</property>
+	</class>
+</hibernate-mapping>

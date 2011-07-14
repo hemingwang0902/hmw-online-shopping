@@ -15,7 +15,8 @@ import com.baizhi.problemtalk.service.ProblemTalkService;
  * 修改日期：
  */
 public class DelProblemTalk extends ActionSupport{
-	
+	private static final long serialVersionUID = -7901987061590438876L;
+
 	private String IDS;//用户信息表ID集合以","分隔
 	
 	private ProblemTalkService problemTalkService;//问题话题信息表业务类

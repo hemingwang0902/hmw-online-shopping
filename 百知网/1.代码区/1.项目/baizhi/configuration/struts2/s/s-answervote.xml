@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="answervote" extends="json-default" namespace="/answervote">
+		<action name="getAnswerVoteList" class="com.baizhi.answervote.action.GetAnswerVoteList">
+			<result name="jsonsuccess" type="json">
+		      <param name="root">result</param>
+		    </result>
+		</action>
+		<action name="initAnswerVoteForm" class="com.baizhi.answervote.action.InitAnswerVoteForm">
+			<result name="success" type="dispatcher">answervoteform.jsp</result>
+		</action>
+		<action name="saveAnswerVote" class="com.baizhi.answervote.action.SaveAnswerVote">
+			<result name="error"  type="dispatcher" >answervoteform.jsp</result>
+			<result name="success" type="redirect" >answervotelist.jsp</result>
+			<result name="update" type="dispatcher" >answervoteform.jsp</result>
+			<result name="invalid.token" type="freemarker">answervoteform.jsp</result> 
+			<interceptor-ref name="defaultStack"><param name="workflow.excludeMethods">default</param></interceptor-ref> 
+			<interceptor-ref name="tokenSession"><param name="excludeMethods">default</param></interceptor-ref>
+		</action>
+		<action name="delAnswerVote" class="com.baizhi.answervote.action.DelAnswerVote">
+			<result name="jsonsuccess" type="json">
+		      <param name="root">result</param>
+		    </result>
+		</action>
+		<action name="getAnswerVoteById" class="com.baizhi.answervote.action.GetAnswerVoteById">
+			<result name="success" type="dispatcher" >answervoteform.jsp</result>
+		</action>
+	</package>
+</struts>

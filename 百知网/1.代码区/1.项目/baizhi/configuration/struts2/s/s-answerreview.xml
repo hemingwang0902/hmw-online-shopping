@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="answerreview" extends="json-default" namespace="/answerreview">
+		<action name="getAnswerReviewList" class="com.baizhi.answerreview.action.GetAnswerReviewList">
+			<result name="jsonsuccess" type="json">
+		      <param name="root">result</param>
+		    </result>
+		</action>
+		<action name="initAnswerReviewForm" class="com.baizhi.answerreview.action.InitAnswerReviewForm">
+			<result name="success" type="dispatcher">answerreviewform.jsp</result>
+		</action>
+		<action name="saveAnswerReview" class="com.baizhi.answerreview.action.SaveAnswerReview">
+			<result name="error"  type="dispatcher" >answerreviewform.jsp</result>
+			<result name="success" type="redirect" >answerreviewlist.jsp</result>
+			<result name="update" type="dispatcher" >answerreviewform.jsp</result>
+			<result name="invalid.token" type="freemarker">answerreviewform.jsp</result> 
+			<interceptor-ref name="defaultStack"><param name="workflow.excludeMethods">default</param></interceptor-ref> 
+			<interceptor-ref name="tokenSession"><param name="excludeMethods">default</param></interceptor-ref>
+		</action>
+		<action name="delAnswerReview" class="com.baizhi.answerreview.action.DelAnswerReview">
+			<result name="jsonsuccess" type="json">
+		      <param name="root">result</param>
+		    </result>
+		</action>
+		<action name="getAnswerReviewById" class="com.baizhi.answerreview.action.GetAnswerReviewById">
+			<result name="success" type="dispatcher" >answerreviewform.jsp</result>
+		</action>
+	</package>
+</struts>

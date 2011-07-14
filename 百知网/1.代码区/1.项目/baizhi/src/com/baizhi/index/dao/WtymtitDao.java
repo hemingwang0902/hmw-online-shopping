@@ -9,6 +9,7 @@ public class WtymtitDao extends DaoSupport{
 	private final String ALL_PROBLEM_FIELDS = " a.PROBLEM_ID as PROBLEM_ID,a.PROBLEM_TYPE as PROBLEM_TYPE,a.CONTENT as CONTENT,a.IS_ANONYMITY as IS_ANONYMITY,a.RELEVANT_DETAILS as RELEVANT_DETAILS,a.USER_ID as USER_ID,a.WAS_USERID as WAS_USERID,a.ANSWER_COUNT as ANSWER_COUNT,a.REVIEW_COUNT as REVIEW_COUNT,a.ATTENTION_COUNT as ATTENTION_COUNT,a.COLLECTION_COUNT as COLLECTION_COUNT,a.BROWSE_COUNT as BROWSE_COUNT,a.IS_REPORT as IS_REPORT,a.REPORT_COUNT as REPORT_COUNT,a.CREATE_TIME as CREATE_TIME,a.MODIFY_TIME as MODIFY_TIME ";
 	private final String ALL_USER_BASIC_FIELDS = " UB.BASIC_ID as BASIC_ID, UB.USER_ID as USER_ID, UB.USER_TYPE as USER_TYPE, UB.NAME as NAME, UB.SOURCE as SOURCE, UB.PROVINCE as PROVINCE, UB.CITY as CITY, UB.INDUSTRY as INDUSTRY, UB.YEARS as YEARS, UB.LINK_MODE as LINK_MODE, UB.IS_OPEN as IS_OPEN, UB.INTRODUCTION as INTRODUCTION, UB.MOTTO as MOTTO, UB.IMAGE_PATH as IMAGE_PATH, UB.WEBSITE as WEBSITE, UB.PRIVATE_SET as PRIVATE_SET, UB.LEVEL as LEVEL, UB.SCORE as SCORE, UB.REMARK as REMARK, UB.CREATE_TIME as CREATE_TIME, UB.MODIFY_TIME as MODIFY_TIME ";
 	private final String ALL_TALK_FIELDS = "t.TALK_ID as TALK_ID,t.CONTENT as CONTENT,t.USER_ID as USER_ID,t.INTRODUCTION as INTRODUCTION,t.IMAGE_PATH as IMAGE_PATH,t.CREATE_TIME as CREATE_TIME,t.MODIFY_TIME as MODIFY_TIME";
+	private final String ALL_ANSWER_FIELDS = "a.ANSWER_ID as ANSWER_ID, a.PROBLEM_ID as PROBLEM_ID, a.CONTENT as CONTENT, a.USER_ID as USER_ID, a.AGREE_COUNT as AGREE_COUNT, a.DISAGREE_COUNT as DISAGREE_COUNT, a.THANK_COUNT as THANK_COUNT, a.DISTHANK_COUNT as DISTHANK_COUNT, a.CREATE_TIME as CREATE_TIME, a.MODIFY_TIME as MODIFY_TIME";
 	
 	/**
 	 * 根据问题ID查找问题所属话题
@@ -79,14 +80,38 @@ public class WtymtitDao extends DaoSupport{
 	public Map<String,Object> getTalkListByContent(String CONTENT,int nowPage,int onePageCount){
 		//组织查询语句
 		StringBuffer sql = new StringBuffer();
-		sql.append("SELECT ")
-		   .append("a.TALK_ID as TALK_ID,")//话题ID
-		   .append("a.CONTENT as CONTENT,")//内容
-		   .append("a.USER_ID as USER_ID,")//用户ID
-		   .append("a.CREATE_TIME as CREATE_TIME,")//创建时间
-		   .append("a.MODIFY_TIME as MODIFY_TIME) ")//修改时间
-		   .append("FROM T_TALK a WHERE a.CONTENT like ? ");
+		sql.append("SELECT ").append(ALL_TALK_FIELDS)
+		   .append("FROM T_TALK t WHERE t.CONTENT like ? ");
 		
 		return queryForListWithSQLQuery(sql.toString(), new Object[]{CONTENT}, nowPage, onePageCount);
+	}
+	
+	public Map<String,Object> getTalkByContent(String CONTENT){
+		//组织查询语句
+		StringBuffer sql = new StringBuffer();
+		sql.append("SELECT ").append(ALL_TALK_FIELDS)
+		   .append("FROM T_TALK t WHERE t.CONTENT = ? ");
+		
+		List<Map<String,Object>> list = queryForListWithSQLQuery(sql.toString(), new Object[]{CONTENT});
+		if(list != null && !list.isEmpty()){
+			return list.get(0);
+		}
+		return null;
+	}
+	
+	/**
+	 * 根据问题ID，查询回复列表
+	 * @param probelmId
+	 * @param nowPage
+	 * @param onePageCount
+	 * @return
+	 */
+	public Map<String,Object> getProblemAnswerListByProblemId(int probelmId,int nowPage,int onePageCount){
+		StringBuffer sql = new StringBuffer();
+		sql.append("SELECT ").append(ALL_ANSWER_FIELDS)
+		.append(",(select count(ar.REVIEW_ID) from t_answer_review ar where ar.ANSWER_ID=a.ANSWER_ID) as REVIEW_COUNT")
+		.append(" from t_problem_answer a")
+		.append(" where a.PROBLEM_ID=?");
+		return queryForListWithSQLQuery(sql.toString(), new Object[]{probelmId}, nowPage, onePageCount);
 	}
 }

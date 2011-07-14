@@ -24,8 +24,8 @@ public class HyymService extends ServiceSupport{
 		return hyymDao.getAnsweredProblemList(userId, nowPage, onePageCount);
 	}
 	
-	public Map<String,Object> getUserListByName(String name, int userType, int nowPage, int onePageCount){
-		return hyymDao.getUserListByName(name, userType, nowPage, onePageCount);
+	public Map<String,Object> getUserListByName(String name, int nowPage, int onePageCount){
+		return hyymDao.getUserListByName(name, nowPage, onePageCount);
 	}
 	
 	public Map<String,Object> getAttentionTalkList(int userId, int nowPage, int onePageCount){

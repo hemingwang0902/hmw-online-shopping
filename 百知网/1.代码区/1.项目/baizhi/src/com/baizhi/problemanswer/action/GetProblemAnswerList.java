@@ -14,7 +14,7 @@ import com.baizhi.problemanswer.service.ProblemAnswerService;
  * 修改日期：
  */
 public class GetProblemAnswerList extends ProblemAnswerForm {
-	
+	private static final long serialVersionUID = -6691386113388408563L;
 	private ProblemAnswerService problemAnswerService;//问题答案信息表业务类
 	
 	public ProblemAnswerService getProblemAnswerService() {

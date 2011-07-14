@@ -6,8 +6,50 @@
 		<action name="wtymDetail" class="com.baizhi.index.action.wtymtit.WtymDetail">
 			<result name="success" >list_wtymtit.jsp</result>
 		</action>
-		<!-- 获取相关问题列表 -->
-		<action name="getNearProblemList" class="com.baizhi.index.action.wtymtit.GetNearProblemList">
+		<!-- 根据问题ID查询回复 -->
+		<action name="getProblemAnswerList" class="com.baizhi.index.action.wtymtit.GetProblemAnswerList">
+			<result name="jsonsuccess" type="json">
+		      <param name="root">result</param>
+		    </result>
+		</action>
+		<!-- 给问题添加回复 -->
+		<action name="saveProblemAnswer" class="com.baizhi.index.action.wtymtit.SaveProblemAnswer">
+			<result name="jsonsuccess" type="json">
+		      <param name="root">result</param>
+		    </result>
+		</action>
+		<!-- 对回复进行操作：赞同、反对、感谢作者、对我没帮助 -->
+		<action name="answerVote" class="com.baizhi.index.action.wtymtit.AnswerVote">
+			<result name="jsonsuccess" type="json">
+		      <param name="root">result</param>
+		    </result>
+		</action>
+		<!-- 给回复添加评论 -->
+		<action name="addAnswerReview" class="com.baizhi.index.action.wtymtit.AddAnswerReview">
+			<result name="jsonsuccess" type="json">
+		      <param name="root">result</param>
+		    </result>
+		</action>
+		<!-- 根据话题内容模糊查询话题列表 -->
+		<action name="getTalklistByContent" class="com.baizhi.index.action.wtymtit.GetTalklistByContent">
+			<result name="jsonsuccess" type="json">
+		      <param name="root">result</param>
+		    </result>
+		</action>
+		<!-- 给问题添加话题 -->
+		<action name="addTalkForProblem" class="com.baizhi.index.action.wtymtit.AddTalkForProblem">
+			<result name="jsonsuccess" type="json">
+		      <param name="root">result</param>
+		    </result>
+		</action>
+		<!-- 邀请他人回答 -->
+		<action name="addProblemInvite" class="com.baizhi.index.action.wtymtit.AddProblemInvite">
+			<result name="jsonsuccess" type="json">
+		      <param name="root">result</param>
+		    </result>
+		</action>
+		<!-- 获取相关问题列表(更多相关问题页面) -->
+		<action name="getNearProblemList" class="com.baizhi.index.action.sywt.GetAllProblemList">
 			<result name="jsonsuccess" type="json">
 		      <param name="root">result</param>
 		    </result>

@@ -10,5 +10,7 @@
 		<property name="problemTalkDao" ref="problemTalkDao" />
 		<property name="problemInviteDao" ref="problemInviteDao" />
 		<property name="problemAnswerDao" ref="problemAnswerDao" />
+		<property name="answerVoteDao" ref="answerVoteDao" />
+		<property name="answerReviewDao" ref="answerReviewDao" />
 	</bean>
 </beans>

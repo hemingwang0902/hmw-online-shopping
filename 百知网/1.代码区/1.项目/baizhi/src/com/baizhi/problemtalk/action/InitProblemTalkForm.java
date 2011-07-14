@@ -12,7 +12,8 @@ import com.baizhi.commons.ActionSupport;
  * 修改日期：
  */
 public class InitProblemTalkForm extends ActionSupport{
-	
+	private static final long serialVersionUID = 4798078128834136506L;
+
 	private String CURR_CREATE_BY;//创建人
 	
 	private String CURR_CREATE_TIME;//创建时间

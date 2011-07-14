@@ -10,7 +10,6 @@ public class GetUserListByName extends ActionSupport {
 
 	private HyymService hyymService;
 	private String name;
-	private int userType;
 	
 	public void setHyymService(HyymService hyymService) {
 		this.hyymService = hyymService;
@@ -24,18 +23,10 @@ public class GetUserListByName extends ActionSupport {
 		this.name = name;
 	}
 
-	public int getUserType() {
-		return userType;
-	}
-
-	public void setUserType(int userType) {
-		this.userType = userType;
-	}
-
 	@Override
 	public String execute() throws Exception {
 		// 查询结果列表
-		Map<String, Object> returnMap = hyymService.getUserListByName(name, userType, this.getNowPage(), this.getOnePageCount());
+		Map<String, Object> returnMap = hyymService.getUserListByName(name, this.getNowPage(), this.getOnePageCount());
 		//判断是否存在查询记录
 		if (returnMap != null && returnMap.size() != 0) {
 			this.setResult(returnMap);

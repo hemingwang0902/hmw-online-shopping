@@ -13,11 +13,13 @@ public interface IConstants {
 
 	int DEFAULT_PAGE_SIZE = 10;
 
-	/**用户类型：所有*/
-	int USER_TYPE_ALL = 0;
-	/**用户类型：会员*/
-	int USER_TYPE_MEMBER = 1;
-	/**用户类型：品牌*/
-	int USER_TYPE_BRAND = 2;
+	/**回复投票类型：赞成*/
+	String ANSWER_VOTE_AGREE = "Agree";
+	/**回复投票类型：反对*/
+	String ANSWER_VOTE_DISAGREE = "DisAgree";
+	/**回复投票类型：感谢作者*/
+	String ANSWER_VOTE_THANK = "Thank";
+	/**回复投票类型：没有帮助*/
+	String ANSWER_VOTE_DISTHANK = "Disthank";
 
 }

@@ -16,7 +16,7 @@ import com.baizhi.problemtalk.service.ProblemTalkService;
  * 修改日期：
  */
 public class SaveProblemTalk extends ProblemTalkForm{
-	
+	private static final long serialVersionUID = 834844979453543610L;
 	private ProblemTalkService problemTalkService;//问题话题信息表业务类
 	
 	public ProblemTalkService getProblemTalkService() {

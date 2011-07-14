@@ -15,7 +15,8 @@ import com.baizhi.problemanswer.service.ProblemAnswerService;
  * 修改日期：
  */
 public class DelProblemAnswer extends ActionSupport{
-	
+	private static final long serialVersionUID = 4656352976955646420L;
+
 	private String IDS;//用户信息表ID集合以","分隔
 	
 	private ProblemAnswerService problemAnswerService;//问题答案信息表业务类

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+	
+<hibernate-mapping>
+	<class entity-name="T_ANSWER_VOTE" table="T_ANSWER_VOTE" lazy="false">
+		<comment>问题答案投票信息表</comment>
+		<id name="VOTE_ID" column="VOTE_ID" type="int" >
+			<generator class="identity" />
+		</id>
+		<property name="ANSWER_ID" type="int">
+			<column name="ANSWER_ID"  >
+				<comment>问题答案ID</comment>
+			</column>
+		</property>
+		<property name="PROBLEM_ID" type="int">
+			<column name="PROBLEM_ID"  >
+				<comment>问题ID(冗余字段)</comment>
+			</column>
+		</property>
+		<property name="VOTE_TYPE" type="string">
+			<column name="VOTE_TYPE" length="10" >
+				<comment>投票类型(字典：1赞成Or拒绝、2感谢作者Or没有帮助)</comment>
+			</column>
+		</property>
+		<property name="IS_AGREE" type="int">
+			<column name="IS_AGREE"  >
+				<comment>是否赞成、感谢(0否、1是)</comment>
+			</column>
+		</property>
+		<property name="USER_ID" type="int">
+			<column name="USER_ID"  >
+				<comment>用户ID</comment>
+			</column>
+		</property>
+		<property name="CREATE_TIME" type="java.util.Date">
+			<column name="CREATE_TIME"  >
+				<comment>创建时间</comment>
+			</column>
+		</property>
+		<property name="MODIFY_TIME" type="java.util.Date">
+			<column name="MODIFY_TIME"  >
+				<comment>修改时间</comment>
+			</column>
+		</property>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<bean id="answerVoteDao" class="com.baizhi.answervote.dao.AnswerVoteDao" parent="daoSupport"></bean>
+	
+	<bean id="answerVoteService" class="com.baizhi.answervote.service.AnswerVoteService" parent="serviceSupport">
+		<property name="answerVoteDao">
+			<ref local="answerVoteDao" />
+		</property>
+	</bean>
+</beans>

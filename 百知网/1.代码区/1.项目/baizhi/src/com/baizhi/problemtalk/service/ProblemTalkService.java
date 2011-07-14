@@ -16,7 +16,7 @@ import com.baizhi.problemtalk.dao.ProblemTalkDao;
  * 修改日期：
  */
 public class ProblemTalkService extends ServiceSupport{
-	
+	private static final long serialVersionUID = -558290784737683188L;
 	private ProblemTalkDao problemTalkDao;
 	
 	public ProblemTalkDao getProblemTalkDao() {
