@@ -11,7 +11,7 @@ $(document).ready(function(){
 				"email": $("#EMAIL").val(),
 				"url": $("#url").val()
 			}, function(){
-				showmessage({message:"邀请邮件已经成功发送 (5秒钟后将自动跳转至首页).",type:"info"});
+				show_showmessage({message:"邀请邮件已经成功发送 (5秒钟后将自动跳转至首页).",type:"info"});
 				window.setTimeout("document.location = 'home.jsp'", 5000);
 			});
 			return false;

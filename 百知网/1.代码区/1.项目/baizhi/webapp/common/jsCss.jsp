@@ -11,6 +11,7 @@
 <link type="text/css" rel="stylesheet" href="${cssBasePath }/style_home.css" />
 <link type="text/css" rel="stylesheet" href="${cssBasePath }/lightbox.css" media="screen"/>
 <link type="text/css" rel="stylesheet" href="${cssBasePath }/jquery.autocomplete.css" />
+<link type="text/css" rel="stylesheet" href="${cssBasePath }/showmessage.css" />
 
 <script type="text/javascript" language="javascript" src="${basePath }/calendar/WdatePicker.js"></script>
 <script type="text/javascript" language="javascript" src="${jsBasePath }/jquery-1.6.1.js"></script>

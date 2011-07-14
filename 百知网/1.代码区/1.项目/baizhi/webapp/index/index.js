@@ -15,6 +15,7 @@ $(document).ready(function(){
 			hottest		: basePath + "/index/getHottestProblemList.go",
 			inviteList	: basePath + "/index/getInviteProblemList.go",
 			askMeList	: basePath + "/index/getAskMeProblemList.go",
+			nearList	: basePath + "/index/getNearProblemList.go?problemId=",
 			all			: basePath + "/index/getAllProblemList.go"
 		},
 		
@@ -123,7 +124,7 @@ function initZeroClipboard() {
 	});
 	
 	clip.addEventListener('complete', function (client, text) {
-		showmessage({message:"邀请链接已经复制至粘贴板!",type:"info"});
+		show_showmessage({message:"邀请链接已经复制至粘贴板!",type:"info"});
 	});
 	
 	clip.glue( 'd_clip_button', 'd_clip_container' );
