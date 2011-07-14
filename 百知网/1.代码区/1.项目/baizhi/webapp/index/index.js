@@ -66,18 +66,23 @@ $(document).ready(function(){
 		formatItem: function(row, i, max) {
 			var eve = "";
 			var id = row["ID"];
+			var typeName = "";
 			if(row.TYPE == '0'){ //查看搜索结果：aaa
 				 eve = "onclick=\"$('#searchForm').submit();\"";
 			}else if(row.TYPE == '1'){ //会员
 				 eve = "onclick=\"document.location='" + path.user.detail + id + "'\"";
+				 typeName="[会员]";
 			}else if(row.TYPE == '2'){ //品牌
 				 eve = "onclick=\"document.location='" + path.brand.detaill + id + "'\"";
+				 typeName="[品牌]";
 			}else if(row.TYPE == '3'){ //问题
 				 eve = "onclick=\"document.location='" + path.problem.detail + id + "'\"";
+				 typeName="[问题]";
 			}else if(row.TYPE == '4'){ //话题
 				 eve = "onclick=\"document.location='" + path.talk.detail + id + "'\"";
+				 typeName="[话题]";
 			}
-			return "<a href='javascript:void(0);' "+eve+" style='width:100%;'>" + row.TITLE + "</a>";
+			return "<a href='javascript:void(0);' "+eve+" style='width:100%;'>" + typeName + row.TITLE + "</a>";
 		},
 		parse:function(result){ //将从后台返回的数据转化为候选项数组
 			var parsed = [];

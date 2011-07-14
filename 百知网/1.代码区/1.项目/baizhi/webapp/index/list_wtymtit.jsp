@@ -23,12 +23,11 @@
       	</s:iterator>
       </div>
       <div class="list_hylb">
-      	<input type="button" class="bot_tjht"/>
-      	<div id="addTalk" style="display: none;">
-	      	<input id="talkId" type="hidden"/>
-	      	<input id="talkName" type="text" style="height:21px; padding-top:5px; padding-left:5px; width:370px;" />
-	      	<input type="button" class="btn_wc" />
-      	</div>
+      	<input id="btnShowAddTalk" type="button" class="bot_tjht" />
+      	<span id="divAddTalk" style="display: none;">
+	      	<input id="TALK_CONTENT" type="text" style="height:21px; padding-top:5px; padding-left:5px; width:370px;" />
+	      	<input type="button" class="btn_wc" onclick="addTalk();" style="cursor: pointer;"/>
+      	</span>
       </div>
       <div class="subMenu_hylb">
 		<div class="title_wtym_tit"><s:property value="problem.CONTENT"/></div>
@@ -37,27 +36,14 @@
            </div>
       </div>
       <div class="line_1"></div>
-      <div style=" margin-top:15px;">
-          <div class="title_wtym">
-            <div class="title_wtym_tit"><a href="javascript:void(0);">为什么人们貌似能接受劣质的互联网产品，却不能为什么人们貌似能接受劣质的互联网产品</a></div>
-            <div class="title_wtym_con">
-                <p>为什么人们貌似能接受劣质的互联网产品，却不能为什么人们貌似能接受劣质的互联网产品为什么人们貌似能接受劣质的互联网产品，却不能为什么。</p>
-                <p>人们貌似能接受劣质的互联网产品为什么人们貌似能接受劣质的互联网产品，却不能为什么人们貌似能接受劣质的互联网产品为什么人们貌似能接受劣质的互联网产品，却不能为什么人们貌似能接受劣质的互联网产品为什么人们貌似能接受劣质的互联网产品，却不能为什么人们貌似能接受劣质的互联网产品为什么人们貌似能接受劣质的互联网产品，却不能为什么人们貌似能接受劣质的互联网产品。</p>
-            </div>
-          </div>
-          
-            <div class="tit_bot_wtym"><a href="javascript:void(0);">1 个答案</a> • <a href="javascript:void(0);">5个关注</a> • <a href="javascript:void(0);">收藏</a> • <a href="javascript:void(0);">添加评论</a> • <a href="javascript:void(0);">分享</a></div>
-            <div class="clear"></div>
-      </div>
+ 	<%@include file="../common/problemList.jsp" %>
       <div class="wtym_tjda">
           <div class="tit_wtym_tjda">添加答案</div>
-          <div class="tit_wtym_daan"><textarea cols="0" rows="0" style="width:540px; height:130px;"></textarea>
+          <div class="tit_wtym_daan"><textarea id="ANSWER_CONTENT" cols="0" rows="0" style="width:540px; height:130px;"></textarea>
           </div>
-          <div class="tit_wtym_tjda_anniu"><input name="" type="button" style="width:88px;" value=""  class="bot_tjda" /></div>
+          <div class="tit_wtym_tjda_anniu"><input type="button" style="width:88px;" onclick="addAnswer();" class="bot_tjda" /></div>
       </div>
   </div>
-    
-    
 	<div class="c_right">
 		<div class="right_subMenu">
 			<ul>
@@ -78,10 +64,10 @@
         </div>
         <div class="r_column">
             <div class="column_yqtr">
-            	<a href="javascript:void(0);">邀请他人回答（<s:property value="problem.INVITE_COUNT"/>）</a>
-            	<div style="display: none;">
-            		<input type="hidden" id="userId">
-            		<input id="userName">
+            	<a href="javascript:void(0);" id="a_invite">邀请他人回答（<s:property value="problem.INVITE_COUNT"/>）</a>
+            	<div id="div_invite" style="display: none;">
+            		<input id="WAS_USER_ID"><br>
+            		<input type="button" class="btn_wc" onclick="addProblemInvite();"/>
             	</div>	
             </div>
       </div>
@@ -89,12 +75,17 @@
           <div class="column_wtzt">问题状态</div>
             <div class="column_wt_blr">被浏览 <s:property value="problem.BROWSE_COUNT"/> 次，相关话题关注者  <s:property value="talkUserCount"/> 人</div>
             <div class="column_xgwt_hy">
-              <ul>
-              	<li><a href="javascript:void(0);" class="tooltips"><img src="../images/main/hy_1.jpg" alt="枫叶" /><span>百知1</span></a><a href="javascript:void(0);" class="tooltips"><img src="../images/main/hy_2.jpg" /><span>百知2</span></a><a href="javascript:void(0);" class="tooltips"><img src="../images/main/hy_1.jpg" alt="枫叶" /><span>百知1</span></a><a href="javascript:void(0);" class="tooltips"><img src="../images/main/hy_2.jpg" /><span>百知2</span></a><a href="javascript:void(0);" class="tooltips"><img src="../images/main/hy_1.jpg" alt="枫叶" /><span>百知1</span></a><a href="javascript:void(0);" class="tooltips"><img src="../images/main/hy_2.jpg" /><span>百知2</span></a><a href="javascript:void(0);" class="tooltips"><img src="../images/main/hy_1.jpg" alt="枫叶" /><span>百知1</span></a></li>
-                <li><a href="javascript:void(0);" class="tooltips"><img src="../images/main/hy_1.jpg" alt="枫叶" /><span>百知1</span></a><a href="javascript:void(0);" class="tooltips"><img src="../images/main/hy_2.jpg" /><span>百知2</span></a><a href="javascript:void(0);" class="tooltips"><img src="../images/main/hy_1.jpg" alt="枫叶" /><span>百知1</span></a><a href="javascript:void(0);" class="tooltips"><img src="../images/main/hy_2.jpg" /><span>百知2</span></a><a href="javascript:void(0);" class="tooltips"><img src="../images/main/hy_1.jpg" alt="枫叶" /><span>百知1</span></a><a href="javascript:void(0);" class="tooltips"><img src="../images/main/hy_2.jpg" /><span>百知2</span></a><a href="javascript:void(0);" class="tooltips"><img src="../images/main/hy_1.jpg" alt="枫叶" /><span>百知1</span></a></li>
-                <li><a href="javascript:void(0);" class="tooltips"><img src="../images/main/hy_1.jpg" alt="枫叶" /><span>百知1</span></a><a href="javascript:void(0);" class="tooltips"><img src="../images/main/hy_2.jpg" /><span>百知2</span></a><a href="javascript:void(0);" class="tooltips"><img src="../images/main/hy_1.jpg" alt="枫叶" /><span>百知1</span></a><a href="javascript:void(0);" class="tooltips"><img src="../images/main/hy_2.jpg" /><span>百知2</span></a><a href="javascript:void(0);" class="tooltips"><img src="../images/main/hy_1.jpg" alt="枫叶" /><span>百知1</span></a><a href="javascript:void(0);" class="tooltips"><img src="../images/main/hy_2.jpg" /><span>百知2</span></a><a href="javascript:void(0);" class="tooltips"><img src="../images/main/hy_1.jpg" alt="枫叶" /><span>百知1</span></a></li>
-                <li><a href="javascript:void(0);" class="tooltips"><img src="../images/main/hy_1.jpg" alt="枫叶" /><span>百知1</span></a><a href="javascript:void(0);" class="tooltips"><img src="../images/main/hy_2.jpg" /><span>百知2</span></a><a href="javascript:void(0);" class="tooltips"><img src="../images/main/hy_1.jpg" alt="枫叶" /><span>百知1</span></a><a href="javascript:void(0);" class="tooltips"><img src="../images/main/hy_2.jpg" /><span>百知2</span></a><a href="javascript:void(0);" class="tooltips"><img src="../images/main/hy_1.jpg" alt="枫叶" /><span>百知1</span></a><a href="javascript:void(0);" class="tooltips"><img src="../images/main/hy_2.jpg" /><span>百知2</span></a><a href="javascript:void(0);" class="tooltips"><img src="../images/main/hy_1.jpg" alt="枫叶" /><span>百知1</span></a></li>
-              </ul>
+            	<s:iterator value="%{talkUserList}">
+            		<a href='${basePath }/index/initHyym.go?userId=<s:property value="USER_ID"/>' class="tooltips">
+            		<s:if test="#IMAGE_PATH==null or #IMAGE_PATH==''">
+            			<img src="../images/main/hy_1.jpg" width="25" height="25" alt="<s:property value="NAME"/>" />
+            		</s:if>
+            		<s:else>
+            			<img src='<s:property value="IMAGE_PATH"/>' width="25" height="25" alt="<s:property value="NAME"/>" />
+            		</s:else>
+            			<span><s:property value="NAME"/></span>
+            		</a>
+            	</s:iterator>
           </div>
           </div>
     </div>
