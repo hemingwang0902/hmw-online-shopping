@@ -467,11 +467,12 @@ public abstract class DaoSupport extends HibernateDaoSupport {
 	 * @author 何明旺
 	 * @return 返回查询列表
 	 */
+	@SuppressWarnings("unchecked")
 	public List<Map<String,Object>> queryForListWithSQLQuery(String sql,Object[] params) {
 		List<Map<String,Object>> returnlist=null;
 		Session session = getSession();
 		try {
-			setQueryParameters(session.createSQLQuery(sql).setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP), params).list();
+			returnlist= setQueryParameters(session.createSQLQuery(sql).setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP), params).list();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

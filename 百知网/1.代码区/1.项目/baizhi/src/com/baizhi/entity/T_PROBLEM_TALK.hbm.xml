@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+	
+<hibernate-mapping>
+	<class entity-name="T_PROBLEM_TALK" table="T_PROBLEM_TALK" lazy="false">
+		<comment>问题话题信息表</comment>
+		<id name="PROBLEMTALK_ID" column="PROBLEMTALK_ID" type="int" >
+			<generator class="identity" />
+		</id>
+		<property name="TALK_ID" type="int">
+			<column name="TALK_ID"  >
+				<comment>话题ID</comment>
+			</column>
+		</property>
+		<property name="PROBLEM_ID" type="int">
+			<column name="PROBLEM_ID"  >
+				<comment>问题ID</comment>
+			</column>
+		</property>
+		<property name="CREATE_TIME" type="java.util.Date">
+			<column name="CREATE_TIME"  >
+				<comment>创建时间</comment>
+			</column>
+		</property>
+		<property name="MODIFY_TIME" type="java.util.Date">
+			<column name="MODIFY_TIME"  >
+				<comment>修改时间</comment>
+			</column>
+		</property>
+	</class>
+</hibernate-mapping>

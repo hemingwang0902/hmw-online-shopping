@@ -4,8 +4,11 @@
 	<bean id="wtymtitDao" class="com.baizhi.index.dao.WtymtitDao" parent="daoSupport"></bean>
 	
 	<bean id="wtymtitService" class="com.baizhi.index.service.WtymtitService" parent="serviceSupport">
-		<property name="wtymtitDao">
-			<ref local="wtymtitDao" />
-		</property>
+		<property name="wtymtitDao" ref="wtymtitDao" />
+		<property name="problemDao" ref="problemDao" />
+		<property name="talkDao" ref="talkDao" />
+		<property name="problemTalkDao" ref="problemTalkDao" />
+		<property name="problemInviteDao" ref="problemInviteDao" />
+		<property name="problemAnswerDao" ref="problemAnswerDao" />
 	</bean>
 </beans>

@@ -30,6 +30,8 @@
 	<include file="struts2/s/s-userbattention.xml" />
 	<include file="struts2/s/s-userbrand.xml" />
 	<include file="struts2/s/s-probleminvite.xml" />
+	<include file="struts2/s/s-problemanswer.xml" />
+	<include file="struts2/s/s-problemtalk.xml" />
 	
 	<include file="struts2/index/s-pqlb.xml" />
 	<!-- 首页 -->

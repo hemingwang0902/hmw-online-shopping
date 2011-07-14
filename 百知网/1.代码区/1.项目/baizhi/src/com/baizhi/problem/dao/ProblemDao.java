@@ -86,7 +86,8 @@ public class ProblemDao extends DaoSupport{
 		   .append("a.IS_REPORT as IS_REPORT,")//是否举报(0否、1是)
 		   .append("a.REPORT_COUNT as REPORT_COUNT,")//举报次数
 		   .append("a.CREATE_TIME as CREATE_TIME,")//创建时间
-		   .append("a.MODIFY_TIME as MODIFY_TIME) ")//修改时间
+		   .append("a.MODIFY_TIME as MODIFY_TIME,")//修改时间
+		   .append("(SELECT COUNT(pi.INVITE_ID) FROM T_PROBLEM_INVITE pi WHERE pi.PROBLEM_ID=a.PROBLEM_ID) as INVITE_COUNT) ")//邀请回答的次数
 		   .append("FROM T_PROBLEM a WHERE a.PROBLEM_ID=? ");
 		return this.getById(sql.toString(), new Object[]{PROBLEM_ID});
 	}

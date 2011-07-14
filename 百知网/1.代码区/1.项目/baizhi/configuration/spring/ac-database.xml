@@ -46,6 +46,8 @@
 				<value>com/baizhi/entity/T_USER_BATTENTION.hbm.xml</value>
 				<value>com/baizhi/entity/T_USER_BRAND.hbm.xml</value>
 				<value>com/baizhi/entity/T_PROBLEM_INVITE.hbm.xml</value>
+				<value>com/baizhi/entity/T_PROBLEM_ANSWER.hbm.xml</value>
+				<value>com/baizhi/entity/T_PROBLEM_TALK.hbm.xml</value>
 			</list>
 		</property>
 	</bean>

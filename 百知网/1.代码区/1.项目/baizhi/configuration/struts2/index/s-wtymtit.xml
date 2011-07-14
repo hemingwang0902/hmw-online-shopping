@@ -2,8 +2,15 @@
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" "http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
 	<package name="wtymtit" extends="json-default" namespace="/index">
+		<!-- 跳转到问题详细页面 -->
 		<action name="wtymDetail" class="com.baizhi.index.action.wtymtit.WtymDetail">
 			<result name="success" >list_wtymtit.jsp</result>
+		</action>
+		<!-- 获取相关问题列表 -->
+		<action name="getNearProblemList" class="com.baizhi.index.action.wtymtit.GetNearProblemList">
+			<result name="jsonsuccess" type="json">
+		      <param name="root">result</param>
+		    </result>
 		</action>
 	</package>
 </struts>

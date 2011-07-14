@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="probleminvite" extends="json-default" namespace="/probleminvite">
+		<action name="getProblemInviteList" class="com.baizhi.probleminvite.action.GetProblemInviteList">
+			<result name="jsonsuccess" type="json">
+		      <param name="root">result</param>
+		    </result>
+		</action>
+		<action name="initProblemInviteForm" class="com.baizhi.probleminvite.action.InitProblemInviteForm">
+			<result name="success" type="dispatcher">probleminviteform.jsp</result>
+		</action>
+		<action name="saveProblemInvite" class="com.baizhi.probleminvite.action.SaveProblemInvite">
+			<result name="error"  type="dispatcher" >probleminviteform.jsp</result>
+			<result name="success" type="redirect" >probleminvitelist.jsp</result>
+			<result name="update" type="dispatcher" >probleminviteform.jsp</result>
+			<result name="invalid.token" type="freemarker">probleminviteform.jsp</result> 
+			<interceptor-ref name="defaultStack"><param name="workflow.excludeMethods">default</param></interceptor-ref> 
+			<interceptor-ref name="tokenSession"><param name="excludeMethods">default</param></interceptor-ref>
+		</action>
+		<action name="delProblemInvite" class="com.baizhi.probleminvite.action.DelProblemInvite">
+			<result name="jsonsuccess" type="json">
+		      <param name="root">result</param>
+		    </result>
+		</action>
+		<action name="getProblemInviteById" class="com.baizhi.probleminvite.action.GetProblemInviteById">
+			<result name="success" type="dispatcher" >probleminviteform.jsp</result>
+		</action>
+	</package>
+</struts>

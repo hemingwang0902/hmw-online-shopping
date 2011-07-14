@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="problemanswer" extends="json-default" namespace="/problemanswer">
+		<action name="getProblemAnswerList" class="com.baizhi.problemanswer.action.GetProblemAnswerList">
+			<result name="jsonsuccess" type="json">
+		      <param name="root">result</param>
+		    </result>
+		</action>
+		<action name="initProblemAnswerForm" class="com.baizhi.problemanswer.action.InitProblemAnswerForm">
+			<result name="success" type="dispatcher">problemanswerform.jsp</result>
+		</action>
+		<action name="saveProblemAnswer" class="com.baizhi.problemanswer.action.SaveProblemAnswer">
+			<result name="error"  type="dispatcher" >problemanswerform.jsp</result>
+			<result name="success" type="redirect" >problemanswerlist.jsp</result>
+			<result name="update" type="dispatcher" >problemanswerform.jsp</result>
+			<result name="invalid.token" type="freemarker">problemanswerform.jsp</result> 
+			<interceptor-ref name="defaultStack"><param name="workflow.excludeMethods">default</param></interceptor-ref> 
+			<interceptor-ref name="tokenSession"><param name="excludeMethods">default</param></interceptor-ref>
+		</action>
+		<action name="delProblemAnswer" class="com.baizhi.problemanswer.action.DelProblemAnswer">
+			<result name="jsonsuccess" type="json">
+		      <param name="root">result</param>
+		    </result>
+		</action>
+		<action name="getProblemAnswerById" class="com.baizhi.problemanswer.action.GetProblemAnswerById">
+			<result name="success" type="dispatcher" >problemanswerform.jsp</result>
+		</action>
+	</package>
+</struts>
