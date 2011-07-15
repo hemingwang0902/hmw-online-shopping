@@ -130,6 +130,17 @@ public class UserDao extends DaoSupport{
 	}
 	
 	/**
+	 * 修改密码
+	 * 
+	 * @param EMAIL    email
+	 * @param PASSWORD 密码
+	 * @return 返回执行记录数
+	 */
+	public int modifyPassword(String EMAIL,String PASSWORD) {
+		return this.executeUpdate("update T_USER set PASSWORD=? where EMAIL=?", new Object[]{PASSWORD,EMAIL});
+	}
+	
+	/**
 	 *　删除用户信息表信息
 	 * 
 	 * @param USER_IDS  用户信息表ID值集合以","分隔

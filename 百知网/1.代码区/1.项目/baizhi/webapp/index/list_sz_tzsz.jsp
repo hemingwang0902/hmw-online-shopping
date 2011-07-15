@@ -84,7 +84,7 @@
       </s:else>
    	  </div>
       <div class="list_sz_zhsz_bcsz">
-        <input name="input" type="submit" class="list_sz_bcmm" value="保存密码"/>
+        <input name="input" type="submit" class="list_sz_bcmm" value="保存"/>
       </div>
        </form>
   </div>

@@ -4,6 +4,8 @@
 <html>
 <head>
 	<%@include file="../common/jsCss.jsp" %>
+	<script type="text/javascript" language="javascript"  src="../areadata.js"></script>
+	<script type="text/javascript" language="javascript"  src="../javascripts/jquery.select.js"></script>
 	<script type="text/javascript" language="javascript" src="../index/list_sz_pp.js"></script>
 </head>
 
@@ -64,8 +66,8 @@
                
              	<li style="margin-top: 18px;"><input name="SOURCE" type="text" id="SOURCE" value="${SOURCE }"/> </li>
                 <li style="margin-top: 10px;">
-                <select id="PROVINCE" name="PROVINCE"><option value="1">北京</option></select>省
-                <select id="CITY" name="CITY"><option value="1">北京</option></select>市
+                <select id="PROVINCE" name="PROVINCE"  onchange="setSelectValue(this.selectedIndex,true,document.getElementById('CITY'));"></select>省
+                <select id="CITY" name="CITY"></select>市
                 </li>
 				<li style="margin-top: 10px;"><input name="INDUSTRY" id="INDUSTRY" value="${INDUSTRY }" type="text" /></li>
 				<li style="margin-top: 18px;"><input name="LINK_NAME" id="LINK_NAME" value="${LINK_NAME }" type="text" /></li>

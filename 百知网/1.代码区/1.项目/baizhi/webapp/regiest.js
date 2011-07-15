@@ -8,18 +8,28 @@ $(document).ready(function(){
 				EMAIL: function() {return $("#EMAIL").val();}
 			}}} ,
 			PASSWORD: {required: true,rangelength: [6,14]},
-            CONFIRM_PASSWORD: {required: true,rangelength: [6,14],equalTo: "#PASSWORD"}
+            CONFIRM_PASSWORD: {required: true,rangelength: [6,14],equalTo: "#PASSWORD"},
+            AGREEMENTID:{required:true}
 		},
 		messages:{
 			NAME:{required:"请输入姓名",rangelength:"姓名长度在{0}-{1}之间"} ,
 			INTRODUCTION:{required:"请输入简介",email:"简介长度在{0}-{1}之间"} ,
 			EMAIL:{required:"请输入邮件地址",email:"请输入正确的邮件地址"} ,
 			PASSWORD:{required:"请输入密码",rangelength: "密码长度在{0}-{1}之间"} ,
-            CONFIRM_PASSWORD:{required:"请输入确认密码",rangelength: "确认密码长度在{0}-{1}之间" ,equalTo:"确认密码与密码不一致，请重新输入"}
+            CONFIRM_PASSWORD:{required:"请输入确认密码",rangelength: "确认密码长度在{0}-{1}之间" ,equalTo:"确认密码与密码不一致，请重新输入"},
+            AGREEMENTID:{required:"请选择协议"}
 		},
 		submitHandler:function(form){
             form.submit();
         }   
 	});
 	
+	
+	$("#agreement").click(function(){
+		if($(this).attr("checked")=="checked"){
+			$("#AGREEMENTID").val("1");
+		}else{
+			$("#AGREEMENTID").val("");
+		}
+	});
 });

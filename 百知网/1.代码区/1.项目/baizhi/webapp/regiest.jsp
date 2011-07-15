@@ -46,9 +46,10 @@
     <div class="login_3">
     <div class="login_6">
     <div class="login_7" style="margin:5px 0 0">
-    <label><input checked type="checkbox" name="terms" />同 意&nbsp;&nbsp; <a href="#">百知协议</a></label>
+    <input  type="checkbox" name="terms" id="agreement" />同 意&nbsp;&nbsp; <a href="javascript:;">百知协议</a><input type="hidden" id="AGREEMENTID" name="AGREEMENTID" value="" />
     </div>
-      <a href="javascript:;" class="login_8" style="margin:0 210px 0 0" onclick="$('#RegiestForm').submit();">下一步</a>    </div>
+      </div>
+    <div  class="login_6"> <a href="javascript:;" class="login_8" style="margin:0 210px 0 0" onclick="$('#RegiestForm').submit();">下一步</a>   </div>
     </div>
     </div>
 </div>

@@ -35,7 +35,8 @@ $(document).ready(function(){
         }   
 	});
 	
-	
+	//加载下拉框
+	initSelect("PROVINCE","CITY",true);
 });
 
 function btn_submit(type){

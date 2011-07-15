@@ -73,6 +73,18 @@ public class UserService extends ServiceSupport{
 	public int modifyPassword(int USER_ID,String PASSWORD) {
 		return userDao.modifyPassword(USER_ID, PASSWORD);
 	}
+	
+	/**
+	 * 修改密码
+	 * 
+	 * @param EMAIL    email
+	 * @param PASSWORD 密码
+	 * @return 返回执行记录数
+	 */
+	public int modifyPassword(String EMAIL,String PASSWORD) {
+		return userDao.modifyPassword(EMAIL, PASSWORD);
+	}
+	
 	/**
 	 *　删除用户信息表信息
 	 * 

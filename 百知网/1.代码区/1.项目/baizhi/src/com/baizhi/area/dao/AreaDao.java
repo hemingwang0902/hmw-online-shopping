@@ -3,6 +3,8 @@ package com.baizhi.area.dao;
 import java.util.List;
 import java.util.Map;
 import org.dom4j.Element;
+import org.hibernate.Query;
+import org.hibernate.Session;
 import com.baizhi.commons.DaoSupport;
 import com.baizhi.commons.ParametersSupport;
  /**
@@ -83,6 +85,37 @@ public class AreaDao extends DaoSupport{
 		   .append("a.REMARK as REMARK) ")//备注
 		   .append("FROM T_AREA a WHERE a.AREA_ID=? ");
 		return this.getById(sql.toString(), new Object[]{AREA_ID});
+	}
+	
+	@SuppressWarnings("unchecked")
+	/**
+	 * 获取地区信息表信息
+	 * @return 返回地区信息表信息,如果无查询记录则返回null
+	 */
+	public List<Map<String,Object>> getAreaListByData(){
+		List<Map<String,Object>> list=null;
+		Session session = getSession();
+		try {
+			Query query = setQueryParameters(session.createQuery("SELECT new Map(DIC_CODE as value,DIC_NAME as name) FROM T_AREA where PAREA_ID=0"), null);
+			list=query.list();
+			if(list!=null&&list.size()>0){
+				for (int i = 0; i < list.size(); i++) {
+					Map<String, Object> map = list.get(i);
+					if(map!=null&&map.size()>0){
+						query = setQueryParameters(session.createQuery("SELECT new Map(DIC_CODE as value,DIC_NAME as name) FROM T_AREA where PAREA_ID=?"), new Object[]{map.get("DIC_CODE")});
+						List<Map<String,Object>> childlist=query.list();
+						if(list!=null&&list.size()>0){
+							map.put("childnode",childlist);
+						}
+					}
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return list;
 	}
 	
 	/**

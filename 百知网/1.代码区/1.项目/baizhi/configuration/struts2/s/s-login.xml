@@ -12,5 +12,23 @@
 		<action name="destroy" class="com.baizhi.user.action.Destroy">
 			<result name="success" type="redirect" >login.jsp</result> 
 		</action>
+		<action name="forget" class="com.baizhi.user.action.Forget">
+			<result name="jsonsuccess" type="json">
+		      <param name="root">result</param>
+		    </result>
+		</action>
+		<action name="forgetPassword" class="com.baizhi.user.action.ForgetPassword">
+			<result name="success" >password.jsp</result> 
+			<result name="error" >forgeterror.jsp</result> 
+		</action>
+		<action name="password" class="com.baizhi.user.action.Password">
+			<result name="success" >index/home.jsp</result> 
+			<result name="error">forgeterror.jsp</result> 
+		</action>
+		<action name="isEmail" class="com.baizhi.user.action.IsEmail">
+			<result name="jsonsuccess" type="json">
+		      <param name="root">result</param>
+		    </result>
+		</action>
 	</package>
 </struts>

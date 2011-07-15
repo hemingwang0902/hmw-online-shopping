@@ -185,4 +185,7 @@ function agreeData(ids){
 $(document).ready(function(){
 	//获取数据列表
 	getDataList();
+	
+	//加载下拉框
+	initSelect("PROVINCE","CITY",false);
 });  

@@ -78,6 +78,14 @@ public class AreaService extends ServiceSupport{
 	}
 	
 	/**
+	 * 获取地区信息表信息
+	 * @return 返回地区信息表信息,如果无查询记录则返回null
+	 */
+	public List<Map<String,Object>> getAreaListByData(){
+		return areaDao.getAreaListByData();
+	}
+	
+	/**
 	 * 获取地区信息表列表信息
 	 * @param params 参数
 	 * @param nowPage 当前页
