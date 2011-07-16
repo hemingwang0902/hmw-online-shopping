@@ -4,8 +4,7 @@
 	<bean id="hyymDao" class="com.baizhi.index.dao.HyymDao" parent="daoSupport"></bean>
 	
 	<bean id="hyymService" class="com.baizhi.index.service.HyymService" parent="serviceSupport">
-		<property name="hyymDao">
-			<ref local="hyymDao" />
-		</property>
+		<property name="hyymDao" ref="hyymDao" />
+		<property name="homeDao" ref="homeDao" />
 	</bean>
 </beans>

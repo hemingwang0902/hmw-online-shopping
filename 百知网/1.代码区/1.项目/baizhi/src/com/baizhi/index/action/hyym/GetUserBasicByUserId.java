@@ -32,10 +32,11 @@ public class GetUserBasicByUserId extends ActionSupport {
 		this.userId = userId;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public String execute() throws Exception {
 		// 查询结果列表
-		List<Map<String, Object>> returnList = hyymService.getUserBasicByUserId(userId);
+		List<Map<String, Object>> returnList = (List<Map<String, Object>>) hyymService.getUserBasicByUserId(userId, getSessionUserId()).get(KEY_LIST);
 		//判断是否存在查询记录
 		if (returnList != null && returnList.size() != 0) {
 			this.setResult(returnList.get(0));

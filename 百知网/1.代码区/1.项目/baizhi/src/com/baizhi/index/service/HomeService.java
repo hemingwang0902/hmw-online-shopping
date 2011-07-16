@@ -2,6 +2,7 @@ package com.baizhi.index.service;
 
 import java.util.Map;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.math.NumberUtils;
 import org.dom4j.Element;
 import org.dom4j.tree.DefaultElement;
@@ -9,7 +10,6 @@ import org.dom4j.tree.DefaultElement;
 import com.baizhi.commons.ServiceSupport;
 import com.baizhi.commons.support.DateUtils;
 import com.baizhi.commons.support.Elements;
-import com.baizhi.commons.support.StringUtils;
 import com.baizhi.index.dao.HomeDao;
 import com.baizhi.problem.dao.ProblemDao;
 import com.baizhi.problemattention.dao.ProblemAttentionDao;
@@ -64,6 +64,10 @@ public class HomeService  extends ServiceSupport{
 		return homeDao.getAttentionUser(userId, nowPage, onePageCount);
 	}
 	
+	public Map<String,Object> getWasAttentionUser(int userId, int nowPage, int onePageCount){
+		return homeDao.getAttentionUser(userId, nowPage, onePageCount);
+	}
+	
 	public Map<String,Object> getAttentionBrand(int userId, int nowPage, int onePageCount){
 		return homeDao.getAttentionBrand(userId, nowPage, onePageCount);
 	}
@@ -95,28 +99,40 @@ public class HomeService  extends ServiceSupport{
 	}
 	
 	/**
-	 * 关注问题
+	 * 关注/取消关注问题
 	 * @param userId 用户ID
 	 * @param problemId 问题ID
+	 * @param isDisAttention 值为 true 表示 取消关注
 	 */
-	public void attentionProblem(int userId, int problemId){
+	public void attentionProblem(int userId, int problemId, boolean isDisAttention){
 		Element problem = problemDao.getProblemEleById(""+problemId);
 		if(problem == null)
 			return;
 		
-		Element problemAttention = new DefaultElement("T_PROBLEM_ATTENTION");
-		Elements.setElementValue(problemAttention, "PROBLEM_ID", problemId);// 问题ID
-		Elements.setElementValue(problemAttention, "IS_ATTENTION", 1);// 是否关注(0否、1是)
-		Elements.setElementValue(problemAttention, "USER_ID", userId);// 用户ID
-		Elements.setElementValue(problemAttention, "CREATE_TIME", DateUtils.getCurrentTime(DateUtils.SHOW_DATE_FORMAT));// 创建时间
-		Elements.setElementValue(problemAttention, "MODIFY_TIME", DateUtils.getCurrentTime(DateUtils.SHOW_DATE_FORMAT));// 修改时间
-		//如果保存成功，返回主键
-		String keyid = problemAttentionDao.saveOrUpdateProblemAttention(problemAttention);
+		Element problemAttention = problemAttentionDao.getProblemAttentionEleById(userId, problemId);
+		boolean b = false;
+		if(isDisAttention){
+			if(problemAttention != null){
+				b = problemAttentionDao.delete(problemAttention);
+			}
+		}else{
+			if(problemAttention == null){
+				problemAttention = new DefaultElement("T_PROBLEM_ATTENTION");
+				Elements.setElementValue(problemAttention, "PROBLEM_ID", problemId);// 问题ID
+				Elements.setElementValue(problemAttention, "IS_ATTENTION", 1);// 是否关注(0否、1是)
+				Elements.setElementValue(problemAttention, "USER_ID", userId);// 用户ID
+				Elements.setElementValue(problemAttention, "CREATE_TIME", DateUtils.getCurrentTime(DateUtils.SHOW_DATE_FORMAT));// 创建时间
+				Elements.setElementValue(problemAttention, "MODIFY_TIME", DateUtils.getCurrentTime(DateUtils.SHOW_DATE_FORMAT));// 修改时间
+				//如果保存成功，返回主键
+				String keyid = problemAttentionDao.saveOrUpdateProblemAttention(problemAttention);
+				b = org.apache.commons.lang.StringUtils.isNotEmpty(keyid);
+			}
+		}
 		
 		//判断主键是否为空，如果不为空，则保存成功
-		if(StringUtils.isNotEmpty(keyid)){
+		if(b){
 			int ATTENTION_COUNT = NumberUtils.toInt("ATTENTION_COUNT"); //关注数量
-			Elements.setElementValue(problem, "ATTENTION_COUNT", ATTENTION_COUNT + 1);
+			Elements.setElementValue(problem, "ATTENTION_COUNT", (isDisAttention ? ATTENTION_COUNT-1 : ATTENTION_COUNT+1));
 			problemDao.saveOrUpdateProblem(problem);
 		}
 	}

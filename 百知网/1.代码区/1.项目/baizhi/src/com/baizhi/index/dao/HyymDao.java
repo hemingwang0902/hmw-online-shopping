@@ -94,11 +94,12 @@ public class HyymDao extends DaoSupport{
 	}
 	
 	/**
-	 * 根据用户基本信息表ID获取用户基本信息表信息
-	 * @param userId 用户ID
+	 * 根据用户ID获取用户基本信息表信息
+	 * @param userId 要查询的用户ID
+	 * @param userId 当前登录的用户ID
 	 * @return 返回用户基本信息表信息,如果无查询记录则返回null
 	 */
-	public List<Map<String, Object>> getUserBasicMapByUserId(String userId){
+	public List<Map<String, Object>> getUserBasicMapByUserId(String userId, int loginUserId){
 		//组织查询语句
 		StringBuffer sql = new StringBuffer();
 		sql.append("SELECT ")
@@ -122,8 +123,9 @@ public class HyymDao extends DaoSupport{
 		   .append("a.SCORE as SCORE,")//积分
 		   .append("a.REMARK as REMARK,")//备注
 		   .append("a.CREATE_TIME as CREATE_TIME,")//创建时间
-		   .append("a.MODIFY_TIME as MODIFY_TIME ")//修改时间
+		   .append("a.MODIFY_TIME as MODIFY_TIME, ")//修改时间
+		   .append("(select count(ATTENTION_ID) from T_USER_ATTENTION ua where ua.USER_ID=? and WAS_USERID=a.USER_ID) as ATTENTION ")//当头登录用户是否关注了该用户
 		   .append("FROM T_USER_BASIC a WHERE a.USER_ID=? ");
-		return queryForListWithSQLQuery(sql.toString(), new Object[]{userId});
+		return queryForListWithSQLQuery(sql.toString(), new Object[]{loginUserId, userId});
 	}
 }

@@ -16,6 +16,8 @@ public class AttentionProblem extends ActionSupport {
 	private static final long serialVersionUID = 4226083040066849977L;
 	private HomeService homeService;
 	private int problemId;
+	//为true时，表示为取消关注
+	private boolean isDisAttention;
 
 	public void setHomeService(HomeService homeService) {
 		this.homeService = homeService;
@@ -29,11 +31,13 @@ public class AttentionProblem extends ActionSupport {
 		this.problemId = problemId;
 	}
 
-
+	public void setDisAttention(boolean isDisAttention) {
+		this.isDisAttention = isDisAttention;
+	}
 
 	@Override
 	public String execute() throws Exception {
-		homeService.attentionProblem(getSessionUserId(), getProblemId());
+		homeService.attentionProblem(getSessionUserId(), getProblemId(), isDisAttention);
 		return JSONSUCCESS;
 	}
 

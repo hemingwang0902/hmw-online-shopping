@@ -2,7 +2,9 @@ package com.baizhi.problemattention.dao;
 
 import java.util.List;
 import java.util.Map;
+
 import org.dom4j.Element;
+
 import com.baizhi.commons.DaoSupport;
 import com.baizhi.commons.ParametersSupport;
 
@@ -129,6 +131,19 @@ public class ProblemAttentionDao extends DaoSupport{
 		sql.append(ps.getConditions());
 		
 		return this.getByList(sql.toString(), ps.getValues());
+	}
+	
+
+	/**
+	 * 根据用户ID和问题ID查询问题关注表的实体
+	 * @param USER_ID 用户ID
+	 * @param PROBLEM_ID 问题ID
+	 * @return 返回问题关注表实体,如果无查询记录则返回null
+	 */
+	public  Element getProblemAttentionEleById(int USER_ID,int PROBLEM_ID){
+		//组织查询语句
+		String sql = "FROM T_PROBLEM_ATTENTION where USER_ID=? and PROBLEM_ID=?";
+		return this.getElementById(sql.toString(), new Object[]{USER_ID,PROBLEM_ID});
 	}
 	
 }

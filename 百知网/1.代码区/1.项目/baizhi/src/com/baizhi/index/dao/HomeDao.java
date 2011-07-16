@@ -220,7 +220,6 @@ public class HomeDao extends DaoSupport{
 	/**
 	 * 根据用户的ID，查询该用户关注的会员
 	 * @param userId 用户ID
-	 * @param userType 用户类型，参见 <code>com.baizhi.IConstants.USER_TYPE_*</code>
 	 * @param 当前页
 	 * @param onePageCount 每页显示的记录条数
 	 * @return 查询到的结果集
@@ -231,6 +230,25 @@ public class HomeDao extends DaoSupport{
 		.append(" FROM T_USER_ATTENTION UA, T_USER_BASIC UB")
 		.append(" WHERE UA.USER_ID=UB.USER_ID")
 		.append(" AND UA.USER_ID=?");
+		
+		Object[] params = new Object[]{userId};
+		
+		return queryForListWithSQLQuery(sql.toString(), params, nowPage, onePageCount);
+	}
+	
+	/**
+	 * 根据用户的ID，查询关注他的人
+	 * @param userId 用户ID
+	 * @param 当前页
+	 * @param onePageCount 每页显示的记录条数
+	 * @return 查询到的结果集
+	 */
+	public Map<String,Object> getWasAttentionUser(int userId, int nowPage, int onePageCount){
+		StringBuffer sql = new StringBuffer()		
+		.append("SELECT ").append(ALL_USER_BASIC_FIELDS)
+		.append(" FROM T_USER_ATTENTION UA, T_USER_BASIC UB")
+		.append(" WHERE UA.USER_ID=UB.USER_ID")
+		.append(" AND UA.WAS_USERID=?");
 		
 		Object[] params = new Object[]{userId};
 		
