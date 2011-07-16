@@ -6,9 +6,9 @@
 
 	<!-- 邮件发送者 -->
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
-		<property name="host" value="smtp.qq.com"/>
-		<property name="username" value="hemingwang0902" />
-		<property name="password" value="******" />
+		<property name="host" value="smtp.sina.com"/>
+		<property name="username" value="baizhi_bj" />
+		<property name="password" value="baizhi" />
 		<property name="javaMailProperties">
 			<props>
 				<!-- 如果要使用用户名和密码验证,这一步需要 -->
@@ -20,7 +20,7 @@
 	<!-- 简单的邮件 message -->
 	<bean id="simpleMailMessage" class="org.springframework.mail.SimpleMailMessage" scope="prototype">
 		<property name="to" value="331008019@qq.com,532320690@qq.com" />
-		<property name="from" value="hemingwang0902@qq.com" />
+		<property name="from" value="baizhi_bj@sina.com" />
 		<property name="subject" value="测试邮件" />
 		<property name="text" value="测试 Spring 发送 Email 的功能，请勿回复！" />
 	</bean>
