@@ -61,9 +61,9 @@
       	<input type="checkbox"  id="SET_TYPE_4" />&nbsp;我关注的问题有了新答案<br />
       </s:else>
       <s:if test="returnMap.SET_TYPE_5==1">
-      	<input type="checkbox" checked="checked" id="SET_TYPE_5" />&nbsp;有人向我发送私信<br />
+      	<input type="checkbox" checked="checked" id="SET_TYPE_5" />&nbsp;有人关注了我的品牌<br />
       </s:if>
-      <s:else><input type="checkbox" id="SET_TYPE_5" />&nbsp;有人向我发送私信<br />
+      <s:else><input type="checkbox" id="SET_TYPE_5" />&nbsp;有人关注了我的品牌<br />
       	
       </s:else>
         

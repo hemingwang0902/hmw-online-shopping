@@ -3,8 +3,12 @@ package com.baizhi.userdynamic.dao;
 import java.util.List;
 import java.util.Map;
 import org.dom4j.Element;
+import org.dom4j.tree.DefaultElement;
+import org.hibernate.Session;
 import com.baizhi.commons.DaoSupport;
 import com.baizhi.commons.ParametersSupport;
+import com.baizhi.commons.support.DateUtils;
+import com.baizhi.commons.support.Elements;
  /**
  * 
  * 类名：UserDynamicDao.java
@@ -25,6 +29,35 @@ public class UserDynamicDao extends DaoSupport{
 	 */
 	public String saveOrUpdateUserDynamic(Element element) {
 		return this.saveOrUpdate(element, "DYNAMIC_ID");
+	}
+	
+	/**
+	 * 
+	 * @param USER_ID      当前用户ID
+	 * @param TITLE        动态主题(暂时不用)
+	 * @param BUSINESS_ID  业务主键
+	 * @param DYNAMIC_TYPE 业务类型(1：有人关注了我、2：有人问了我一个问题、3：有人邀请我回答一个问题、4：我关注的问题有了新答案、5：有人关注了我的品牌、7:有人关注了我品牌问题、8:我关注的品牌问题有了新答案)
+	 * @param CONTENT      动态内容
+	 * @param WARN_USERID  提醒用户ID
+	 * @param dom4jSession 数据库连接
+	 * @return
+	 * @throws Exception
+	 */
+	public String saveUserDynamic(Integer USER_ID,String TITLE,Integer BUSINESS_ID,String DYNAMIC_TYPE,String CONTENT,Integer WARN_USERID,Session dom4jSession)throws Exception{
+		String idValue = "";
+		Element element = new DefaultElement("T_USER_DYNAMIC");
+		Elements.setElementValue(element, "USER_ID", USER_ID);// 用户ID
+		Elements.setElementValue(element, "TITLE", TITLE);// 动态主题
+		Elements.setElementValue(element, "BUSINESS_ID", BUSINESS_ID);// 业务主键(回复问题ID、关注会员ID)
+		Elements.setElementValue(element, "DYNAMIC_TYPE", DYNAMIC_TYPE);// 动态类型(字典：1回答问题、2关注会员)
+		Elements.setElementValue(element, "CONTENT", CONTENT);// 动态内容(存放组织好的html内容)
+		Elements.setElementValue(element, "WARN_USERID", WARN_USERID);// 提醒用户ID
+		Elements.setElementValue(element, "IS_OPEN", 0);// 是否查看(0否、1是)
+		Elements.setElementValue(element, "CREATE_TIME", DateUtils.getCurrentTime(DateUtils.SHOW_DATE_FORMAT));// 创建时间
+		
+		idValue=save(element,dom4jSession);
+		
+		return idValue;
 	}
 	
 	/**
