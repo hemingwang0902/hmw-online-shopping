@@ -46,4 +46,15 @@ $(document).ready(function(){
 		//获取未读通知数量
 		getUserDynamicCount();
 	}
+	
+	//切换城市
+	$("#city_a").fancybox({
+		'width'				: '75%',
+		'height'			: '75%',
+		'autoScale'			: false,
+		'transitionIn'		: 'none',
+		'transitionOut'		: 'none',
+		'type'				: 'iframe'
+	});
+	
 });
