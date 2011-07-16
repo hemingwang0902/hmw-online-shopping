@@ -228,7 +228,7 @@ public class UserDao extends DaoSupport{
 		   .append("a.IP as IP,")//最后登录IP
 		   .append("a.MAC as MAC,")//最后登录MAC
 		   .append("a.LAST_FREEZETIME as LAST_FREEZETIME, ")//最后冻结时间
-		   .append("b.INTRODUCTION as INTRODUCTION)")//个人介绍/品牌介绍
+		   .append("b.INTRODUCTION as INTRODUCTION,")//个人介绍/品牌介绍
 		   .append("b.NAME as NAME,")//姓名
 		   .append("b.CITY  as CITY,")//城市
 		   .append("(select DIC_NAME from T_AREA where DIC_CODE=b.CITY)  as CITY_NAME ) ")//城市
