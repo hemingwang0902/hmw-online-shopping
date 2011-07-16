@@ -13,7 +13,7 @@
 	<div class="login_h_logo"><img src="../images/main/login_h_l.png" /></div>
   <div class="login_h_jj">一个有趣的网络问答社区，分享知识，发现价值</div>
   	<form id="form1">
-  		<input id="url" type="hidden" value="${basePath }/regiest.jsp?invite=${USER_ID}">
+  		<input id="url" type="hidden" value="${basePath }/regiest.jsp?USER_ID=">
   		<div id="error" style="text-align: center;width: 100%;color: #ff0000;" ></div>
   		 <div class="login_h_e">
   		 	<img src="../images/main/e_mail.png" />

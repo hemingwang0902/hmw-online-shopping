@@ -9,6 +9,7 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 
 import com.baizhi.commons.ActionSupport;
 import com.baizhi.commons.component.SendEmailUtils;
+import com.baizhi.commons.support.Encrypt;
 
 public class SendInviteEmail extends ActionSupport{
 	private static final long serialVersionUID = -6422467270830467465L;
@@ -40,7 +41,7 @@ public class SendInviteEmail extends ActionSupport{
 	public String execute() throws Exception {
 		Map<String, Object> rootMap = new HashMap<String, Object>();
 		rootMap.put("userName", getSessionUserName());
-		rootMap.put("url", getUrl());
+		rootMap.put("url", getUrl()+Encrypt.encodeBase64(this.getSessionUserId()+""));
 		
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		try {

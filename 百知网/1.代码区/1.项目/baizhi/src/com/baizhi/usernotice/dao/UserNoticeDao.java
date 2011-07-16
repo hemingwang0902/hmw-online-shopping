@@ -72,5 +72,31 @@ public class UserNoticeDao extends DaoSupport{
 		return this.getByList(sql.toString(), ps.getValues());
 	}
 	
+	@SuppressWarnings("unchecked")
+	/**
+	 *　判断是否发送消息
+	 *
+	 * @param USER_ID      用户ID
+	 * @param NOTICE_TYPE  通知类型 1：有人关注了我、2：有人问了我一个问题、3：有人邀请我回答一个问题、4：我关注的问题有了新答案、5：有人关注了我的品牌、6：谁可以给我发私信
+	 * 
+	 * @return 返回是否发送通知消息，发送返回true，不发送返回false
+	 */
+	public boolean isUserNotice(Integer USER_ID,Integer NOTICE_TYPE,Session session) throws Exception{
+		//组织查询语句
+		StringBuffer sql = new StringBuffer();
+		sql.append("SELECT SET_TYPE FROM T_USER_NOTICE a WHERE a.USER_ID=? ");
+		boolean flag=false;
+		int SET_TYPE=-1;
+		Query query = setQueryParameters(session.createQuery(sql.toString()), new Object[]{USER_ID,NOTICE_TYPE});
+		List list=query.list();
+		if(list!=null&&list.size()>0){
+			SET_TYPE=Integer.parseInt(String.valueOf(list.get(0)));
+		}
+		if(SET_TYPE==-1||SET_TYPE==1){
+			flag=true;
+		}
+		return flag;
+	}
+	
 }
 
