@@ -22,7 +22,7 @@
 			<result name="error" >forgeterror.jsp</result> 
 		</action>
 		<action name="password" class="com.baizhi.user.action.Password">
-			<result name="success" >index/home.jsp</result> 
+			<result name="success" >login.jsp</result> 
 			<result name="error">forgeterror.jsp</result> 
 		</action>
 		<action name="isEmail" class="com.baizhi.user.action.IsEmail">

@@ -47,6 +47,14 @@ public class Forget extends ActionSupport{
 		EMAIL = email;
 	}
 
+	public SendEmailUtils getSendEmailUtils() {
+		return sendEmailUtils;
+	}
+
+	public void setSendEmailUtils(SendEmailUtils sendEmailUtils) {
+		this.sendEmailUtils = sendEmailUtils;
+	}
+
 	@Override
 	public String execute() throws Exception {
 		Map<String, Object> returnMap=new HashMap<String, Object>();
@@ -63,14 +71,7 @@ public class Forget extends ActionSupport{
 				flag=false;
 			}
 			if(flag){
-				//链接地址,将地址加密
-				HttpServletRequest request = ServletActionContext.getRequest();
-				StringBuffer href=new StringBuffer();
-				href.append("http://"+request.getServerName()+":"+request.getServerPort()+request.getContextPath())
-					.append("/forgetPassword.go?EMAIL="+Encrypt.encodeBase64(EMAIL))
-					.append("&TIMEOUT="+Encrypt.encodeBase64(DateUtils.getCurrentTime(DateUtils.DB_DATE_FORMAT)));
 				
-				System.out.println(href);
 				//发送邮件
 				sendEmail();
 			}
@@ -88,15 +89,21 @@ public class Forget extends ActionSupport{
 	
 	private void sendEmail() {
 		Map<String, Object> rootMap = new HashMap<String, Object>();
-		rootMap.put("name", "");
-		rootMap.put("email", "");
-		rootMap.put("password", "");
+		
+		//链接地址,将地址加密
+		HttpServletRequest request = ServletActionContext.getRequest();
+		StringBuffer href=new StringBuffer();
+		href.append("http://"+request.getServerName()+":"+request.getServerPort()+request.getContextPath())
+			.append("/forgetPassword.go?EMAIL="+Encrypt.encodeBase64(EMAIL))
+			.append("&TIMEOUT="+Encrypt.encodeBase64(DateUtils.getCurrentTime(DateUtils.DB_DATE_FORMAT)));
+		
+		rootMap.put("href", href);
 		
 		try {
 			MimeMessageHelper helper = sendEmailUtils.getMimeMessageHelper();
 			helper.setTo(this.getEMAIL());
-			helper.setSubject("欢迎注册百知网");
-			sendEmailUtils.sendTemplateMail("AfterUserRegist.ftl", rootMap);
+			helper.setSubject("百知网");
+			sendEmailUtils.sendTemplateMail("Forget.ftl", rootMap);
 		} catch (MessagingException e) {
 			log.error("发送注册通知邮件至" + this.getEMAIL() + "失败。", e);
 		}
