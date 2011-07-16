@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="/struts-tags" prefix="s" %>
+<%@ include file="common/basePath.jsp" %>
+<%@ include file="common/jsCss.jsp" %>
 <script type="text/javascript" language="javascript" src="${basePath }/areadata.js"></script>
 <script type="text/javascript" language="javascript" src="${basePath }/city.js"></script>
 
