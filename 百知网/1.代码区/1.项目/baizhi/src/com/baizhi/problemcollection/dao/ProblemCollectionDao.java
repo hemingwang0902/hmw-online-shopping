@@ -130,6 +130,11 @@ public class ProblemCollectionDao extends DaoSupport{
 		
 		return this.getByList(sql.toString(), ps.getValues());
 	}
-	
-}
 
+
+	public  Element getProblemCollectionEleById(int PROBLEM_ID, int USER_ID){
+		//组织查询语句
+		String sql = "FROM T_PROBLEM_COLLECTION where PROBLEM_ID=? and USER_ID=?";
+		return this.getElementById(sql.toString(), new Object[]{PROBLEM_ID, USER_ID});
+	}
+}

@@ -81,7 +81,7 @@ public class WtymDetail  extends ActionSupport{
 	@SuppressWarnings("unchecked")
 	@Override
 	public String execute() throws Exception {
-		problem = problemService.getProblemMapById(""+problemId);
+		problem = problemService.getProblemMapById(problemId, getSessionUserId());
 		if(problem == null || problem.isEmpty()){
 			return INPUT; //问题不存在
 		}
@@ -94,7 +94,7 @@ public class WtymDetail  extends ActionSupport{
 		}
 		
 		int nowPage=1, onePageCount=4;
-		Map<String, Object> resultMap = wtymtitService.getNearProblemList(problemId, nowPage, onePageCount);
+		Map<String, Object> resultMap = wtymtitService.getNearProblemList(problemId, getSessionUserId(), nowPage, onePageCount);
 		nearProblemList = (List<Map<String, Object>>) resultMap.get(KEY_LIST);
 		if(nearProblemList == null || nearProblemList.isEmpty()){
 			nearProblemList = (List<Map<String, Object>>) homeService.getHottestProblemList(getSessionUserId(), nowPage, onePageCount).get(KEY_LIST);

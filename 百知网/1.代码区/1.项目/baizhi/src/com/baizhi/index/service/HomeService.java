@@ -77,23 +77,35 @@ public class HomeService  extends ServiceSupport{
 	 * @param userId 用户ID
 	 * @param problemId 问题ID
 	 */
-	public void collectionProblem(int userId, int problemId){
+	public void collectionProblem(int userId, int problemId, boolean disCollection){
 		Element problem = problemDao.getProblemEleById(""+problemId);
-		if(problem == null)
+		if(problem == null) //问题不存在
 			return;
 		
-		Element problemCollection = new DefaultElement("T_PROBLEM_COLLECTION");
-		Elements.setElementValue(problemCollection, "PROBLEM_ID", problemId);// 问题ID
-		Elements.setElementValue(problemCollection, "IS_COLLECTION", 1);// 是否收藏(0否、1是)
-		Elements.setElementValue(problemCollection, "USER_ID", userId);// 用户ID
-		Elements.setElementValue(problemCollection, "CREATE_TIME", DateUtils.getCurrentTime(DateUtils.SHOW_DATE_FORMAT));// 创建时间
-		Elements.setElementValue(problemCollection, "MODIFY_TIME", DateUtils.getCurrentTime(DateUtils.SHOW_DATE_FORMAT));// 修改时间
-		//如果保存成功，返回主键
-		String keyid = problemCollectionDao.saveOrUpdateProblemCollection(problemCollection);
+		Element problemCollection = problemCollectionDao.getProblemCollectionEleById(problemId, userId);
+		boolean b = false;
+		if(disCollection){ //取消收藏
+			if(problemCollection != null){
+				b = problemCollectionDao.delete(problemCollection);
+			}
+		}else{ //添加收藏
+			if(problemCollection == null){
+				problemCollection = new DefaultElement("T_PROBLEM_COLLECTION");
+				Elements.setElementValue(problemCollection, "PROBLEM_ID", problemId);// 问题ID
+				Elements.setElementValue(problemCollection, "IS_COLLECTION", 1);// 是否收藏(0否、1是)
+				Elements.setElementValue(problemCollection, "USER_ID", userId);// 用户ID
+				Elements.setElementValue(problemCollection, "CREATE_TIME", DateUtils.getCurrentTime(DateUtils.SHOW_DATE_FORMAT));// 创建时间
+				Elements.setElementValue(problemCollection, "MODIFY_TIME", DateUtils.getCurrentTime(DateUtils.SHOW_DATE_FORMAT));// 修改时间
+				//如果保存成功，返回主键
+				String keyid = problemCollectionDao.saveOrUpdateProblemCollection(problemCollection);
+				b = StringUtils.isNotEmpty(keyid);
+			}
+		}
+		
 		//判断主键是否为空，如果不为空，则保存成功
-		if(StringUtils.isNotEmpty(keyid)){
+		if(b){
 			int COLLECTION_COUNT = NumberUtils.toInt("COLLECTION_COUNT"); //收藏数量
-			Elements.setElementValue(problem, "COLLECTION_COUNT", COLLECTION_COUNT + 1);
+			Elements.setElementValue(problem, "COLLECTION_COUNT", (disCollection ? COLLECTION_COUNT-1 : COLLECTION_COUNT+1));
 			problemDao.saveOrUpdateProblem(problem);
 		}
 	}
@@ -111,11 +123,11 @@ public class HomeService  extends ServiceSupport{
 		
 		Element problemAttention = problemAttentionDao.getProblemAttentionEleById(userId, problemId);
 		boolean b = false;
-		if(isDisAttention){
+		if(isDisAttention){ //取消关注
 			if(problemAttention != null){
 				b = problemAttentionDao.delete(problemAttention);
 			}
-		}else{
+		}else{ //添加关注
 			if(problemAttention == null){
 				problemAttention = new DefaultElement("T_PROBLEM_ATTENTION");
 				Elements.setElementValue(problemAttention, "PROBLEM_ID", problemId);// 问题ID

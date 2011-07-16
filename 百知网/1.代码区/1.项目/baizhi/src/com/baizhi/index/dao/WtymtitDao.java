@@ -50,23 +50,23 @@ public class WtymtitDao extends DaoSupport{
 	 * @param problemId 问题ID
 	 * @return
 	 */
-	public Map<String, Object> getNearProblemList(int problemId, int nowPage, int onePageCount) {
+	public Map<String, Object> getNearProblemList(int problemId, int loginUserId, int nowPage, int onePageCount) {
 		StringBuffer sql = new StringBuffer()
 		.append("SELECT ").append(ALL_PROBLEM_FIELDS)
 		.append("  FROM (")
 		.append(" SELECT ").append(ALL_PROBLEM_FIELDS)
-		.append(" from t_problem a where a.PROBLEM_ID <> ? and a.PROBLEM_ID in(")
+		.append(" from t_problem a where a.PROBLEM_ID <> ? and (a.WAS_USERID is null or a.WAS_USERID=?) and a.PROBLEM_ID in(")
 		.append(" select pt.PROBLEM_ID from t_problem_talk pt where pt.PROBLEM_ID=?)")
 		.append(" union")
 		.append(" SELECT ").append(ALL_PROBLEM_FIELDS)
-		.append(" from t_problem a where a.PROBLEM_ID <> ? and a.user_id in(")
+		.append(" from t_problem a where a.PROBLEM_ID <> ? and (a.WAS_USERID is null or a.WAS_USERID=?) and a.user_id in(")
 		.append(" select p.user_id from t_problem p where p.PROBLEM_ID=?)")
 		.append(") a order by a.create_time desc");
 		
-		Object[] params = new Object[4];
-		for (int i = 0; i < params.length; i++) {
-			params[i] = problemId;
-		}
+		Object[] params = new Object[] {
+			problemId, loginUserId, problemId,
+			problemId, loginUserId, problemId
+		};
 		return queryForListWithSQLQuery(sql.toString(), params, nowPage, onePageCount);
 	}
 	
@@ -81,7 +81,7 @@ public class WtymtitDao extends DaoSupport{
 		//组织查询语句
 		StringBuffer sql = new StringBuffer();
 		sql.append("SELECT ").append(ALL_TALK_FIELDS)
-		   .append("FROM T_TALK t WHERE t.CONTENT like ? ");
+		   .append(" FROM T_TALK t WHERE t.CONTENT like ? ");
 		
 		return queryForListWithSQLQuery(sql.toString(), new Object[]{CONTENT}, nowPage, onePageCount);
 	}
@@ -90,7 +90,7 @@ public class WtymtitDao extends DaoSupport{
 		//组织查询语句
 		StringBuffer sql = new StringBuffer();
 		sql.append("SELECT ").append(ALL_TALK_FIELDS)
-		   .append("FROM T_TALK t WHERE t.CONTENT = ? ");
+		   .append(" FROM T_TALK t WHERE t.CONTENT = ? ");
 		
 		List<Map<String,Object>> list = queryForListWithSQLQuery(sql.toString(), new Object[]{CONTENT});
 		if(list != null && !list.isEmpty()){
@@ -109,9 +109,10 @@ public class WtymtitDao extends DaoSupport{
 	public Map<String,Object> getProblemAnswerListByProblemId(int probelmId,int nowPage,int onePageCount){
 		StringBuffer sql = new StringBuffer();
 		sql.append("SELECT ").append(ALL_ANSWER_FIELDS)
+		.append(", ub.NAME as NAME, ub.INTRODUCTION as INTRODUCTION")
 		.append(",(select count(ar.REVIEW_ID) from t_answer_review ar where ar.ANSWER_ID=a.ANSWER_ID) as REVIEW_COUNT")
-		.append(" from t_problem_answer a")
-		.append(" where a.PROBLEM_ID=?");
+		.append(" from t_problem_answer a, T_USER_BASIC ub")
+		.append(" where a.USER_ID=ub.USER_ID and a.PROBLEM_ID=?");
 		return queryForListWithSQLQuery(sql.toString(), new Object[]{probelmId}, nowPage, onePageCount);
 	}
 }

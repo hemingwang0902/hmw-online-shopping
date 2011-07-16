@@ -1,11 +1,13 @@
 package com.baizhi.index.action.home;
 
+import org.apache.commons.lang.BooleanUtils;
+
 import com.baizhi.commons.ActionSupport;
 import com.baizhi.index.service.HomeService;
 
 /**
  * 类名： AttentionProblem<br>
- * 描述：关注问题<br>
+ * 描述：关注/取消关注问题<br>
  * 创建者：何明旺<br>
  * 创建日期：2011-7-10<br>
  * 版本：1.0<br>
@@ -17,7 +19,7 @@ public class AttentionProblem extends ActionSupport {
 	private HomeService homeService;
 	private int problemId;
 	//为true时，表示为取消关注
-	private boolean isDisAttention;
+	private String disAttention;
 
 	public void setHomeService(HomeService homeService) {
 		this.homeService = homeService;
@@ -31,13 +33,13 @@ public class AttentionProblem extends ActionSupport {
 		this.problemId = problemId;
 	}
 
-	public void setDisAttention(boolean isDisAttention) {
-		this.isDisAttention = isDisAttention;
+	public void setDisAttention(String disAttention) {
+		this.disAttention = disAttention;
 	}
 
 	@Override
 	public String execute() throws Exception {
-		homeService.attentionProblem(getSessionUserId(), getProblemId(), isDisAttention);
+		homeService.attentionProblem(getSessionUserId(), getProblemId(), BooleanUtils.toBoolean(disAttention));
 		return JSONSUCCESS;
 	}
 

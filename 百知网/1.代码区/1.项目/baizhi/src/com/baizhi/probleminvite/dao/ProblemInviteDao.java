@@ -134,5 +134,9 @@ public class ProblemInviteDao extends DaoSupport{
 		return this.getByList(sql.toString(), ps.getValues());
 	}
 	
+	public  Element getProblemInviteEleById(int PROBLEM_ID, int USER_ID,int WAS_USERID){
+		//组织查询语句
+		String sql = "FROM T_PROBLEM_INVITE where PROBLEM_ID=? and USER_ID=? and WAS_USER_ID=?";
+		return this.getElementById(sql.toString(), new Object[]{PROBLEM_ID, USER_ID, WAS_USERID});
+	}
 }
-

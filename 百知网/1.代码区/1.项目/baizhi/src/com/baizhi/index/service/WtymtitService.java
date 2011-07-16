@@ -91,8 +91,8 @@ public class WtymtitService  extends ServiceSupport{
 		return wtymtitDao.getTalkUserList(ProblemId);
 	}
 	
-	public Map<String, Object> getNearProblemList(int problemId, int nowPage, int onePageCount) {
-		return wtymtitDao.getNearProblemList(problemId, nowPage, onePageCount);
+	public Map<String, Object> getNearProblemList(int problemId, int loginUserId, int nowPage, int onePageCount) {
+		return wtymtitDao.getNearProblemList(problemId, loginUserId, nowPage, onePageCount);
 	}
 
 	/**
@@ -137,7 +137,11 @@ public class WtymtitService  extends ServiceSupport{
 	 * 给问题添加话题
 	 */
 	public String addTalkForProblem(int problemId, int talkId){
-		Element element = new DefaultElement("T_PROBLEM_TALK");
+		Element element = problemTalkDao.getProblemTalkEleById(problemId, talkId);
+		if(element != null)
+			return element.elementTextTrim("PROBLEMTALK_ID");
+			
+		element = new DefaultElement("T_PROBLEM_TALK");
 		Elements.setElementValue(element, "TALK_ID", talkId);// 话题ID
 		Elements.setElementValue(element, "PROBLEM_ID", problemId);// 问题ID
 		Elements.setElementValue(element, "CREATE_TIME", DateUtils.getCurrentTime(DateUtils.SHOW_DATE_FORMAT));// 创建时间
@@ -186,7 +190,11 @@ public class WtymtitService  extends ServiceSupport{
 	 * @return
 	 */
 	public String addProblemInvite(int problemId, int userId, int wasUserId){
-		Element element = new DefaultElement("T_PROBLEM_INVITE");
+		Element element = problemInviteDao.getProblemInviteEleById(problemId, userId, wasUserId);
+		if(element != null) //已经存在，则直接返回
+			return element.elementTextTrim("INVITE_ID");
+			
+		element = new DefaultElement("T_PROBLEM_INVITE");
 		Elements.setElementValue(element, "PROBLEM_ID", problemId);// 问题ID
 		Elements.setElementValue(element, "IS_ATTENTION", 0);// 是否回答(0否、1是)
 		Elements.setElementValue(element, "USER_ID", userId);// 用户ID

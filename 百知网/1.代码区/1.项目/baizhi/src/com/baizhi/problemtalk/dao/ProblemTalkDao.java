@@ -128,5 +128,9 @@ public class ProblemTalkDao extends DaoSupport{
 		return this.getByList(sql.toString(), ps.getValues());
 	}
 	
+	public  Element getProblemTalkEleById(int PROBLEM_ID, int TALK_ID){
+		String sql = "FROM T_PROBLEM_TALK where PROBLEM_ID=? and TALK_ID=?";
+		return this.getElementById(sql, new Object[]{PROBLEM_ID, TALK_ID});
+	}
 }
 

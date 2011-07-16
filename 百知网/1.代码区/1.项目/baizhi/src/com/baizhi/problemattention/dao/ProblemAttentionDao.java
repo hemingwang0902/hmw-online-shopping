@@ -145,6 +145,5 @@ public class ProblemAttentionDao extends DaoSupport{
 		String sql = "FROM T_PROBLEM_ATTENTION where USER_ID=? and PROBLEM_ID=?";
 		return this.getElementById(sql.toString(), new Object[]{USER_ID,PROBLEM_ID});
 	}
-	
-}
 
+}

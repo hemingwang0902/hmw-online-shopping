@@ -124,7 +124,7 @@ public class HyymDao extends DaoSupport{
 		   .append("a.REMARK as REMARK,")//备注
 		   .append("a.CREATE_TIME as CREATE_TIME,")//创建时间
 		   .append("a.MODIFY_TIME as MODIFY_TIME, ")//修改时间
-		   .append("(select count(ATTENTION_ID) from T_USER_ATTENTION ua where ua.USER_ID=? and WAS_USERID=a.USER_ID) as ATTENTION ")//当头登录用户是否关注了该用户
+		   .append("(select count(ATTENTION_ID) from T_USER_ATTENTION ua where ua.USER_ID=? and WAS_USERID=a.USER_ID) as ATTENTION ")//当前登录用户是否关注了该用户
 		   .append("FROM T_USER_BASIC a WHERE a.USER_ID=? ");
 		return queryForListWithSQLQuery(sql.toString(), new Object[]{loginUserId, userId});
 	}

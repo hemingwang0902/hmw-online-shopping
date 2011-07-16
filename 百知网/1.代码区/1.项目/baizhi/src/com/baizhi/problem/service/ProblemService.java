@@ -69,6 +69,16 @@ public class ProblemService extends ServiceSupport{
 	}
 	
 	/**
+	 * 问题详细页面，根据问题ID查询问题
+	 * @param PROBLEM_ID
+	 * @param USER_ID
+	 * @return
+	 */
+	public Map<String, Object> getProblemMapById(int PROBLEM_ID, int USER_ID){
+		return problemDao.getProblemMapById(PROBLEM_ID, USER_ID);
+	}
+	
+	/**
 	 * 根据问题信息表ID获取问题信息表信息
 	 * @param PROBLEM_ID 问题信息表ID
 	 * @return 返回问题信息表信息,如果无查询记录则返回null

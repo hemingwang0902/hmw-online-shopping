@@ -86,10 +86,45 @@ public class ProblemDao extends DaoSupport{
 		   .append("a.IS_REPORT as IS_REPORT,")//是否举报(0否、1是)
 		   .append("a.REPORT_COUNT as REPORT_COUNT,")//举报次数
 		   .append("a.CREATE_TIME as CREATE_TIME,")//创建时间
-		   .append("a.MODIFY_TIME as MODIFY_TIME,")//修改时间
-		   .append("(SELECT COUNT(pi.INVITE_ID) FROM T_PROBLEM_INVITE pi WHERE pi.PROBLEM_ID=a.PROBLEM_ID) as INVITE_COUNT) ")//邀请回答的次数
+		   .append("a.MODIFY_TIME as MODIFY_TIME)")//修改时间
 		   .append("FROM T_PROBLEM a WHERE a.PROBLEM_ID=? ");
 		return this.getById(sql.toString(), new Object[]{PROBLEM_ID});
+	}
+	
+	/**
+	 * 根据问题ID和登录用户ID查询问题详细信息（用于问题详细页面）
+	 * @param PROBLEM_ID
+	 * @param USER_ID
+	 * @return
+	 */
+	public Map<String, Object> getProblemMapById(int PROBLEM_ID, int USER_ID){
+		//组织查询语句
+		StringBuffer sql = new StringBuffer();
+		sql.append("SELECT new Map(")
+		   .append("a.PROBLEM_ID as PROBLEM_ID,")//问题ID
+		   .append("a.PROBLEM_TYPE as PROBLEM_TYPE,")//问题类型(字典：1普通、2我问的问题)
+		   .append("a.CONTENT as CONTENT,")//问题内容
+		   .append("a.IS_ANONYMITY as IS_ANONYMITY,")//是否匿名(0否、1是)
+		   .append("a.RELEVANT_DETAILS as RELEVANT_DETAILS,")//相关细节
+		   .append("a.USER_ID as USER_ID,")//用户ID
+		   .append("a.WAS_USERID as WAS_USERID,")//被问用户ID
+		   .append("a.ANSWER_COUNT as ANSWER_COUNT,")//答案数量
+		   .append("a.REVIEW_COUNT as REVIEW_COUNT,")//评论数量
+		   .append("a.ATTENTION_COUNT as ATTENTION_COUNT,")//关注数量
+		   .append("a.COLLECTION_COUNT as COLLECTION_COUNT,")//收藏数量
+		   .append("a.BROWSE_COUNT as BROWSE_COUNT,")//浏览次数
+		   .append("a.IS_REPORT as IS_REPORT,")//是否举报(0否、1是)
+		   .append("a.REPORT_COUNT as REPORT_COUNT,")//举报次数
+		   .append("a.CREATE_TIME as CREATE_TIME,")//创建时间
+		   .append("a.MODIFY_TIME as MODIFY_TIME,")//修改时间
+		   .append("(select count(pa.ATTENTION_ID) from T_PROBLEM_ATTENTION pa where pa.USER_ID=? and pa.PROBLEM_ID=a.PROBLEM_ID) as ATTENTION, ")//当前登录用户是否关注了该问题
+		   .append("(SELECT COUNT(pc.COLLECTION_ID) FROM T_PROBLEM_COLLECTION pc where pc.USER_ID=? and pc.PROBLEM_ID=a.PROBLEM_ID) as COLLECTION, ")//当前登录用户是否收藏了该问题
+		   .append("(SELECT COUNT(pi.INVITE_ID) FROM T_PROBLEM_INVITE pi WHERE pi.PROBLEM_ID=a.PROBLEM_ID) as INVITE_COUNT) ")//邀请回答的次数
+		   .append("FROM T_PROBLEM a WHERE a.PROBLEM_ID=? ");
+		Object[] params = new Object[]{
+				USER_ID, USER_ID,PROBLEM_ID 
+		};
+		return this.getById(sql.toString(), params);
 	}
 	
 	/**
@@ -165,6 +200,5 @@ public class ProblemDao extends DaoSupport{
 		
 		return this.getByList(sql.toString(), ps.getValues());
 	}
-	
-}
 
+}
