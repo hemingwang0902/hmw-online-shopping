@@ -60,6 +60,7 @@ public class AreaDao extends DaoSupport{
 		sql.append("SELECT count(*) FROM T_AREA a WHERE 1=1 ");
 		//设置查询条件,及初始化查询条件值
 		ParametersSupport ps=new ParametersSupport(params);
+		sql.append(ps.getConditions());
 		return this.getCount(sql.toString(), ps.getValues());
 	}
 	
@@ -96,13 +97,13 @@ public class AreaDao extends DaoSupport{
 		List<Map<String,Object>> list=null;
 		Session session = getSession();
 		try {
-			Query query = setQueryParameters(session.createQuery("SELECT new Map(DIC_CODE as value,DIC_NAME as name) FROM T_AREA where PAREA_ID=0"), null);
+			Query query = setQueryParameters(session.createQuery("SELECT new Map(AREA_ID as AREA_ID,DIC_CODE as value,DIC_NAME as name) FROM T_AREA where PAREA_ID=0"), null);
 			list=query.list();
 			if(list!=null&&list.size()>0){
 				for (int i = 0; i < list.size(); i++) {
 					Map<String, Object> map = list.get(i);
 					if(map!=null&&map.size()>0){
-						query = setQueryParameters(session.createQuery("SELECT new Map(DIC_CODE as value,DIC_NAME as name) FROM T_AREA where PAREA_ID=?"), new Object[]{map.get("DIC_CODE")});
+						query = setQueryParameters(session.createQuery("SELECT new Map(DIC_CODE as value,DIC_NAME as name) FROM T_AREA where PAREA_ID=?"), new Object[]{map.get("AREA_ID")});
 						List<Map<String,Object>> childlist=query.list();
 						if(list!=null&&list.size()>0){
 							map.put("childnode",childlist);

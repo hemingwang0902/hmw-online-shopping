@@ -13,11 +13,11 @@ function getDataList(){
 	var END_TIME = $("#END_TIME").val();
 	var STATUS = $("#STATUS").val();
 	$.post("getAdList.go",{
-		TITLE: window.encodeURI(TITLE),
-		SHOW_TYPE: window.encodeURI(SHOW_TYPE),
-		START_TIME: window.encodeURI(START_TIME),
-		END_TIME: window.encodeURI(END_TIME),
-		STATUS: window.encodeURI(STATUS),
+		TITLE: TITLE,
+		SHOW_TYPE: SHOW_TYPE,
+		START_TIME: START_TIME,
+		END_TIME: END_TIME,
+		STATUS: STATUS,
 		nowPage: nowPage,
 		onePageCount: onePageCount},
 		function(result){
@@ -46,6 +46,22 @@ function getDataList(){
 					END_TIME = data["list"][i]["END_TIME"];//终止时间
 					STATUS = data["list"][i]["STATUS"];//状态(字典：1申请、2通过、3不通过)
 					REMARK = data["list"][i]["REMARK"];//备注
+					
+					if(SHOW_TYPE==1){
+						SHOW_TYPE="左边悬浮";
+					}else if(SHOW_TYPE==2){
+						SHOW_TYPE="中间悬浮";
+					}else if(SHOW_TYPE==3){
+						SHOW_TYPE="右边悬浮";
+					}
+					
+					if(STATUS==1){
+						STATUS="申请";
+					}else if(STATUS==2){
+						STATUS="通过";
+					}else if(STATUS==3){
+						STATUS="不通过";
+					}
 						
 						var edithref = "getAdById.go?AD_ID="+AD_ID;
 						content += "<tr id='adlist_tr'>";

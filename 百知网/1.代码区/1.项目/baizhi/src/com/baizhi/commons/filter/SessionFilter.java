@@ -43,6 +43,10 @@ public class SessionFilter implements Filter,Serializable {
 		map.put(request.getContextPath()+"/password.go", true);
 		map.put(request.getContextPath()+"/isEmail.go", true);
 		map.put(request.getContextPath()+"/forgeterror.jsp", true);
+		map.put(request.getContextPath()+"/regiest.jsp", true);
+		map.put(request.getContextPath()+"/regiest.go", true);
+		map.put(request.getContextPath()+"/user/checkEmail.go", true);
+		
 		return map;
 	}
 

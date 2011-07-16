@@ -12,10 +12,10 @@ function getDataList(){
 	var ALLPIN = $("#ALLPIN").val();
 	var SIMPLEPIN = $("#SIMPLEPIN").val();
 	$.post("getAreaList.go",{
-		DIC_CODE: window.encodeURI(DIC_CODE),
-		DIC_NAME: window.encodeURI(DIC_NAME),
-		ALLPIN: window.encodeURI(ALLPIN),
-		SIMPLEPIN: window.encodeURI(SIMPLEPIN),
+		DIC_CODE: DIC_CODE,
+		DIC_NAME: DIC_NAME,
+		ALLPIN: ALLPIN,
+		SIMPLEPIN: SIMPLEPIN,
 		AREA_LEVEL: "1",
 		nowPage: nowPage,
 		onePageCount: onePageCount},

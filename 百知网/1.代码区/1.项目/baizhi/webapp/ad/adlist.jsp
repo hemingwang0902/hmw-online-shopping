@@ -31,7 +31,7 @@
 						<td class="lightbox_content">
 							<%--<input type="text" class="input_width4" name="SHOW_TYPE" id="SHOW_TYPE" />--%>
 							<select id="SHOW_TYPE" name="SHOW_TYPE" class="input_width4">
-								<option value="">请选择</option>
+								<option value=""></option>
 								<option value="1">左边悬浮</option>
 								<option value="2">中间悬浮</option>
 								<option value="3">右边悬浮</option>
@@ -51,7 +51,7 @@
 						<td class="lightbox_content">
 							<%--<input type="text" class="input_width4" name="STATUS" id="STATUS" />--%>
 							<select id="STATUS" name="STATUS" class="input_width4">
-								<option value="">请选择</option>
+								<option value=""></option>
 								<option value="1">申请</option>
 								<option value="2">通过</option>
 								<option value="3">不通过</option>

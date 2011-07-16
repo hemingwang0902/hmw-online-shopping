@@ -72,7 +72,7 @@ public class Forget extends ActionSupport{
 				
 				System.out.println(href);
 				//发送邮件
-				//sendEmail();
+				sendEmail();
 			}
 		}
 		returnMap.put("flag", flag);

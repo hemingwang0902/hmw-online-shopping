@@ -1,8 +1,16 @@
 $(document).ready(function(){
 	$("#AreaForm").validate({
 		rules:{
-			DIC_CODE: {required: true, rangelength: [1,30]},
-			DIC_NAME: {required: true, rangelength: [1,50]},
+			DIC_CODE: {required: true, rangelength: [1,30],remote: {url: "checkDicCode.go",type: "post",dataType: "json",data: {
+        		//传递参数
+				DIC_CODE: function() {return $("#DIC_CODE").val();},
+				AREA_ID: function() {return  $("#AREA_ID").val();}
+			}}},
+			DIC_NAME: {required: true, rangelength: [1,50],remote: {url: "checkDicName.go",type: "post",dataType: "json",data: {
+        		//传递参数
+				DIC_NAME: function() {return $("#DIC_NAME").val();},
+				AREA_ID: function() {return  $("#AREA_ID").val();}
+			}}},
 			PAREA_ID: {required: true, number:true},
 			AREA_LEVEL: {required: true, rangelength: [1,10]},
 		},
@@ -14,6 +22,7 @@ $(document).ready(function(){
 		},
 		submitHandler:function(form){
             form.submit();
+            parent.$.fancybox.close();
         }   
 	});
 	
@@ -33,4 +42,10 @@ $(document).ready(function(){
 			}
 		});
 	});
+	
+	//如果用户ID不为空，则将Email、用户类型禁用
+	if($("#AREA_ID").val()!=""){
+		$("#DIC_CODE").addClass("readonly");
+		$("#DIC_CODE").attr("readonly","readonly");
+	}
 });

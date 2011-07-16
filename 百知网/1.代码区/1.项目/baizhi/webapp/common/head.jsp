@@ -12,7 +12,6 @@
 			<a href="${basePath }/wdzx/initWdzxForm.go">私信<span id="userprivate_count"></span></a>&nbsp;&nbsp;
 			<a href="${basePath }/sz/initSzForm.go">设置</a>&nbsp;&nbsp;
 			<a href="${basePath }/destroy.go">退出</a>
-			<a href="${basePath }/regiest.jsp">注册</a>
 		</div>
 	</div>
 </div>

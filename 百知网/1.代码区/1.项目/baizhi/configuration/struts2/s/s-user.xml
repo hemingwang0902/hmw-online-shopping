@@ -43,9 +43,6 @@
 		      <param name="root">result</param>
 		    </result>
 		</action>
-		<action name="regiest" class="com.baizhi.user.action.Regiest">
-			<result name="success" type="dispatcher" >../index/home.jsp</result>
-			<result name="error" type="dispatcher" >../regiest.jsp</result>
-		</action>
+		
 	</package>
 </struts>

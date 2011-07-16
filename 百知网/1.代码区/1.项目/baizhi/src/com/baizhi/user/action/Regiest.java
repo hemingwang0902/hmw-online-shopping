@@ -1,5 +1,6 @@
 package com.baizhi.user.action;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -33,7 +34,9 @@ public class Regiest  extends UserForm{
 	
 	private String INTRODUCTION;//个人简介
 	
-	private String INVITE_CODE;//邀请码
+	private String PROVINCE;//省
+	
+	private String CITY;//市
 	
 	public void setUserService(UserService userService) {
 		this.userService = userService;
@@ -46,23 +49,39 @@ public class Regiest  extends UserForm{
 	public void setINTRODUCTION(String introduction) {
 		INTRODUCTION = introduction;
 	}
-
-	public void setINVITE_CODE(String invite_code) {
-		INVITE_CODE = invite_code;
+	
+	public void setPROVINCE(String province) {
+		PROVINCE = province;
+	}
+	
+	public void setCITY(String city) {
+		CITY = city;
 	}
 
 	@Override
 	public String execute() throws Exception {
+		Integer WAS_USERID=-1;
+		//获取邀请人ID
+		if(this.getUSER_ID()!=null&&!this.getUSER_ID().trim().equals("")){
+			try {
+				Integer temp_user_id=Integer.parseInt(Encrypt.decodeBase64(this.getUSER_ID()));
+				
+				Map<String,Object> params=new HashMap<String, Object>();
+				params.put("USER_ID=?",temp_user_id);
+				int count=userService.getUserCount(params);
+				if(count>0){
+					WAS_USERID=temp_user_id;
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		
 		//获取IP地址
 		HttpServletRequest request = ServletActionContext.getRequest();
 		IPSeeker ipSeeker = IPSeeker.getInstance();
 		String IP = ipSeeker.getRemoteAddr(request);
-		
-		
-		//判断难证码是否有效
-		if(INVITE_CODE.equals("")){
-			
-		}
 		
 		//组织用户实体
 		Element userelement = new DefaultElement("T_USER");
@@ -79,19 +98,27 @@ public class Regiest  extends UserForm{
 		Elements.setElementValue(element, "NAME", NAME);// 姓名/品牌名称
 		Elements.setElementValue(element, "INTRODUCTION", INTRODUCTION);// 个人介绍/品牌介绍
 		Elements.setElementValue(element, "PRIVATE_SET", 2);// 私信设置(字典：1所有人、2我关注的人)
+		Elements.setElementValue(element, "PROVINCE", PROVINCE);//省
+		Elements.setElementValue(element, "CITY", CITY);//市
 		Elements.setElementValue(element, "LEVEL", 0);// 级别
 		Elements.setElementValue(element, "SCORE", 0);// 积分
 		Elements.setElementValue(element, "CREATE_TIME",DateUtils.getCurrentTime(DateUtils.SHOW_DATE_FORMAT));// 创建时间
 		
-		Map<String, Object> returnMap = userService.regiest(userelement, element);
+		Map<String, Object> returnMap = userService.regiest(userelement, element,WAS_USERID);
 		if(returnMap!=null&&!this.getValue(returnMap, "USER_ID").equals("")){
 			returnMap.put("NAME", NAME);
 			returnMap.put("EMAIL", this.getEMAIL());
 			returnMap.put("REG_TIME", DateUtils.getCurrentTime(DateUtils.SHOW_DATE_FORMAT));
+			returnMap.put("USER_TYPE", this.getUSER_TYPE());
+			returnMap.put("REG_TIME", DateUtils.getCurrentTime(DateUtils.SHOW_DATE_FORMAT));
+			returnMap.put("LAST_LOGINTIME", DateUtils.getCurrentTime(DateUtils.SHOW_DATE_FORMAT));
+			returnMap.put("IP", IP);
+			
 			//获取Session对象
 			HttpSession session = request.getSession();
 			//将值设置到Session对象中
 			session.setAttribute("userinfo", returnMap);
+			session.setAttribute("USER_ID", returnMap.get("USER_ID"));
 			return SUCCESS;
 		}
 		return ERROR;

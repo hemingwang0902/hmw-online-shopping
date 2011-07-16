@@ -57,10 +57,11 @@ public class UserService extends ServiceSupport{
 	 * 
 	 * @param userelement  用户实体对象
 	 * @param basicelement 基本信息实体对象
+	 * @param WAS_USERID 邀请人ID
 	 * @return 返回主键ID,失败返回""
 	 */
-	public Map<String, Object> regiest(Element userelement,Element basicelement) {
-		return userDao.regiest(userelement, basicelement);
+	public Map<String, Object> regiest(Element userelement,Element basicelement,Integer WAS_USERID) {
+		return userDao.regiest(userelement, basicelement,WAS_USERID);
 	}
 	
 	/**

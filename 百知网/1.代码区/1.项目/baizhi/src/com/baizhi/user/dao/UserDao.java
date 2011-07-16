@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.dom4j.Element;
+import org.dom4j.tree.DefaultElement;
 import org.hibernate.EntityMode;
 import org.hibernate.Session;
 import com.baizhi.commons.DaoSupport;
@@ -96,9 +97,10 @@ public class UserDao extends DaoSupport{
 	 * 
 	 * @param userelement  用户实体对象
 	 * @param basicelement 基本信息实体对象
+	 * @param WAS_USERID 邀请人ID
 	 * @return 返回主键ID,失败返回""
 	 */
-	public Map<String, Object> regiest(Element userelement,Element basicelement) {
+	public Map<String, Object> regiest(Element userelement,Element basicelement,Integer WAS_USERID) {
 		Session session = getSession();
 		Session dom4jSession = session.getSession(EntityMode.DOM4J);
 		Map<String, Object> returnMap=new HashMap<String, Object>();
@@ -106,7 +108,19 @@ public class UserDao extends DaoSupport{
 			dom4jSession.beginTransaction();
 			dom4jSession.save(userelement);
 			Elements.setElementValue(basicelement, "USER_ID", userelement.elementText("USER_ID"));// 用户ID
+			
 			dom4jSession.save(basicelement);
+			
+			//如果从别人链接注册
+			if(WAS_USERID>0){
+				Element element = new DefaultElement("T_USER_ATTENTION");
+				Elements.setElementValue(element, "USER_ID",  userelement.elementText("USER_ID"));// 用户ID
+				Elements.setElementValue(element, "WAS_USERID", WAS_USERID);// 被关注用户
+				Elements.setElementValue(element, "IS_ATTENTION",1);// 是否关注(0否、1是)
+				Elements.setElementValue(element, "CREATE_TIME", DateUtils.getCurrentTime(DateUtils.SHOW_DATE_FORMAT));// 创建时间
+				dom4jSession.save(element);
+			}
+			
 			dom4jSession.getTransaction().commit();
 			returnMap.put("USER_ID",userelement.elementText("USER_ID"));
 		} catch (Exception e) {

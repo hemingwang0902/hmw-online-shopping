@@ -4,7 +4,9 @@
 <html>
 <head>
 	<%@include file="common/jsCss.jsp" %>
-	<script type="text/javascript" language="javascript" src="${basePath }/regiest.js"></script>
+	<script type="text/javascript" language="javascript"  src="areadata.js"></script>
+	<script type="text/javascript" language="javascript"  src="javascripts/jquery.select.js"></script>
+	<script type="text/javascript" language="javascript" src="regiest.js"></script>
 </head>
 
 <body>
@@ -16,13 +18,16 @@
 </div>
 
 <div class="login"></div>	
-<form action="user/regiest.go" method="post" id="RegiestForm" name="RegiestForm">
+<form action="regiest.go" method="post" id="RegiestForm" name="RegiestForm">
 <div class="login_1">
     <div class="login_2">
+    <input type="hidden" id="USER_ID" name="USER_ID" value="<s:property value="#parameters.USER_ID"/>" />
+    <!--
      <div class="login_3" >
    <div class="login_4">邀请码</div>
     <input class="login_5"  name="INVITE_CODE" id="INVITE_CODE" />
     </div>
+    -->
     <div class="login_3">
     <div class="login_4">姓名（请使用真实姓名）</div>
     <input class="login_5" name="NAME" id="NAME"/>
@@ -34,6 +39,11 @@
     <div class="login_3">
     <div class="login_4">常用邮箱</div>
     <input class="login_5" name="EMAIL" id="EMAIL"/>
+    </div>
+    <div class="login_3">
+    <div class="login_4">所在地区</div>
+    <select id="PROVINCE" name="PROVINCE"  onchange="setSelectValue(this.selectedIndex,true,document.getElementById('CITY'));"></select>省
+    <select id="CITY" name="CITY"></select>市
     </div>
     <div class="login_3">
     <div class="login_4">密码（至少6位）</div>

@@ -31,6 +31,14 @@ public class GetAreaList extends AreaForm {
 		Map<String, Object> params = new HashMap<String, Object>();
 		//设置查询条件
 		this.setMap(params, "DIC_CODE=?", this.getDIC_CODE());// 地区代码(根据级别制定规则定义)
+		
+		if(this.getPAREA_ID()!=null&&!this.getPAREA_ID().equals("")){
+			this.setMap(params, "PAREA_ID=?", this.getPAREA_ID());
+		}else{
+			this.setMap(params, "PAREA_ID=?",0);
+		}
+		
+		
 		if(getDIC_NAME()!=null&&!getDIC_NAME().trim().equals("")){
 			this.setMap(params, "DIC_NAME like ?", "%"+this.getDIC_NAME()+"%");// 地区名称
 		}

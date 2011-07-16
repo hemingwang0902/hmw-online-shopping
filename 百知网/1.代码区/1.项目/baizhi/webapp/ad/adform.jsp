@@ -29,7 +29,7 @@
 			<input type="hidden"  id="AD_ID" name="AD_ID" value='<s:property value="AD_ID"/>' />
 			<s:token></s:token>
 			<input type="hidden" id="ID" name="ID" value='<s:property value="ID"/>'/>
-			<div class="lightbox_header"><span class="font_span">广告信息表表单</span></div>
+			<div class="lightbox_header"><span class="font_span">广告信息表单</span></div>
 			<div class="btn_box">
 				<input type="submit" value="保存" class="button_box"/>
 				<input type="button" value="返回" onclick="location.href='adlist.jsp';" class="button_box"/>

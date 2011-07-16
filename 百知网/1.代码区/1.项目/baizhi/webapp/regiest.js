@@ -32,4 +32,7 @@ $(document).ready(function(){
 			$("#AGREEMENTID").val("");
 		}
 	});
+	
+	//加载下拉框
+	initSelect("PROVINCE","CITY",true);
 });

@@ -19,7 +19,7 @@
         </div>
         <div class="loginbar_r">
         	<div class="loginbar_l_t">密码&gt;&nbsp;<input type="password" id="userpwd" name="userpwd" value="111111" class="login_pass" tabindex="2"/></div>
-          <div class="loginbar_l_w"><a href="forget.jsp" tabindex="5">忘记密码？</a></div>        
+          <div class="loginbar_l_w"><a href="forget.jsp" tabindex="5">忘记密码？</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="regiest.jsp" tabindex="5">注册</a></div>        
         </div>
         <div class="loginbar_d"><input name="" type="submit" class="loginbar_but" value="" tabindex="3"/></div>
         </form>

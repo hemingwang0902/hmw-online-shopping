@@ -11,6 +11,8 @@
 <script type="text/javascript" language="javascript"  src="../javascripts/jquery.pagination.js"></script>
 <script type="text/javascript" language="javascript"  src="../javascripts/jquery.checkbox.js"></script>
 <script type="text/javascript" language="javascript"  src="../javascripts/jquery.message.js"></script>
+<script type="text/javascript" language="javascript"  src="../areadata.js"></script>
+<script type="text/javascript" language="javascript"  src="../javascripts/jquery.select.js"></script>
 <script type="text/javascript" language="javascript"  src="userbasiclist.js"></script>
 </head>
 <body>
@@ -42,19 +44,13 @@
 		   			<tr>
 						<td class="lightbox_title">所在地区(省)：</td>
 						<td class="lightbox_content">
-							<select  name="PROVINCE" id="PROVINCE"  class="select_box3" >
-								<option value=""></option>
-								<option value="1">北京</option>
-							</select>
+							<select  name="PROVINCE" id="PROVINCE"  class="select_box3"  onchange="setSelectValue(this.selectedIndex,false,document.getElementById('CITY'));"></select>
 						</td>
 					</tr>
 		   			<tr>
 						<td class="lightbox_title">所在地区(市)：</td>
 						<td class="lightbox_content">
-							<select  name="CITY" id="CITY"  class="select_box3"  >
-								<option value=""></option>
-								<option value="1">北京</option>
-							</select>
+							<select  name="CITY" id="CITY"  class="select_box3"  ></select>
 						</td>
 					</tr>
 		   			<tr>
