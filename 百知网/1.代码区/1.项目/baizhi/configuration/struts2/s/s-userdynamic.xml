@@ -24,5 +24,15 @@
 		<action name="getUserDynamicById" class="com.baizhi.userdynamic.action.GetUserDynamicById">
 			<result name="success" type="dispatcher" >userdynamicform.jsp</result>
 		</action>
+		<action name="modifyIsOpen" class="com.baizhi.userdynamic.action.ModifyIsOpen">
+			<result name="jsonsuccess" type="json">
+		      <param name="root">result</param>
+		    </result>
+		</action>
+		<action name="getUserDynamicCount" class="com.baizhi.userdynamic.action.GetUserDynamicCount">
+			<result name="jsonsuccess" type="json">
+		      <param name="root">result</param>
+		    </result>
+		</action>
 	</package>
 </struts>

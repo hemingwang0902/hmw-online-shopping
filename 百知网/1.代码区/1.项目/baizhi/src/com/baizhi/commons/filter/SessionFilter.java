@@ -68,7 +68,16 @@ public class SessionFilter implements Filter,Serializable {
 		
 		//如果Session为空，则返回到主页面
 		if(userinfo!=null&&userinfo.get("USER_ID")!=null&&!String.valueOf(userinfo.get("USER_ID")).equals("")){
-			chain.doFilter(request, response);
+			//判断只有系统用户才能访问系统管理主页
+			if(Integer.parseInt(String.valueOf(userinfo.get("USER_TYPE")))==3&&requestURI.equals(request.getContextPath()+"/index.jsp")){
+				chain.doFilter(request, response);
+			}else if(!requestURI.equals(request.getContextPath()+"/index.jsp")){
+				chain.doFilter(request, response);
+			}else{
+				response.sendRedirect(request.getContextPath()+"/index/home.jsp");
+				chain.doFilter(request, response);
+			}
+			
 		}else if(requestURI.equals(request.getContextPath()+"/login.jsp")||requestURI.equals(request.getContextPath()+"/login.go")){
 			chain.doFilter(request, response);
 		}else if(requestURI.equals(request.getContextPath()+"/blank.jsp")){

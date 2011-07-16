@@ -9,7 +9,7 @@ $(document).ready(function(){
 	$("#allreadmessage").click(function(){
 		$(this).attr("class","zui");
 		$("#noreadmessage").attr("class","re");
-		$("#IS_OPEN").val("");
+		$("#IS_OPEN").val(1);
 		getDataList(1);
 	});
 	
@@ -47,11 +47,11 @@ function getDataList(nowPage){
 			for(var i=0;i<data["list"].length;i++){
 				map=data["list"][i];
 				content += "<div class='su' style='background:#f7ffe1;'>";
-				content += "	<a href='#' class='qu'>";
+				content += "	<a href='javascript:;' class='qu'>";
 				content += "		<img class='eu' src='"+data.cpath+"/"+map.IMAGE_PATH+"' />";
 				content += "	</a>";
 				content += "	<div class='nu'><div class='x-d'>";
-				content += "		<a href='#' class='x-a'> "+map.USER_NAME+" </a>回答了问题 <a href='#'>"+map.CONTENT+"</a>";
+				content += "		<a href='javascript:;' class='x-a'> "+map.USER_NAME+" </a>回答了问题 <a href='javascript:;' onclick=\"modifyIsOpen("+map.DYNAMIC_ID+")\">"+map.CONTENT+"</a>";
 				content += "		<span class='x-c'>"+map.CREATE_TIME+"</span>";
 				content += "	</div></div>";
 				content += "</div>";
@@ -72,4 +72,20 @@ function getMoreDataList(){
 	}else{
 		getDataList(nowPage+1);
 	}
+}
+
+//修改未读通知数量
+function modifyIsOpen(DYNAMIC_ID){
+	$.post("../userdynamic/modifyIsOpen.go",{DYNAMIC_ID:DYNAMIC_ID},function(result){
+		if(result==null||result==''){
+			return;
+		}
+		var data = eval("("+result+")");
+		//查询记录
+		getDataList(1);
+		//查询消息总数
+		getUserDynamicCount();
+	});
+	
+	return;
 }
