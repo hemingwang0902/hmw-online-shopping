@@ -114,7 +114,7 @@ function attentionTalk(TALK_ID){
 		"TALK_ID": TALK_ID,
 		"disAttention": isDisAttention
 	}, function(result){
-		if(isDisAttention){
+		if(isDisAttention == "true"){
 			$(this).attr("isDisAttention", false).html("关&nbsp;注");
 		}else{
 			$(this).attr("isDisAttention", true).html("取&nbsp;消");

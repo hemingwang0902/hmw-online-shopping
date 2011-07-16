@@ -8,12 +8,16 @@
 	<script type="text/javascript" src="list_wtymtit.js"></script>
 	<style type="text/css">
 		.btn_wc{ width:66px; height:30px; background:url(../images/main/an_wc.jpg); border:0;}
+		.error{color: #ff0000;}
 	</style>
 </head>
 
 <body>
 	<%@include file="../common/head.jsp" %>
 	<input type="hidden" id="problemId" value='<s:property value="problemId"/>'>
+	<input type="hidden" id="loginUser_USER_ID" value='<s:property value="#session.userinfo.USER_ID"/>'>
+	<input type="hidden" id="loginUser_NAME" value='<s:property value="#session.userinfo.NAME"/>'>
+	<input type="hidden" id="loginUser_INTRODUCTION" value='<s:property value="#session.userinfo.INTRODUCTION"/>'>
 <div class="content">
 	<div class="c_left">
 	  <%@include file="../common/search.jsp" %>
@@ -22,6 +26,7 @@
       		<a href='${basePath }/index/initHtym.go?TALK_ID=<s:property value="TALK_ID"/>' style="margin-right: 5px;"><s:property value="CONTENT"/></a>
       	</s:iterator>
       </div>
+      <div id="error_1" class="error"></div>
       <div class="list_hylb">
       	<input id="btnShowAddTalk" type="button" class="bot_tjht" />
       	<span id="divAddTalk" style="display: none;">
@@ -39,16 +44,30 @@
  	<%@include file="../common/problemList.jsp" %>
       <div class="wtym_tjda">
           <div class="tit_wtym_tjda">添加答案</div>
-          <div class="tit_wtym_daan"><textarea id="ANSWER_CONTENT" cols="0" rows="0" style="width:540px; height:130px;"></textarea>
+          <div class="tit_wtym_daan">
+          	<textarea id="ANSWER_CONTENT" cols="0" rows="0" style="width:540px; height:130px;"></textarea>
           </div>
-          <div class="tit_wtym_tjda_anniu"><input type="button" style="width:88px;" onclick="addAnswer();" class="bot_tjda" /></div>
+          <div id="error_2" class="error" style="margin-right: 10px;float: left"></div>
+          <div class="tit_wtym_tjda_anniu">
+          	<input type="button" style="width:88px;cursor: pointer;" onclick="addAnswer();" class="bot_tjda" />
+          </div>
       </div>
   </div>
 	<div class="c_right">
 		<div class="right_subMenu">
 			<ul>
-                <li ><a id="a_attention" href="javascript:void(0);">添加关注</a></li>
-                <li><a id="a_collection" href="javascript:void(0);">添加收藏</a></li>
+            <s:if test="problem.ATTENTION>0">
+            	 <li><a id="a_attention" href="javascript:void(0);" isDisAttention="true">取消关注</a></li>
+            </s:if>
+            <s:else>
+            	 <li><a id="a_attention" href="javascript:void(0);" isDisAttention="false">添加关注</a></li>
+            </s:else>
+            <s:if test="problem.COLLECTION>0">
+            	 <li><a id="a_collection" href="javascript:void(0);" isDisAttention="true">取消收藏</a></li>
+            </s:if>
+            <s:else>
+            	 <li><a id="a_collection" href="javascript:void(0);" isDisAttention="false">添加收藏</a></li>
+            </s:else>
             </ul>
 		</div>
 		<div class="r_column">
@@ -64,10 +83,10 @@
         </div>
         <div class="r_column">
             <div class="column_yqtr">
-            	<a href="javascript:void(0);" id="a_invite">邀请他人回答（<s:property value="problem.INVITE_COUNT"/>）</a>
+            	<a href="javascript:void(0);" id="a_invite">邀请他人回答（<span id="INVITE_COUNT"><s:property value="problem.INVITE_COUNT"/></span>）</a>
             	<div id="div_invite" style="display: none;">
             		<input id="WAS_USER_ID"><br>
-            		<input type="button" class="btn_wc" onclick="addProblemInvite();"/>
+            		<input type="button" class="btn_wc" style="cursor: pointer;" onclick="addProblemInvite();"/>
             	</div>	
             </div>
       </div>

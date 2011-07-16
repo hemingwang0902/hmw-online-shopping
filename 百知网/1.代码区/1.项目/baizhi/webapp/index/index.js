@@ -8,10 +8,9 @@ $(document).ready(function(){
 		
 		problem: {
 			detail		: basePath + "/index/wtymDetail.go?problemId=",
-			disAttention: basePath + "",
-			attention	: basePath + "/index/attentionProblem.go?problemId=",
+			attention	: basePath + "/index/attentionProblem.go",
 			attentionList:basePath + "/index/getAttentionProblemList.go",
-			collection	: basePath + "/index/collectionProblem.go?problemId=",
+			collection	: basePath + "/index/collectionProblem.go",
 			lastest		: basePath + "/index/getLatestProblemList.go",
 			hottest		: basePath + "/index/getHottestProblemList.go",
 			inviteList	: basePath + "/index/getInviteProblemList.go",
@@ -152,16 +151,24 @@ function getMoreProblemList(){
  */
 function guanZhu(problemId){
 	var gzCount = parseInt($("#gz_" + problemId).html()) + 1;
-	$.get(path.problem.attention + problemId);
-	$("#gz_sp_" + problemId).html(gzCount + "个关注");
+	$.post(path.problem.attention, {
+		"disAttention": "false",
+		"problemId": problemId
+	}, function(){
+		$("#gz_sp_" + problemId).html(gzCount + "个关注");
+	});
 }
 
 /**
  * 收藏
  */
 function shouCang(problemId){
-	$.get(path.problem.collection + problemId);
-	$("#sc_" + problemId).html("收藏");
+	$.post(path.problem.collection, {
+		"disCollection": "false",
+		"problemId": problemId
+	}, function(){
+		$("#sc_" + problemId).html("收藏");
+	});
 }
 
 /* 获取数据列表*/

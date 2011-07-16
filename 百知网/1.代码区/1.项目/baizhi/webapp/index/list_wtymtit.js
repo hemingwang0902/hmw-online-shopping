@@ -2,17 +2,33 @@ $(document).ready(function(){
 	//获取问题回答列表
 	getProblemAnswerList();
 	
-	//添加关注
-	$("#a_attention").one("click", function(){
-		$.get(path.problem.attention + $("#problemId").val(), function(){
-			$(this).parent().css({"background-color":"#555555"});
+	//添加关注 or 取消关注
+	$("#a_attention").click(function(){
+		var isDisAttention = $(this).attr("isDisAttention");
+		$.post(path.problem.attention, {
+			"disAttention": isDisAttention,
+			"problemId": $("#problemId").val()
+		}, function(){
+			if(isDisAttention == "true"){
+				$("#a_attention").attr("isDisAttention", false).html("添加关注");
+			}else{
+				$("#a_attention").attr("isDisAttention", true).html("取消关注");
+			}
 		});
 	}); 
 
-	//添加收藏
-	$("#a_collection").one("click", function(){
-		$.get(path.problem.collection + $("#problemId").val(), function(){
-			$(this).parent().css({"background-color":"#555555"});
+	//添加收藏 or 取消收藏
+	$("#a_collection").click(function(){
+		var isDisAttention = $(this).attr("isDisAttention");
+		$.post(path.problem.collection, {
+			"disCollection": isDisAttention,
+			"problemId": $("#problemId").val()
+		}, function(){
+			if(isDisAttention == "true"){
+				$("#a_collection").attr("isDisAttention", false).html("添加收藏");
+			}else{
+				$("#a_collection").attr("isDisAttention", true).html("取消收藏");
+			}
 		});
 	}); 
 	
@@ -64,7 +80,8 @@ $(document).ready(function(){
 		dataType: "json",
 		extraParams:{
 			"nowPage": 1,
-			"onePageCount": 10
+			"onePageCount": 10,
+			"ajax": "true"
 		},
 		formatItem: function(row, i, max) {
 			return row.NAME;
@@ -109,48 +126,8 @@ function getProblemAnswerList(){
 		}
 		
 		var data = eval("("+result+")");
-		var content = "";
 		if (data != null && data["list"] != null && data["list"].length > 0) {
-			var ANSWER_ID = ""; 
-			var PROBLEM_ID = ""; 
-			var CONTENT = ""; 
-			var USER_ID = ""; 
-			var AGREE_COUNT = ""; 
-			var DISAGREE_COUNT = ""; 
-			var THANK_COUNT = ""; 
-			var DISTHANK_COUNT = ""; 
-			var REVIEW_COUNT = ""; 
-			var CREATE_TIME = ""; //创建时间
-			var MODIFY_TIME = ""; //修改时间
-			for(var i=0;i<data["list"].length;i++){
-				ANSWER_ID = data["list"][i]["ANSWER_ID"];
-				PROBLEM_ID = data["list"][i]["PROBLEM_ID"];
-				CONTENT = data["list"][i]["CONTENT"];
-				USER_ID = data["list"][i]["USER_ID"];//用户ID
-				AGREE_COUNT = data["list"][i]["AGREE_COUNT"];
-				DISAGREE_COUNT = data["list"][i]["DISAGREE_COUNT"];
-				THANK_COUNT = data["list"][i]["THANK_COUNT"];
-				DISTHANK_COUNT = data["list"][i]["DISTHANK_COUNT"];
-				REVIEW_COUNT = data["list"][i]["REVIEW_COUNT"];
-				CREATE_TIME = data["list"][i]["CREATE_TIME"];//创建时间
-				MODIFY_TIME = data["list"][i]["MODIFY_TIME"];//修改时间
-
-				content += '<div style=" margin-top:15px;">';
-				content += '	<div class="title_wtym">';
-				content += '		<div class="title_wtym_con">'+CONTENT+'</div>';
-				content += '	</div>';
-				content += '	<div class="tit_bot_wtym">';
-				content += '		<a href="javascript:void(0);">'+REVIEW_COUNT+' 条评论</a>';
-				content += '		 • <a href="javascript:void(0);" onclick="answerVote('+ANSWER_ID+', \'Thank\');">感谢作者</a>';
-				content += '		 • <a href="javascript:void(0);" onclick="answerVote('+ANSWER_ID+', \'Disthank\');">没有帮助</a>';
-				content += '		 • <a href="javascript:void(0);" onclick="answerVote('+ANSWER_ID+', \'Agree\');">赞同</a>';
-				content += '		 • <a href="javascript:void(0);" onclick="answerVote('+ANSWER_ID+', \'DisAgree\');">反对</a>';
-				content += '	</div>';
-				content += '	<div class="clear"></div>';
-				content += '</div>';
-			
-			}
-			$("#problemList").append(content);
+			_showAnswer(data["list"]);
 		}
 		
 		if(data["list"].length < onePageCount){
@@ -161,23 +138,95 @@ function getProblemAnswerList(){
 	});	
 }
 
+function _showAnswer(answers){
+	var ANSWER_ID = ""; 
+	var PROBLEM_ID = ""; 
+	var CONTENT = ""; 
+	var USER_ID = ""; 
+	var AGREE_COUNT = ""; 
+	var DISAGREE_COUNT = ""; 
+	var THANK_COUNT = ""; 
+	var DISTHANK_COUNT = ""; 
+	var REVIEW_COUNT = ""; 
+	var CREATE_TIME = ""; //创建时间
+	var MODIFY_TIME = ""; //修改时间
+	
+	var NAME = ""; 
+	var INTRODUCTION = "";
+	
+	var content = "";
+	for(var i=0;i<answers.length;i++){
+		ANSWER_ID = answers[i]["ANSWER_ID"];
+		PROBLEM_ID = answers[i]["PROBLEM_ID"];
+		CONTENT = answers[i]["CONTENT"];
+		USER_ID = answers[i]["USER_ID"];//用户ID
+		AGREE_COUNT = answers[i]["AGREE_COUNT"];
+		DISAGREE_COUNT = answers[i]["DISAGREE_COUNT"];
+		THANK_COUNT = answers[i]["THANK_COUNT"];
+		DISTHANK_COUNT = answers[i]["DISTHANK_COUNT"];
+		REVIEW_COUNT = answers[i]["REVIEW_COUNT"];
+		CREATE_TIME = answers[i]["CREATE_TIME"];//创建时间
+		MODIFY_TIME = answers[i]["MODIFY_TIME"];//修改时间
+		NAME = answers[i]["NAME"];
+		INTRODUCTION = answers[i]["INTRODUCTION"];
+
+		content += '<div style=" margin-top:15px;">';
+		content += '	<div class="title_wtym">';
+		content += '		<div class="title_wtym_tit"><a href="'+path.user.detail+USER_ID+'">'+NAME+'</a>， '+INTRODUCTION+'</div>';
+		content += '		<div class="title_wtym_con">'+CONTENT+'</div>';
+		content += '	</div>';
+		content += '	<div class="tit_bot_wtym">';
+		content += '		<a href="javascript:void(0);">'+REVIEW_COUNT+' 条评论</a>';
+		content += '		 • <a href="javascript:void(0);" onclick="answerVote('+ANSWER_ID+', \'Thank\');">感谢作者</a>';
+		content += '		 • <a href="javascript:void(0);" onclick="answerVote('+ANSWER_ID+', \'Disthank\');">没有帮助</a>';
+		content += '		 • <a href="javascript:void(0);" onclick="answerVote('+ANSWER_ID+', \'Agree\');">赞同</a>';
+		content += '		 • <a href="javascript:void(0);" onclick="answerVote('+ANSWER_ID+', \'DisAgree\');">反对</a>';
+		content += '	</div>';
+		content += '	<div class="clear"></div>';
+		content += '</div>';
+	
+	}
+	$("#problemList").append(content);
+}
+
 /**
  * 给问题添加话题
  */
 function addTalk(){
 	var TALK_CONTENT = $.trim($("#TALK_CONTENT").val());
 	if(TALK_CONTENT == ''){
+		$("#error_1").text("请输入话题内容。");
 		return false;
 	}
 	
-	$.post("addTalkForProblem.go",{
-		PROBLEM_ID: $("#problemId").val(),
-		CONTENT: TALK_CONTENT
-	},function(){
-		$("#TALK_CONTENT").val("");
-		// TODO 显示到页面
+	var result = true;
+	$(".list_xgwt_xght a").each(function(i, domEle){
+		if($.trim($(domEle).text()) == TALK_CONTENT){
+			$("#error_1").text("该问题已经添加了话题“"+TALK_CONTENT+"”。");
+			result = false;
+			return false;
+		}
 	});
 	
+	if(result){
+		$("#error_1").text("&nbsp;");
+		$.post("addTalkForProblem.go",{
+			PROBLEM_ID: $("#problemId").val(),
+			CONTENT: TALK_CONTENT
+		},function(result){
+			if(result==null||result==''){
+				return;
+			}
+			var data = eval("("+result+")");
+			if(data!=null&&data["TALK_ID"]>0){
+				$("#TALK_CONTENT").val("");
+				$("#divAddTalk").hide();
+				$(".list_xgwt_xght").append('<a href="initHtym.go?TALK_ID='+data["TALK_ID"]+'" style="margin-right: 5px;">'+TALK_CONTENT+'</a>');
+			}else{
+				show_showmessage({message:"添加话题失败。",type:"error"});
+			}
+		});
+	}
 }
 
 /**
@@ -186,14 +235,40 @@ function addTalk(){
 function addAnswer(){
 	var ANSWER_CONTENT = $.trim($("#ANSWER_CONTENT").val());
 	if(ANSWER_CONTENT == ''){
+		$("#error_2").text("回复内容不能为空。");
 		return false;
 	}
 	
+	$("#error_2").text("&nbsp;");
 	$.post("saveProblemAnswer.go",{
 		problemId: $("#problemId").val(),
 		CONTENT: ANSWER_CONTENT
-	},function(){
-		// TODO 显示到页面
+	},function(result){
+		if(result==null||result==''){
+			return;
+		}
+		var data = eval("("+result+")");
+		if(data!=null&&data["ANSWER_ID"]>0){
+			var answers = [{
+				ANSWER_ID: data["ANSWER_ID"],
+				PROBLEM_ID: $("#problemId").val(), 
+				CONTENT: ANSWER_CONTENT, 
+				USER_ID: $("#loginUser_USER_ID").val(), 
+				AGREE_COUNT: 0,
+				DISAGREE_COUNT: 0, 
+				THANK_COUNT: 0,
+				DISTHANK_COUNT: 0, 
+				REVIEW_COUNT: 0, 
+				CREATE_TIME: "",
+				MODIFY_TIME: "",
+				NAME: $("#loginUser_NAME").val(),
+				INTRODUCTION: $("#loginUser_INTRODUCTION").val()
+			}];
+			_showAnswer(answers);
+			$("#ANSWER_CONTENT").val("")
+		}else{
+			show_showmessage({message:"添加回复失败。",type:"error"});
+		}
 	});
 }
 
@@ -234,6 +309,8 @@ function addProblemInvite(){
 		"PROBLEM_ID": $("#problemId").val(),
 		"WAS_USER_ID": WAS_USER_ID
 	},function(){
-		// TODO 更新页面展示
+		$("#INVITE_COUNT").text(parseInt($("#INVITE_COUNT").text())+1);
+		$("#div_invite").hide();
+		$("#WAS_USER_ID").val("")
 	});
 }
