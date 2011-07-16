@@ -20,8 +20,12 @@
 		      <param name="root">result</param>
 		    </result>
 		</action>
-		<!-- 根据姓名（名称）模糊查询会员（品牌）列表 -->
+		<!-- 根据姓名模糊查询会员列表 -->
 		<action name="getUserListByName" class="com.baizhi.index.action.hyym.GetUserListByName">
+			<result name="success" type="redirect">list_hyssjg.jsp</result>
+		</action>
+		<!-- 根据姓名模糊查询会员列表(Ajax) -->
+		<action name="getUserListByNameWithAjax" class="com.baizhi.index.action.hyym.GetUserListByName">
 			<result name="jsonsuccess" type="json">
 		      <param name="root">result</param>
 		    </result>
@@ -34,6 +38,12 @@
 		</action>
 		<!-- 根据用户ID查询用户信息 -->
 		<action name="getUserBasicByUserId" class="com.baizhi.index.action.hyym.GetUserBasicByUserId">
+			<result name="jsonsuccess" type="json">
+		      <param name="root">result</param>
+		    </result>
+		</action>
+		<!-- 关注/取消关注 用户 -->
+		<action name="attentionUser" class="com.baizhi.index.action.hyym.AttentionUser">
 			<result name="jsonsuccess" type="json">
 		      <param name="root">result</param>
 		    </result>

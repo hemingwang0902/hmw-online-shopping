@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="userattentiontalk" extends="json-default" namespace="/userattentiontalk">
+		<action name="getUserAttentiontalkList" class="com.baizhi.userattentiontalk.action.GetUserAttentiontalkList">
+			<result name="jsonsuccess" type="json">
+		      <param name="root">result</param>
+		    </result>
+		</action>
+		<action name="initUserAttentiontalkForm" class="com.baizhi.userattentiontalk.action.InitUserAttentiontalkForm">
+			<result name="success" type="dispatcher">userattentiontalkform.jsp</result>
+		</action>
+		<action name="saveUserAttentiontalk" class="com.baizhi.userattentiontalk.action.SaveUserAttentiontalk">
+			<result name="error"  type="dispatcher" >userattentiontalkform.jsp</result>
+			<result name="success" type="redirect" >userattentiontalklist.jsp</result>
+			<result name="update" type="dispatcher" >userattentiontalkform.jsp</result>
+			<result name="invalid.token" type="freemarker">userattentiontalkform.jsp</result> 
+			<interceptor-ref name="defaultStack"><param name="workflow.excludeMethods">default</param></interceptor-ref> 
+			<interceptor-ref name="tokenSession"><param name="excludeMethods">default</param></interceptor-ref>
+		</action>
+		<action name="delUserAttentiontalk" class="com.baizhi.userattentiontalk.action.DelUserAttentiontalk">
+			<result name="jsonsuccess" type="json">
+		      <param name="root">result</param>
+		    </result>
+		</action>
+		<action name="getUserAttentiontalkById" class="com.baizhi.userattentiontalk.action.GetUserAttentiontalkById">
+			<result name="success" type="dispatcher" >userattentiontalkform.jsp</result>
+		</action>
+	</package>
+</struts>

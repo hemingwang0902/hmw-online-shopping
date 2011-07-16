@@ -34,6 +34,7 @@
 	<include file="struts2/s/s-problemtalk.xml" />
 	<include file="struts2/s/s-answerreview.xml" />
 	<include file="struts2/s/s-answervote.xml" />
+	<include file="struts2/s/s-userattentiontalk.xml" />
 	
 	<include file="struts2/index/s-pqlb.xml" />
 	<!-- 首页 -->
