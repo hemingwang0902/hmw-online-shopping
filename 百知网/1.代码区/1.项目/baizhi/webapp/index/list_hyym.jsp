@@ -8,7 +8,7 @@
 	<script type="text/javascript" src="index.js"></script>
 	<script type="text/javascript" src="list_hyym.js"></script>
 	<style type="text/css">
-	a.checked{
+	.current{
 		background-color: #888888;
 	}
 	</style>
@@ -25,7 +25,7 @@
       <div class="line_1"></div>
       <div class="title_xgwt" style="border:0;">
         <div class="title_xgwt_tu">
-        	<s:if test="#userBasic.IMAGE_PATH==null || #userBasic.IMAGE_PATH==''">
+        	<s:if test="userBasic.IMAGE_PATH==null || userBasic.IMAGE_PATH==''">
         		<img src="../images/main/rw_1.jpg" width="100" height="100" />
         	</s:if>
         	<s:else>
@@ -45,13 +45,13 @@
           <div class="tit_wtym_daan">
           <textarea id="CONTENT" cols="0" rows="0" style="width:540px; height:130px;"></textarea>
           </div>
-          <div class="tit_hyym_anniu"><input type="button" style="width:107px;" class="bot_xttw" onclick="addProblem();"/></div>
+          <div class="tit_hyym_anniu"><input type="button" style="width:107px;cursor: pointer;" class="bot_xttw" onclick="addProblem();"/></div>
       </div>
       <div class="tit_hyym_twwt">
       	<input type="hidden" id="problemType" value="wen">
      	<ul>
-           	<li><a href="javascript:void(0);" onclick="getWenProblemList();" class="checked">他问过的问题</a></li>
-            <li><a href="javascript:void(0);" onclick="getDaProblemList();">他回答的问题</a></li>
+           	<li><a id="a_wenGuo" href="javascript:void(0);" onclick="getWenProblemList();" class="current">他问过的问题</a></li>
+            <li><a id="a_daGuo" href="javascript:void(0);" onclick="getDaProblemList();">他回答的问题</a></li>
         </ul>
       </div>
      <%@include file="../common/problemList.jsp" %>
@@ -61,21 +61,45 @@
     <div class="c_right">
     	<div class="right_subMenu">
             <ul>
-            <s:if test="#userBasic.ATTENTION>0">
+            <s:if test="userBasic.ATTENTION>0">
             	 <li><a id="a_attention" href="javascript:void(0);" onclick="attentionUser()" isDisAttention="true">取消关注</a></li>
             </s:if>
             <s:else>
             	 <li><a id="a_attention" href="javascript:void(0);" onclick="attentionUser()" isDisAttention="false">添加关注</a></li>
             </s:else>
-                <li><a id="a_sendPrivate" href="javascript:void(0);">给他发私信</a></li>
+                <li>
+                	<a id="a_sendPrivate" href="javascript:void(0);" onclick="$('#private_a').click();">给他发私信</a>
+                		<a href="#private_window" id="private_a"></a>
+	<div style="display: none;">
+		<div style="height: 250px;width: 450px;" id="private_window">
+			<div style="width:100%;text-align: left;margin-bottom: 10px;background-color: #98b012;height: 30px;padding-top: 10px;font-size: 15px;color: white;" >发送私信</div>
+			<div style="width:100%; ">
+				<div style="float: left;width: 70px;">
+					<div style="text-align: right;padding-right: 15px;">内容：</div>
+				</div>
+				<div style="float: left;">
+					<div><textarea style="width: 357px;margin-bottom: 10px;height: 80px;" id="PRIVATE_CONTENT"></textarea></div>
+					<div >
+						<div id="PRIVATE_MESSAGE" style="color: red;float: left;"></div>
+						<div style="text-align: right;float: right;padding-right: 20px;">
+							<input type="button" value="取消" onclick="$.fancybox.close();" />
+							<input type="button" value="发送" onclick="sendPrivate()" />
+						</div>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+                </li>
             </ul>
         </div>
         <div class="r_column">
             <div class="column"><a href="javascript:void(0);">会员搜索</a></div>
             <div class="column_hyym">
-	            <form action="getUserListByName.go" method="post" onsubmit="beforeSearchUser();">
+	            <form action="getUserListByName.go" method="post" onsubmit="return beforeSearchUser();">
 	            	<input id="txt_userName" name="q" type="text" value="请输入会员姓名" style="height:22px; float:left; color:#999; padding-top:5px;  padding-left:5px; width:130px;"/>  
-		    		<input type="submit" class="bot_hyss" style=" bottom:0px; float:right;" />
+		    		<input type="submit" value="" class="bot_hyss" style=" bottom:0px; float:right;cursor: pointer;" />
 	            </form>
             </div>
         </div>
@@ -105,7 +129,7 @@
               	<li>
               	<s:iterator value="%{wasAttentionUserList}">
               		<a href='${basePath }/index/initHyym.go?userId=<s:property value="USER_ID"/>' class="tooltips">
-            		<s:if test="#IMAGE_PATH==null or #IMAGE_PATH==''">
+            		<s:if test="IMAGE_PATH==null or IMAGE_PATH==''">
             			<img src="../images/main/hy_1.jpg" width="25" height="25" alt="<s:property value="NAME"/>" />
             		</s:if>
             		<s:else>
@@ -123,7 +147,7 @@
               	<li>
               	<s:iterator value="%{attentionUserList}">
               		<a href='${basePath }/index/initHyym.go?userId=<s:property value="USER_ID"/>' class="tooltips">
-            		<s:if test="#IMAGE_PATH==null or #IMAGE_PATH==''">
+            		<s:if test="IMAGE_PATH==null or IMAGE_PATH==''">
             			<img src="../images/main/hy_1.jpg" width="25" height="25" alt="<s:property value="NAME"/>" />
             		</s:if>
             		<s:else>
