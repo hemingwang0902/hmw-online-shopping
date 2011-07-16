@@ -3,6 +3,7 @@ package com.baizhi.index.action.hyym;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.commons.lang.BooleanUtils;
 import org.dom4j.Element;
 import org.dom4j.tree.DefaultElement;
 
@@ -27,7 +28,7 @@ public class AttentionTalk extends ActionSupport {
 	//被关注话题的ID
 	private int TALK_ID;
 	//为true时，表示为取消关注
-	private boolean isDisAttention;
+	private String disAttention;
 
 	public void setUserAttentiontalkService(
 			UserAttentiontalkService userAttentiontalkService) {
@@ -38,8 +39,8 @@ public class AttentionTalk extends ActionSupport {
 		TALK_ID = tALKID;
 	}
 
-	public void setDisAttention(boolean isDisAttention) {
-		this.isDisAttention = isDisAttention;
+	public void setDisAttention(String disAttention) {
+		this.disAttention = disAttention;
 	}
 
 	@Override
@@ -51,7 +52,7 @@ public class AttentionTalk extends ActionSupport {
 		
 		//获取被光注用户实体
 		Element element = userAttentiontalkService.getUserAttentionEleById(USER_ID, TALK_ID);
-		if(isDisAttention){ //取消关注
+		if(BooleanUtils.toBoolean(disAttention)){ //取消关注
 			if(element!=null){
 				flag = userAttentiontalkService.deleteUserAttentiontalk(element.elementTextTrim("ATTENTIONTALK_ID"));
 			}else{

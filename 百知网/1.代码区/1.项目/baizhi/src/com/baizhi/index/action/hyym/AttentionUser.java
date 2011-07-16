@@ -3,6 +3,7 @@ package com.baizhi.index.action.hyym;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.commons.lang.BooleanUtils;
 import org.dom4j.Element;
 import org.dom4j.tree.DefaultElement;
 
@@ -26,7 +27,7 @@ public class AttentionUser extends ActionSupport {
 	//被关注人的ID
 	private int WAS_USER_ID;
 	//为true时，表示为取消关注
-	private boolean isDisAttention;
+	private String disAttention;
 
 	public void setWAS_USER_ID(int wASUSERID) {
 		WAS_USER_ID = wASUSERID;
@@ -36,12 +37,8 @@ public class AttentionUser extends ActionSupport {
 		this.userAttentionService = userAttentionService;
 	}
 
-	public boolean isDisAttention() {
-		return isDisAttention;
-	}
-
-	public void setDisAttention(boolean isDisAttention) {
-		this.isDisAttention = isDisAttention;
+	public void setDisAttention(String disAttention) {
+		this.disAttention = disAttention;
 	}
 
 
@@ -54,7 +51,7 @@ public class AttentionUser extends ActionSupport {
 		
 		//获取被光注用户实体
 		Element element = userAttentionService.getUserAttentionEleById(USER_ID, WAS_USER_ID);
-		if(isDisAttention){ //取消关注
+		if(BooleanUtils.toBoolean(disAttention)){ //取消关注
 			if(element!=null){
 				flag = userAttentionService.cancelUserAttention(element, null);
 			}else{
