@@ -36,6 +36,10 @@ public class Regiest  extends UserForm{
 	
 	private String PROVINCE;//省
 	
+	private String PROVINCE_NAME;
+	
+	private String CITY_NAME;
+	
 	private String CITY;//市
 	
 	public void setUserService(UserService userService) {
@@ -56,6 +60,22 @@ public class Regiest  extends UserForm{
 	
 	public void setCITY(String city) {
 		CITY = city;
+	}
+	
+	public String getPROVINCE_NAME() {
+		return PROVINCE_NAME;
+	}
+
+	public void setPROVINCE_NAME(String province_name) {
+		PROVINCE_NAME = province_name;
+	}
+
+	public String getCITY_NAME() {
+		return CITY_NAME;
+	}
+
+	public void setCITY_NAME(String city_name) {
+		CITY_NAME = city_name;
 	}
 
 	@Override
@@ -85,7 +105,7 @@ public class Regiest  extends UserForm{
 		
 		//组织用户实体
 		Element userelement = new DefaultElement("T_USER");
-		Elements.setElementValue(userelement, "USER_TYPE", 1);
+		Elements.setElementValue(userelement, "USER_TYPE", this.getUSER_TYPE());
 		Elements.setElementValue(userelement, "EMAIL", this.getEMAIL());
 		Elements.setElementValue(userelement, "PASSWORD",  Encrypt.edcryptMD5(this.getPASSWORD()));
 		Elements.setElementValue(userelement, "REG_TIME", DateUtils.getCurrentTime(DateUtils.SHOW_DATE_FORMAT));
@@ -94,7 +114,7 @@ public class Regiest  extends UserForm{
 		
 		//组织基本信息实体
 		Element element = new DefaultElement("T_USER_BASIC");
-		Elements.setElementValue(element, "USER_TYPE", 1);// 用户类型(字典：1用户、2品牌)冗余字段
+		Elements.setElementValue(element, "USER_TYPE", this.getUSER_TYPE());// 用户类型(字典：1用户、2品牌)冗余字段
 		Elements.setElementValue(element, "NAME", NAME);// 姓名/品牌名称
 		Elements.setElementValue(element, "INTRODUCTION", INTRODUCTION);// 个人介绍/品牌介绍
 		Elements.setElementValue(element, "PRIVATE_SET", 2);// 私信设置(字典：1所有人、2我关注的人)
@@ -113,6 +133,9 @@ public class Regiest  extends UserForm{
 			returnMap.put("REG_TIME", DateUtils.getCurrentTime(DateUtils.SHOW_DATE_FORMAT));
 			returnMap.put("LAST_LOGINTIME", DateUtils.getCurrentTime(DateUtils.SHOW_DATE_FORMAT));
 			returnMap.put("IP", IP);
+			returnMap.put("CITY_NAME",CITY_NAME);
+			returnMap.put("CITY",CITY);
+			returnMap.put("PROVINCE", PROVINCE);
 			
 			//获取Session对象
 			HttpSession session = request.getSession();

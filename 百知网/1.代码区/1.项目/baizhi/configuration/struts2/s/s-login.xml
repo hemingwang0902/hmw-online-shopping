@@ -34,5 +34,10 @@
 			<result name="success" type="redirect" >index/home.jsp</result>
 			<result name="error" type="dispatcher" >regiest.jsp</result>
 		</action>
+		<action name="changeCity" class="com.baizhi.user.action.ChangeCity">
+			<result name="jsonsuccess" type="json">
+		      <param name="root">result</param>
+		    </result>
+		</action>
 	</package>
 </struts>

@@ -22,6 +22,10 @@
 <div class="login_1">
     <div class="login_2">
     <input type="hidden" id="USER_ID" name="USER_ID" value="<s:property value="#parameters.USER_ID"/>" />
+    <input type="hidden" id="PROVINCE_NAME" name="PROVINCE_NAME" />
+    <input type="hidden" id="CITY_NAME" name="CITY_NAME" />
+    
+    <input type="hidden" id="USER_TYPE" name="USER_TYPE" value="1" />
     <!--
      <div class="login_3" >
    <div class="login_4">邀请码</div>

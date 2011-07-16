@@ -35,4 +35,16 @@ $(document).ready(function(){
 	
 	//加载下拉框
 	initSelect("PROVINCE","CITY",true);
+	
+	$("#PROVINCE_NAME").val($("#PROVINCE option:selected").text());
+	$("#CITY_NAME").val($("#CITY option:selected").text());
+	
+	$("#PROVINCE").change(function(){
+		$("#PROVINCE_NAME").val($("#PROVINCE option:selected").text());
+	});
+	
+	$("#CITY").change(function(){
+		$("#CITY_NAME").val($("#CITY option:selected").text());
+	});
+	
 });

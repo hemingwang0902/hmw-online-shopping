@@ -29,7 +29,7 @@ ul li {
 }
 #show_provinces {
 	height:320px;
-	width:100%;
+	width:98%;
 	position:absolute;
 	top:2em;
 	left:0;
@@ -57,9 +57,9 @@ ul li {
 <div id="show_provinces">
     <div style="margin-bottom:0.75em; font-weight:bolder;"><span>请选择您所在的城市:</span><span><s:property value="#session.userinfo.CITY_NAME"/></span></div>
     <!-- 可以从此处循环遍历一级菜单项和二级菜单项 -->
-    <ul id="">
+    <ul id="change_area_list">
     	
-      <li>
+      <!--<li>
       	<span class="sub_title"><a href="#">安徽</a></span>
         <ul class="show_citys">
           <li><a href="#">合肥</a></li>
@@ -73,5 +73,5 @@ ul li {
       </li>
       
       
-    </ul>
+    --></ul>
   </div>
