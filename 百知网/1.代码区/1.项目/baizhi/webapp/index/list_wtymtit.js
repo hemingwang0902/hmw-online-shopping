@@ -30,7 +30,8 @@ $(document).ready(function(){
     	$("#div_invite").hide();
   	}); 
 	
-	$("#talkName").autocomplete("getTalklistByContent.go", {
+	//添加话题时，根据输入的内容自动提示
+	$("#TALK_CONTENT").autocomplete("getTalklistByContent.go", {
 		dataType: "json",
 		extraParams:{
 			"nowPage": 1,
@@ -50,6 +51,35 @@ $(document).ready(function(){
 							data: row,
 							value: row.CONTENT,
 							result: row.CONTENT
+						};
+					}
+				}
+			}
+			return parsed;
+		}
+	});
+	
+	//邀请他人回答时，根据输入的姓名自动提示
+	$("#WAS_USER_ID").autocomplete("getUserListByNameWithAjax.go", {
+		dataType: "json",
+		extraParams:{
+			"nowPage": 1,
+			"onePageCount": 10
+		},
+		formatItem: function(row, i, max) {
+			return row.NAME;
+		},
+		parse:function(result){ //将从后台返回的数据转化为候选项数组
+			var parsed = [];
+			if(result != null && result != ''){
+				var data = eval("("+result+")");
+				if (data != null && data["list"] != null && data["list"].length > 0) {
+					for(var i=0;i<data["list"].length;i++){
+						var row = data["list"][i];
+						parsed[parsed.length] = {
+							data: row,
+							value: row.NAME,
+							result: row.NAME
 						};
 					}
 				}

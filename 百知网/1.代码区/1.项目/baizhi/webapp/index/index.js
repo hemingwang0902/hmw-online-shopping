@@ -8,6 +8,7 @@ $(document).ready(function(){
 		
 		problem: {
 			detail		: basePath + "/index/wtymDetail.go?problemId=",
+			disAttention: basePath + "",
 			attention	: basePath + "/index/attentionProblem.go?problemId=",
 			attentionList:basePath + "/index/getAttentionProblemList.go",
 			collection	: basePath + "/index/collectionProblem.go?problemId=",
@@ -16,12 +17,16 @@ $(document).ready(function(){
 			inviteList	: basePath + "/index/getInviteProblemList.go",
 			askMeList	: basePath + "/index/getAskMeProblemList.go",
 			nearList	: basePath + "/index/getNearProblemList.go?problemId=",
+			listByUserId: basePath + "/index/getProblemListByUserId.go?userId=",
+			answeredList: basePath + "/index/getAnsweredProblemList.go?userId=",
 			all			: basePath + "/index/getAllProblemList.go"
 		},
 		
 		user: {
 			detail		: basePath + "/index/initHyym.go?userId=",
-			interested	: basePath + "/index/getMayInterestedUser.go"
+			interested	: basePath + "/index/getMayInterestedUser.go",
+			attention	: "",
+			disAttention: ""
 		},
 		
 		brand: {
