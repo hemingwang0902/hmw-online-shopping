@@ -25,7 +25,7 @@
       <div id="list_pqlb">
       
       </div>
-      
+      <div style="color: red;padding-left: 10px;" id="more_tip_message"></div>
       <div class="tiao"><a href="javascript:;" id="list_pqlb_more">更多 &gt;&gt;</a></div>
   </div>
     
@@ -38,12 +38,12 @@
           <s:if test="#hotlist!=null&&#hotlist.TALK_ID!=''">
 	          <div class="column_contentgxq">
 					<div class="colun_c_pptu">
-						<div style="float:left;"><a href="../index/initHyym.go?userId=">
+						<div style="float:left;"><a href="initHtym.go?TALK_ID=${hotlist.TALK_ID }">
 	                	<img src="${cpath }/${hotlist.IMAGE_PATH }" onerror="load_brand_image_60_53(this)" width="60" height="53" border="0" />
 	                	</a></div>
 	                </div>
 	                <div class=" colun_c_ppwz">
-	                    <div class="colun_c_xnr"><a href="../index/initHyym.go?userId=">${hotlist.NAME }</a></div>
+	                    <div class="colun_c_xnr"><a href="initHtym.go?TALK_ID=${hotlist.TALK_ID }">${hotlist.NAME }</a></div>
 	                    <div class="colun_c_xnrcon">${hotlist.INTRODUCTION}</div>
 	              </div>
 	                <div style=" clear:both;font-size:0;"></div>
@@ -60,12 +60,12 @@
            <s:if test="#newlist!=null&&#newlist.TALK_ID!=''">
           <div class="column_contentgxq">
 				<div class="colun_c_pptu">
-					<div style="float:left;"><a href="../index/initHyym.go?userId=">
+					<div style="float:left;"><a href="initHtym.go?TALK_ID=${newlist.TALK_ID }">
                 	<img src="${cpath }/${newlist.IMAGE_PATH }" onerror="load_brand_image_60_53(this)" width="60" height="53" border="0" />
                 	</a></div>
                 </div>
                 <div class=" colun_c_ppwz">
-                    <div class="colun_c_xnr"><a href="../index/initHyym.go?userId=">${newlist.NAME }</a></div>
+                    <div class="colun_c_xnr"><a href="initHtym.go?TALK_ID=${newlist.TALK_ID }">${newlist.NAME }</a></div>
                     <div class="colun_c_xnrcon">${newlist.INTRODUCTION}</div>
               </div>
                 <div style=" clear:both;font-size:0;"></div>

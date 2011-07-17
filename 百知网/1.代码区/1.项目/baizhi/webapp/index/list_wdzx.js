@@ -38,7 +38,7 @@ function saveData(){
 			//查询
 			getDataList();
 		}else{
-			showmessage({message:data["message"],type:"error"});
+			show_showmessage({message:data["message"],type:"error"});
 		}
 	});
 	return;
@@ -104,7 +104,7 @@ function review(SEND_ID){
 
 //删除
 function delData(SEND_ID){
-	showmessage({message:"是否删除?",type:"error",callmethod:function(flag){
+	show_showmessage({message:"是否删除?",type:"error",callmethod:function(flag){
 		if(flag){
 			$.post("../userprivate/delUserPrivate.go",{
 				SEND_ID:SEND_ID
@@ -117,7 +117,7 @@ function delData(SEND_ID){
 					//查询
 					getDataList();
 				}else{
-					showmessage({message:data["message"],type:"error"});
+					show_showmessage({message:data["message"],type:"error"});
 				}
 			});
 		}

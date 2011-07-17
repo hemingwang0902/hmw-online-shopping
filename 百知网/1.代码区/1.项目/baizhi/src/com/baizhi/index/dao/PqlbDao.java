@@ -44,7 +44,7 @@ public class PqlbDao extends DaoSupport{
 			   .append("a.INTRODUCTION as INTRODUCTION,")//个人介绍/品牌介绍
 			   .append("a.IMAGE_PATH as IMAGE_PATH)")//相片路径/LOGO路径
 			   .append("FROM T_USER_BRAND a,T_USER b ")
-			   .append("WHERE a.USER_ID=b.USER_ID ")
+			   .append("WHERE a.USER_ID=b.USER_ID and a.STAUS=3 ")
 			   .append("and  ('"+DateUtils.getCurrentTime(DateUtils.SHOW_DATE_FORMAT)+"'>b.LAST_FREEZETIME or b.LAST_FREEZETIME is null) ")
 			   .append(" order by  a.CREATE_TIME DESC ");
 			List<Map<String, Object>> newlist = PagerSupport.getList(session, session.createQuery(sql.toString()),nowPage, onePageCount);
@@ -56,12 +56,12 @@ public class PqlbDao extends DaoSupport{
 			sql.append("SELECT new Map(")
 			   .append("a.BRAND_ID as BRAND_ID,")//品牌信息ID
 			   .append("a.USER_ID as USER_ID,")//用户ID
-			   .append("b.NAME as NAME,")//姓名/品牌名称
-			   .append("b.INTRODUCTION as INTRODUCTION,")//个人介绍/品牌介绍
-			   .append("b.IMAGE_PATH as IMAGE_PATH,")//相片路径/LOGO路径
+			   .append("a.NAME as NAME,")//姓名/品牌名称
+			   .append("a.INTRODUCTION as INTRODUCTION,")//个人介绍/品牌介绍
+			   .append("a.IMAGE_PATH as IMAGE_PATH,")//相片路径/LOGO路径
 			   .append("count(c.BATTENTION_ID) as BATTENTION_COUNT)")//发表问题数量
 			   .append("FROM T_USER_BRAND a,T_USER_BASIC b,T_USER_BATTENTION c ")
-			   .append("WHERE a.USER_ID=b.USER_ID and a.BRAND_ID=c.BRAND_ID ")
+			   .append("WHERE a.USER_ID=b.USER_ID and a.BRAND_ID=c.BRAND_ID  and a.STAUS=3  ")
 			   .append(" group by a.BRAND_ID,a.USER_ID,b.NAME,b.INTRODUCTION,b.IMAGE_PATH order by BATTENTION_COUNT DESC ");
 			 List<Map<String, Object>> hotlist = PagerSupport.getList(session, session.createQuery(sql.toString()),nowPage, onePageCount);
 			 if(hotlist!=null&&hotlist.size()>0){
@@ -92,7 +92,7 @@ public class PqlbDao extends DaoSupport{
 		   .append("a.INTRODUCTION as INTRODUCTION,")
 		   .append("a.IMAGE_PATH as IMAGE_PATH,")
 		   .append("(select count(*) from T_USER_BATTENTION where BRAND_ID=a.BRAND_ID and USER_ID=?) as IS_ATTENTION ) ")
-		   .append("FROM T_USER_BRAND a  order by CREATE_TIME DESC ");
+		   .append("FROM T_USER_BRAND a where a.STAUS=3   order by CREATE_TIME DESC ");
 		
 		Map<String,Object> returnMap = null;
 		Session session = getSession();

@@ -9,7 +9,7 @@
 		</action>
 		<action name="saveUserNotice" class="com.baizhi.usernotice.action.SaveUserNotice">
 			<result name="error"  type="dispatcher" >../index/list_sz_tzsz.jsp</result>
-			<result name="success" type="chain" >getUserNoticeList</result>
+			<result name="success" type="redirectAction" >getUserNoticeList?type=1</result>
 		</action>
 	</package>
 </struts>

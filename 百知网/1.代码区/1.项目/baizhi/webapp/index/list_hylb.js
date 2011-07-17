@@ -1,6 +1,8 @@
 var count;
 /* 获取数据列表*/
 function getDataList(nowPage){
+	//清空消息
+	$("#more_tip_message").html("");
 	$("#nowPage").val(nowPage);
 	nowPage=parseInt(nowPage);
 	if(nowPage==1){
@@ -32,20 +34,34 @@ function getDataList(nowPage){
 				content+="	</div>";
 				content+="	<div class='title_xgwt_anniu'>";
 				if(map.IS_ATTENTION<=0){
-					content+="		<p><input name='' type='button' value='添加关注' class='baizhi_button_1' onclick=\"saveUserAttention("+map.USER_ID+");\" /></p>";
+					content+="		<p><input name='' id='USER_ATT_"+map.USER_ID+"' type='button' value='添加关注' class='baizhi_button_1' onclick=\"user_att("+map.USER_ID+");\" /></p>";
 				}else{
-					content+="		<p><input name='' type='button' value='取消关注' class='baizhi_button_1' onclick=\"cancelUserAttention("+map.USER_ID+");\" /></p>";
+					content+="		<p><input name='' id='USER_ATT_"+map.USER_ID+"' type='button' value='取消关注' class='baizhi_button_1' onclick=\"user_att("+map.USER_ID+");\" /></p>";
 				}
 				content+="	</div>";
 				content+="	<div class='clear'></div>";
 				content+="</div>";
 				
 			}
+		}else{
+			$("#more_tip_message").html("无数据");
 		}
 		$("#list_hylb").append(content);
 	});
 	return;
 }
+
+function user_att(WAS_USERID){
+	if($("#USER_ATT_"+WAS_USERID).val()=="添加关注"){
+		saveUserAttention(WAS_USERID);
+		$("#USER_ATT_"+WAS_USERID).val("取消关注");
+	}else{
+		cancelUserAttention(WAS_USERID);
+		$("#USER_ATT_"+WAS_USERID).val("添加关注");
+	}
+	
+}
+
 
 //添加关注
 function saveUserAttention(WAS_USERID){
@@ -57,9 +73,6 @@ function saveUserAttention(WAS_USERID){
 		}
 		var data = eval("("+result+")");
 		if(data!=null&&data["flag"]==true){
-			//查询
-			getDataList(1);
-			show_showmessage({message:data["message"],type:"info"});
 		}else{
 			show_showmessage({message:data["message"],type:"error"});
 		}
@@ -68,25 +81,18 @@ function saveUserAttention(WAS_USERID){
 
 //取消关注
 function cancelUserAttention(WAS_USERID){
-	show_showmessage({message:"是否取消关注?",type:"info",callmethod:function(flag){
-		if(flag){
-			$.post("../userattention/cancelUserAttention.go",{
-				WAS_USERID:WAS_USERID
-			},function(result){
-				if(result==null||result==''){
-					return;
-				}
-				var data = eval("("+result+")");
-				if(data!=null&&data["flag"]==true){
-					//查询
-					getDataList(1);
-					show_showmessage({message:data["message"],type:"info"});
-				}else{
-					show_showmessage({message:data["message"],type:"error"});
-				}
-			});
+	$.post("../userattention/cancelUserAttention.go",{
+		WAS_USERID:WAS_USERID
+	},function(result){
+		if(result==null||result==''){
+			return;
 		}
-	}});
+		var data = eval("("+result+")");
+		if(data!=null&&data["flag"]==true){
+		}else{
+			show_showmessage({message:data["message"],type:"error"});
+		}
+	});
 }
 
 //查看更多
@@ -94,7 +100,7 @@ function getMoreDataList(){
 	var nowPage=parseInt($("#nowPage").val());
 	var onePageCount=parseInt($("#onePageCount").val());
 	if((nowPage*onePageCount)>=count){
-		show_showmessage({message:"已经是最后一页信息",type:"info"});
+		$("#more_tip_message").html("已经是最后一页");
 	}else{
 		getDataList(nowPage+1);
 	}

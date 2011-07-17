@@ -56,7 +56,7 @@ function getDataList(){
 
 /* 删除数据*/
 function delData(BRAND_ID){
-	showmessage({message:"是否删除?",type:"error",callmethod:function(flag){
+	show_showmessage({message:"是否删除?",type:"error",callmethod:function(flag){
 		if(flag){
 			$.post("../userbrand/delUserBrand.go",{
 				BRAND_ID:BRAND_ID
@@ -70,7 +70,7 @@ function delData(BRAND_ID){
 					//查询
 					getDataList();
 				}else{
-					showmessage({message:data["message"],type:"error"});
+					show_showmessage({message:data["message"],type:"error"});
 				}
 			});
 		}

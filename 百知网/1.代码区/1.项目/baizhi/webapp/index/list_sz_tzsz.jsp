@@ -30,6 +30,7 @@
 	<form action="../usernotice/saveUserNotice.go" method="post">
 	<input type="hidden" id="values" name="values" value="${returnMap.values }" /> 
 	<input type="hidden" id="message" value="${message }" />
+	<input type="hidden" id="type" value="<s:property value="#parameters.type"/>" />
 	
 	  <div class="list_xgwt_xght_sz">
 	    请选择提醒通知

@@ -90,12 +90,12 @@ public class HylbDao extends DaoSupport{
 		   .append("a.INTRODUCTION as INTRODUCTION,")//个人介绍/品牌介绍
 		   .append("a.IMAGE_PATH as IMAGE_PATH,")//相片路径/LOGO路径
 		   .append("(select count(*) from T_USER_ATTENTION where WAS_USERID=a.USER_ID and USER_ID=?) as IS_ATTENTION ) ")//是否已关注
-		   .append("FROM T_USER_BASIC a WHERE a.USER_TYPE in(1,2) order by CREATE_TIME DESC ");
+		   .append("FROM T_USER_BASIC a WHERE a.USER_TYPE in(1,2) and a.USER_ID<>? order by CREATE_TIME DESC ");
 		//设置查询条件,及初始化查询条件值
 		Map<String,Object> returnMap = null;
 		Session session = getSession();
 		try {
-			Object[] condition=new Object[]{params.get("USER_ID")};
+			Object[] condition=new Object[]{params.get("USER_ID"),params.get("USER_ID")};
 			Query query = setQueryParameters(session.createQuery(sql.toString()),condition );
 			returnMap = PagerSupport.getList(session, query, "T_USER_BASIC", null,nowPage, onePageCount);
 		} catch (Exception e) {

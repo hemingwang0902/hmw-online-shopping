@@ -78,7 +78,7 @@ public class UserBattentionDao extends DaoSupport{
 				Integer USER_ID=Integer.parseInt(String.valueOf(newMap.get("USER_ID")));
 				String NAME=String.valueOf(newMap.get("NAME"));
 				if(userNoticeDao.isUserNotice(USER_ID, 5, dom4jSession)){
-					userDynamicDao.saveUserDynamic(Integer.parseInt(element.elementText("USER_ID")), "", Integer.parseInt(keyid), "5", "<span onclick=\"location.href='"+BRAND_ID+"';\">关注了《"+NAME+"》</span>", USER_ID, dom4jSession);
+					userDynamicDao.saveUserDynamic(Integer.parseInt(element.elementText("USER_ID")), "", Integer.parseInt(keyid), "5", "<span onclick=\"location.href='../index/initPpym.go?BRAND_ID="+BRAND_ID+"';\">关注了《"+NAME+"》</span>", USER_ID, dom4jSession);
 				}
 			}else{
 				dom4jSession.getTransaction().rollback();

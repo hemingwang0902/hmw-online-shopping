@@ -24,10 +24,7 @@
       	<div id="userdynamiclist">
       	
       	</div>
-        
-       
-        
-        
+        <div style="color: red;padding-left: 10px;" id="more_tip_message"></div>
       <div class="tiao"><a href="javascript:;" id="list_pqlb_more">更多 &gt;&gt;</a></div>
   </div>
     

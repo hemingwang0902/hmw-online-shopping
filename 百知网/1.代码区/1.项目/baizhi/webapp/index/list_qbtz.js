@@ -25,6 +25,7 @@ $(document).ready(function(){
 var count;
 /* 获取数据列表*/
 function getDataList(nowPage){
+	$("#more_tip_message").html("");
 	$("#nowPage").val(nowPage);
 	nowPage=parseInt(nowPage);
 	if(nowPage==1){
@@ -69,6 +70,8 @@ function getDataList(nowPage){
 				
 				
 			}
+		}else{
+			$("#more_tip_message").html("无数据");
 		}
 		$("#userdynamiclist").append(content);
 	});
@@ -80,7 +83,7 @@ function getMoreDataList(){
 	var nowPage=parseInt($("#nowPage").val());
 	var onePageCount=parseInt($("#onePageCount").val());
 	if((nowPage*onePageCount)>=count){
-		showmessage({message:"已经是最后一页信息",type:"info"});
+		$("#more_tip_message").html("已经是最后一页");
 	}else{
 		getDataList(nowPage+1);
 	}

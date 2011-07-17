@@ -38,8 +38,8 @@ $(document).ready(function(){
 		$("#values").val(values+","+val1);
 	});
 	
-	if($("#message").val()!=""){
-		showmessage({message:$("#message").val(),type:"info"});
+	if($("#type").val()=="1"){
+		show_showmessage({message:"提醒通知保存成功",type:"info"});
 	}
 	
 });

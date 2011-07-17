@@ -30,11 +30,11 @@ function saveData(){
 		}
 		var data = eval("("+result+")");
 		if(data!=null&&data["flag"]==true){
-			showmessage({message:data["message"],type:"info"});
+			show_showmessage({message:data["message"],type:"info"});
 			document.forms['UserForm'].reset(); 
 
 		}else{
-			showmessage({message:data["message"],type:"error"});
+			show_showmessage({message:data["message"],type:"error"});
 		}
 	});
 	return;

@@ -31,7 +31,7 @@ function saveData(){
 			//查询
 			getDataList();
 		}else{
-			showmessage({message:data["message"],type:"error"});
+			show_showmessage({message:data["message"],type:"error"});
 		}
 	});
 	return;
@@ -84,7 +84,7 @@ function getDataList(){
 
 //删除
 function delData(PRIVATE_ID){
-	showmessage({message:"是否删除?",type:"error",callmethod:function(flag){
+	show_showmessage({message:"是否删除?",type:"error",callmethod:function(flag){
 		if(flag){
 			$.post("../userprivate/delUserByPrivate.go",{
 				PRIVATE_ID:PRIVATE_ID
@@ -97,7 +97,7 @@ function delData(PRIVATE_ID){
 					//查询
 					getDataList();
 				}else{
-					showmessage({message:data["message"],type:"error"});
+					show_showmessage({message:data["message"],type:"error"});
 				}
 			});
 		}
