@@ -55,6 +55,23 @@ public class PagerSupport implements Serializable {
 		data.put("list", query.list());
 		return data;
 	}
+	
+	/**
+	 * 根据查询条件获取分页查询结果；作者：江红 时间：2011-03-06
+	 * 
+	 * @param session      数据库会话对象
+	 * @param query        查询对象
+	 * @param nowPage      当前页
+	 * @param onePageCount 每页显示条数
+	 * 
+	 * @return 返回 List,list数据集存放Map数据
+	 */
+	public static List<Map<String, Object>> getList(Session session, Query query,int nowPage, int onePageCount) {
+		query = query.setFirstResult((nowPage - 1) * onePageCount);
+		query = query.setFetchSize(onePageCount);
+		query = query.setMaxResults(onePageCount);
+		return query.list();
+	}
 
 	
 

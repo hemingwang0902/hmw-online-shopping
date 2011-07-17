@@ -4,6 +4,7 @@
 <html>
 <head>
 	<%@include file="../common/jsCss.jsp" %>
+	<script type="text/javascript" language="javascript"  src="../index/list_hylb.js"></script>
 </head>
 
 <body>
@@ -18,85 +19,51 @@
       <div class="list_hylb"><input name="" type="button" class="bot_tjht"  value="" />&nbsp;</div>
      
       <div class="line_1"></div>
-      <div class="title_xgwt">
-        <div class="title_xgwt_tu"><img src="../images/main/hylb_1.jpg" /></div>
-        <div class="title_xgwt_xner">
-        	<ul>
-            	<li class="tit"><a href="#">Thyme</a></li>
-                <li class="tit_con">电信行业的我，如何进入互联网行业公司工作</li>
-            </ul>
-        </div>
-        <div class="title_hylb_anniu">
-          <input name="" type="button" value="添加关注" style="width:100px; height:25px; background-color:#dadade" />
-        </div>
-        <div class="clear"></div>
+      <input type="hidden" id="nowPage" name="nowPage" value="1" />
+      <input type="hidden" id="onePageCount" name="onePageCount" value="10" />
+      <div id="list_hylb">
+      
+      
       </div>
-      <div class="title_xgwt">
-        <div class="title_xgwt_tu"><img src="../images/main/hylb_1.jpg" /></div>
-        <div class="title_xgwt_xner">
-        	<ul>
-            	<li class="tit"><a href="#">Thyme</a></li>
-                <li class="tit_con">电信行业的我，如何进入互联网行业公司工作</li>
-            </ul>
-        </div>
-        <div class="title_hylb_anniu">
-          <input name="" type="button" value="添加关注" style="width:100px; height:25px; background-color:#dadade" />
-        </div>
-        <div class="clear"></div>
-      </div>
-      <div class="title_xgwt">
-        <div class="title_xgwt_tu"><img src="../images/main/hylb_1.jpg" /></div>
-        <div class="title_xgwt_xner">
-        	<ul>
-            	<li class="tit"><a href="#">Thyme</a></li>
-                <li class="tit_con">电信行业的我，如何进入互联网行业公司工作</li>
-            </ul>
-        </div>
-        <div class="title_hylb_anniu">
-          <input name="" type="button" value="添加关注" style="width:100px; height:25px; background-color:#dadade" />
-        </div>
-        <div class="clear"></div>
-      </div>
-      <div class="title_xgwt"  style="margin-bottom:15px;">
-        <div class="title_xgwt_tu"><img src="../images/main/hylb_1.jpg" /></div>
-        <div class="title_xgwt_xner">
-        	<ul>
-            	<li class="tit"><a href="#">Thyme</a></li>
-                <li class="tit_con">电信行业的我，如何进入互联网行业公司工作</li>
-            </ul>
-        </div>
-        <div class="title_hylb_anniu">
-          <input name="" type="button" value="添加关注" style="width:100px; height:25px; background-color:#dadade" />
-        </div>
-        <div class="clear"></div>
-      </div>
-      <div class="tiao"><a href="#">更多 &gt;&gt;</a></div>
+      
+      <div class="tiao"><a href="javascript:;" id="list_hylb_more">更多 &gt;&gt;</a></div>
   </div>
     
     
     <div class="c_right">
   <div class="r_column">
             <div class="column">热点会员</div>
-              <div class="column_contentgxq">
+            
+            <s:iterator value="returnMap.hotlist" var="hotlist">
+            <div class="column_contentgxq">
               <div class="colun_c_gxq">
-                <div style="float:left;"><a href="#"><img src="../images/main/rw_1.png" width="25" height="25" border="0" /></a></div>
-                    <div class="colun_l"><a href="#">刘阳</a></div>
+                <div style="float:left;"><a href="../index/initHyym.go?userId=${hotlist.USER_ID }"><img src="${cpath }/${hotlist.IMAGE_PATH }" onerror="load_person_image_25_25(this)" width="25" height="25" border="0" /></a></div>
+                    <div class="colun_l"><a href="../index/initHyym.go?userId=${hotlist.USER_ID }">${hotlist.NAME }</a></div>
                 </div>
-                <div class=" colun_c_main">拉近远方的人的距离，却偶尔推远离，却偶尔推远</div>
-          </div>
+                <div class=" colun_c_main">${hotlist.INTRODUCTION}</div>
+          	</div>
+            </s:iterator><!--
+            
             <div class="more"><a href="#">更多 &gt;&gt;</a></div>
-        </div>
+        --></div>
         <div class="r_column">
             <div class="column">最新会员</div>
-              <div class="column_contentgxq">
+              
+          	<s:iterator value="returnMap.newlist" var="newlist">
+            <div class="column_contentgxq">
               <div class="colun_c_gxq">
-                <div style="float:left;"><a href="#"><img src="../images/main/rw_1.png" width="25" height="25" border="0" /></a></div>
-                    <div class="colun_l"><a href="#">刘阳</a></div>
+                <div style="float:left;"><a href="../index/initHyym.go?userId=${newlist.USER_ID }"><img src="${cpath }/${newlist.IMAGE_PATH }" onerror="load_person_image_25_25(this)" width="25" height="25" border="0" /></a></div>
+                    <div class="colun_l"><a href="../index/initHyym.go?userId=${newlist.USER_ID }">${newlist.NAME }</a></div>
                 </div>
-                <div class=" colun_c_main">拉近远方的人的距离，却偶尔推远离，却偶尔推远</div>
-          </div>
-            <div class="more"><a href="#">更多 &gt;&gt;</a></div>
-        </div>
+                <div class=" colun_c_main">${newlist.INTRODUCTION}</div>
+          	</div>
+            </s:iterator>
+          	
+          	
+          	
+          	
+            <!--<div class="more"><a href="#">更多 &gt;&gt;</a></div>
+        --></div>
         
     </div>
 	<div class="clear"></div>

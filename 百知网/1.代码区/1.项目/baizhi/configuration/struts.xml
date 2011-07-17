@@ -53,4 +53,6 @@
 	
 	<include file="struts2/index/s-wdzx.xml" />
 	<include file="struts2/index/s-qbtz.xml" />
+	
+	<include file="struts2/index/s-hylb.xml" />
 </struts>
