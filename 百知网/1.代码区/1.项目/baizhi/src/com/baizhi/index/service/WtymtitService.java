@@ -144,6 +144,7 @@ public class WtymtitService  extends ServiceSupport{
 		element = new DefaultElement("T_PROBLEM_TALK");
 		Elements.setElementValue(element, "TALK_ID", talkId);// 话题ID
 		Elements.setElementValue(element, "PROBLEM_ID", problemId);// 问题ID
+		Elements.setElementValue(element, "TALK_TYPE", IConstants.TALK_TYPE_TALK);
 		Elements.setElementValue(element, "CREATE_TIME", DateUtils.getCurrentTime(DateUtils.SHOW_DATE_FORMAT));// 创建时间
 		Elements.setElementValue(element, "MODIFY_TIME", DateUtils.getCurrentTime(DateUtils.SHOW_DATE_FORMAT));// 修改时间
 		//如果保存成功，返回主键

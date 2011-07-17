@@ -1,6 +1,10 @@
 package com.baizhi.index.action.ppym;
 
+import java.util.List;
+import java.util.Map;
+
 import com.baizhi.commons.ActionSupport;
+import com.baizhi.index.service.PpymService;
 
 /**
  * 类名： InitHyym<br>
@@ -14,18 +18,32 @@ import com.baizhi.commons.ActionSupport;
 public class InitPpym extends ActionSupport{
 
 	private static final long serialVersionUID = -6389710365724898495L;
+	private PpymService ppymService;
 	private int BRAND_ID;
+	private Map<String, Object> brand;
+	private List<Map<String, Object>> wasAttentionUserList; 
 
-	public int getBRAND_ID() {
-		return BRAND_ID;
+	public void setPpymService(PpymService ppymService) {
+		this.ppymService = ppymService;
 	}
 
 	public void setBRAND_ID(int bRANDID) {
 		BRAND_ID = bRANDID;
 	}
 
+	public Map<String, Object> getBrand() {
+		return brand;
+	}
+
+	public List<Map<String, Object>> getWasAttentionUserList() {
+		return wasAttentionUserList;
+	}
+
+	@SuppressWarnings("unchecked")
 	@Override
 	public String execute() throws Exception {
+		brand = ppymService.getBrandById(BRAND_ID, getSessionUserId());
+		wasAttentionUserList = (List<Map<String, Object>>) ppymService.getWasAttentionUserListByBrandId(BRAND_ID, getNowPage(), getOnePageCount()).get(KEY_LIST);
 		return SUCCESS;
 	}
 

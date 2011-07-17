@@ -18,6 +18,11 @@
 				<comment>问题ID</comment>
 			</column>
 		</property>
+		<property name="TALK_TYPE" type="int">
+			<column name="TALK_TYPE"  >
+				<comment>类型(1：话题、2：品牌)</comment>
+			</column>
+		</property>
 		<property name="CREATE_TIME" type="java.util.Date">
 			<column name="CREATE_TIME"  >
 				<comment>创建时间</comment>

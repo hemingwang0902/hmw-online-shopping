@@ -30,4 +30,9 @@ public interface IConstants {
 	int BRAND_STAUS_PASSED = 3;
 	/**品牌状态：未通过*/
 	int BRAND_STAUS_UNPASS = 4;
+	
+	/**问题话题关联表中的类型：话题*/
+	int TALK_TYPE_TALK = 1;
+	/**问题话题关联表中的类型：品牌*/
+	int TALK_TYPE_BRAND = 2;
 }
