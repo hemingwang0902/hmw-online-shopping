@@ -109,15 +109,16 @@ function beforeSearchUser(){
  * @param isDisAttention 为 true 表示取消关注
  */
 function attentionTalk(TALK_ID){
-	var isDisAttention = $(this).attr("isDisAttention");
+	var isDisAttention = $("#gzht_"+TALK_ID).attr("isDisAttention");
+	
 	$.post("attentionTalk.go",{
 		"TALK_ID": TALK_ID,
 		"disAttention": isDisAttention
 	}, function(result){
 		if(isDisAttention == "true"){
-			$(this).attr("isDisAttention", false).html("关&nbsp;注");
+			$("#gzht_"+TALK_ID).attr("isDisAttention", false).html("关&nbsp;注");
 		}else{
-			$(this).attr("isDisAttention", true).html("取&nbsp;消");
+			$("#gzht_"+TALK_ID).attr("isDisAttention", true).html("取&nbsp;消");
 		}
 	});
 }

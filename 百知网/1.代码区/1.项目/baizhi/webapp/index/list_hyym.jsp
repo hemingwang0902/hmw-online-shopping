@@ -25,7 +25,7 @@
       <div class="line_1"></div>
       <div class="title_xgwt" style="border:0;">
         <div class="title_xgwt_tu">
-        	<s:if test="userBasic.IMAGE_PATH==null || userBasic.IMAGE_PATH==''">
+        	<s:if test="userBasic.IMAGE_PATH==null">
         		<img src="../images/main/rw_1.jpg" width="100" height="100" />
         	</s:if>
         	<s:else>
@@ -40,6 +40,7 @@
         </div>
         <div class="clear"></div>
       </div>
+      <s:if test="userId != #session.USER_ID">
       <div class="wtym_tjda">
           <div class="tit_hyym">问<s:property value="userBasic.NAME"/>一个问题（仅他能回答）</div>
           <div class="tit_wtym_daan">
@@ -47,6 +48,7 @@
           </div>
           <div class="tit_hyym_anniu"><input type="button" style="width:107px;cursor: pointer;" class="bot_xttw" onclick="addProblem();"/></div>
       </div>
+      </s:if>
       <div class="tit_hyym_twwt">
       	<input type="hidden" id="problemType" value="wen">
      	<ul>
@@ -114,7 +116,7 @@
 	            	</ul>
 				</div>
         	<div class="title_hyym_anniu">
-				<input type="button" value="取&nbsp;消" style="width:55px; height:25px; background-color:#dadade" isDisAttention="true" onclick="attentionTalk('<s:property value="TALK_ID"/>');"/>
+				<input id='gzht_<s:property value="TALK_ID"/>' type="button" value="取&nbsp;消" style="width:55px; height:25px; background-color:#dadade" isDisAttention="true" onclick="attentionTalk('<s:property value="TALK_ID"/>');"/>
         	</div>
         	<div class="clear"></div>
 		</div>
