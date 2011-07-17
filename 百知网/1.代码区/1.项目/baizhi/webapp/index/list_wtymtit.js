@@ -151,6 +151,10 @@ function _showAnswer(answers){
 	var CREATE_TIME = ""; //创建时间
 	var MODIFY_TIME = ""; //修改时间
 	
+	var AGREE = ""; 
+	var DISAGREE = ""; 
+	var THANK = ""; 
+	var DISTHANK = ""; 
 	var NAME = ""; 
 	var INTRODUCTION = "";
 	
@@ -167,6 +171,10 @@ function _showAnswer(answers){
 		REVIEW_COUNT = answers[i]["REVIEW_COUNT"];
 		CREATE_TIME = answers[i]["CREATE_TIME"];//创建时间
 		MODIFY_TIME = answers[i]["MODIFY_TIME"];//修改时间
+		AGREE = parseInt(answers[i]["AGREE"]); 
+		DISAGREE = parseInt(answers[i]["DISAGREE"]); 
+		THANK = parseInt(answers[i]["THANK"]); 
+		DISTHANK = parseInt(answers[i]["DISTHANK"]); 
 		NAME = answers[i]["NAME"];
 		INTRODUCTION = answers[i]["INTRODUCTION"];
 
@@ -176,12 +184,29 @@ function _showAnswer(answers){
 		content += '		<div class="title_wtym_con">'+CONTENT+'</div>';
 		content += '	</div>';
 		content += '	<div class="tit_bot_wtym">';
-		content += '		<a href="javascript:void(0);">'+REVIEW_COUNT+' 条评论</a>';
-		content += '		 • <a href="javascript:void(0);" onclick="answerVote('+ANSWER_ID+', \'Thank\');">感谢作者</a>';
-		content += '		 • <a href="javascript:void(0);" onclick="answerVote('+ANSWER_ID+', \'Disthank\');">没有帮助</a>';
-		content += '		 • <a href="javascript:void(0);" onclick="answerVote('+ANSWER_ID+', \'Agree\');">赞同</a>';
-		content += '		 • <a href="javascript:void(0);" onclick="answerVote('+ANSWER_ID+', \'DisAgree\');">反对</a>';
+		content += '		<a href="javascript:void(0);" onclick="showAnswerReview(\''+ANSWER_ID+'\');"><span id="pl_'+ANSWER_ID+'">'+REVIEW_COUNT+'</span> 条评论</a>';
+		if(AGREE){
+			content += '		 • <span>赞同</span>';
+		}else{
+			content += '		 • <span id="zt_'+ANSWER_ID+'"><a href="javascript:void(0);" onclick="answerVote('+ANSWER_ID+', \'Agree\', this);">赞同</a></span>';
+		}
+		if(DISAGREE){
+			content += '		 • <span>反对</span>';
+		}else{
+			content += '		 • <span id="fd_'+ANSWER_ID+'"><a href="javascript:void(0);" onclick="answerVote('+ANSWER_ID+', \'DisAgree\', this);">反对</a></span>';
+		}
+		if(THANK){
+			content += '		 • <span>感谢作者</span>';
+		}else{
+			content += '		 • <span id="gx_'+ANSWER_ID+'"><a href="javascript:void(0);" onclick="answerVote('+ANSWER_ID+', \'Thank\', this);">感谢作者</a></span>';
+		}
+		if(DISTHANK){
+			content += '		 • <span>没有帮助</span>';
+		}else{
+			content += '		 • <span id="my_'+ANSWER_ID+'"><a href="javascript:void(0);" onclick="answerVote('+ANSWER_ID+', \'Disthank\', this);">没有帮助</a></span>';
+		}
 		content += '	</div>';
+		content += '	<div id="div_pinglun_'+ANSWER_ID+'" style="display:none;"><div id="pl_list_'+ANSWER_ID+'">评论列表</div></div>';
 		content += '	<div class="clear"></div>';
 		content += '</div>';
 	
@@ -261,6 +286,10 @@ function addAnswer(){
 				REVIEW_COUNT: 0, 
 				CREATE_TIME: "",
 				MODIFY_TIME: "",
+				AGREE: 0, 
+				DISAGREE: 0, 
+				THANK: 0, 
+				DISTHANK: 0, 
 				NAME: $("#loginUser_NAME").val(),
 				INTRODUCTION: $("#loginUser_INTRODUCTION").val()
 			}];
@@ -275,13 +304,20 @@ function addAnswer(){
 /**
  * 对回复进行操作：赞同、反对、感谢作者、对我没帮助
  */
-function answerVote(ANSWER_ID, voteField){
+function answerVote(ANSWER_ID, voteField, domLink){
 	$.post("answerVote.go",{
 		"ANSWER_ID": ANSWER_ID,
 		"voteField": voteField
 	},function(){
-		// TODO 更新页面展示
+		domLink.parentNode.innerHTML = domLink.innerText;
 	});
+}
+
+/**
+ * 显示评论列表
+ */
+function showAnswerReview(){
+	//TODO 通过 Ajax 加载评论列表，并显示到页面
 }
 
 /**
