@@ -31,7 +31,8 @@ $(document).ready(function(){
 		brand: {
 			detail		: basePath + "/index/initPpym.go?BRAND_ID=",
 			attention	: basePath + "/index/attentionBrand.go",
-			attentionList: basePath + "/index/getAttentionBrand.go"
+			attentionList: basePath + "/index/getAttentionBrand.go",
+			problemList	: basePath + "/index/GetProblemListByBrandId.go",
 		},
 		talk: {
 			detail		: basePath + "/index/initHtym.go?TALK_ID="

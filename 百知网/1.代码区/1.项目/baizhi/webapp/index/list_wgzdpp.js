@@ -90,5 +90,4 @@ function attentionBrand(BRAND_ID, dombtn){
 			jqbtn.attr("isDisAttention", true).val("取消关注");;
 		}
 	});
-	
 }
