@@ -30,7 +30,7 @@ $(document).ready(function(){
 		
 		brand: {
 			detail		: basePath + "/index/initPpym.go?BRAND_ID=",
-			attention	: "",
+			attention	: basePath + "/index/attentionBrand.go",
 			attentionList: basePath + "/index/getAttentionBrand.go"
 		},
 		talk: {
@@ -296,7 +296,7 @@ function getMayInterestedUserList(){
 				if(IMAGE_PATH==null || IMAGE_PATH==undefined || IMAGE_PATH=="null"){
 					IMAGE_PATH = "/images/main/rw_1.png";
 				}
-				IMAGE_PATH = path.basePath + "/images/main/rw_1.png";
+				IMAGE_PATH = path.basePath + IMAGE_PATH;
 				
 				var url = path.user.detail+USER_ID;
 				
@@ -348,7 +348,7 @@ function getAttentionBrandList(userId){
 				if(IMAGE_PATH==null || IMAGE_PATH==undefined || IMAGE_PATH=="null"){
 					IMAGE_PATH = "/images/main/rw_1.png";
 				}
-				IMAGE_PATH = path.basePath + "/images/main/pptp_1.png";
+				IMAGE_PATH = path.basePath + IMAGE_PATH;
 				
 				var url = path.brand.detail+BRAND_ID;
 				
