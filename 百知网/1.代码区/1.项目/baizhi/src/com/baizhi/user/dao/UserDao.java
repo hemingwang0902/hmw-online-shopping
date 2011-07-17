@@ -13,6 +13,7 @@ import com.baizhi.commons.constant.Diclist;
 import com.baizhi.commons.support.DateUtils;
 import com.baizhi.commons.support.Elements;
 import com.baizhi.userlog.dao.UserLogDao;
+import com.baizhi.usernotice.dao.UserNoticeDao;
 /**
  * 
  * 类名：UserDao.java
@@ -27,12 +28,22 @@ public class UserDao extends DaoSupport{
 	
 	private UserLogDao userLogDao;
 	
+	private UserNoticeDao userNoticeDao;
+	
 	public UserLogDao getUserLogDao() {
 		return userLogDao;
 	}
 
 	public void setUserLogDao(UserLogDao userLogDao) {
 		this.userLogDao = userLogDao;
+	}
+	
+	public UserNoticeDao getUserNoticeDao() {
+		return userNoticeDao;
+	}
+
+	public void setUserNoticeDao(UserNoticeDao userNoticeDao) {
+		this.userNoticeDao = userNoticeDao;
 	}
 
 	/**
@@ -120,7 +131,8 @@ public class UserDao extends DaoSupport{
 				Elements.setElementValue(element, "CREATE_TIME", DateUtils.getCurrentTime(DateUtils.SHOW_DATE_FORMAT));// 创建时间
 				dom4jSession.save(element);
 			}
-			
+			//初始化消息设置信息
+			userNoticeDao.initUserNotice(Integer.parseInt(userelement.elementText("USER_ID")), dom4jSession);
 			dom4jSession.getTransaction().commit();
 			returnMap.put("USER_ID",userelement.elementText("USER_ID"));
 		} catch (Exception e) {

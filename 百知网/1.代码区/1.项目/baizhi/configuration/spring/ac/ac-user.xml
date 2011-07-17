@@ -3,6 +3,7 @@
 <beans>
 	<bean id="userDao" class="com.baizhi.user.dao.UserDao" parent="daoSupport">
 		<property name="userLogDao" ref="userLogDao" ></property>
+		<property name="userNoticeDao" ref="userNoticeDao" ></property>
 	</bean>
 	
 	<bean id="userService" class="com.baizhi.user.service.UserService" parent="serviceSupport">

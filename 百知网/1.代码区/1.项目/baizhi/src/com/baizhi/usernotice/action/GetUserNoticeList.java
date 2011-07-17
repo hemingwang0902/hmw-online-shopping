@@ -53,7 +53,7 @@ public class GetUserNoticeList extends UserNoticeForm {
 		//判断是否存在查询记录
 		if (list != null && list.size() > 0) {
 			String values="";
-			for (int i = 0; i < list.size(); i++) {
+			for (int i = 0; i < list.size()&&i<6; i++) {
 				Map<String, Object> map = list.get(i);
 				values+=values.trim().equals("")?String.valueOf(map.get("SET_TYPE")):","+String.valueOf(map.get("SET_TYPE"));
 				returnMap.put(SET_TYPES[i],map.get("SET_TYPE"));

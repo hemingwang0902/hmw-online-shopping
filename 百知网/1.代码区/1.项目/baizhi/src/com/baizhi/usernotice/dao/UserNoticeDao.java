@@ -2,12 +2,14 @@ package com.baizhi.usernotice.dao;
 
 import java.util.List;
 import java.util.Map;
-
+import org.dom4j.Element;
+import org.dom4j.tree.DefaultElement;
 import org.hibernate.Query;
 import org.hibernate.Session;
-
 import com.baizhi.commons.DaoSupport;
 import com.baizhi.commons.ParametersSupport;
+import com.baizhi.commons.support.DateUtils;
+import com.baizhi.commons.support.Elements;
  /**
  * 
  * 类名：UserNoticeDao.java
@@ -19,6 +21,41 @@ import com.baizhi.commons.ParametersSupport;
  * 修改日期：
  */
 public class UserNoticeDao extends DaoSupport{
+	
+	/**
+	 * 初始化消息设置信息
+	 * @param USER_ID 用户ID
+	 * @param session 数据库连接
+	 * @return
+	 * @throws Exception
+	 */
+	public boolean initUserNotice(Integer USER_ID,Session dom4jSession) throws Exception {
+		//通知类型(1：有人关注了我、2：有人问了我一个问题、3：有人邀请我回答一个问题、4：我关注的问题有了新答案、5：有人关注了我的品牌、6：谁可以给我发私信、7：有人关注了我品牌问题、8：我关注的品牌问题有了新答案)
+		Integer[] NOTICE_TYPES=new Integer[]{1,2,3,4,5,6,7,8};
+		Integer[] SET_TYPES=new Integer[]{1,1,1,1,1,3,1,1};
+		for (int i = 0; i < NOTICE_TYPES.length; i++) {
+			dom4jSession.save(this.getEle(USER_ID, NOTICE_TYPES[i], SET_TYPES[i]));
+		}
+		return true;
+	}
+	
+	/**
+	 * 获取实体 
+	 * @param USER_ID
+	 * @param NOTICE_TYPE
+	 * @param SET_TYPE
+	 * @return
+	 */
+	private Element getEle(Integer USER_ID,Integer NOTICE_TYPE,Integer SET_TYPE) throws Exception{
+		Element element = new DefaultElement("T_USER_NOTICE");
+		Elements.setElementValue(element, "USER_ID", USER_ID);// 用户ID
+		Elements.setElementValue(element, "NOTICE_TYPE", NOTICE_TYPE);// 通知类型(1：有人关注了我、2：有人问了我一个问题、3：有人邀请我回答一个问题、4：我关注的问题有了新答案、5：有人向我发送私信、6：谁可以给我发私信)
+		Elements.setElementValue(element, "SET_TYPE", SET_TYPE);// 设置类型(0：否、1：是、3：所有人、4：我关注的人)
+		Elements.setElementValue(element, "CREATE_TIME", DateUtils.getCurrentTime(DateUtils.SHOW_DATE_FORMAT));// 创建时间
+		return element;
+	}
+	
+	
 	
 	/**
 	 * 修改用户通知设置表信息
