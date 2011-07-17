@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
 <beans>
-	<bean id="problemAnswerDao" class="com.baizhi.problemanswer.dao.ProblemAnswerDao" parent="daoSupport"></bean>
+	<bean id="problemAnswerDao" class="com.baizhi.problemanswer.dao.ProblemAnswerDao" parent="daoSupport">
+		<property name="userNoticeDao" ref="userNoticeDao"/>
+		<property name="userDynamicDao" ref="userDynamicDao"/>
+	</bean>
 	
 	<bean id="problemAnswerService" class="com.baizhi.problemanswer.service.ProblemAnswerService" parent="serviceSupport">
 		<property name="problemAnswerDao">

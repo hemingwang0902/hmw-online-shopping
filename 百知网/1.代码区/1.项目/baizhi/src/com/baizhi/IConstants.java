@@ -35,4 +35,17 @@ public interface IConstants {
 	int TALK_TYPE_TALK = 1;
 	/**问题话题关联表中的类型：品牌*/
 	int TALK_TYPE_BRAND = 2;
+	
+	/**通知类型：有人关注了我*/
+	int NOTICE_TYPE_ATTENTION_ME = 1;
+	/**通知类型：有人问了我一个问题*/
+	int NOTICE_TYPE_ASK_ME = 2;
+	/**通知类型：有人邀请我回答一个问题*/
+	int NOTICE_TYPE_INVITE_ME = 3;
+	/**通知类型：我关注的问题有了新答案*/
+	int NOTICE_TYPE_NEW_ANSWER = 4;
+	/**通知类型：有人关注了我的品牌*/
+	int NOTICE_TYPE_ATTENTION_BRAND = 5;
+	/**通知类型：谁可以给我发私信*/
+	int NOTICE_TYPE_SEND_PRIVATE = 6;
 }

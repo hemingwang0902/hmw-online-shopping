@@ -2,10 +2,18 @@ package com.baizhi.problem.dao;
 
 import java.util.List;
 import java.util.Map;
+
+import org.apache.commons.lang.math.NumberUtils;
 import org.dom4j.Element;
+import org.hibernate.EntityMode;
+import org.hibernate.Session;
+
+import com.baizhi.IConstants;
 import com.baizhi.commons.DaoSupport;
 import com.baizhi.commons.ParametersSupport;
 import com.baizhi.commons.constant.Diclist;
+import com.baizhi.userdynamic.dao.UserDynamicDao;
+import com.baizhi.usernotice.dao.UserNoticeDao;
  /**
  * 
  * 类名：ProblemDao.java
@@ -17,7 +25,17 @@ import com.baizhi.commons.constant.Diclist;
  * 修改日期：
  */
 public class ProblemDao extends DaoSupport{
+	private UserNoticeDao userNoticeDao;
+	private UserDynamicDao userDynamicDao; 
 	
+	public void setUserNoticeDao(UserNoticeDao userNoticeDao) {
+		this.userNoticeDao = userNoticeDao;
+	}
+
+	public void setUserDynamicDao(UserDynamicDao userDynamicDao) {
+		this.userDynamicDao = userDynamicDao;
+	}
+
 	/**
 	 * 新增或修改问题信息表信息
 	 * 
@@ -25,7 +43,33 @@ public class ProblemDao extends DaoSupport{
 	 * @return 返回主键ID,失败返回""
 	 */
 	public String saveOrUpdateProblem(Element element) {
-		return this.saveOrUpdate(element, "PROBLEM_ID");
+		//return this.saveOrUpdate(element, "PROBLEM_ID");
+		
+		Session session = getSession();
+		Session dom4jSession = session.getSession(EntityMode.DOM4J);
+		String idValue = "";
+		try {
+			dom4jSession.beginTransaction();
+			dom4jSession.save(element);
+			idValue = element.elementText("PROBLEM_ID");
+			
+			int WAS_USERID = NumberUtils.toInt(element.elementText("WAS_USERID"));
+			if(WAS_USERID > 0){
+				//判断对方是否设置接收有人问我问题的通知
+				if(userNoticeDao.isUserNotice(WAS_USERID, IConstants.NOTICE_TYPE_ASK_ME, dom4jSession)){
+					userDynamicDao.saveUserDynamic(NumberUtils.toInt(element.elementText("USER_ID")), "", NumberUtils.toInt(idValue), ""+IConstants.NOTICE_TYPE_ASK_ME, "问了你一个问题", WAS_USERID, dom4jSession);
+				}
+			}
+			dom4jSession.getTransaction().commit();
+			
+		} catch (Exception e) {
+			dom4jSession.beginTransaction().rollback();
+			e.printStackTrace();
+		} finally {
+			dom4jSession.close();
+			session.close();
+		}
+		return idValue;
 	}
 	
 	/**
