@@ -47,6 +47,8 @@
 	<include file="struts2/index/s-hyym.xml" />
 	<!-- 品牌页面 -->
 	<include file="struts2/index/s-ppym.xml" />
+	<!-- 话题页面 -->
+	<include file="struts2/index/s-htym.xml" />
 	<!-- 问题页面 -->
 	<include file="struts2/index/s-wtymtit.xml" />
 	<include file="struts2/index/s-sz.xml" />
