@@ -28,5 +28,15 @@
 		<action name="getUserAttentiontalkById" class="com.baizhi.userattentiontalk.action.GetUserAttentiontalkById">
 			<result name="success" type="dispatcher" >userattentiontalkform.jsp</result>
 		</action>
+		<action name="addUserAttentiontalk" class="com.baizhi.userattentiontalk.action.AddUserAttentiontalk">
+			<result name="jsonsuccess" type="json">
+		      <param name="root">result</param>
+		    </result>
+		</action>
+		<action name="cancelUserAttentiontalk" class="com.baizhi.userattentiontalk.action.CancelUserAttentiontalk">
+			<result name="jsonsuccess" type="json">
+		      <param name="root">result</param>
+		    </result>
+		</action>
 	</package>
 </struts>

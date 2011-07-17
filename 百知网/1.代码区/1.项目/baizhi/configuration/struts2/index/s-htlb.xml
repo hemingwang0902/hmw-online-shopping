@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="htlb" extends="json-default" namespace="/index">
+		<action name="getHtlbList" class="com.baizhi.index.action.htlb.GetHtlbList">
+			<result name="jsonsuccess" type="json">
+		      <param name="root">result</param>
+		    </result>
+		</action>
+		<action name="initHtlbPage" class="com.baizhi.index.action.htlb.InitHtlbPage">
+			<result name="success" >list_htlb.jsp</result>
+		</action>
+	</package>
+</struts>

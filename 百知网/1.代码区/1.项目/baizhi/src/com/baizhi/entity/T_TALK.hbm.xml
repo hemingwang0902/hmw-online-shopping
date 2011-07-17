@@ -18,6 +18,16 @@
 				<comment>用户ID</comment>
 			</column>
 		</property>
+		<property name="INTRODUCTION" type="string">
+			<column name="INTRODUCTION" length="1000" >
+				<comment>简介</comment>
+			</column>
+		</property>
+		<property name="IMAGE_PATH" type="string">
+			<column name="IMAGE_PATH" length="100"  >
+				<comment>图片路径</comment>
+			</column>
+		</property>
 		<property name="CREATE_TIME" type="java.util.Date">
 			<column name="CREATE_TIME"  >
 				<comment>创建时间</comment>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<bean id="htlbDao" class="com.baizhi.index.dao.HtlbDao" parent="daoSupport"></bean>
+	
+	<bean id="htlbService" class="com.baizhi.index.service.HtlbService" parent="serviceSupport">
+		<property name="htlbDao">
+			<ref local="htlbDao" />
+		</property>
+	</bean>
+</beans>

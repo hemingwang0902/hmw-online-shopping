@@ -38,6 +38,26 @@ public class UserAttentiontalkService extends ServiceSupport{
 	}
 	
 	/**
+	 * 新增品牌关注话题信息表信息
+	 * 
+	 * @param element  实体对象
+	 * @return 返回主键ID,失败返回""
+	 */
+	public String save(Element element) {
+		return userAttentiontalkDao.save(element);
+	}
+	
+	/**
+	 * 取消用户关注
+	 * @param TALK_ID 话题ID
+	 * @param USER_ID  用户ID
+	 * @return
+	 */
+	public boolean cancel(Integer TALK_ID,Integer USER_ID) {
+		return userAttentiontalkDao.cancel(TALK_ID, USER_ID);
+	}
+	
+	/**
 	 *　删除用户关注话题信息表信息
 	 * 
 	 * @param ATTENTIONTALK_IDS  用户关注话题信息表ID值集合以","分隔
