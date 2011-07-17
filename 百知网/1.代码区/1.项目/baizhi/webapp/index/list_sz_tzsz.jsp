@@ -21,7 +21,7 @@
             	</s:if>
             	
                 <li><a href="../index/list_sz_zhsz.jsp">账户设置</a></li>
-                <li style="background-color:#CCDBA2;"><font color="#FF6633"><a href="javascript:;">通知设置</a></font></li>
+                <li><a href="javascript:;" style="background-color:#CCDBA2;"><font color="#FF6633">通知设置</font></a></li>
             </ul>
           </div>
     </div>

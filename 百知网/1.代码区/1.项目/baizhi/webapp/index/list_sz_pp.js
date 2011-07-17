@@ -28,7 +28,7 @@ $(document).ready(function(){
 			LINK_MODE: {required: "请输入联系方式", rangelength: "长度为1至20",linkmode:"请输入正确的联系方式"},
 			EMAIL: {required: "请输入电子邮箱",email:"请输入正确的邮件地址", rangelength: "长度为1至50"},
 			upload: {required: "请选择上传图片", rangelength: "长度为1至100",isImageFormat:"请上传正确的图片格式"},
-			BRAND_LABEL: {required: "请输入品牌标签", rangelength: "长度为1至100"},
+			BRAND_LABEL: {required: "请输入品牌标签", rangelength: "长度为1至100"}
 		},
 		submitHandler:function(form){
 			form.submit();

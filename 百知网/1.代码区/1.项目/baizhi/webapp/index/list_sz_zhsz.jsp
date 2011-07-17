@@ -22,7 +22,7 @@
             	<s:if test="#session.userinfo.USER_TYPE==2">
             	<li><a href="../index/list_sz_pplb.jsp" >品牌资料</a></li>
             	</s:if>
-                <li style="background-color:#CCDBA2;"><font color="#FF6633"><a href="javascript:;">账户设置</a></font></li>
+                <li><a href="javascript:;"  style="background-color:#CCDBA2;"><font color="#FF6633">账户设置</font></a></li>
                 <li><a href="../usernotice/getUserNoticeList.go">通知设置</a></li>
             </ul>
           </div>

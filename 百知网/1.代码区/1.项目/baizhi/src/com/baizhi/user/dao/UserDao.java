@@ -233,7 +233,7 @@ public class UserDao extends DaoSupport{
 		   .append("b.PROVINCE  as PROVINCE,")//城市
 		   .append("b.CITY  as CITY,")//城市
 		   .append("(select DIC_NAME from T_AREA where DIC_CODE=b.CITY)  as CITY_NAME ) ")//城市
-		   .append("FROM T_USER a,T_USER_BASIC b WHERE a.EMAIL=? and a.PASSWORD=? and a.USER_ID=b.USER_ID ");
+		   .append("FROM T_USER a,T_USER_BASIC b WHERE a.EMAIL=? and a.PASSWORD=? and a.USER_ID=b.USER_ID  and ('"+DateUtils.getCurrentTime(DateUtils.SHOW_DATE_FORMAT)+"'>LAST_FREEZETIME or LAST_FREEZETIME is null) ");
 		
 		try {
 			List<Map<String,Object>> list=setQueryParameters(session.createQuery(sql.toString()), new Object[]{EMAIL,PASSWORD}).list();
