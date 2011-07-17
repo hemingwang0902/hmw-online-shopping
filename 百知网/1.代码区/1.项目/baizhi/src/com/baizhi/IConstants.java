@@ -48,4 +48,9 @@ public interface IConstants {
 	int NOTICE_TYPE_ATTENTION_BRAND = 5;
 	/**通知类型：谁可以给我发私信*/
 	int NOTICE_TYPE_SEND_PRIVATE = 6;
+	/**通知类型：有人关注了我品牌问题*/
+	int NOTICE_TYPE_ATTENTION_PROBLEM_BRAND = 7;
+	/**通知类型：我关注的品牌问题有了新答案*/
+	int NOTICE_TYPE_NEW_ANSWER_BRAND = 8;
+	
 }

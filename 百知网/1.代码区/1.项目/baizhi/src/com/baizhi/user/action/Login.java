@@ -73,11 +73,13 @@ public class Login extends ActionSupport{
 			return ERROR;
 		}  
 		
+		Object USER_ID = data.get("USER_ID");
 		//获取Session对象
 		HttpSession session = request.getSession();
 		//将值设置到Session对象中
 		session.setAttribute("userinfo", data);
-		session.setAttribute("USER_ID", data.get("USER_ID"));
+		session.setAttribute("USER_ID", USER_ID);
+		session.setAttribute("USER_ID_ENCODE", Encrypt.encodeBase64(""+USER_ID));
 		//判断用户类型，如果为普通用户则跳转到主页，否则跳转到后台管理页
 		int USER_TYPE=Integer.valueOf(this.getValue(data, "USER_TYPE"));
 		if(USER_TYPE>2){
