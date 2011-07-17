@@ -1,8 +1,12 @@
 package com.baizhi.userbattention.dao;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 import org.dom4j.Element;
+import org.hibernate.EntityMode;
+import org.hibernate.Session;
+
 import com.baizhi.commons.DaoSupport;
 import com.baizhi.commons.ParametersSupport;
 
@@ -28,6 +32,51 @@ public class UserBattentionDao extends DaoSupport{
 	}
 	
 	/**
+	 * 新增品牌关注品牌信息表信息
+	 * 
+	 * @param element  实体对象
+	 * @return 返回主键ID,失败返回""
+	 */
+	public String save(Element element) {
+		Session session = getSession();
+		Session dom4jSession = session.getSession(EntityMode.DOM4J);
+		String keyid = "";
+		try {
+			dom4jSession.beginTransaction();
+			Serializable serializableid = dom4jSession.save(element);
+			if(serializableid!=null&&!serializableid.equals("")){
+				keyid=serializableid.toString();
+			}
+			
+			
+			dom4jSession.getTransaction().commit();
+		} catch (Exception e) {
+			dom4jSession.beginTransaction().rollback();
+			e.printStackTrace();
+		} finally {
+			dom4jSession.close();
+			session.close();
+		}
+		return keyid;
+	}
+	
+	/**
+	 * 取消用户关注
+	 * @param BRAND_ID 品牌ID
+	 * @param USER_ID  用户ID
+	 * @return
+	 */
+	public boolean cancel(Integer BRAND_ID,Integer USER_ID) {
+		int count=-1;
+		count=this.executeUpdate("delete from T_USER_BATTENTION where BRAND_ID=? and USER_ID=?", new Object[]{BRAND_ID,USER_ID});
+		if(count>0){
+			return true;
+		}
+		return false;
+	}
+	
+	
+	/**
 	 *　删除用户关注品牌信息表信息
 	 * 
 	 * @param BATTENTION_IDS   用户关注品牌信息表ID值集合以","分隔
@@ -45,6 +94,7 @@ public class UserBattentionDao extends DaoSupport{
 	public  Element getUserBattentionEleById(String BATTENTION_ID){
 		return this.getElementById("T_USER_BATTENTION", "BATTENTION_ID", BATTENTION_ID);
 	}
+	
 	
 	/**
 	 *　获取用户关注品牌信息表数量

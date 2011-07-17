@@ -25,6 +25,9 @@
 		      <param name="root">result</param>
 		    </result>
 		</action>
+		<action name="initPqlbPage" class="com.baizhi.index.action.pqlb.InitPqlbPage">
+			<result name="success" >list_pqlb.jsp</result>
+		</action>
 		<!-- 关注/取消关注品牌 -->
 		<action name="attentionBrand" class="com.baizhi.index.action.pqlb.AttentionBrand">
 			<result name="jsonsuccess" type="json">

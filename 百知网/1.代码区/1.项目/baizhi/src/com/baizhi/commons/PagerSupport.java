@@ -56,6 +56,7 @@ public class PagerSupport implements Serializable {
 		return data;
 	}
 	
+	@SuppressWarnings("unchecked")
 	/**
 	 * 根据查询条件获取分页查询结果；作者：江红 时间：2011-03-06
 	 * 
@@ -72,11 +73,7 @@ public class PagerSupport implements Serializable {
 		query = query.setMaxResults(onePageCount);
 		return query.list();
 	}
-
 	
-
-
-
 	/**
 	 * 得到分页属性，获取分页属性，利用查询对象有设置参数方式
 	 * 

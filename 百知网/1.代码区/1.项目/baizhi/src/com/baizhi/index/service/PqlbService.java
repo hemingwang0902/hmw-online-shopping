@@ -60,6 +60,29 @@ public class PqlbService  extends ServiceSupport{
 	public Map<String, Object> getLastestBrand(int nowPage, int onePageCount){
 		return pqlbDao.getLastestBrand(nowPage, onePageCount);
 	}
+
+	
+	/**
+	 * 获取热点品牌及最新品牌
+	 * @param nowPage 当前页
+	 * @param onePageCount 每页显示多少条
+	 * @return 返回品牌基本信息表列表信息,如果无查询记录则返回null
+	 */
+	public Map<String,Object> getBrandList(int nowPage,int onePageCount){
+		return pqlbDao.getBrandList( nowPage, onePageCount);
+	}
+	
+	/**
+	 * 获取品牌信息
+	 * @param params 参数
+	 * @param nowPage 当前页
+	 * @param onePageCount 每页显示多少条
+	 * @return
+	 */
+	public Map<String,Object> getPqlbList(Map<String, Object> params,int nowPage,int onePageCount){
+		return pqlbDao.getPqlbList(params, nowPage, onePageCount);
+	}
+
 	
 	public void attentionBrand(int USER_ID, int BRAND_ID, boolean disAttention){
 		Element element = userBattentionDao.getUserBattentionEleById(USER_ID, BRAND_ID);
@@ -79,4 +102,5 @@ public class PqlbService  extends ServiceSupport{
 			}
 		}
 	}
+
 }

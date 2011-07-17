@@ -39,6 +39,16 @@ public class UserBattentionService extends ServiceSupport{
 	}
 	
 	/**
+	 * 新增品牌关注品牌信息表信息
+	 * 
+	 * @param element  实体对象
+	 * @return 返回主键ID,失败返回""
+	 */
+	public String save(Element element) {
+		return userBattentionDao.save(element);
+	}
+	
+	/**
 	 *　删除用户关注品牌信息表信息
 	 * 
 	 * @param BATTENTION_IDS  用户关注品牌信息表ID值集合以","分隔
@@ -49,6 +59,16 @@ public class UserBattentionService extends ServiceSupport{
 	}
 	
 	/**
+	 * 取消用户关注
+	 * @param BRAND_ID 品牌ID
+	 * @param USER_ID  用户ID
+	 * @return
+	 */
+	public boolean cancel(Integer BRAND_ID,Integer USER_ID) {
+		return userBattentionDao.cancel(BRAND_ID, USER_ID);
+	}
+	
+	/**
 	 * 根据用户关注品牌信息表ID获取用户关注品牌信息表实体
 	 * @param BATTENTION_ID 用户关注品牌信息表ID
 	 * @return 返回用户关注品牌信息表实体,如果无查询记录则返回null
@@ -56,6 +76,7 @@ public class UserBattentionService extends ServiceSupport{
 	public  Element getUserBattentionEleById(String BATTENTION_ID){
 		return userBattentionDao.getUserBattentionEleById(BATTENTION_ID);
 	}
+	
 	
 	/**
 	 *　获取用户关注品牌信息表数量

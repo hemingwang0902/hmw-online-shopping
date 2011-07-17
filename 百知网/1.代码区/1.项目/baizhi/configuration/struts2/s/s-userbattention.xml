@@ -20,6 +20,17 @@
 			<interceptor-ref name="defaultStack"><param name="workflow.excludeMethods">default</param></interceptor-ref> 
 			<interceptor-ref name="tokenSession"><param name="excludeMethods">default</param></interceptor-ref>
 		</action>
+		
+		<action name="addUserBAttention" class="com.baizhi.userbattention.action.AddUserBAttention">
+			<result name="jsonsuccess" type="json">
+		      <param name="root">result</param>
+		    </result>
+		</action>
+		<action name="cancelBUserAttention" class="com.baizhi.userbattention.action.CancelBUserAttention">
+			<result name="jsonsuccess" type="json">
+		      <param name="root">result</param>
+		    </result>
+		</action>
 		<action name="delUserBattention" class="com.baizhi.userbattention.action.DelUserBattention">
 			<result name="jsonsuccess" type="json">
 		      <param name="root">result</param>

@@ -35,6 +35,7 @@
             <div class="column">热点会员</div>
             
             <s:iterator value="returnMap.hotlist" var="hotlist">
+            <s:if test="#hotlist!=null&&#hotlist.USER_ID!=''">
             <div class="column_contentgxq">
               <div class="colun_c_gxq">
                 <div style="float:left;"><a href="../index/initHyym.go?userId=${hotlist.USER_ID }"><img src="${cpath }/${hotlist.IMAGE_PATH }" onerror="load_person_image_25_25(this)" width="25" height="25" border="0" /></a></div>
@@ -42,6 +43,7 @@
                 </div>
                 <div class=" colun_c_main">${hotlist.INTRODUCTION}</div>
           	</div>
+          	</s:if>
             </s:iterator><!--
             
             <div class="more"><a href="#">更多 &gt;&gt;</a></div>
@@ -50,6 +52,7 @@
             <div class="column">最新会员</div>
               
           	<s:iterator value="returnMap.newlist" var="newlist">
+          	<s:if test="#newlist!=null&&#newlist.USER_ID!=''">
             <div class="column_contentgxq">
               <div class="colun_c_gxq">
                 <div style="float:left;"><a href="../index/initHyym.go?userId=${newlist.USER_ID }"><img src="${cpath }/${newlist.IMAGE_PATH }" onerror="load_person_image_25_25(this)" width="25" height="25" border="0" /></a></div>
@@ -57,6 +60,7 @@
                 </div>
                 <div class=" colun_c_main">${newlist.INTRODUCTION}</div>
           	</div>
+          	</s:if>
             </s:iterator>
           	
           	
