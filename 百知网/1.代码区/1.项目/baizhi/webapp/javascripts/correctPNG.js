@@ -28,11 +28,6 @@ $(document).ready(function() {
 	}
 });
 
-//102*102 尺寸 头像
-function load_person_image_102_102(obj){
-	obj.src='../images/main/rw_1.png';
-}
-
 //25*25 尺寸 头像
 function load_person_image_25_25(obj){
 	obj.src='../images/main/rw_1.png';
@@ -43,12 +38,22 @@ function load_person_image_74_74(obj){
 	obj.src='../images/main/rw_1.png';
 }
 
-//74*74 尺寸 品牌
-function load_brand_image_74_74(obj){
-	obj.src='../images/main/xner.jpg';
+//102*102 尺寸 头像
+function load_person_image_102_102(obj){
+	obj.src='../images/main/rw_1.png';
 }
 
 //60*53 尺寸 品牌
 function load_brand_image_60_53(obj){
 	obj.src='../images/main/xner.jpg';
+}
+
+//74*74 尺寸 品牌
+function load_brand_image_74_74(obj){
+	obj.src='../images/main/xner.jpg';
+}
+
+//100*100 尺寸 品牌
+function load_brand_image_100_100(obj){
+	obj.src='../images/main/google.jpg';
 }

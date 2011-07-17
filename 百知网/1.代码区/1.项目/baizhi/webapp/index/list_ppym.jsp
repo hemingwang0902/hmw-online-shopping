@@ -17,12 +17,7 @@
       <div class="line_1"></div>
       <div class="tit_1">
       		<div class="tit_google">
-      		<s:if test="brand.IMAGE_PATH==null">
-      			<img width="100" height="100" src="../images/main/google.jpg" />
-      		</s:if>
-      		<s:else>
-      			<img width="100" height="100" src='${basePath }<s:property value="brand.IMAGE_PATH"/>' />
-      		</s:else>
+      			<img width="100" height="100" src='${basePath }<s:property value="brand.IMAGE_PATH"/>' onerror="load_brand_image_100_100(this);"/>
       		</div>
             <div class="tit_google_con">
             	<ul>

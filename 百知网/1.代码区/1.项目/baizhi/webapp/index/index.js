@@ -32,10 +32,11 @@ $(document).ready(function(){
 			detail		: basePath + "/index/initPpym.go?BRAND_ID=",
 			attention	: basePath + "/index/attentionBrand.go",
 			attentionList: basePath + "/index/getAttentionBrand.go",
-			problemList	: basePath + "/index/GetProblemListByBrandId.go",
+			problemList	: basePath + "/index/GetProblemListByBrandId.go"
 		},
 		talk: {
-			detail		: basePath + "/index/initHtym.go?TALK_ID="
+			detail		: basePath + "/index/initHtym.go?TALK_ID=",
+			problemList	: basePath + "/index/GetProblemListByTalkId.go"
 		},
 		all: {
 			query		: basePath + "/index/getUserOrProblemByTitleList.go"
