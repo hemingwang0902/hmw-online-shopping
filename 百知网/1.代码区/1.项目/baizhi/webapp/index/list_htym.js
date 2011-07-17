@@ -19,7 +19,7 @@ function attentionBrand(domLink){
 	var isDisAttention = jqLink.attr("isDisAttention");
 	if(isDisAttention == "true"){ //取消关注
 		$.post("../userattentiontalk/cancelUserAttentiontalk.go",{
-			TALK_ID_ID: $("#TALK_ID").val()
+			TALK_ID: $("#TALK_ID").val()
 		},function(result){
 			if(result==null||result==''){
 				return;
