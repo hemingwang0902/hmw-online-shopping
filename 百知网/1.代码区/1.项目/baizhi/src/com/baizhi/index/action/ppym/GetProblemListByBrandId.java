@@ -31,7 +31,7 @@ public class GetProblemListByBrandId extends ActionSupport{
 	public String execute() throws Exception {
 		Map<String, Object> jsonMap = ppymService.getProblemListByBrandId(BRAND_ID, getNowPage(), getOnePageCount());
 		setResult(jsonMap);
-		return SUCCESS;
+		return JSONSUCCESS;
 	}
 
 }

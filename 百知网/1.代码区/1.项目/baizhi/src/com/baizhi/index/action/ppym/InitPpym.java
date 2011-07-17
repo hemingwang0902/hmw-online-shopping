@@ -43,7 +43,7 @@ public class InitPpym extends ActionSupport{
 	@Override
 	public String execute() throws Exception {
 		brand = ppymService.getBrandById(BRAND_ID, getSessionUserId());
-		wasAttentionUserList = (List<Map<String, Object>>) ppymService.getWasAttentionUserListByBrandId(BRAND_ID, getNowPage(), getOnePageCount()).get(KEY_LIST);
+		wasAttentionUserList = (List<Map<String, Object>>) ppymService.getWasAttentionUserListByBrandId(BRAND_ID, 1, 21).get(KEY_LIST);
 		return SUCCESS;
 	}
 

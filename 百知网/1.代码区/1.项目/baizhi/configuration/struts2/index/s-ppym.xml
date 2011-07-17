@@ -4,7 +4,7 @@
 	<package name="ppym" extends="json-default" namespace="/index">
 		<!-- 跳转到品牌页面 -->
 		<action name="initPpym" class="com.baizhi.index.action.ppym.InitPpym">
-			<result name="success" type="redirect">list_ppym.jsp</result>
+			<result name="success">list_ppym.jsp</result>
 		</action>
 		<!-- 根据品牌ID查询品牌下面的问题 -->
 		<action name="GetProblemListByBrandId" class="com.baizhi.index.action.ppym.GetProblemListByBrandId">
