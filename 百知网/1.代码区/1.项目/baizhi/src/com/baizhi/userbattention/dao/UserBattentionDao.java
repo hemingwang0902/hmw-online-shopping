@@ -130,6 +130,10 @@ public class UserBattentionDao extends DaoSupport{
 		
 		return this.getByList(sql.toString(), ps.getValues());
 	}
-	
-}
 
+	public  Element getUserBattentionEleById(int USER_ID, int BRAND_ID){
+		//组织查询语句
+		String sql = "FROM T_USER_BATTENTION where USER_ID=? and BRAND_ID=?";
+		return this.getElementById(sql.toString(), new Object[]{USER_ID, BRAND_ID});
+	}
+}

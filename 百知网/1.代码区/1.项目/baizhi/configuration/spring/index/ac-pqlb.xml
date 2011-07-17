@@ -6,5 +6,6 @@
 	<bean id="pqlbService" class="com.baizhi.index.service.PqlbService" parent="serviceSupport">
 		<property name="pqlbDao" ref="pqlbDao" />
 		<property name="userBasicDao" ref="userBasicDao" />
+		<property name="userBattentionDao" ref="userBattentionDao" />
 	</bean>
 </beans>
