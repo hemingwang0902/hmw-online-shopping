@@ -68,8 +68,8 @@ public class HomeService  extends ServiceSupport{
 		return homeDao.getAttentionUser(userId, nowPage, onePageCount);
 	}
 	
-	public Map<String,Object> getAttentionBrand(int userId, int nowPage, int onePageCount){
-		return homeDao.getAttentionBrand(userId, nowPage, onePageCount);
+	public Map<String,Object> getAttentionBrand(int userId, int loginUserId, int nowPage, int onePageCount){
+		return homeDao.getAttentionBrand(userId, loginUserId, nowPage, onePageCount);
 	}
 	
 	/**

@@ -2,6 +2,7 @@ package com.baizhi.index.dao;
 
 import java.util.Map;
 
+import com.baizhi.IConstants;
 import com.baizhi.commons.DaoSupport;
 
 /**
@@ -262,14 +263,17 @@ public class HomeDao extends DaoSupport{
 	 * @param onePageCount 每页显示的记录条数
 	 * @return 查询到的结果集
 	 */
-	public Map<String,Object> getAttentionBrand(int userId, int nowPage, int onePageCount){
+	public Map<String,Object> getAttentionBrand(int userId, int loginUserId, int nowPage, int onePageCount){
 		StringBuffer sql = new StringBuffer()		
 		.append("SELECT ").append(ALL_USER_BRAND_FIELDS)
-		.append(" FROM T_USER_BATTENTION UA, T_USER_BRAND UB")
-		.append(" WHERE UA.BRAND_ID=UB.BRAND_ID")
-		.append(" AND UA.USER_ID=?");
+		.append(", (select count(uba.BATTENTION_ID) from T_USER_BATTENTION uba where uba.BRAND_ID=ub.BRAND_ID and uba.USER_ID=?) as ATTENTION")
+		.append(" FROM T_USER_BATTENTION UA, T_USER_BRAND ub")
+		.append(" WHERE UA.BRAND_ID=ub.BRAND_ID")
+		.append(" AND ub.STAUS=").append(IConstants.BRAND_STAUS_PASSED)
+		.append(" AND UA.USER_ID=?")
+		.append(" order by ub.CREATE_TIME desc");
 		
-		Object[] params = new Object[]{userId};
+		Object[] params = new Object[]{loginUserId, userId};
 		
 		return queryForListWithSQLQuery(sql.toString(), params, nowPage, onePageCount);
 	}

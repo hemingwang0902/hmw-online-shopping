@@ -106,13 +106,20 @@ public class WtymtitDao extends DaoSupport{
 	 * @param onePageCount
 	 * @return
 	 */
-	public Map<String,Object> getProblemAnswerListByProblemId(int probelmId,int nowPage,int onePageCount){
+	public Map<String,Object> getProblemAnswerListByProblemId(int probelmId, int loginUserId,int nowPage,int onePageCount){
 		StringBuffer sql = new StringBuffer();
 		sql.append("SELECT ").append(ALL_ANSWER_FIELDS)
 		.append(", ub.NAME as NAME, ub.INTRODUCTION as INTRODUCTION")
-		.append(",(select count(ar.REVIEW_ID) from t_answer_review ar where ar.ANSWER_ID=a.ANSWER_ID) as REVIEW_COUNT")
+		.append(",(select count(ar.REVIEW_ID) from T_ANSWER_REVIEW ar where ar.ANSWER_ID=a.ANSWER_ID) as REVIEW_COUNT")
+		.append(",(select count(av1.VOTE_ID) from T_ANSWER_VOTE av1 where av1.ANSWER_ID=a.ANSWER_ID and av1.USER_ID=? and av1.VOTE_TYPE='1' and av1.IS_AGREE='1') as AGREE")
+		.append(",(select count(av2.VOTE_ID) from T_ANSWER_VOTE av2 where av2.ANSWER_ID=a.ANSWER_ID and av2.USER_ID=? and av2.VOTE_TYPE='1' and av2.IS_AGREE='0') as DISAGREE")
+		.append(",(select count(av3.VOTE_ID) from T_ANSWER_VOTE av3 where av3.ANSWER_ID=a.ANSWER_ID and av3.USER_ID=? and av3.VOTE_TYPE='2' and av3.IS_AGREE='1') as THANK")
+		.append(",(select count(av4.VOTE_ID) from T_ANSWER_VOTE av4 where av4.ANSWER_ID=a.ANSWER_ID and av4.USER_ID=? and av4.VOTE_TYPE='2' and av4.IS_AGREE='0') as DISTHANK")
 		.append(" from t_problem_answer a, T_USER_BASIC ub")
 		.append(" where a.USER_ID=ub.USER_ID and a.PROBLEM_ID=?");
-		return queryForListWithSQLQuery(sql.toString(), new Object[]{probelmId}, nowPage, onePageCount);
+		Object[] params = new Object[]{
+				loginUserId, loginUserId, loginUserId, loginUserId, probelmId
+		};
+		return queryForListWithSQLQuery(sql.toString(), params, nowPage, onePageCount);
 	}
 }

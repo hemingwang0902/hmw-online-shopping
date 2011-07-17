@@ -4,8 +4,7 @@
 	<bean id="pqlbDao" class="com.baizhi.index.dao.PqlbDao" parent="daoSupport"></bean>
 	
 	<bean id="pqlbService" class="com.baizhi.index.service.PqlbService" parent="serviceSupport">
-		<property name="pqlbDao">
-			<ref local="pqlbDao" />
-		</property>
+		<property name="pqlbDao" ref="pqlbDao" />
+		<property name="userBasicDao" ref="userBasicDao" />
 	</bean>
 </beans>

@@ -22,4 +22,12 @@ public interface IConstants {
 	/**回复投票类型：没有帮助*/
 	String ANSWER_VOTE_DISTHANK = "Disthank";
 
+	/**品牌状态：未申请*/
+	int BRAND_STAUS_UNAPPLY = 1;
+	/**品牌状态：申请*/
+	int BRAND_STAUS_APPLIED = 2;
+	/**品牌状态：通过*/
+	int BRAND_STAUS_PASSED = 3;
+	/**品牌状态：未通过*/
+	int BRAND_STAUS_UNPASS = 4;
 }

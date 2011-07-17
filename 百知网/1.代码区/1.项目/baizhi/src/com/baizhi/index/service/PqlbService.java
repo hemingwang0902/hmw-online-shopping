@@ -2,8 +2,11 @@ package com.baizhi.index.service;
 
 import java.util.Map;
 
+import org.dom4j.Element;
+
 import com.baizhi.commons.ServiceSupport;
 import com.baizhi.index.dao.PqlbDao;
+import com.baizhi.userbasic.dao.UserBasicDao;
 /**
  * 
  * 类名：PqlbService.java
@@ -19,24 +22,33 @@ public class PqlbService  extends ServiceSupport{
 	private static final long serialVersionUID = -4352096706327491213L;
 	
 	private PqlbDao pqlbDao;
-	
-	public PqlbDao getPqlbDao() {
-		return pqlbDao;
-	}
+	private UserBasicDao userBasicDao;
 
 	public void setPqlbDao(PqlbDao pqlbDao) {
 		this.pqlbDao = pqlbDao;
 	}
 	
+	public void setUserBasicDao(UserBasicDao userBasicDao) {
+		this.userBasicDao = userBasicDao;
+	}
+
 	/**
-	 * 获取用户基本信息表列表信息
-	 * @param params 参数
-	 * @param nowPage 当前页
-	 * @param onePageCount 每页显示多少条
-	 * @return 返回用户基本信息表列表信息,如果无查询记录则返回null
+	 * 根据用户ID查询其姓名
+	 * @param userId
+	 * @return
 	 */
-	public Map<String,Object> getPqlbList(Map<String, Object> params,int nowPage,int onePageCount){
-		return pqlbDao.getPqlbList(params, nowPage, onePageCount);
+	public String getUserNameByUserId(int userId){
+		Element userBasic = userBasicDao.getUserBasicEleByUserId(userId);
+		if(userBasic == null)
+			return null;
+		return userBasic.elementTextTrim("NAME");
 	}
 	
+	public Map<String, Object> getHottestBrand(int nowPage, int onePageCount){
+		return pqlbDao.getHottestBrand(nowPage, onePageCount);
+	}
+	
+	public Map<String, Object> getLastestBrand(int nowPage, int onePageCount){
+		return pqlbDao.getLastestBrand(nowPage, onePageCount);
+	}
 }

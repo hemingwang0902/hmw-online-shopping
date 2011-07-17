@@ -7,7 +7,7 @@ import com.baizhi.index.service.HomeService;
 
 /**
  * 类名： GetAttentionUser<br>
- * 描述：获取关注的用户（或品牌）列表<br>
+ * 描述：获取关注的品牌列表<br>
  * 创建者：何明旺<br>
  * 创建日期：2011-7-6<br>
  * 版本：1.0<br>
@@ -37,7 +37,7 @@ public class GetAttentionBrand extends ActionSupport {
 			userId = getSessionUserId();
 		}
 		// 查询结果列表
-		Map<String, Object> returnMap = homeService.getAttentionBrand(userId, getNowPage(), getOnePageCount());
+		Map<String, Object> returnMap = homeService.getAttentionBrand(userId, getSessionUserId(), getNowPage(), getOnePageCount());
 		//判断是否存在查询记录
 		if (returnMap != null && returnMap.size() != 0) {
 			this.setResult(returnMap);

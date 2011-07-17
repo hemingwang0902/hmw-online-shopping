@@ -204,5 +204,9 @@ public class UserBasicDao extends DaoSupport{
 		return this.getByList(sql.toString(), ps.getValues());
 	}
 	
+	public  Element getUserBasicEleByUserId(int USER_ID){
+		//组织查询语句
+		String sql = "FROM T_USER_BASIC where USER_ID=?";
+		return this.getElementById(sql.toString(), new Object[]{USER_ID});
+	}
 }
-

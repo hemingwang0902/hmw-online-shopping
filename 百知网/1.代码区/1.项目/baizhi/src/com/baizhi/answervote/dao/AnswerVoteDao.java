@@ -137,5 +137,9 @@ public class AnswerVoteDao extends DaoSupport{
 		return this.getByList(sql.toString(), ps.getValues());
 	}
 	
+	public  Element getAnswerVoteEleById(int ANSWER_ID, int USER_ID, String VOTE_TYPE, int IS_AGREE){
+		//组织查询语句
+		String sql = "FROM T_ANSWER_VOTE where ANSWER_ID=? and USER_ID=? and VOTE_TYPE=? and IS_AGREE=?";
+		return this.getElementById(sql.toString(), new Object[]{ANSWER_ID, USER_ID,VOTE_TYPE, IS_AGREE});
+	}
 }
-

@@ -157,8 +157,8 @@ public class WtymtitService  extends ServiceSupport{
 	 * @param onePageCount
 	 * @return
 	 */
-	public Map<String, Object> getAnswerList(int problemId, int nowPage, int onePageCount) {
-		return 	wtymtitDao.getProblemAnswerListByProblemId(problemId, nowPage, onePageCount);
+	public Map<String, Object> getAnswerList(int problemId, int loginUserId, int nowPage, int onePageCount) {
+		return 	wtymtitDao.getProblemAnswerListByProblemId(problemId, loginUserId, nowPage, onePageCount);
 	}
 	
 	/**
@@ -212,29 +212,35 @@ public class WtymtitService  extends ServiceSupport{
 	 * @param voteField
 	 */
 	public void answerVote(int ANSWER_ID, int USER_ID, String voteField){
-		int VOTE_TYPE = -1, IS_AGREE = -1;
+		String VOTE_TYPE = "-1";
+		int IS_AGREE = -1;
 		
 		if(IConstants.ANSWER_VOTE_AGREE.equalsIgnoreCase(voteField)){//赞同
-			VOTE_TYPE = 1;
+			VOTE_TYPE = "1";
 			IS_AGREE = 1;
 		}else if(IConstants.ANSWER_VOTE_DISAGREE.equalsIgnoreCase(voteField)){ //反对
-			VOTE_TYPE = 1;
+			VOTE_TYPE = "1";
 			IS_AGREE = 0;
 		}else if(IConstants.ANSWER_VOTE_THANK.equalsIgnoreCase(voteField)){ //感谢作者
-			VOTE_TYPE = 2;
+			VOTE_TYPE = "2";
 			IS_AGREE = 1;
 		}else if(IConstants.ANSWER_VOTE_DISTHANK.equalsIgnoreCase(voteField)){ //没有帮助
-			VOTE_TYPE = 2;
+			VOTE_TYPE = "2";
 			IS_AGREE = 0;
 		}else{
 			throw new BaizhiException("不支持的投票类型。");
 		}
 		
 		Element answer = problemAnswerDao.getProblemAnswerEleById(""+ANSWER_ID);
-		if(answer == null)
+		if(answer == null) //问题回复不存在，则直接返回
 			return;
 		
-		Element vote = new DefaultElement("T_ANSWER_VOTE");
+		
+		Element vote = answerVoteDao.getAnswerVoteEleById(ANSWER_ID, USER_ID, VOTE_TYPE, IS_AGREE);
+		if(vote != null) //如果记录已经存在，则直接返回
+			return;
+		
+		vote = new DefaultElement("T_ANSWER_VOTE");
 		Elements.setElementValue(vote, "ANSWER_ID", ANSWER_ID);// 问题答案ID
 		Elements.setElementValue(vote, "PROBLEM_ID", answer.elementTextTrim("PROBLEM_ID"));// 问题ID(冗余字段)
 		Elements.setElementValue(vote, "VOTE_TYPE", VOTE_TYPE);// 投票类型(字典：1赞成Or拒绝、2感谢作者Or没有帮助)
