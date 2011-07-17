@@ -84,7 +84,7 @@ public class UserNoticeDao extends DaoSupport{
 	public boolean isUserNotice(Integer USER_ID,Integer NOTICE_TYPE,Session session) throws Exception{
 		//组织查询语句
 		StringBuffer sql = new StringBuffer();
-		sql.append("SELECT SET_TYPE FROM T_USER_NOTICE a WHERE a.USER_ID=? ");
+		sql.append("SELECT SET_TYPE FROM T_USER_NOTICE a WHERE a.USER_ID=? and NOTICE_TYPE=? ");
 		boolean flag=false;
 		int SET_TYPE=-1;
 		Query query = setQueryParameters(session.createQuery(sql.toString()), new Object[]{USER_ID,NOTICE_TYPE});

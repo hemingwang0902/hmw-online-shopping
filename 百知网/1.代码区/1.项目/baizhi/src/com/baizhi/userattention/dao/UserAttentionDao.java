@@ -4,7 +4,9 @@ import org.dom4j.Element;
 import org.hibernate.EntityMode;
 import org.hibernate.Session;
 import com.baizhi.commons.DaoSupport;
- /**
+import com.baizhi.userdynamic.dao.UserDynamicDao;
+import com.baizhi.usernotice.dao.UserNoticeDao;
+/**
  * 
  * 类名：UserAttentionDao.java
  * 描述：用户关注人信息表数据操作类，负责增删改查
@@ -16,6 +18,26 @@ import com.baizhi.commons.DaoSupport;
  */
 public class UserAttentionDao extends DaoSupport{
 	
+	private UserNoticeDao userNoticeDao;
+	
+	private UserDynamicDao userDynamicDao;
+	
+	public UserNoticeDao getUserNoticeDao() {
+		return userNoticeDao;
+	}
+
+	public void setUserNoticeDao(UserNoticeDao userNoticeDao) {
+		this.userNoticeDao = userNoticeDao;
+	}
+	
+	public UserDynamicDao getUserDynamicDao() {
+		return userDynamicDao;
+	}
+
+	public void setUserDynamicDao(UserDynamicDao userDynamicDao) {
+		this.userDynamicDao = userDynamicDao;
+	}
+
 	/**
 	 * 关注用户
 	 * 
@@ -33,6 +55,10 @@ public class UserAttentionDao extends DaoSupport{
 			//如果被关注实体对象不为空，则修改被关注实体对象
 			if(was_element!=null){
 				dom4jSession.update(was_element);
+			}
+			//判断对方是否设置是屏蔽加我为好友，如果没有屏蔽则添加消息
+			if(userNoticeDao.isUserNotice(Integer.parseInt(element.elementText("WAS_USERID")), 1, dom4jSession)){
+				userDynamicDao.saveUserDynamic(Integer.parseInt(element.elementText("USER_ID")), "", Integer.parseInt(element.elementText("ATTENTION_ID")), "1", "关注了你", Integer.parseInt(element.elementText("WAS_USERID")), dom4jSession);
 			}
 			dom4jSession.getTransaction().commit();
 			idValue = element.elementText("ATTENTION_ID");

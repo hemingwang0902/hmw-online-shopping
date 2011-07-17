@@ -6,9 +6,10 @@ import java.util.Map;
 import org.dom4j.Element;
 import org.hibernate.EntityMode;
 import org.hibernate.Session;
-
 import com.baizhi.commons.DaoSupport;
 import com.baizhi.commons.ParametersSupport;
+import com.baizhi.userdynamic.dao.UserDynamicDao;
+import com.baizhi.usernotice.dao.UserNoticeDao;
 
  /**
  * 类名：UserBattentionDao.java<br>
@@ -21,6 +22,26 @@ import com.baizhi.commons.ParametersSupport;
  */
 public class UserBattentionDao extends DaoSupport{
 	
+	private UserNoticeDao userNoticeDao;
+	
+	private UserDynamicDao userDynamicDao;
+	
+	public UserNoticeDao getUserNoticeDao() {
+		return userNoticeDao;
+	}
+
+	public void setUserNoticeDao(UserNoticeDao userNoticeDao) {
+		this.userNoticeDao = userNoticeDao;
+	}
+	
+	public UserDynamicDao getUserDynamicDao() {
+		return userDynamicDao;
+	}
+
+	public void setUserDynamicDao(UserDynamicDao userDynamicDao) {
+		this.userDynamicDao = userDynamicDao;
+	}
+	
 	/**
 	 * 新增或修改用户关注品牌信息表信息
 	 * 
@@ -31,6 +52,7 @@ public class UserBattentionDao extends DaoSupport{
 		return this.saveOrUpdate(element, "BATTENTION_ID");
 	}
 	
+	@SuppressWarnings("unchecked")
 	/**
 	 * 新增品牌关注品牌信息表信息
 	 * 
@@ -47,7 +69,20 @@ public class UserBattentionDao extends DaoSupport{
 			if(serializableid!=null&&!serializableid.equals("")){
 				keyid=serializableid.toString();
 			}
-			
+			Integer BRAND_ID=Integer.parseInt(element.elementText("BRAND_ID"));
+			//判断对方是否设置是屏蔽关注我的品牌提醒，如果没有屏蔽则添加消息
+			//获取新增品牌人
+			List<Map<String, Object>> list=setQueryParameters(session.createQuery("select new Map(a.USER_ID as USER_ID,b.NAME as NAME) from T_USER_BATTENTION a,T_USER_BRAND b where a.BRAND_ID=b.BRAND_ID and a.BRAND_ID=?"), new Object[]{BRAND_ID}).list();
+			if(list!=null&&list.size()>0){
+				Map<String, Object> newMap = list.get(0);
+				Integer USER_ID=Integer.parseInt(String.valueOf(newMap.get("USER_ID")));
+				String NAME=String.valueOf(newMap.get("NAME"));
+				if(userNoticeDao.isUserNotice(USER_ID, 5, dom4jSession)){
+					userDynamicDao.saveUserDynamic(Integer.parseInt(element.elementText("USER_ID")), "", Integer.parseInt(keyid), "5", "<span onclick=\"location.href='"+BRAND_ID+"';\">关注了《"+NAME+"》</span>", USER_ID, dom4jSession);
+				}
+			}else{
+				dom4jSession.getTransaction().rollback();
+			}
 			
 			dom4jSession.getTransaction().commit();
 		} catch (Exception e) {

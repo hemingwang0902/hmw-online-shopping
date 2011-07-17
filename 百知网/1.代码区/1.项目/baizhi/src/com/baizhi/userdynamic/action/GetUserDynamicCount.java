@@ -42,7 +42,7 @@ public class GetUserDynamicCount  extends ActionSupport{
 	public String execute() throws Exception {
 		Map<String,Object> returnmap=new HashMap<String, Object>();
 		Map<String,Object> params=new HashMap<String, Object>();
-		params.put("USER_ID=?", this.getSessionUserId());
+		params.put("WARN_USERID=?", this.getSessionUserId());
 		params.put("IS_OPEN=?", IS_OPEN);
 		int count=userDynamicService.getUserDynamicCount(params);
 		returnmap.put("count", count);
