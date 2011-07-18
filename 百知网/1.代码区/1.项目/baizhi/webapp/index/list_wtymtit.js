@@ -234,7 +234,7 @@ function addTalk(){
 	});
 	
 	if(result){
-		$("#error_1").text("&nbsp;");
+		$("#error_1").text(" ");
 		$.post("addTalkForProblem.go",{
 			PROBLEM_ID: $("#problemId").val(),
 			CONTENT: TALK_CONTENT
