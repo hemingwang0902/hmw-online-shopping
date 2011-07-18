@@ -47,7 +47,7 @@
 					<div id="div_USER" style="width:355px;border: solid 1px;height: 26px;padding-bottom: 2px;padding-top: 2px;margin-bottom: 5px;padding-left: 2px;display: none;">
 						<div style="clear: both;height: 25px;background-color: gray;float: left;border: solid 1px;">
 							<div id="USER_NAME" style="height: 25px;float: left;margin-right: 5px;">aaaaaaaaaaa</div>
-							<div id="DEL_USER" style="float: left;background:url(../images/main/hlcr_btn.gif) no-repeat;width: 16px;height: 16px;"></div>
+							<div id="DEL_USER" style="float: left;background:url(../images/main/hlcr_btn.gif) no-repeat;width: 16px;height: 16px;cursor: pointer;"></div>
 						</div>
 					</div>
 					</div>
