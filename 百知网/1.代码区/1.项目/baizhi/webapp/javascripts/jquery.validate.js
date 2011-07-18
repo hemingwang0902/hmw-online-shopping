@@ -1049,7 +1049,7 @@ $.extend($.validator, {
 		},
 		
 		isImageFormat: function(value, element) {
-			if(value!=null){
+			if(value!=null&&value!=""){
 		        var suffixName = value.substring(value.lastIndexOf(".")); 
 		        if(suffixName.toLowerCase()!=".png" && suffixName.toLowerCase()!=".jpg"&& suffixName.toLowerCase()!=".gif"){ 
 		            return false; 

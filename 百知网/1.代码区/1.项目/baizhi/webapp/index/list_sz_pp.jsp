@@ -18,7 +18,7 @@
           <div class="list_sz">
           	<ul>
             	<li><a href="../sz/initSzForm.go" >基本资料</a></li>
-				<li><a href="javascript:;" style="background-color:#CCDBA2;"><font color="#FF6633">品牌资料</font></a></li>
+				<li><a href="../index/list_sz_pplb.jsp" style="background-color:#CCDBA2;"><font color="#FF6633">品牌资料</font></a></li>
                 <li><a href="../index/list_sz_zhsz.jsp">账户设置</a></li>
                 <li><a href="../usernotice/getUserNoticeList.go">通知设置</a></li>
             </ul>
