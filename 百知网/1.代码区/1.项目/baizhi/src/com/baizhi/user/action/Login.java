@@ -77,6 +77,7 @@ public class Login extends ActionSupport{
 		//获取Session对象
 		HttpSession session = request.getSession();
 		//将值设置到Session对象中
+		data.put("CHANGE_TYPE", 2);
 		session.setAttribute("userinfo", data);
 		session.setAttribute("USER_ID", USER_ID);
 		session.setAttribute("USER_ID_ENCODE", Encrypt.encodeBase64(""+USER_ID));

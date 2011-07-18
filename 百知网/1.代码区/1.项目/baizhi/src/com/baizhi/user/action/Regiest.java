@@ -136,6 +136,7 @@ public class Regiest  extends UserForm{
 			returnMap.put("CITY_NAME",CITY_NAME);
 			returnMap.put("CITY",CITY);
 			returnMap.put("PROVINCE", PROVINCE);
+			returnMap.put("CHANGE_TYPE", 2);
 			
 			//获取Session对象
 			HttpSession session = request.getSession();
