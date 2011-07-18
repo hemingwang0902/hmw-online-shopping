@@ -11,7 +11,11 @@ $(document).ready(function(){
 	getUserPrivateCount();
 	
 	//发送私信时，根据输入的姓名自动提示
-	$("#USER_IDS").autocomplete($("#basePath").val() + "/index/getUserListByNameWithAjax.go", {
+	$("#USER_IDS").keyup(function(eve){
+		if(eve.which ==13){
+			changUserIds();
+		}
+	}).focus(changUserIds).autocomplete($("#basePath").val() + "/index/getUserListByNameWithAjax.go", {
 		dataType: "json",
 		extraParams:{
 			"nowPage": 1,
@@ -30,8 +34,8 @@ $(document).ready(function(){
 						var row = data["list"][i];
 						parsed[parsed.length] = {
 							data: row,
-							value: row.NAME,
-							result: row.NAME
+							value: row.USER_ID+","+row.NAME,
+							result: row.USER_ID+","+row.NAME
 						};
 					}
 				}
@@ -39,7 +43,21 @@ $(document).ready(function(){
 			return parsed;
 		}
 	});
+	
+	$("#DEL_USER").click(function(){
+		$("#div_USER").hide();
+		$("#USER_IDS").val("").show();
+	});
 });
+
+function changUserIds(){
+	var v = $("#USER_IDS").val().split(",");
+	if(v.length == 2){
+		$("#USER_IDS").hide().val(v[0]);
+		$("#USER_NAME").text(v[1]);
+		$("#div_USER").show();
+	}
+}
 
 /* 保存数据*/
 function saveData(){

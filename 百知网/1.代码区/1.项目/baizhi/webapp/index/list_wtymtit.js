@@ -76,7 +76,11 @@ $(document).ready(function(){
 	});
 	
 	//邀请他人回答时，根据输入的姓名自动提示
-	$("#WAS_USER_ID").autocomplete("getUserListByNameWithAjax.go", {
+	$("#WAS_USER_ID").keyup(function(eve){
+		if(eve.which ==13){
+			changUserIds();
+		}
+	}).focus(changUserIds).autocomplete("getUserListByNameWithAjax.go", {
 		dataType: "json",
 		extraParams:{
 			"nowPage": 1,
@@ -95,8 +99,8 @@ $(document).ready(function(){
 						var row = data["list"][i];
 						parsed[parsed.length] = {
 							data: row,
-							value: row.NAME,
-							result: row.NAME
+							value: row.USER_ID+","+row.NAME,
+							result: row.USER_ID+","+row.NAME
 						};
 					}
 				}
@@ -104,7 +108,21 @@ $(document).ready(function(){
 			return parsed;
 		}
 	});
+	
+	$("#DEL_USER").click(function(){
+		$("#div_USER").hide();
+		$("#WAS_USER_ID").val("").show();
+	});
 });
+
+function changUserIds(){
+	var v = $("#WAS_USER_ID").val().split(",");
+	if(v.length == 2){
+		$("#WAS_USER_ID").hide().val(v[0]);
+		$("#USER_NAME").text(v[1]);
+		$("#div_USER").show();
+	}
+}
 
 /**
  * 获取问题回复列表
@@ -347,6 +365,7 @@ function addProblemInvite(){
 	},function(){
 		$("#INVITE_COUNT").text(parseInt($("#INVITE_COUNT").text())+1);
 		$("#div_invite").hide();
-		$("#WAS_USER_ID").val("")
+		$("#WAS_USER_ID").val("").show();
+		$("#div_USER").hide();
 	});
 }

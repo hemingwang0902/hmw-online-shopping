@@ -85,7 +85,13 @@
             <div class="column_yqtr">
             	<a href="javascript:void(0);" id="a_invite">邀请他人回答（<span id="INVITE_COUNT"><s:property value="problem.INVITE_COUNT"/></span>）</a>
             	<div id="div_invite" style="display: none;">
-            		<input id="WAS_USER_ID"><br>
+            		<input id="WAS_USER_ID" style="width: 200px;margin-bottom: 10px;"><br>
+					<div id="div_USER" style="width:200px;border: solid 1px;height: 26px;padding:0;margin:0;display: none;">
+						<div style="clear: both;height: 25px;background-color: gray;float: left;border: solid 1px;">
+							<div id="USER_NAME" style="height: 25px;float: left;margin:0;">aaaaaaaaaaa</div>
+							<div id="DEL_USER" style="float: left;background:url(../images/main/hlcr_btn.gif) no-repeat;width: 16px;height: 16px;"></div>
+						</div>
+					</div>
             		<input type="button" class="btn_wc" style="cursor: pointer;" onclick="addProblemInvite();"/>
             	</div>	
             </div>

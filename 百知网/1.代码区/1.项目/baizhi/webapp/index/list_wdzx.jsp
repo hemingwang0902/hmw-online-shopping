@@ -43,11 +43,11 @@
 				<div style="float: left;">
 					<div style="width: 360px;">
 					
-					<input type="text" style="width: 355px;margin-bottom: 10px;display: none;" id="USER_IDS" />
-					<div style="width:355px;border: solid 1px;height: 26px;padding-bottom: 2px;padding-top: 2px;margin-bottom: 5px;padding-left: 2px;">
+					<input type="text" style="width: 355px;margin-bottom: 10px;" id="USER_IDS" />
+					<div id="div_USER" style="width:355px;border: solid 1px;height: 26px;padding-bottom: 2px;padding-top: 2px;margin-bottom: 5px;padding-left: 2px;display: none;">
 						<div style="clear: both;height: 25px;background-color: gray;float: left;border: solid 1px;">
-							<div style="height: 25px;float: left;margin-right: 5px;">aaaaaaaaaaa</div>
-							<div style="float: left;background:url(../images/main/hlcr_btn.gif) no-repeat;width: 16px;height: 16px;"></div>
+							<div id="USER_NAME" style="height: 25px;float: left;margin-right: 5px;">aaaaaaaaaaa</div>
+							<div id="DEL_USER" style="float: left;background:url(../images/main/hlcr_btn.gif) no-repeat;width: 16px;height: 16px;"></div>
 						</div>
 					</div>
 					</div>
