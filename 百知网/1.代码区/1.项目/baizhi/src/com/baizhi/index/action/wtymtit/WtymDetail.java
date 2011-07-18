@@ -3,6 +3,9 @@ package com.baizhi.index.action.wtymtit;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang.math.NumberUtils;
+
+import com.baizhi.IConstants;
 import com.baizhi.commons.ActionSupport;
 import com.baizhi.index.service.HomeService;
 import com.baizhi.index.service.WtymtitService;
@@ -97,7 +100,15 @@ public class WtymDetail  extends ActionSupport{
 		Map<String, Object> resultMap = wtymtitService.getNearProblemList(problemId, getSessionUserId(), nowPage, onePageCount);
 		nearProblemList = (List<Map<String, Object>>) resultMap.get(KEY_LIST);
 		if(nearProblemList == null || nearProblemList.isEmpty()){
-			nearProblemList = (List<Map<String, Object>>) homeService.getHottestProblemList(getSessionUserId(), nowPage, onePageCount).get(KEY_LIST);
+			int province = 0, city=0;
+			Map<String, Object> userInfo = getSessionUserInfo();
+			int changeType = NumberUtils.toInt(""+userInfo.get(IConstants.SESSION_CHANGE_TYPE));
+			if(changeType == IConstants.CHANGE_TYPE_PROVINCE){
+				province = NumberUtils.toInt(""+userInfo.get(IConstants.SESSION_CITY));
+			}else if(changeType == IConstants.CHANGE_TYPE_CITY){
+				city = NumberUtils.toInt(""+userInfo.get(IConstants.SESSION_CITY));
+			}
+			nearProblemList = (List<Map<String, Object>>) homeService.getHottestProblemList(getSessionUserId(), province, city, nowPage, onePageCount).get(KEY_LIST);
 		}
 
 		//更新浏览次数

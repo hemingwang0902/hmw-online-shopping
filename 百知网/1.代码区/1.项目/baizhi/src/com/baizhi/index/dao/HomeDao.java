@@ -155,7 +155,8 @@ public class HomeDao extends DaoSupport{
 	 * @param onePageCount 每页显示的记录条数
 	 * @return 查询到的结果集
 	 */
-	public Map<String,Object> getHottestProblemList(int userId, int nowPage, int onePageCount){
+	public Map<String,Object> getHottestProblemList(int userId, int province, int city, int nowPage, int onePageCount){
+		Object[] params = null;
 		//组织查询语句
 		StringBuffer sql = new StringBuffer()		
 		.append("SELECT ")
@@ -167,10 +168,17 @@ public class HomeDao extends DaoSupport{
 		.append(" ON a.PROBLEM_ID=B.PROBLEM_ID")
 		.append(" JOIN T_USER_BASIC UB")
 		.append(" ON a.USER_ID=UB.USER_ID")
-		.append(" WHERE (a.WAS_USERID IS NULL OR a.WAS_USERID=?)")
-		.append(" ORDER BY B.ANSWER_COUNT DESC, A.BROWSE_COUNT DESC");
+		.append(" WHERE (a.WAS_USERID IS NULL OR a.WAS_USERID=?)");
+		if(province > 0){ //只查同省问题
+			sql.append(" AND (ub.PROVINCE is null or ub.PROVINCE=?)"); 
+			params = new Object[]{userId, province};
+		}else if(city > 0){//只查同城的问题
+			sql.append(" AND (ub.CITY is null or ub.CITY=?)") ;
+			params = new Object[]{userId, city};
+		}
+		sql.append(" ORDER BY B.ANSWER_COUNT DESC, A.BROWSE_COUNT DESC");
 		
-		return queryForListWithSQLQuery(sql.toString(), new Object[]{userId}, nowPage, onePageCount);
+		return queryForListWithSQLQuery(sql.toString(), params, nowPage, onePageCount);
 	}
 	
 	/**

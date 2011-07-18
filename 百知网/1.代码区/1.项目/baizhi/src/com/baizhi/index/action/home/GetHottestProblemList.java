@@ -2,6 +2,9 @@ package com.baizhi.index.action.home;
 
 import java.util.Map;
 
+import org.apache.commons.lang.math.NumberUtils;
+
+import com.baizhi.IConstants;
 import com.baizhi.commons.ActionSupport;
 import com.baizhi.index.service.HomeService;
 
@@ -42,8 +45,17 @@ public class GetHottestProblemList extends ActionSupport {
 
 	@Override
 	public String execute() throws Exception {
+		int province = 0, city=0;
+		Map<String, Object> userInfo = getSessionUserInfo();
+		int changeType = NumberUtils.toInt(""+userInfo.get(IConstants.SESSION_CHANGE_TYPE));
+		if(changeType == IConstants.CHANGE_TYPE_PROVINCE){
+			province = NumberUtils.toInt(""+userInfo.get(IConstants.SESSION_CITY));
+		}else if(changeType == IConstants.CHANGE_TYPE_CITY){
+			city = NumberUtils.toInt(""+userInfo.get(IConstants.SESSION_CITY));
+		}
+		
 		// 查询结果列表
-		Map<String, Object> returnMap = homeService.getHottestProblemList(getSessionUserId(), this.getNowPage(), this.getOnePageCount());
+		Map<String, Object> returnMap = homeService.getHottestProblemList(getSessionUserId(), province, city, this.getNowPage(), this.getOnePageCount());
 		//判断是否存在查询记录
 		if (returnMap != null && returnMap.size() != 0) {
 			this.setResult(returnMap);

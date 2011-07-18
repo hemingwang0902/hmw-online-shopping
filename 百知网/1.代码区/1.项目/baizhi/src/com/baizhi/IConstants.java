@@ -13,6 +13,9 @@ public interface IConstants {
 
 	int DEFAULT_PAGE_SIZE = 10;
 
+	String SESSION_CHANGE_TYPE="CHANGE_TYPE";
+	String SESSION_CITY = "CITY";
+	
 	/**回复投票类型：赞成*/
 	String ANSWER_VOTE_AGREE = "Agree";
 	/**回复投票类型：反对*/
@@ -53,4 +56,6 @@ public interface IConstants {
 	/**通知类型：我关注的品牌下的问题有了新答案*/
 	int NOTICE_TYPE_NEW_ANSWER_BRAND = 8;
 	
+	int CHANGE_TYPE_PROVINCE=1;
+	int CHANGE_TYPE_CITY=2;
 }
