@@ -25,8 +25,12 @@ public class InitHyym extends ActionSupport {
 	private List<Map<String, Object>> attentionTalkList;
 	//他关注的人
 	private List<Map<String, Object>> attentionUserList;
+	//他关注的人的数量
+	private int attentionUserSize;
 	//关注他的人
 	private List<Map<String, Object>> wasAttentionUserList;
+	//关注他的人的数量
+	private int wasAttentionUserSize;
 	
 	public void setHyymService(HyymService hyymService) {
 		this.hyymService = hyymService;
@@ -56,6 +60,14 @@ public class InitHyym extends ActionSupport {
 		return wasAttentionUserList;
 	}
 
+	public int getAttentionUserSize() {
+		return attentionUserSize;
+	}
+
+	public int getWasAttentionUserSize() {
+		return wasAttentionUserSize;
+	}
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public String execute() throws Exception {
@@ -64,9 +76,16 @@ public class InitHyym extends ActionSupport {
 			return INPUT;
 		
 		attentionTalkList = (List<Map<String, Object>>) hyymService.getAttentionTalkList(userId, 1, 4).get(KEY_LIST);
-		attentionUserList = (List<Map<String, Object>>) hyymService.getAttentionUserList(userId, 1, 21).get(KEY_LIST);
-		wasAttentionUserList = (List<Map<String, Object>>) hyymService.getWasAttentionUserList(userId, 1, 21).get(KEY_LIST);
 		
+		attentionUserList = (List<Map<String, Object>>) hyymService.getAttentionUserList(userId, 1, 21).get(KEY_LIST);
+		if(attentionUserList != null){
+			attentionUserSize = attentionUserList.size();
+		}
+		
+		wasAttentionUserList = (List<Map<String, Object>>) hyymService.getWasAttentionUserList(userId, 1, 21).get(KEY_LIST);
+		if(wasAttentionUserList != null){
+			wasAttentionUserSize = wasAttentionUserList.size();
+		}
 		return SUCCESS;
 	}
 }
