@@ -112,6 +112,7 @@ function getDataList(){
 			$("#private_count").text(data["list"].length);
 			
 			var map;
+			var url = $("#basePath").val() + "/index/initHyym.go?userId=";
 			for(var i=0;i<data["list"].length;i++){
 				map=data["list"][i];
 				var desc="";
@@ -127,7 +128,7 @@ function getDataList(){
 				content+="<div class='wdzx'>";
 				content+="	<div class='wdzx_1'><img src='"+data["cpath"]+"/"+map["IMAGE_PATH"]+"' height='25px' width='25px'  onerror='load_person_image_25_25(this)'  /></div>";
 				content+="	<div class='wdzx_2'>";
-				content+="		<div class='wdzx_3'>"+desc+"<a href='javascript:;' class='mo'>"+map.NAME+"</a>："+map.CONTENT+"</div>";
+				content+="		<div class='wdzx_3'>"+desc+"<a href='"+url+map.USER_ID+"' class='mo'>"+map.NAME+"</a>："+map.CONTENT+"</div>";
 				content+="		<div class='wdzx_4'>"+map.CREATE_TIME+" &nbsp;";
 				content+="			<span>";
 				content+="				<a href='initWdzxDetailForm.go?SEND_ID="+map.SEND_ID+"&NO_PRIVATE_COUNT="+map.NO_PRIVATE_COUNT+"'>"+show_read_text+"</a> | ";

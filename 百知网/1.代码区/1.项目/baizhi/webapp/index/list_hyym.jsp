@@ -25,12 +25,7 @@
       <div class="line_1"></div>
       <div class="title_xgwt" style="border:0;">
         <div class="title_xgwt_tu">
-        	<s:if test="userBasic.IMAGE_PATH==null">
-        		<img src="../images/main/rw_1.jpg" width="100" height="100" />
-        	</s:if>
-        	<s:else>
-        		<img src='${basePath }<s:property value="userBasic.IMAGE_PATH"/>' width="100" height="100" />
-        	</s:else>
+        	<img src='${basePath }<s:property value="userBasic.IMAGE_PATH"/>' width="100" height="100" onerror="load_person_image_102_102(this);"/>
         </div>
         <div class="title_xgwt_xner">
         	<ul>

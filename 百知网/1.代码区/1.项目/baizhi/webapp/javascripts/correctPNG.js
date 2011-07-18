@@ -40,7 +40,7 @@ function load_person_image_74_74(obj){
 
 //102*102 尺寸 头像
 function load_person_image_102_102(obj){
-	obj.src='../images/main/rw_1.png';
+	obj.src='../images/main/rw_1.jpg';
 }
 
 //60*53 尺寸 品牌
