@@ -41,8 +41,17 @@
 					<div style="text-align: right;padding-right: 15px;">内容：</div>
 				</div>
 				<div style="float: left;">
-					<div><input type="text" style="width: 355px;margin-bottom: 10px;" id="USER_IDS" /></div>
-					<div><textarea style="width: 357px;margin-bottom: 10px;height: 80px;" id="PRIVATE_CONTENT"></textarea></div>
+					<div style="width: 360px;">
+					
+					<input type="text" style="width: 355px;margin-bottom: 10px;display: none;" id="USER_IDS" />
+					<div style="width:355px;border: solid 1px;height: 26px;padding-bottom: 2px;padding-top: 2px;margin-bottom: 5px;padding-left: 2px;">
+						<div style="clear: both;height: 25px;background-color: gray;float: left;border: solid 1px;">
+							<div style="height: 25px;float: left;margin-right: 5px;">aaaaaaaaaaa</div>
+							<div style="float: left;background:url(../images/main/hlcr_btn.gif) no-repeat;width: 16px;height: 16px;"></div>
+						</div>
+					</div>
+					</div>
+					<div style="clear: both;"><textarea style="width: 357px;margin-bottom: 10px;height: 80px;" id="PRIVATE_CONTENT"></textarea></div>
 					<div >
 						<div id="PRIVATE_MESSAGE" style="color: red;float: left;"></div>
 						<div style="text-align: right;float: right;padding-right: 20px;">
