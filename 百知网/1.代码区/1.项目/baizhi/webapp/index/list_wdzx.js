@@ -9,6 +9,36 @@ $(document).ready(function(){
 	
 	//获取未阅读记录数
 	getUserPrivateCount();
+	
+	//发送私信时，根据输入的姓名自动提示
+	$("#USER_IDS").autocomplete($("#basePath").val() + "/index/getUserListByNameWithAjax.go", {
+		dataType: "json",
+		extraParams:{
+			"nowPage": 1,
+			"onePageCount": 10,
+			"ajax": "true"
+		},
+		formatItem: function(row, i, max) {
+			return row.NAME;
+		},
+		parse:function(result){ //将从后台返回的数据转化为候选项数组
+			var parsed = [];
+			if(result != null && result != ''){
+				var data = eval("("+result+")");
+				if (data != null && data["list"] != null && data["list"].length > 0) {
+					for(var i=0;i<data["list"].length;i++){
+						var row = data["list"][i];
+						parsed[parsed.length] = {
+							data: row,
+							value: row.NAME,
+							result: row.NAME
+						};
+					}
+				}
+			}
+			return parsed;
+		}
+	});
 });
 
 /* 保存数据*/
