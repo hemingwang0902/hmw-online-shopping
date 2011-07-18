@@ -120,7 +120,7 @@
 		</div>
         <div class="r_column">
             <div class="column">关注的人</div>
-            <div class="column_wtzt">关注他的人（15）</div>
+            <div class="column_wtzt">关注他的人（<s:property value="wasAttentionUserSize"/>）</div>
             <div class="column_xgwt_hy">
               <ul>
               	<li>
@@ -138,7 +138,7 @@
 				</li>
               </ul>
           </div>
-          <div class="column_wtzt">他关注的人（15）</div>
+          <div class="column_wtzt">他关注的人（<s:property value="attentionUserSize"/>）</div>
             <div class="column_xgwt_hy">
               <ul>
               	<li>
