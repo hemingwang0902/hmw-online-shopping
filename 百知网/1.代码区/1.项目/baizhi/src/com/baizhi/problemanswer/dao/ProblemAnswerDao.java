@@ -56,13 +56,12 @@ public class ProblemAnswerDao extends DaoSupport{
 			
 			String sql = "select pa.USER_ID as USER_ID from t_problem_attention pa where pa.PROBLEM_ID=?";
 			List<Map<String, Object>> resultList = setQueryParameters(session.createSQLQuery(sql).setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP), new Object[]{element.elementText("PROBLEM_ID")}).list();
-			
 			if(resultList != null && !resultList.isEmpty()){
 				int WAS_USER_ID = 0;
 				for (Map<String, Object> map : resultList) {
 					WAS_USER_ID = NumberUtils.toInt(map.get("USER_ID").toString());
 					if(WAS_USER_ID > 0){
-						//判断对方是否设置接收有人问我问题的通知
+						//判断对方是否设置接收“我关注的问题有了新答案”的通知
 						if(userNoticeDao.isUserNotice(WAS_USER_ID, IConstants.NOTICE_TYPE_NEW_ANSWER, dom4jSession)){
 							userDynamicDao.saveUserDynamic(NumberUtils.toInt(element.elementText("USER_ID")), "", NumberUtils.toInt(idValue), ""+IConstants.NOTICE_TYPE_NEW_ANSWER, "关注的问题有了新回答", WAS_USER_ID, dom4jSession);
 						}
@@ -70,7 +69,21 @@ public class ProblemAnswerDao extends DaoSupport{
 				}
 			}
 			
-			
+			String sql_1 = "select USER_ID from t_user_battention uba where uba.BRAND_ID in (select pa.TALK_ID from t_problem_talk pa where pa.PROBLEM_ID=? and pa.TALK_TYPE=?)";
+			Object[] params = new Object[]{element.elementText("PROBLEM_ID"), IConstants.TALK_TYPE_BRAND};
+			List<Map<String, Object>> resultList_1 = setQueryParameters(session.createSQLQuery(sql_1).setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP), params).list();
+			if(resultList_1 != null && !resultList_1.isEmpty()){
+				int WAS_USER_ID = 0;
+				for (Map<String, Object> map : resultList_1) {
+					WAS_USER_ID = NumberUtils.toInt(map.get("USER_ID").toString());
+					if(WAS_USER_ID > 0){
+						//判断对方是否设置接收“我关注的品牌下的问题有了新答案”的通知
+						if(userNoticeDao.isUserNotice(WAS_USER_ID, IConstants.NOTICE_TYPE_NEW_ANSWER_BRAND, dom4jSession)){
+							userDynamicDao.saveUserDynamic(NumberUtils.toInt(element.elementText("USER_ID")), "", NumberUtils.toInt(idValue), ""+IConstants.NOTICE_TYPE_NEW_ANSWER_BRAND, "关注的品牌下的问题有了新回答", WAS_USER_ID, dom4jSession);
+						}
+					}
+				}
+			}
 			
 			dom4jSession.getTransaction().commit();
 			

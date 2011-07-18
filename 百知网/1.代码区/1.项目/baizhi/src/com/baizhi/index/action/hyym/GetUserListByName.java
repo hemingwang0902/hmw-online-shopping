@@ -40,7 +40,7 @@ public class GetUserListByName extends ActionSupport {
 	@Override
 	public String execute() throws Exception {
 		// 查询结果列表
-		Map<String, Object> returnMap = hyymService.getUserListByName(q, this.getNowPage(), this.getOnePageCount());
+		Map<String, Object> returnMap = hyymService.getUserListByName(q+"%", this.getNowPage(), this.getOnePageCount());
 		if(BooleanUtils.toBoolean(ajax)){
 			this.setResult(returnMap);
 			return JSONSUCCESS;
