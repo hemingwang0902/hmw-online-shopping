@@ -1,5 +1,8 @@
 package com.baizhi.talk.action;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.dom4j.Element;
 import org.dom4j.tree.DefaultElement;
 
@@ -22,15 +25,16 @@ public class SaveTalk extends TalkForm{
 	private static final long serialVersionUID = 5738462955015810485L;
 	
 	private TalkService talkService;//话题信息表业务类
-	
-	public TalkService getTalkService() {
-		return talkService;
-	}
+	private Boolean isAjax;
 
 	public void setTalkService(TalkService talkService) {
 		this.talkService = talkService;
 	}
 	
+	public void setIsAjax(Boolean isAjax) {
+		this.isAjax = isAjax;
+	}
+
 	@Override
 	public String execute() throws Exception {
 		Element element = null;
@@ -40,8 +44,8 @@ public class SaveTalk extends TalkForm{
 			element = talkService.getTalkEleById("TALK_ID");
 			//Elements.setElementValue(element, "TALK_ID", this.getTALK_ID());// 话题ID
 			Elements.setElementValue(element, "CONTENT", this.getCONTENT());// 内容
-			//Elements.setElementValue(element, "USER_ID", this.getUSER_ID());// 用户ID
-			//Elements.setElementValue(element, "CREATE_TIME", this.getCREATE_TIME());// 创建时间
+			Elements.setElementValue(element, "INTRODUCTION", this.getINTRODUCTION());
+			Elements.setElementValue(element, "IMAGE_PATH", this.getIMAGE_PATH());
 			Elements.setElementValue(element, "MODIFY_TIME", DateUtils.getCurrentTime(DateUtils.SHOW_DATE_FORMAT));// 修改时间
 			
 			//如果保存成功，返回主键
@@ -55,13 +59,23 @@ public class SaveTalk extends TalkForm{
 			element = new DefaultElement("T_TALK");
 			Elements.setElementValue(element, "CONTENT", this.getCONTENT());// 内容
 			Elements.setElementValue(element, "USER_ID", this.getSessionUserId());// 用户ID
+			Elements.setElementValue(element, "INTRODUCTION", this.getINTRODUCTION());
+			Elements.setElementValue(element, "IMAGE_PATH", this.getIMAGE_PATH());
 			Elements.setElementValue(element, "CREATE_TIME", DateUtils.getCurrentTime(DateUtils.SHOW_DATE_FORMAT));// 创建时间
 			//Elements.setElementValue(element, "MODIFY_TIME", this.getMODIFY_TIME());// 修改时间
 			//如果保存成功，返回主键
 			keyid = talkService.saveOrUpdateTalk(element);
+			
 			//判断主键是否为空，如果不为空，则保存成功
 			if(StringUtils.isNotEmpty(keyid)){
-				return SUCCESS;
+				if(Boolean.TRUE.equals(isAjax)){
+					Map<String, Object> returnMap = new HashMap<String, Object>();
+					returnMap.put("id", keyid);
+					setResult(returnMap);
+					return JSONSUCCESS;
+				}else{
+					return SUCCESS;
+				}
 			}
 		}
 		return ERROR;

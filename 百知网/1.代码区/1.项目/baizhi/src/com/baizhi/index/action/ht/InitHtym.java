@@ -42,6 +42,10 @@ public class InitHtym extends ActionSupport{
 	@Override
 	public String execute() throws Exception {
 		talk = htymService.getTalkById(TALK_ID, getSessionUserId());
+		if(talk.get("INTRODUCTION") == null){
+			talk.put("INTRODUCTION", "");
+		}
+		
 		wasAttentionUserList = (List<Map<String, Object>>) htymService.getWasAttentionUserListByTalkId(TALK_ID, 1, 21).get(KEY_LIST);
 		return SUCCESS;
 	}
