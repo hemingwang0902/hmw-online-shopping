@@ -44,7 +44,7 @@ $(document).ready(function(){
 	}
 	
 	//新增问题弹出框
-	$("#item_a").fancybox({
+	$("#item_a,#item_talk").fancybox({
 		'width'				: 450,      //弹出框宽度
 		'height'			: 300,      //弹出框高度
 		'type'				: 'iframe', //弹出框类型

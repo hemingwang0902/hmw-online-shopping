@@ -127,7 +127,7 @@ a:link,a:visited,a:hover,a:active{
 .list_xgwt_xght{ line-height:30px; height:30px; width:570px;}
 .list_xgwt_xght a{ color:#98b012; font-weight:bold;}
 .list_xgwt_xght a:hover{ color:#ff9000;}
-.subMenu .bot_tjht{ width:107px; height:30px; background:url(../images/main/tjht.jpg); border:0;}
+.bot_tjht{ width:107px; height:30px; background:url(../images/main/tjht.jpg); border:0;}
 .subMenu .bot_wc{ width:66px; height:30px; background:url(../images/main/an_ss.jpg); border:0;}
 .title_xgwt{width:550px; padding-bottom:20px; border-bottom:1px solid #bdd11a; padding-left:10px;  padding-right:10px; padding-top:10px;}
 .title_xgwt_tu{  float:left; padding-right:15px; }
