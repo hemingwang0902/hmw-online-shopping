@@ -202,7 +202,7 @@ function _showAnswer(answers){
 		content += '		<div class="title_wtym_con">'+CONTENT+'</div>';
 		content += '	</div>';
 		content += '	<div class="tit_bot_wtym">';
-		content += '		<a href="javascript:void(0);" onclick="showAnswerReview(\''+ANSWER_ID+'\');"><span id="pl_'+ANSWER_ID+'">'+REVIEW_COUNT+'</span> 条评论</a>';
+		content += '		<a href="javascript:void(0);" onclick="showAnswerReview(\''+ANSWER_ID+'\', \''+REVIEW_COUNT+'\');"><span id="pl_'+ANSWER_ID+'">'+REVIEW_COUNT+'</span> 条评论</a>';
 		if(AGREE){
 			content += '		 • <span>赞同</span>';
 		}else{
@@ -224,7 +224,7 @@ function _showAnswer(answers){
 			content += '		 • <span id="my_'+ANSWER_ID+'"><a href="javascript:void(0);" onclick="answerVote('+ANSWER_ID+', \'Disthank\', this);">没有帮助</a></span>';
 		}
 		content += '	</div>';
-		content += '	<div id="div_pinglun_'+ANSWER_ID+'" style="display:none;"><div id="pl_list_'+ANSWER_ID+'">评论列表</div></div>';
+		content += '	<div id="div_pinglun_'+ANSWER_ID+'"></div>';
 		content += '	<div class="clear"></div>';
 		content += '</div>';
 	
@@ -334,19 +334,57 @@ function answerVote(ANSWER_ID, voteField, domLink){
 /**
  * 显示评论列表
  */
-function showAnswerReview(){
-	//TODO 通过 Ajax 加载评论列表，并显示到页面
+function showAnswerReview(ANSWER_ID, REVIEW_COUNT){
+	var jqPinglun = $("#div_pinglun_" + ANSWER_ID);
+	if(jqPinglun.text()==''){
+		$.post("getAnswerReviewListByAnswerId.go",{
+			"ANSWER_ID": ANSWER_ID,
+			"reviewCount": REVIEW_COUNT
+		},function(result){
+			if(result==null||result==''){
+				return;
+			}
+			
+			$("#div_pinglun_" + ANSWER_ID).html(result).show();
+		});
+	}else{
+		jqPinglun.show();
+	}
 }
 
 /**
  * 给回复添加评论
  */
-function addAnswerReview(ANSWER_ID, CONTENT){
+function addAnswerReview(ANSWER_ID){
+	var CONTENT = $.trim($("#txt_pl_" + ANSWER_ID).val());
+	if(CONTENT == ''){
+		$("#pl_error_" + ANSWER_ID).text("请输入评论内容");
+		$("#txt_pl_" + ANSWER_ID).focus();
+		return;
+	}
+	
 	$.post("addAnswerReview.go",{
 		"ANSWER_ID": ANSWER_ID,
 		"CONTENT": CONTENT
-	},function(){
-		// TODO 更新页面展示
+	},function(result){
+		$("#pl_error_" + ANSWER_ID).text(" ");
+		if(result==null||result==''){
+			return;
+		}
+		var data = eval("("+result+")");
+		if(data!=null&&data["REVIEW_ID"]>0){
+			var d = new Date();
+			var s = d.getFullYear() + "-" + (d.getMonth()+1) + "-" + d.getDate() + " " + d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds();
+			var html = '<div class="hwbj">'+CONTENT+'</div>';
+			html += '<div class="fg_2011">';
+			html += '	<a href="'+path.user.detail+$("#loginUser_USER_ID").val()+'">'+$("#loginUser_NAME").val()+'</a>';
+			html += '	• ' + s;
+			html += '</div>';
+			$("#txt_pl_" + ANSWER_ID).val("")
+			$("#pl_list_" + ANSWER_ID).append(html);
+		}else{
+			show_showmessage({message:"添加评论失败。",type:"error"});
+		}
 	});
 }
 
