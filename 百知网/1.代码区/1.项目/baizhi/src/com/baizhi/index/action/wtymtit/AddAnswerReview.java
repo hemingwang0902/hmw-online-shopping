@@ -45,7 +45,7 @@ public class AddAnswerReview  extends ActionSupport{
 	@Override
 	public String execute() throws Exception {
 		Map<String, Object> returnMap = new HashMap<String, Object>();
-		returnMap.put("ANSWER_ID", wtymtitService.addAnswerReview(ANSWER_ID, CONTENT, getSessionUserId()));
+		returnMap.put("REVIEW_ID", wtymtitService.addAnswerReview(ANSWER_ID, CONTENT, getSessionUserId()));
 		setResult(returnMap);
 		return JSONSUCCESS;
 	}

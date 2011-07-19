@@ -10,6 +10,7 @@ public class WtymtitDao extends DaoSupport{
 	private final String ALL_USER_BASIC_FIELDS = " UB.BASIC_ID as BASIC_ID, UB.USER_ID as USER_ID, UB.USER_TYPE as USER_TYPE, UB.NAME as NAME, UB.SOURCE as SOURCE, UB.PROVINCE as PROVINCE, UB.CITY as CITY, UB.INDUSTRY as INDUSTRY, UB.YEARS as YEARS, UB.LINK_MODE as LINK_MODE, UB.IS_OPEN as IS_OPEN, UB.INTRODUCTION as INTRODUCTION, UB.MOTTO as MOTTO, UB.IMAGE_PATH as IMAGE_PATH, UB.WEBSITE as WEBSITE, UB.PRIVATE_SET as PRIVATE_SET, UB.LEVEL as LEVEL, UB.SCORE as SCORE, UB.REMARK as REMARK, UB.CREATE_TIME as CREATE_TIME, UB.MODIFY_TIME as MODIFY_TIME ";
 	private final String ALL_TALK_FIELDS = "t.TALK_ID as TALK_ID,t.CONTENT as CONTENT,t.USER_ID as USER_ID,t.INTRODUCTION as INTRODUCTION,t.IMAGE_PATH as IMAGE_PATH,t.CREATE_TIME as CREATE_TIME,t.MODIFY_TIME as MODIFY_TIME";
 	private final String ALL_ANSWER_FIELDS = "a.ANSWER_ID as ANSWER_ID, a.PROBLEM_ID as PROBLEM_ID, a.CONTENT as CONTENT, a.USER_ID as USER_ID, a.AGREE_COUNT as AGREE_COUNT, a.DISAGREE_COUNT as DISAGREE_COUNT, a.THANK_COUNT as THANK_COUNT, a.DISTHANK_COUNT as DISTHANK_COUNT, a.CREATE_TIME as CREATE_TIME, a.MODIFY_TIME as MODIFY_TIME";
+	private final String ALL_ANSWER_REVIEW_FIELDS = "a.REVIEW_ID as REVIEW_ID, a.ANSWER_ID as ANSWER_ID, a.PROBLEM_ID as PROBLEM_ID, a.CONTENT as CONTENT, a.PREVIEW_ID as PREVIEW_ID, a.USER_ID as USER_ID, a.CREATE_TIME as CREATE_TIME, a.MODIFY_TIME as MODIFY_TIME";
 	
 	/**
 	 * 根据问题ID查找问题所属话题
@@ -121,5 +122,19 @@ public class WtymtitDao extends DaoSupport{
 				loginUserId, loginUserId, loginUserId, loginUserId, probelmId
 		};
 		return queryForListWithSQLQuery(sql.toString(), params, nowPage, onePageCount);
+	}
+	
+	/**
+	 * 根据问题回复ID查询评论
+	 * @return
+	 */
+	public List<Map<String,Object>> getAnswerReviewListByAnswerId(int ANSWER_ID){
+		StringBuffer sql = new StringBuffer()
+		.append("select ").append(ALL_ANSWER_REVIEW_FIELDS)
+		.append(", ub.NAME as NAME, ub.INTRODUCTION as INTRODUCTION")
+		.append(" from T_ANSWER_REVIEW a, T_USER_BASIC ub")
+		.append(" where a.USER_ID=ub.USER_ID")
+		.append(" and a.ANSWER_ID=?");
+		return queryForListWithSQLQuery(sql.toString(), new Object[]{ANSWER_ID});
 	}
 }

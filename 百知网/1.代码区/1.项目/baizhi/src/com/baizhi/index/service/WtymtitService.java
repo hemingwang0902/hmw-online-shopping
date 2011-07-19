@@ -259,6 +259,17 @@ public class WtymtitService  extends ServiceSupport{
 		}
 	}
 	
+	public List<Map<String,Object>> getAnswerReviewListByAnswerId(int ANSWER_ID){
+		return wtymtitDao.getAnswerReviewListByAnswerId(ANSWER_ID);
+	}
+	
+	/**
+	 * 添加评论
+	 * @param ANSWER_ID
+	 * @param CONTENT
+	 * @param USER_ID
+	 * @return
+	 */
 	public String addAnswerReview(int ANSWER_ID, String CONTENT, int USER_ID){
 		Element answer = problemAnswerDao.getProblemAnswerEleById(""+ANSWER_ID);
 		if(answer == null)

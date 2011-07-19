@@ -24,6 +24,10 @@
 		      <param name="root">result</param>
 		    </result>
 		</action>
+		<!-- 根据回复的ID查询评论 -->
+		<action name="getAnswerReviewListByAnswerId" class="com.baizhi.index.action.wtymtit.GetAnswerReviewListByAnswerId">
+			<result name="success">list_pinglun.jsp</result>
+		</action>
 		<!-- 给回复添加评论 -->
 		<action name="addAnswerReview" class="com.baizhi.index.action.wtymtit.AddAnswerReview">
 			<result name="jsonsuccess" type="json">
