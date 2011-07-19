@@ -4,19 +4,15 @@
 <html>
 <head>
 	<%@include file="../common/jsCss.jsp" %>
+	<script type="text/javascript" src="index.js"></script>
 	<script type="text/javascript" language="javascript"  src="list_pqlb.js"></script>
 </head>
 
 <body>
-<div id="page_shadow" class="page_shadow"></div>
-<div id="page_loading" class="page_loading"></div>
 	<%@include file="../common/head.jsp" %>
 <div class="content">
 	<div class="c_left">
-	  <div class="search">
-	    <input name="text" type="text" value="请在此添加你的问题 &gt;&gt;" size="" style="height:21px; float:left; color:#999; padding-top:5px;  padding-left:5px; width:450px;" onfocus="javascript:this.value='';" onblur="javascript:this.value='请在此添加你的问题 &gt;&gt;';"/>  
-	    <input type="button" class="bot_t" value=""  style=" bottom:0px; float:right;" />
-	  </div>
+	  <%@include file="../common/search.jsp" %>
       <div class="subMenu"><input name="" type="button" class="bot_tjht"  value="" />
       </div>
       <div class="line_1"></div>

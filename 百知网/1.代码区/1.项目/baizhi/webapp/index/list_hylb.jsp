@@ -4,6 +4,7 @@
 <html>
 <head>
 	<%@include file="../common/jsCss.jsp" %>
+	<script type="text/javascript" src="index.js"></script>
 	<script type="text/javascript" language="javascript"  src="../index/list_hylb.js"></script>
 </head>
 
@@ -11,10 +12,7 @@
 	<%@include file="../common/head.jsp" %>
 <div class="content">
 	<div class="c_left">
-	  <div class="search">
-	    <input name="text" type="text" value="请在此添加你的问题 &gt;&gt;" size="" style="height:21px; float:left; color:#999; padding-top:5px;  padding-left:5px; width:450px;" onfocus="javascript:this.value='';" onblur="javascript:this.value='请在此添加你的问题 &gt;&gt;';"/>  
-	    <input type="button" class="bot_t" value=""  style=" bottom:0px; float:right;" />
-	  </div>
+	  <%@include file="../common/search.jsp" %>
       
       <div class="list_hylb"><input name="" type="button" class="bot_tjht"  value="" />&nbsp;</div>
      
