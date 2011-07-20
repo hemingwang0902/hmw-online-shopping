@@ -5,7 +5,7 @@
 	<div class="column_content">
 		<div class="coulumn_c_left">
 			<ul>
-				<li><a href="invite.jsp">发送邮件邀请好友</a></li>
+				<li><a href="${basePath }/index/invite.jsp">发送邮件邀请好友</a></li>
 				<li>
 					<div id="d_clip_container" style="position:relative"> 
 						<input id="invite" type="hidden" value="${basePath }/regiest.jsp?USER_ID=${USER_ID_ENCODE}">

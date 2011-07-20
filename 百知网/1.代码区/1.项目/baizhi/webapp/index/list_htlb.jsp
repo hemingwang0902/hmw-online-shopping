@@ -13,8 +13,6 @@
 <div class="content">
 	<div class="c_left">
 	  <%@include file="../common/search.jsp" %>
-      <div class="subMenu"><input name="" type="button" class="bot_tjht"  value="" />
-      </div>
       <div class="line_1"></div>
       <input type="hidden" id="nowPage" name="nowPage" value="1" />
       <input type="hidden" id="onePageCount" name="onePageCount" value="10" />

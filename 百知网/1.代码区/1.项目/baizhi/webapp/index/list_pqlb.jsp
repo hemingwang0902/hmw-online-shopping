@@ -4,7 +4,7 @@
 <html>
 <head>
 	<%@include file="../common/jsCss.jsp" %>
-	<script type="text/javascript" src="index.js"></script>
+	<script type="text/javascript" src="../index/index.js"></script>
 	<script type="text/javascript" language="javascript"  src="list_pqlb.js"></script>
 </head>
 
@@ -13,8 +13,6 @@
 <div class="content">
 	<div class="c_left">
 	  <%@include file="../common/search.jsp" %>
-      <div class="subMenu"><input name="" type="button" class="bot_tjht"  value="" />
-      </div>
       <div class="line_1"></div>
       <input type="hidden" id="myself" name="myself" value="${myself }" />
       <input type="hidden" id="nowPage" name="nowPage" value="1" />

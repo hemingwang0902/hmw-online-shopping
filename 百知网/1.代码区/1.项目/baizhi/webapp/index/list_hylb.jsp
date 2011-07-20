@@ -4,7 +4,7 @@
 <html>
 <head>
 	<%@include file="../common/jsCss.jsp" %>
-	<script type="text/javascript" src="index.js"></script>
+	<script type="text/javascript" src="../index/index.js"></script>
 	<script type="text/javascript" language="javascript"  src="../index/list_hylb.js"></script>
 </head>
 
@@ -14,8 +14,6 @@
 	<div class="c_left">
 	  <%@include file="../common/search.jsp" %>
       
-      <div class="list_hylb"><input name="" type="button" class="bot_tjht"  value="" />&nbsp;</div>
-     
       <div class="line_1"></div>
       <input type="hidden" id="nowPage" name="nowPage" value="1" />
       <input type="hidden" id="onePageCount" name="onePageCount" value="10" />

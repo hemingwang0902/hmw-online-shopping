@@ -1,4 +1,10 @@
 $(document).ready(function(){
+	//获取数据列表
+	getMayInterestedUserList();
+	
+	//初始化 ZeroClipboard
+	initZeroClipboard(); 
+	
 	$("#noreadmessage").click(function(){
 		$(this).attr("class","zui");
 		$("#allreadmessage").attr("class","re");

@@ -4,6 +4,7 @@
 <html>
 <head>
 	<%@include file="../common/jsCss.jsp" %>
+	<script type="text/javascript" src="../index/index.js"></script>
 	<script type="text/javascript" language="javascript" src="../index/list_qbtz.js"></script>
 </head>
 
@@ -30,58 +31,9 @@
     
     
     <div class="c_right">
-    	<div class="right_subMenu">
-            <ul>
-                <li><a href="#">所有问题</a></li>
-                <li><a href="#">我关注的问题</a></li>
-                <li><a href="#">问我的问题</a></li>
-                <li><a href="#">邀请我回答的问题</a></li>
-            </ul>
-        </div>
-        <div class="r_column">
-            <div class="column"><a href="#">邀请好友</a></div>
-            <div class="column_content">
-                <div class="coulumn_c_left">
-                    <ul>
-                        <li><a href="#">发送邮件邀请好友</a></li>
-                        <li><a href="#">生成代码邀请好友</a></li>
-                    </ul>
-                </div>
-                <div class="coulumn_c_right"><img src="../images/main/youjian.png" /></div>	
-            </div>
-        </div>
-        <div class="r_column">
-            <div class="column">你可能感兴趣的人</div>
-          <div class="column_contentgxq">
-              <div class="colun_c_gxq">
-                <div style="float:left;"><a href="#"><img src="../images/main/rw_1.png" width="25" height="25" border="0" /></a></div>
-                    <div class="colun_l"><a href="#">刘阳</a></div>
-                </div>
-                <div class=" colun_c_main">拉近远方的人的距离，却偶尔推远离，却偶尔推远</div>
-          </div>
-          <div class="column_contentgxq">
-              <div class="colun_c_gxq">
-                <div style="float:left;"><a href="#"><img src="../images/main/rw_1.png" width="25" height="25" border="0" /></a></div>
-                    <div class="colun_l"><a href="#">刘阳</a></div>
-                </div>
-                <div class=" colun_c_main">拉近远方的人的距离，却偶尔推远离，却偶尔推远</div>
-          </div>
-          <div class="column_contentgxq">
-              <div class="colun_c_gxq">
-                <div style="float:left;"><a href="#"><img src="../images/main/rw_1.png" width="25" height="25" border="0" /></a></div>
-                    <div class="colun_l"><a href="#">刘阳</a></div>
-                </div>
-                <div class=" colun_c_main">拉近远方的人的距离，却偶尔推远离，却偶尔推远</div>
-          </div>
-          <div class="column_contentgxq" style="border:0; margin-bottom:0px;">
-              <div class="colun_c_gxq">
-                <div style="float:left;"><a href="#"><img src="../images/main/rw_1.png" width="25" height="25" border="0" /></a></div>
-                    <div class="colun_l"><a href="#">刘阳</a></div>
-                </div>
-                <div class=" colun_c_main">拉近远方的人的距离，却偶尔推远离，却偶尔推远</div>
-          </div>
-          <div class="more"><a href="#">更多 &gt;&gt;</a></div>
-        </div>
+    	<%@include file="../common/navigationMenu.jsp" %>
+    	<%@include file="../common/inviteFriends.jsp" %>
+    	<%@include file="../common/interestUsers.jsp" %>
         </div>
 	<div class="clear"></div>
 </div>

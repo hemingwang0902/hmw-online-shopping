@@ -13,8 +13,6 @@
 	<div class="c_left">
 	 <%@include file="../common/search.jsp" %>
       
-      <div class="list_hylb"><input name="" type="button" class="bot_tjht"  value="" />&nbsp;</div>
-     
       <div class="line_1"></div>
       <div class="title_xgwt">
         <div class="title_xgwt_tu"><img src="../images/main/hylb_1.jpg" /></div>
