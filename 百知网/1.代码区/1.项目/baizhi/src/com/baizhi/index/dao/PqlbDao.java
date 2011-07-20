@@ -85,21 +85,31 @@ public class PqlbDao extends DaoSupport{
 	public Map<String,Object> getPqlbList(Map<String, Object> params,int nowPage,int onePageCount){
 		
 		StringBuffer sql = new StringBuffer();
-		sql.append("SELECT new Map(")
-		   .append("a.BRAND_ID as BRAND_ID,")
-		   .append("a.USER_ID as USER_ID,")
-		   .append("a.NAME as NAME,")
-		   .append("a.INTRODUCTION as INTRODUCTION,")
-		   .append("a.IMAGE_PATH as IMAGE_PATH,")
-		   .append("(select count(*) from T_USER_BATTENTION where BRAND_ID=a.BRAND_ID and USER_ID=?) as IS_ATTENTION ) ")
-		   .append("FROM T_USER_BRAND a where a.STAUS=3   order by CREATE_TIME DESC ");
-		
+		if(params.get("myself")!=null){
+			sql.append("SELECT new Map(")
+			   .append("a.BRAND_ID as BRAND_ID,")
+			   .append("a.USER_ID as USER_ID,")
+			   .append("a.NAME as NAME,")
+			   .append("a.INTRODUCTION as INTRODUCTION,")
+			   .append("a.IMAGE_PATH as IMAGE_PATH,")
+			   .append("'1' as IS_ATTENTION ) ")
+			   .append("FROM T_USER_BRAND a,T_USER_BATTENTION b where a.BRAND_ID=b.BRAND_ID and a.STAUS=3 and b.USER_ID=? order by a.CREATE_TIME DESC ");
+		}else{
+			sql.append("SELECT new Map(")
+			   .append("a.BRAND_ID as BRAND_ID,")
+			   .append("a.USER_ID as USER_ID,")
+			   .append("a.NAME as NAME,")
+			   .append("a.INTRODUCTION as INTRODUCTION,")
+			   .append("a.IMAGE_PATH as IMAGE_PATH,")
+			   .append("(select count(*) from T_USER_BATTENTION where BRAND_ID=a.BRAND_ID and USER_ID=?) as IS_ATTENTION ) ")
+			   .append("FROM T_USER_BRAND a where a.STAUS=3   order by CREATE_TIME DESC ");
+		}
 		Map<String,Object> returnMap = null;
 		Session session = getSession();
 		try {
 			Object[] condition=new Object[]{params.get("USER_ID")};
 			Query query = setQueryParameters(session.createQuery(sql.toString()),condition );
-			returnMap = PagerSupport.getList(session, query, "T_USER_BRAND", null,nowPage, onePageCount);
+			returnMap = PagerSupport.getList(session, query, "T_USER_BRAND", condition,nowPage, onePageCount);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

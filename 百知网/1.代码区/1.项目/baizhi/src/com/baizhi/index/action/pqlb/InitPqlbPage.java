@@ -36,6 +36,16 @@ public class InitPqlbPage extends ActionSupport {
 	public void setReturnMap(Map<String, Object> returnMap) {
 		this.returnMap = returnMap;
 	}
+	
+	private Integer myself;
+	
+	public Integer getMyself() {
+		return myself;
+	}
+
+	public void setMyself(Integer myself) {
+		this.myself = myself;
+	}
 
 	@Override
 	public String execute() throws Exception {

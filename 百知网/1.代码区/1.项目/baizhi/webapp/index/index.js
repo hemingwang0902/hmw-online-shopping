@@ -355,7 +355,7 @@ function getAttentionBrandList(userId){
 				var url = path.brand.detail+BRAND_ID;
 				
 				content += '<div class="column_contentgxq" style="border:0; margin-bottom:0;">';
-				content += '	<div class="colun_c_pptu"><a href="'+url+'"><img src="'+IMAGE_PATH+'" width="60" height="53"/></a>';
+				content += '	<div class="colun_c_pptu"><a href="'+url+'"><img src="'+IMAGE_PATH+'" width="60" height="53" onerror=\"load_brand_image_60_53(this)\"/></a>';
 				content += '</div>';
 				content += '<div class=" colun_c_ppwz">';
 				content += '	<div class="colun_c_xnr"><a href="'+url+'">'+NAME+'</a></div>';

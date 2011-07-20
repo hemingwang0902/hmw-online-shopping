@@ -29,10 +29,23 @@ public class GetPqlbList  extends ActionSupport {
 		this.pqlbService = pqlbService;
 	}
 	
+	private Integer myself;
+	
+	public Integer getMyself() {
+		return myself;
+	}
+
+	public void setMyself(Integer myself) {
+		this.myself = myself;
+	}
+	
 	@Override
 	public String execute() throws Exception {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("USER_ID", this.getSessionUserId());
+		if(myself!=null&&myself==1){
+			params.put("myself", myself);
+		}
 		Map<String, Object> returnMap = pqlbService.getPqlbList(params, this.getNowPage(), this.getOnePageCount());
 		if (returnMap != null && returnMap.size() != 0) {
 			this.setResult(returnMap);

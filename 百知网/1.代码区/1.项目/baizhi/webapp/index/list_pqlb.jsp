@@ -16,6 +16,7 @@
       <div class="subMenu"><input name="" type="button" class="bot_tjht"  value="" />
       </div>
       <div class="line_1"></div>
+      <input type="hidden" id="myself" name="myself" value="${myself }" />
       <input type="hidden" id="nowPage" name="nowPage" value="1" />
       <input type="hidden" id="onePageCount" name="onePageCount" value="10" />
       <div id="list_pqlb">

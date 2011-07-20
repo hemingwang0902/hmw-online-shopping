@@ -127,10 +127,10 @@
               	<s:iterator value="%{wasAttentionUserList}">
               		<a href='${basePath }/index/initHyym.go?userId=<s:property value="USER_ID"/>' class="tooltips">
             		<s:if test="IMAGE_PATH==null or IMAGE_PATH==''">
-            			<img src="../images/main/hy_1.jpg" width="25" height="25" alt="<s:property value="NAME"/>" />
+            			<img src="${basePath }/<s:property value="IMAGE_PATH"/>" width="25" height="25" alt="<s:property value="NAME"/>" onerror="load_person_image_25_25(this)" />
             		</s:if>
             		<s:else>
-            			<img src='<s:property value="IMAGE_PATH"/>' width="25" height="25" alt="<s:property value="NAME"/>" />
+            			<img src='${basePath }/<s:property value="IMAGE_PATH"/>' width="25" height="25" alt="<s:property value="NAME"/>" onerror="load_person_image_25_25(this)" />
             		</s:else>
             			<span><s:property value="NAME"/></span>
             		</a>
@@ -145,10 +145,10 @@
               	<s:iterator value="%{attentionUserList}">
               		<a href='${basePath }/index/initHyym.go?userId=<s:property value="USER_ID"/>' class="tooltips">
             		<s:if test="IMAGE_PATH==null or IMAGE_PATH==''">
-            			<img src="../images/main/hy_1.jpg" width="25" height="25" alt="<s:property value="NAME"/>" />
+            			<img src="${basePath }/<s:property value="IMAGE_PATH"/>" width="25" height="25" alt="<s:property value="NAME"/>" onerror="load_person_image_25_25(this)" />
             		</s:if>
             		<s:else>
-            			<img src='<s:property value="IMAGE_PATH"/>' width="25" height="25" alt="<s:property value="NAME"/>" />
+            			<img src="${basePath }/<s:property value="IMAGE_PATH"/>" width="25" height="25" alt="<s:property value="NAME"/>" onerror="load_person_image_25_25(this)" />
             		</s:else>
             			<span><s:property value="NAME"/></span>
             		</a>

@@ -82,7 +82,7 @@ public class SaveUserBrand extends UserBrandForm{
 		//如果用户品牌信息表ID为""，则为新增用户品牌信息表，否则更新用户品牌信息表
 		if(StringUtils.isNotEmpty(this.getBRAND_ID())){
 			
-			element = userBrandService.getUserBrandEleById("BRAND_ID");
+			element = userBrandService.getUserBrandEleById(this.getBRAND_ID());
 			//如果图片修改，则上传
 			boolean upload_success=true;
 			//获取真实图片路径
@@ -238,11 +238,13 @@ public class SaveUserBrand extends UserBrandForm{
 		
 		String realpath=ServletActionContext.getServletContext().getRealPath("")+fileUploadUtils.getFileName();
 		
-		String path_102_102=ServletActionContext.getServletContext().getRealPath("")+uploadFilePath.getBrand_path()+"/"+this.getSessionUserId()+"/"+curmillis+"_102_102"+suffix;
+		String path_100_100=ServletActionContext.getServletContext().getRealPath("")+uploadFilePath.getBrand_path()+"/"+this.getSessionUserId()+"/"+curmillis+"_100_100"+suffix;
 		String path_74_74=ServletActionContext.getServletContext().getRealPath("")+uploadFilePath.getBrand_path()+"/"+this.getSessionUserId()+"/"+curmillis+"_74_74"+suffix;
+		String path_60_53=ServletActionContext.getServletContext().getRealPath("")+uploadFilePath.getBrand_path()+"/"+this.getSessionUserId()+"/"+curmillis+"_60_53"+suffix;
 		
-		imageUtils.scaledImage(realpath, 102, 102, path_102_102, suffix.substring(1));
+		imageUtils.scaledImage(realpath, 100, 100, path_100_100, suffix.substring(1));
 		imageUtils.scaledImage(realpath, 74, 74, path_74_74, suffix.substring(1));
+		imageUtils.scaledImage(realpath, 60, 53, path_60_53, suffix.substring(1));
 		return true;
 	}
 	
@@ -263,11 +265,15 @@ public class SaveUserBrand extends UserBrandForm{
 			if(file.exists()){
 				file.delete();
 			}
-			file=new File(ServletActionContext.getServletContext().getRealPath("/")+uploadFilePath.getBrand_path()+"/"+this.getSessionUserId()+"/"+imagename+"_102_102"+imagesuf);
+			file=new File(ServletActionContext.getServletContext().getRealPath("/")+uploadFilePath.getBrand_path()+"/"+this.getSessionUserId()+"/"+imagename+"_100_100"+imagesuf);
 			if(file.exists()){
 				file.delete();
 			}
 			file=new File(ServletActionContext.getServletContext().getRealPath("/")+uploadFilePath.getBrand_path()+"/"+this.getSessionUserId()+"/"+imagename+"_74_74"+imagesuf);
+			if(file.exists()){
+				file.delete();
+			}
+			file=new File(ServletActionContext.getServletContext().getRealPath("/")+uploadFilePath.getBrand_path()+"/"+this.getSessionUserId()+"/"+imagename+"_60_53"+imagesuf);
 			if(file.exists()){
 				file.delete();
 			}
