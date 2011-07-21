@@ -3,5 +3,5 @@
 <div class="r_column">
 	<div class="column">你可能感兴趣的人</div>
 	<div id="mayInterestedUserList"></div>
-	<div class="more"><a href="../hylb/initHylbPage.go">更多 &gt;&gt;</a></div>
+	<div class="more"><a href="${basePath }/hylb/initHylbPage.go">更多 &gt;&gt;</a></div>
 </div>

@@ -14,6 +14,6 @@
 				</li>
 			</ul>
 		</div>
-		<div class="coulumn_c_right"><img src="../images/main/youjian.png" /></div>	
+		<div class="coulumn_c_right"><img src="${basePath}/images/main/youjian.png" /></div>	
 	</div>
 </div>

@@ -4,8 +4,8 @@
 <html>
 <head>
 	<%@include file="../common/jsCss.jsp" %>
-	<script type="text/javascript" src="index.js"></script>
-	<script type="text/javascript" src="home.js"></script>
+	<script type="text/javascript" src="${basePath}/index/index.js"></script>
+	<script type="text/javascript" src="${basePath}/index/home.js"></script>
 	<style type="text/css">
 	a.checked{
 		background-color: #888888;
@@ -34,7 +34,7 @@
     	<%@include file="../common/inviteFriends.jsp" %>
     	<%@include file="../common/interestUsers.jsp" %>
     	<%@include file="../common/attentionBrands.jsp" %>
-        <div class="left_b_tp"><img src="../images/main/tupian.png" /></div>
+        <div class="left_b_tp"><img src="${basePath}/images/main/tupian.png" /></div>
     </div>
 	<div class="clear"></div>
 </div>

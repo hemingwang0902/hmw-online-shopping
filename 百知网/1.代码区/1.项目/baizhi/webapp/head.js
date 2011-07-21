@@ -1,7 +1,7 @@
 var userprivate_count=-1;
 //获取未读私信息数量
 function getUserPrivateCount(){
-	$.post("../userprivate/getUserPrivateCount.go",{},function(result){
+	$.post($("#basePath").val() + "/userprivate/getUserPrivateCount.go",{},function(result){
 		if(result==null||result==''){
 			return;
 		}
@@ -20,7 +20,7 @@ function getUserPrivateCount(){
 var useruserdynamic_count=-1;
 //获取未读通知数量
 function getUserDynamicCount(){
-	$.post("../userdynamic/getUserDynamicCount.go",{IS_OPEN: 0},function(result){
+	$.post($("#basePath").val() + "/userdynamic/getUserDynamicCount.go",{IS_OPEN: 0},function(result){
 		if(result==null||result==''){
 			return;
 		}
