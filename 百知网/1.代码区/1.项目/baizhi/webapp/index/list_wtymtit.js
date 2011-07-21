@@ -282,7 +282,7 @@ function addAnswer(){
 		return false;
 	}
 	
-	$("#error_2").text("&nbsp;");
+	$("#error_2").text(" ");
 	$.post("saveProblemAnswer.go",{
 		problemId: $("#problemId").val(),
 		CONTENT: ANSWER_CONTENT
