@@ -51,7 +51,7 @@ public class ProblemAnswerDao extends DaoSupport{
 		String idValue = "";
 		try {
 			dom4jSession.beginTransaction();
-			dom4jSession.save(element);
+			dom4jSession.saveOrUpdate(element);
 			idValue = element.elementText("ANSWER_ID");
 			
 			String sql = "select pa.USER_ID as USER_ID from t_problem_attention pa where pa.PROBLEM_ID=?";

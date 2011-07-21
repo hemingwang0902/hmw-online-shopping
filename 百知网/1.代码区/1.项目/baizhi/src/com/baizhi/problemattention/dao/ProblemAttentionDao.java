@@ -51,7 +51,7 @@ public class ProblemAttentionDao extends DaoSupport{
 		String idValue = "";
 		try {
 			dom4jSession.beginTransaction();
-			dom4jSession.save(element);
+			dom4jSession.saveOrUpdate(element);
 			idValue = element.elementText("ATTENTION_ID");
 			
 			String sql = "select b.USER_ID as USER_ID FROM t_user_brand b where b.BRAND_ID in (select pa.TALK_ID from t_problem_talk pa where pa.PROBLEM_ID=? and pa.TALK_TYPE=?)";

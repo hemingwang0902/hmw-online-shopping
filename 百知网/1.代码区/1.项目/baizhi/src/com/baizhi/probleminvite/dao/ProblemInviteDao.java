@@ -49,7 +49,7 @@ public class ProblemInviteDao extends DaoSupport{
 		String idValue = "";
 		try {
 			dom4jSession.beginTransaction();
-			dom4jSession.save(element);
+			dom4jSession.saveOrUpdate(element);
 			idValue = element.elementText("INVITE_ID");
 			
 			int WAS_USER_ID = NumberUtils.toInt(element.elementText("WAS_USER_ID"));
