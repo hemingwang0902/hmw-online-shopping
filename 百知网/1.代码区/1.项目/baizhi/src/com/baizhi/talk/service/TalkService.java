@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 import org.dom4j.Element;
 import com.baizhi.commons.ServiceSupport;
+import com.baizhi.index.dao.WtymtitDao;
 import com.baizhi.talk.dao.TalkDao;
 /**
  * 
@@ -19,10 +20,11 @@ public class TalkService extends ServiceSupport{
 	
 	private static final long serialVersionUID = 2573394938773844538L;
 	
+	private WtymtitDao wtymtitDao;
 	private TalkDao talkDao;
 	
-	public TalkDao getTalkDao() {
-		return talkDao;
+	public void setWtymtitDao(WtymtitDao wtymtitDao) {
+		this.wtymtitDao = wtymtitDao;
 	}
 
 	public void setTalkDao(TalkDao talkDao) {
@@ -36,7 +38,14 @@ public class TalkService extends ServiceSupport{
 	 * @return 返回主键ID,失败返回""
 	 */
 	public String saveOrUpdateTalk(Element element) {
-		return talkDao.saveOrUpdateTalk(element);
+		String talkId = null;
+		Map<String, Object> talk = wtymtitDao.getTalkByContent(element.elementTextTrim("CONTENT"));
+		if(talk == null){ //如果该话题不存在，则新增
+			talkId = talkDao.saveOrUpdateTalk(element);
+		}else{
+			talkId = "" + talk.get("TALK_ID");
+		}
+		return talkId;
 	}
 	
 	/**

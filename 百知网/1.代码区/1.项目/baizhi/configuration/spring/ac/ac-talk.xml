@@ -4,8 +4,7 @@
 	<bean id="talkDao" class="com.baizhi.talk.dao.TalkDao" parent="daoSupport"></bean>
 	
 	<bean id="talkService" class="com.baizhi.talk.service.TalkService" parent="serviceSupport">
-		<property name="talkDao">
-			<ref local="talkDao" />
-		</property>
+		<property name="talkDao" ref="talkDao" />
+		<property name="wtymtitDao" ref="wtymtitDao" />
 	</bean>
 </beans>
