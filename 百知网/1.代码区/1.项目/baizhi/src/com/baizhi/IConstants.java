@@ -13,8 +13,15 @@ public interface IConstants {
 
 	int DEFAULT_PAGE_SIZE = 10;
 
+	//Session的key
+	String SESSION_USERINFO="userinfo";
+	String SESSION_USER_ID="USER_ID";
+	String SESSION_USER_ID_ENCODE="USER_ID_ENCODE";
 	String SESSION_CHANGE_TYPE="CHANGE_TYPE";
 	String SESSION_CITY = "CITY";
+	
+	/**cookie 的名称*/
+	String COOKIE_REMEBER_ME  = "BAIZHI-LOGIN-REMEBERME";
 	
 	/**回复投票类型：赞成*/
 	String ANSWER_VOTE_AGREE = "Agree";
@@ -56,6 +63,13 @@ public interface IConstants {
 	/**通知类型：我关注的品牌下的问题有了新答案*/
 	int NOTICE_TYPE_NEW_ANSWER_BRAND = 8;
 	
+	/**切换城市/省份的类型：省份*/
 	int CHANGE_TYPE_PROVINCE=1;
+	/**切换城市/省份的类型：城市*/
 	int CHANGE_TYPE_CITY=2;
+	
+	/**用户类型：普通会员*/
+	int USER_TYPE_MEMBER = 1;
+	/**用户类型：系统管理员*/
+	int USER_TYPE_ADMIN = 3;
 }

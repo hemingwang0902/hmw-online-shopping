@@ -2,8 +2,9 @@ package com.baizhi.commons.filter;
 
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -14,79 +15,80 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang.math.NumberUtils;
+
+import com.baizhi.IConstants;
+
 /**
  * 类名：SessionFilter.java<br>
  * 描述：Session过滤器<br>
  * 创建者：江红<br>
  * 创建日期：2010-9-19<br>
  * 版本：<br>
- * 修改者：<br>
- * 修改日期：<br>
+ * 修改者：       何明旺 <br>
+ * 修改日期：  2011-07-21 <br>
  */
 public class SessionFilter implements Filter,Serializable {
 	
 	private static final long serialVersionUID = -6581639359476909375L;
+	// 不需要进行过滤的 servlet
+	private static Set<String> excepServlets = new HashSet<String>();
 	
-	private static Map<String, Boolean> map=null;
-	
-	/**
-	 * 屏蔽过滤页面
-	 * @return
-	 */
-	private Map<String, Boolean> getMap(HttpServletRequest request){
-		if(map==null){
-			map=new HashMap<String, Boolean>();
-		}
-		map.put(request.getContextPath()+"/forget.jsp", true);
-		map.put(request.getContextPath()+"/forget.go", true);
-		map.put(request.getContextPath()+"/forgetPassword.go", true);
-		map.put(request.getContextPath()+"/password.go", true);
-		map.put(request.getContextPath()+"/isEmail.go", true);
-		map.put(request.getContextPath()+"/forgeterror.jsp", true);
-		map.put(request.getContextPath()+"/regiest.jsp", true);
-		map.put(request.getContextPath()+"/regiest.go", true);
-		map.put(request.getContextPath()+"/user/checkEmail.go", true);
-		
-		return map;
-	}
-
-	public void init(FilterConfig arg0) throws ServletException {
+	public void init(FilterConfig cfg) throws ServletException {
+		excepServlets.add("/login.jsp");
+		excepServlets.add("/login.go");
+		excepServlets.add("/blank.jsp");
+		excepServlets.add("/forget.jsp");
+		excepServlets.add("/forget.go");
+		excepServlets.add("/forgetPassword.go");
+		excepServlets.add("/password.go");
+		excepServlets.add("/isEmail.go");
+		excepServlets.add("/forgeterror.jsp");
+		excepServlets.add("/regiest.jsp");
+		excepServlets.add("/regiest.go");
+		excepServlets.add("/user/checkEmail.go");
 	}
 
 	@SuppressWarnings("unchecked")
 	public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
+		/*
+		 * 请求 http://127.0.0.1:8080/baizhi/home.jsp?&a=1&b=2 时
+		 * request.getRequestURL()： http://127.0.0.1:8080/baizhi/home.jsp
+		 * request.getContextPath()： /baizhi
+		 * request.getServletPath()：/home.jsp
+		 * request.getRequestURI()：  /baizhi/home.jsp
+		 * request.getQueryString()：a=1&b=2
+		 */
 		HttpServletRequest request = (HttpServletRequest) req;
 		HttpServletResponse response = (HttpServletResponse) res;
 		
-		//屏蔽过滤页面
-		if(map==null){
-			this.getMap(request);
-		}
-		
-		Map<String, Object> userinfo = (Map<String, Object>) request.getSession().getAttribute("userinfo");
-		String requestURI = request.getRequestURI();
+		Map<String, Object> userinfo = (Map<String, Object>) request.getSession().getAttribute(IConstants.SESSION_USERINFO);
+		String contextPath = request.getContextPath();
+		String servletPath = request.getServletPath();
+	
 		
 		//如果Session为空，则返回到主页面
-		if(userinfo!=null&&userinfo.get("USER_ID")!=null&&!String.valueOf(userinfo.get("USER_ID")).equals("")){
-			//判断只有系统用户才能访问系统管理主页
-			if(Integer.parseInt(String.valueOf(userinfo.get("USER_TYPE")))==3&&requestURI.equals(request.getContextPath()+"/index.jsp")){
-				chain.doFilter(request, response);
-			}else if(!requestURI.equals(request.getContextPath()+"/index.jsp")){
-				chain.doFilter(request, response);
+		if(userinfo !=null && userinfo.get("USER_ID") != null && StringUtils.isNotBlank("" + userinfo.get("USER_ID"))){
+			//请求后台管理首页
+			if("/index.jsp".equals(servletPath)){
+				//用户类型为“管理员”
+				if(NumberUtils.toInt("" + userinfo.get("USER_TYPE")) == IConstants.USER_TYPE_ADMIN){
+					chain.doFilter(request, response);
+				}else{
+					// 如果是普通会员，则将其重定向至 /index/home.jsp
+					response.sendRedirect(contextPath + "/index/home.jsp");
+				}
 			}else{
-				response.sendRedirect(request.getContextPath()+"/index/home.jsp");
 				chain.doFilter(request, response);
 			}
-			
-		}else if(requestURI.equals(request.getContextPath()+"/login.jsp")||requestURI.equals(request.getContextPath()+"/login.go")){
-			chain.doFilter(request, response);
-		}else if(requestURI.equals(request.getContextPath()+"/blank.jsp")){
-			chain.doFilter(request, response);
-		}else if(map.containsKey(requestURI)){
-			chain.doFilter(request, response);
 		}else{
-			response.sendRedirect(request.getContextPath()+"/blank.jsp");
-			chain.doFilter(request, response);
+			//请求的 servlet 为不需要过滤的servlet
+			if(excepServlets.contains(servletPath)){
+				chain.doFilter(request, response);
+			}else{
+				response.sendRedirect(contextPath + "/login.go?redirect=" + (servletPath + "?" + StringUtils.defaultString(request.getQueryString())));
+			}
 		}
 	}
 
