@@ -42,6 +42,13 @@ public class SaveProblem extends ProblemForm{
 	
 	@Override
 	public String execute() throws Exception {
+		if(getRELEVANT_DETAILS() == null){
+			setRELEVANT_DETAILS(""); //相关细节
+		}
+		if(getIS_ANONYMITY() == null){
+			setIS_ANONYMITY("0");	//是否匿名
+		}
+		
 		Element element = null;
 		String keyid="";
 		//如果问题信息表ID为""，则为新增问题信息表，否则更新问题信息表

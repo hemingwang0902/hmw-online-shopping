@@ -3,6 +3,7 @@ package com.baizhi.index.service;
 import java.util.Map;
 import com.baizhi.commons.ServiceSupport;
 import com.baizhi.index.dao.HtlbDao;
+import com.baizhi.index.dao.HyymDao;
 
 /**
  * 类名： HtService.java<br>
@@ -18,15 +19,16 @@ public class HtlbService extends ServiceSupport{
 	private static final long serialVersionUID = -4263447600519828874L;
 	
 	private HtlbDao htlbDao;
-
-	public HtlbDao getHtlbDao() {
-		return htlbDao;
-	}
+	private HyymDao hyymDao;
 
 	public void setHtlbDao(HtlbDao htlbDao) {
 		this.htlbDao = htlbDao;
 	}
 	
+	public void setHyymDao(HyymDao hyymDao) {
+		this.hyymDao = hyymDao;
+	}
+
 	/**
 	 * 获取热点话题及最新话题
 	 * @param nowPage 当前页
@@ -46,5 +48,40 @@ public class HtlbService extends ServiceSupport{
 	 */
 	public Map<String,Object> getHtlbList(Map<String, Object> params,int nowPage,int onePageCount){
 		return htlbDao.getHtlbList(params, nowPage, onePageCount);
+	}
+	
+	/**
+	 * 根据用户ID查询关注的话题列表
+	 * @param userId 用户ID
+	 * @param loginUserId 当前登录的用户ID
+	 * @param nowPage 当前页
+	 * @param onePageCount 每页显示多少条
+	 * @return
+	 * @author 何明旺
+	 */
+	public Map<String,Object> GetTalkListByUserId(int userId, int loginUserId, int nowPage, int onePageCount){
+		return hyymDao.getAttentionTalkList(userId, loginUserId, nowPage, onePageCount);
+	}
+	
+	/**
+	 * 查询最新话题列表(按照 createTime 倒序排列)
+	 * @param nowPage
+	 * @param onePageCount
+	 * @return
+	 * @author 何明旺
+	 */
+	public Map<String,Object> getLastestTalkList(int nowPage,int onePageCount){
+		return htlbDao.getLastestTalkList(nowPage, onePageCount);
+	}
+	
+	/**
+	 * 查询最热话题列表(按照 attentionCount 倒序排列)
+	 * @param nowPage
+	 * @param onePageCount
+	 * @return
+	 * @author 何明旺
+	 */
+	public Map<String,Object> getHottestTalkList(int nowPage,int onePageCount){
+		return htlbDao.getHottestTalkList(nowPage, onePageCount);
 	}
 }

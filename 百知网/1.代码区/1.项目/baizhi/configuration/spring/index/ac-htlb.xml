@@ -4,8 +4,7 @@
 	<bean id="htlbDao" class="com.baizhi.index.dao.HtlbDao" parent="daoSupport"></bean>
 	
 	<bean id="htlbService" class="com.baizhi.index.service.HtlbService" parent="serviceSupport">
-		<property name="htlbDao">
-			<ref local="htlbDao" />
-		</property>
+		<property name="htlbDao" ref="htlbDao" />
+		<property name="hyymDao" ref="hyymDao" />
 	</bean>
 </beans>

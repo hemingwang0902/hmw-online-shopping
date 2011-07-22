@@ -239,7 +239,7 @@ public class HomeDao extends DaoSupport{
 		StringBuffer sql = new StringBuffer()		
 		.append("SELECT ").append(ALL_USER_BASIC_FIELDS)
 		.append(" FROM T_USER_ATTENTION UA, T_USER_BASIC UB")
-		.append(" WHERE UA.USER_ID=UB.USER_ID")
+		.append(" WHERE UA.WAS_USERID=UB.USER_ID")
 		.append(" AND UA.USER_ID=?");
 		
 		Object[] params = new Object[]{userId};

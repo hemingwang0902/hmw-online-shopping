@@ -12,5 +12,15 @@
 		<action name="initHtlbPage" class="com.baizhi.index.action.htlb.InitHtlbPage">
 			<result name="success" >list_htlb.jsp</result>
 		</action>
+		<!-- 根据UserId查询他关注的话题列表(关注话题 ->更多) -->
+		<action name="getTalkListByUserId" class="com.baizhi.index.action.htlb.GetTalkListByUserId">
+			<result name="jsonsuccess" type="json">
+		      <param name="root">result</param>
+		    </result>
+		</action>
+		<action name="initWgzdht" class="com.baizhi.index.action.htlb.InitWgzdht">
+			<result name="success" >list_wgzdht.jsp</result>
+			<result name="error" >error_invalidParam.jsp</result>
+		</action>
 	</package>
 </struts>

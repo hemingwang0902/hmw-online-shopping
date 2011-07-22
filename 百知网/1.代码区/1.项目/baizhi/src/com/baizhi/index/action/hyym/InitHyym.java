@@ -75,7 +75,7 @@ public class InitHyym extends ActionSupport {
 		if(userBasic == null || userBasic.isEmpty())
 			return INPUT;
 		
-		attentionTalkList = (List<Map<String, Object>>) hyymService.getAttentionTalkList(userId, 1, 4).get(KEY_LIST);
+		attentionTalkList = (List<Map<String, Object>>) hyymService.getAttentionTalkList(userId, getSessionUserId(), 1, 4).get(KEY_LIST);
 		
 		attentionUserList = (List<Map<String, Object>>) hyymService.getAttentionUserList(userId, 1, 21).get(KEY_LIST);
 		if(attentionUserList != null){

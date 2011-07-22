@@ -62,8 +62,8 @@ public class HyymService extends ServiceSupport{
 	 * @param onePageCount
 	 * @return
 	 */
-	public Map<String,Object> getAttentionTalkList(int userId, int nowPage, int onePageCount){
-		return hyymDao.getAttentionTalkList(userId, nowPage, onePageCount);
+	public Map<String,Object> getAttentionTalkList(int userId, int loginUserId, int nowPage, int onePageCount){
+		return hyymDao.getAttentionTalkList(userId, loginUserId, nowPage, onePageCount);
 	}
 	
 	/**

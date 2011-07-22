@@ -19,6 +19,7 @@ import com.baizhi.commons.support.DateUtils;
  * 修改日期：<br>
  */
 public class HtlbDao extends DaoSupport{
+	private final String ALL_TALK_FIELDS = "t.TALK_ID as TALK_ID,t.CONTENT as CONTENT,t.USER_ID as USER_ID,t.INTRODUCTION as INTRODUCTION,t.IMAGE_PATH as IMAGE_PATH,t.CREATE_TIME as CREATE_TIME,t.MODIFY_TIME as MODIFY_TIME";
 	
 	/**
 	 * 获取热点话题及最新话题
@@ -102,4 +103,40 @@ public class HtlbDao extends DaoSupport{
 		}
 		return returnMap;
 	}
+	
+	/**
+	 * 查询最新话题列表(按照 createTime 倒序排列)
+	 * @param nowPage
+	 * @param onePageCount
+	 * @return
+	 */
+	public Map<String,Object> getLastestTalkList(int nowPage,int onePageCount){
+		//组织查询语句
+		StringBuffer sql = new StringBuffer()		
+		.append("SELECT ")
+		.append(ALL_TALK_FIELDS)
+		.append(" FROM T_TALK t")
+		.append(" ORDER BY t.CREATE_TIME DESC");
+		
+		return queryForListWithSQLQuery(sql.toString(), new Object[0], nowPage, onePageCount);
+	}
+	
+	/**
+	 * 查询最热话题列表(按照 attentionCount 倒序排列)
+	 * @param nowPage
+	 * @param onePageCount
+	 * @return
+	 */
+	public Map<String,Object> getHottestTalkList(int nowPage,int onePageCount){
+		//组织查询语句
+		StringBuffer sql = new StringBuffer()		
+		.append("SELECT ")
+		.append(ALL_TALK_FIELDS)
+		.append(", (select count(uat.ATTENTIONTALK_ID) from T_USER_ATTENTIONTALK uat where uat.TALK_ID=t.TALK_ID) as ATTENTION_COUNT")
+		.append(" FROM T_TALK t")
+		.append(" ORDER BY ATTENTION_COUNT DESC");
+		
+		return queryForListWithSQLQuery(sql.toString(), new Object[0], nowPage, onePageCount);
+	}
+	
 }

@@ -82,15 +82,16 @@ public class HyymDao extends DaoSupport{
 	 * @param onePageCount
 	 * @return
 	 */
-	public Map<String,Object> getAttentionTalkList(int userId, int nowPage, int onePageCount){
+	public Map<String,Object> getAttentionTalkList(int userId, int loginUserId, int nowPage, int onePageCount){
 		//组织查询语句
 		StringBuffer sql = new StringBuffer()		
-		.append("SELECT A.TALK_ID AS TALK_ID,A.CONTENT AS CONTENT,A.USER_ID AS USER_ID,A.CREATE_TIME AS CREATE_TIME,A.MODIFY_TIME AS MODIFY_TIME")
+		.append("SELECT A.TALK_ID AS TALK_ID,A.CONTENT AS CONTENT,A.USER_ID AS USER_ID,a.INTRODUCTION as INTRODUCTION,a.IMAGE_PATH as IMAGE_PATH,A.CREATE_TIME AS CREATE_TIME,A.MODIFY_TIME AS MODIFY_TIME")
+		.append(",(select count(uat.ATTENTIONTALK_ID) from T_USER_ATTENTIONTALK uat where uat.TALK_ID=A.TALK_ID and USER_ID=?) as ATTENTION")
 		.append(" FROM T_TALK A WHERE A.TALK_ID IN(")
 		.append(" SELECT TALK_ID FROM T_USER_ATTENTIONTALK UAT WHERE UAT.USER_ID=?")
 		.append(") ORDER BY a.CREATE_TIME DESC");
 		
-		return queryForListWithSQLQuery(sql.toString(), new Object[]{userId}, nowPage, onePageCount);
+		return queryForListWithSQLQuery(sql.toString(), new Object[]{loginUserId, userId}, nowPage, onePageCount);
 	}
 	
 	/**
