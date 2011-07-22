@@ -169,6 +169,10 @@ public class WtymtitService  extends ServiceSupport{
 	 * @return
 	 */
 	public String addAnswer(String CONTENT, int problemId, int userId){
+		Element problem = problemDao.getProblemEleById(""+problemId);
+		if(problem == null)
+			return "0";
+		
 		Element element = new DefaultElement("T_PROBLEM_ANSWER");
 		Elements.setElementValue(element, "PROBLEM_ID", problemId);// 问题ID
 		Elements.setElementValue(element, "CONTENT", CONTENT);// 内容
@@ -180,7 +184,14 @@ public class WtymtitService  extends ServiceSupport{
 		Elements.setElementValue(element, "CREATE_TIME", DateUtils.getCurrentTime(DateUtils.SHOW_DATE_FORMAT));// 创建时间
 		Elements.setElementValue(element, "MODIFY_TIME", DateUtils.getCurrentTime(DateUtils.SHOW_DATE_FORMAT));// 修改时间
 		//如果保存成功，返回主键
-		return problemAnswerDao.saveOrUpdateProblemAnswer(element);
+		String keyId = problemAnswerDao.saveOrUpdateProblemAnswer(element);
+		if(StringUtils.isNotBlank(keyId)){
+			//回答数量加1
+			int ANSWER_COUNT = NumberUtils.toInt(problem.elementTextTrim("ANSWER_COUNT"))+1;
+			Elements.setElementValue(problem, "ANSWER_COUNT", ANSWER_COUNT);
+			problemDao.saveOrUpdateProblem(problem);
+		}
+		return keyId;
 	}
 	
 	/**

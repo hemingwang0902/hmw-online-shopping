@@ -3,6 +3,8 @@ package com.baizhi.index.action.wtymtit;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.commons.lang.StringUtils;
+
 import com.baizhi.commons.ActionSupport;
 import com.baizhi.index.service.WtymtitService;
 
@@ -46,7 +48,7 @@ public class SaveProblemAnswer  extends ActionSupport{
 	public String execute() throws Exception {
 		// 查询结果列表
 		Map<String, Object> returnMap = new HashMap<String, Object>();
-		returnMap.put("ANSWER_ID", wtymtitService.addAnswer(CONTENT, problemId, getSessionUserId()));
+		returnMap.put("ANSWER_ID", wtymtitService.addAnswer(StringUtils.defaultString(CONTENT), problemId, getSessionUserId()));
 		this.setResult(returnMap);
 		return JSONSUCCESS;
 	}

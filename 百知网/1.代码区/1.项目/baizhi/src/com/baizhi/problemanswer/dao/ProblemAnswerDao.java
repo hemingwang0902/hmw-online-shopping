@@ -3,6 +3,7 @@ package com.baizhi.problemanswer.dao;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.math.NumberUtils;
 import org.dom4j.Element;
 import org.hibernate.EntityMode;
@@ -46,6 +47,10 @@ public class ProblemAnswerDao extends DaoSupport{
 	public String saveOrUpdateProblemAnswer(Element element) {
 		//return this.saveOrUpdate(element, "ANSWER_ID");
 
+
+		//是否为修改
+		boolean isUpdate = StringUtils.isNotBlank(element.elementText("ANSWER_ID"));
+		
 		Session session = getSession();
 		Session dom4jSession = session.getSession(EntityMode.DOM4J);
 		String idValue = "";
@@ -53,6 +58,10 @@ public class ProblemAnswerDao extends DaoSupport{
 			dom4jSession.beginTransaction();
 			dom4jSession.saveOrUpdate(element);
 			idValue = element.elementText("ANSWER_ID");
+			if(isUpdate){ //如果是修改，而非新增，则保存后直接返回
+				dom4jSession.getTransaction().commit();
+				return idValue;
+			}
 			
 			String sql = "select pa.USER_ID as USER_ID from t_problem_attention pa where pa.PROBLEM_ID=?";
 			List<Map<String, Object>> resultList = setQueryParameters(session.createSQLQuery(sql).setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP), new Object[]{element.elementText("PROBLEM_ID")}).list();
@@ -84,9 +93,7 @@ public class ProblemAnswerDao extends DaoSupport{
 					}
 				}
 			}
-			
 			dom4jSession.getTransaction().commit();
-			
 		} catch (Exception e) {
 			dom4jSession.beginTransaction().rollback();
 			e.printStackTrace();
