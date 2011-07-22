@@ -2,6 +2,8 @@ package com.baizhi.index.action.ppym;
 
 import java.util.Map;
 
+import org.apache.commons.lang.math.NumberUtils;
+
 import com.baizhi.commons.ActionSupport;
 import com.baizhi.index.service.PpymService;
 
@@ -17,20 +19,23 @@ import com.baizhi.index.service.PpymService;
 public class GetProblemListByBrandId extends ActionSupport{
 	private static final long serialVersionUID = -7494711825638228013L;
 	private PpymService ppymService;
-	private int BRAND_ID;
+	private String BRAND_ID;
 
 	public void setPpymService(PpymService ppymService) {
 		this.ppymService = ppymService;
 	}
 
-	public void setBRAND_ID(int bRANDID) {
+	public void setBRAND_ID(String bRANDID) {
 		BRAND_ID = bRANDID;
 	}
 
 	@Override
 	public String execute() throws Exception {
-		Map<String, Object> jsonMap = ppymService.getProblemListByBrandId(BRAND_ID, getNowPage(), getOnePageCount());
-		setResult(jsonMap);
+		int brandId = NumberUtils.toInt(BRAND_ID);
+		if(brandId > 0){
+			Map<String, Object> jsonMap = ppymService.getProblemListByBrandId(brandId, getNowPage(), getOnePageCount());
+			setResult(jsonMap);
+		}
 		return JSONSUCCESS;
 	}
 

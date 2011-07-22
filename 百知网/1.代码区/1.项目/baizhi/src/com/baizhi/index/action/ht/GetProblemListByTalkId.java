@@ -2,6 +2,8 @@ package com.baizhi.index.action.ht;
 
 import java.util.Map;
 
+import org.apache.commons.lang.math.NumberUtils;
+
 import com.baizhi.commons.ActionSupport;
 import com.baizhi.index.service.HtymService;
 
@@ -17,20 +19,23 @@ import com.baizhi.index.service.HtymService;
 public class GetProblemListByTalkId extends ActionSupport{
 	private static final long serialVersionUID = -4184402561436174968L;
 	private HtymService htymService;
-	private int TALK_ID;
+	private String TALK_ID;
 
 	public void setHtymService(HtymService htymService) {
 		this.htymService = htymService;
 	}
 
-	public void setTALK_ID(int tALKID) {
+	public void setTALK_ID(String tALKID) {
 		TALK_ID = tALKID;
 	}
 
 	@Override
 	public String execute() throws Exception {
-		Map<String, Object> jsonMap = htymService.getProblemListByTalkId(TALK_ID, getNowPage(), getOnePageCount());
-		setResult(jsonMap);
+		int talkId = NumberUtils.toInt(TALK_ID);
+		if(talkId > 0){
+			Map<String, Object> jsonMap = htymService.getProblemListByTalkId(talkId, getNowPage(), getOnePageCount());
+			setResult(jsonMap);
+		}
 		return JSONSUCCESS;
 	}
 

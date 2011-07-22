@@ -17,27 +17,9 @@ import com.baizhi.index.service.SywtService;
 public class GetAllProblemList extends ActionSupport {
 	private static final long serialVersionUID = -4227623537848090423L;
 	private SywtService sywtService;
-	private int nowPage;
-	private int onePageCount;
 
 	public void setSywtService(SywtService sywtService) {
 		this.sywtService = sywtService;
-	}
-
-	public int getNowPage() {
-		return nowPage;
-	}
-
-	public void setNowPage(int nowPage) {
-		this.nowPage = nowPage;
-	}
-
-	public int getOnePageCount() {
-		return onePageCount;
-	}
-
-	public void setOnePageCount(int onePageCount) {
-		this.onePageCount = onePageCount;
 	}
 
 	@Override

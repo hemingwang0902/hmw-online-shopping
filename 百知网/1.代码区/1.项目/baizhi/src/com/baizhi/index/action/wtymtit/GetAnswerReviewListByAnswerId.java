@@ -3,6 +3,8 @@ package com.baizhi.index.action.wtymtit;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang.math.NumberUtils;
+
 import com.baizhi.commons.ActionSupport;
 import com.baizhi.index.service.WtymtitService;
 
@@ -18,24 +20,24 @@ import com.baizhi.index.service.WtymtitService;
 public class GetAnswerReviewListByAnswerId  extends ActionSupport{
 	private static final long serialVersionUID = 7065461361764035243L;
 	private WtymtitService wtymtitService;
-	private int ANSWER_ID;
-	private int reviewCount;
+	private String ANSWER_ID;
+	private String reviewCount;
 	private List<Map<String, Object>> answerReviewList;
 	
 	public void setWtymtitService(WtymtitService wtymtitService) {
 		this.wtymtitService = wtymtitService;
 	}
 
-	public void setReviewCount(int reviewCount) {
-		this.reviewCount = reviewCount;
-	}
-
-	public int getANSWER_ID() {
+	public String getANSWER_ID() {
 		return ANSWER_ID;
 	}
 
-	public void setANSWER_ID(int aNSWERID) {
+	public void setANSWER_ID(String aNSWERID) {
 		ANSWER_ID = aNSWERID;
+	}
+
+	public void setReviewCount(String reviewCount) {
+		this.reviewCount = reviewCount;
 	}
 
 	public List<Map<String, Object>> getAnswerReviewList() {
@@ -44,8 +46,10 @@ public class GetAnswerReviewListByAnswerId  extends ActionSupport{
 
 	@Override
 	public String execute() throws Exception {
-		if(reviewCount > 0){
-			answerReviewList = wtymtitService.getAnswerReviewListByAnswerId(ANSWER_ID);
+		int reCount = NumberUtils.toInt(reviewCount);
+		int answerId = NumberUtils.toInt(ANSWER_ID);
+		if(reCount > 0){
+			answerReviewList = wtymtitService.getAnswerReviewListByAnswerId(answerId);
 			if(answerReviewList != null && !answerReviewList.isEmpty()){
 				for (Map<String, Object> newmap : answerReviewList) {
 					newmap.put("CREATE_TIME", getTime(newmap, "CREATE_TIME"));

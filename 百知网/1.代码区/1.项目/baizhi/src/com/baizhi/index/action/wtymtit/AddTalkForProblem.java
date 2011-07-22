@@ -3,6 +3,9 @@ package com.baizhi.index.action.wtymtit;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang.math.NumberUtils;
+
 import com.baizhi.commons.ActionSupport;
 import com.baizhi.index.service.WtymtitService;
 
@@ -21,18 +24,18 @@ public class AddTalkForProblem  extends ActionSupport{
 
 	private WtymtitService wtymtitService;
 	
-	private int PROBLEM_ID;
+	private String PROBLEM_ID;
 	private String CONTENT;
 
 	public void setWtymtitService(WtymtitService wtymtitService) {
 		this.wtymtitService = wtymtitService;
 	}
 
-	public int getPROBLEM_ID() {
+	public String getPROBLEM_ID() {
 		return PROBLEM_ID;
 	}
 
-	public void setPROBLEM_ID(int pROBLEMID) {
+	public void setPROBLEM_ID(String pROBLEMID) {
 		PROBLEM_ID = pROBLEMID;
 	}
 
@@ -48,7 +51,10 @@ public class AddTalkForProblem  extends ActionSupport{
 	@Override
 	public String execute() throws Exception {
 		Map<String, Object> returnMap = new HashMap<String, Object>();
-		returnMap.put("TALK_ID", wtymtitService.addTalkForProblem(PROBLEM_ID, CONTENT, getSessionUserId()));
+		int problemId = NumberUtils.toInt(PROBLEM_ID);
+		if(problemId > 0){
+			returnMap.put("TALK_ID", wtymtitService.addTalkForProblem(problemId, StringUtils.trimToEmpty(CONTENT), getSessionUserId()));
+		}
 		setResult(returnMap);
 		return JSONSUCCESS;
 	}

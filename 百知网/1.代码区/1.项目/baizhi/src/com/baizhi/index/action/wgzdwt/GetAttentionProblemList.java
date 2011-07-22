@@ -17,27 +17,9 @@ import com.baizhi.index.service.WgzdwtService;
 public class GetAttentionProblemList extends ActionSupport {
 	private static final long serialVersionUID = -6640146567721850692L;
 	private WgzdwtService wgzdwtService;
-	private int nowPage;
-	private int onePageCount;
 
 	public void setWgzdwtService(WgzdwtService wgzdwtService) {
 		this.wgzdwtService = wgzdwtService;
-	}
-
-	public int getNowPage() {
-		return nowPage;
-	}
-
-	public void setNowPage(int nowPage) {
-		this.nowPage = nowPage;
-	}
-
-	public int getOnePageCount() {
-		return onePageCount;
-	}
-
-	public void setOnePageCount(int onePageCount) {
-		this.onePageCount = onePageCount;
 	}
 
 	@Override

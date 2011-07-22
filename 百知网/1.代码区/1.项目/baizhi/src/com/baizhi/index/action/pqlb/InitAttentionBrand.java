@@ -3,6 +3,8 @@ package com.baizhi.index.action.pqlb;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang.math.NumberUtils;
+
 import com.baizhi.commons.ActionSupport;
 import com.baizhi.index.service.PqlbService;
 
@@ -18,7 +20,7 @@ import com.baizhi.index.service.PqlbService;
 public class InitAttentionBrand  extends ActionSupport {
 	private static final long serialVersionUID = 5530351017892598037L;
 	private PqlbService pqlbService;//品牌列表业务类
-	private int USER_ID;
+	private String USER_ID;
 	private String USER_NAME;
 	private List<Map<String, Object>> hottestBrandList;
 	private List<Map<String, Object>> LastestBrandList;
@@ -26,12 +28,12 @@ public class InitAttentionBrand  extends ActionSupport {
 	public void setPqlbService(PqlbService pqlbService) {
 		this.pqlbService = pqlbService;
 	}
-	
-	public int getUSER_ID() {
+
+	public String getUSER_ID() {
 		return USER_ID;
 	}
 
-	public void setUSER_ID(int uSERID) {
+	public void setUSER_ID(String uSERID) {
 		USER_ID = uSERID;
 	}
 
@@ -50,7 +52,7 @@ public class InitAttentionBrand  extends ActionSupport {
 	@SuppressWarnings("unchecked")
 	@Override
 	public String execute() throws Exception {
-		USER_NAME = pqlbService.getUserNameByUserId(USER_ID);
+		USER_NAME = pqlbService.getUserNameByUserId(NumberUtils.toInt(USER_ID));
 		if(USER_NAME == null)
 			return INPUT;
 		

@@ -3,6 +3,8 @@ package com.baizhi.index.action.hyym;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang.math.NumberUtils;
+
 import com.baizhi.commons.ActionSupport;
 import com.baizhi.index.service.HyymService;
 
@@ -18,7 +20,7 @@ import com.baizhi.index.service.HyymService;
 public class InitHyym extends ActionSupport {
 	private static final long serialVersionUID = 4289411773333642991L;
 	private HyymService hyymService;
-	private int userId;
+	private String userId;
 	//会员基本信息
 	private Map<String, Object> userBasic;
 	//关注的话题列表
@@ -36,11 +38,11 @@ public class InitHyym extends ActionSupport {
 		this.hyymService = hyymService;
 	}
 
-	public int getUserId() {
+	public String getUserId() {
 		return userId;
 	}
 
-	public void setUserId(int userId) {
+	public void setUserId(String userId) {
 		this.userId = userId;
 	}
 
@@ -71,18 +73,20 @@ public class InitHyym extends ActionSupport {
 	@SuppressWarnings("unchecked")
 	@Override
 	public String execute() throws Exception {
-		userBasic = hyymService.getUserBasicByUserId(""+userId, getSessionUserId());
+		userBasic = hyymService.getUserBasicByUserId(userId, getSessionUserId());
 		if(userBasic == null || userBasic.isEmpty())
 			return INPUT;
 		
-		attentionTalkList = (List<Map<String, Object>>) hyymService.getAttentionTalkList(userId, getSessionUserId(), 1, 4).get(KEY_LIST);
+		int uid = NumberUtils.toInt(userId);
 		
-		attentionUserList = (List<Map<String, Object>>) hyymService.getAttentionUserList(userId, 1, 21).get(KEY_LIST);
+		attentionTalkList = (List<Map<String, Object>>) hyymService.getAttentionTalkList(uid, getSessionUserId(), 1, 4).get(KEY_LIST);
+		
+		attentionUserList = (List<Map<String, Object>>) hyymService.getAttentionUserList(uid, 1, 21).get(KEY_LIST);
 		if(attentionUserList != null){
 			attentionUserSize = attentionUserList.size();
 		}
 		
-		wasAttentionUserList = (List<Map<String, Object>>) hyymService.getWasAttentionUserList(userId, 1, 21).get(KEY_LIST);
+		wasAttentionUserList = (List<Map<String, Object>>) hyymService.getWasAttentionUserList(uid, 1, 21).get(KEY_LIST);
 		if(wasAttentionUserList != null){
 			wasAttentionUserSize = wasAttentionUserList.size();
 		}

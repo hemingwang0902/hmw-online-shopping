@@ -2,6 +2,8 @@ package com.baizhi.index.action.hyym;
 
 import java.util.Map;
 
+import org.apache.commons.lang.math.NumberUtils;
+
 import com.baizhi.commons.ActionSupport;
 import com.baizhi.index.service.HyymService;
 
@@ -18,27 +20,30 @@ public class GetAnsweredProblemList extends ActionSupport {
 	private static final long serialVersionUID = -8738299162596523063L;
 
 	private HyymService hyymService;
-	private int userId;
+	private String userId;
 	
 	public void setHyymService(HyymService hyymService) {
 		this.hyymService = hyymService;
 	}
 
-	public int getUserId() {
+	public String getUserId() {
 		return userId;
 	}
 
-	public void setUserId(int userId) {
+	public void setUserId(String userId) {
 		this.userId = userId;
 	}
 
 	@Override
 	public String execute() throws Exception {
-		// 查询结果列表
-		Map<String, Object> returnMap = hyymService.getAnsweredProblemList(userId, this.getNowPage(), this.getOnePageCount());
-		//判断是否存在查询记录
-		if (returnMap != null && returnMap.size() != 0) {
-			this.setResult(returnMap);
+		int uid = NumberUtils.toInt(userId);
+		if(uid > 0){
+			// 查询结果列表
+			Map<String, Object> returnMap = hyymService.getAnsweredProblemList(uid, this.getNowPage(), this.getOnePageCount());
+			//判断是否存在查询记录
+			if (returnMap != null && returnMap.size() != 0) {
+				this.setResult(returnMap);
+			}
 		}
 		return JSONSUCCESS;
 	}

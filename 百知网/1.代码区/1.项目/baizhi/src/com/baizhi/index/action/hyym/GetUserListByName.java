@@ -14,7 +14,7 @@ public class GetUserListByName extends ActionSupport {
 	private HyymService hyymService;
 	private String q;
 	private List<Map<String, Object>> userList;
-	private boolean ajax;
+	private String ajax;
 	
 	public void setHyymService(HyymService hyymService) {
 		this.hyymService = hyymService;
@@ -31,8 +31,8 @@ public class GetUserListByName extends ActionSupport {
 	public void setQ(String q) {
 		this.q = q;
 	}
-
-	public void setAjax(boolean ajax) {
+	
+	public void setAjax(String ajax) {
 		this.ajax = ajax;
 	}
 

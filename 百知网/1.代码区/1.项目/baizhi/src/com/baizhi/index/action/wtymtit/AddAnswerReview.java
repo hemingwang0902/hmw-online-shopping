@@ -3,6 +3,8 @@ package com.baizhi.index.action.wtymtit;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.commons.lang.math.NumberUtils;
+
 import com.baizhi.commons.ActionSupport;
 import com.baizhi.index.service.WtymtitService;
 
@@ -19,18 +21,18 @@ public class AddAnswerReview  extends ActionSupport{
 
 	private static final long serialVersionUID = -4032357682752530908L;
 	private WtymtitService wtymtitService;
-	private int ANSWER_ID;
+	private String ANSWER_ID;
 	private String CONTENT;
 	
 	public void setWtymtitService(WtymtitService wtymtitService) {
 		this.wtymtitService = wtymtitService;
 	}
 
-	public int getANSWER_ID() {
+	public String getANSWER_ID() {
 		return ANSWER_ID;
 	}
 
-	public void setANSWER_ID(int aNSWERID) {
+	public void setANSWER_ID(String aNSWERID) {
 		ANSWER_ID = aNSWERID;
 	}
 
@@ -45,7 +47,10 @@ public class AddAnswerReview  extends ActionSupport{
 	@Override
 	public String execute() throws Exception {
 		Map<String, Object> returnMap = new HashMap<String, Object>();
-		returnMap.put("REVIEW_ID", wtymtitService.addAnswerReview(ANSWER_ID, CONTENT, getSessionUserId()));
+		int answerId = NumberUtils.toInt(ANSWER_ID);
+		if(answerId > 0){
+			returnMap.put("REVIEW_ID", wtymtitService.addAnswerReview(answerId, CONTENT, getSessionUserId()));
+		}
 		setResult(returnMap);
 		return JSONSUCCESS;
 	}

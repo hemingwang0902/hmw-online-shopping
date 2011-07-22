@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.commons.lang.BooleanUtils;
+import org.apache.commons.lang.math.NumberUtils;
 import org.dom4j.Element;
 import org.dom4j.tree.DefaultElement;
 
@@ -25,11 +26,11 @@ public class AttentionUser extends ActionSupport {
 	private static final long serialVersionUID = 7879311708792543842L;
 	private UserAttentionService userAttentionService;//用户关注人信息表业务类
 	//被关注人的ID
-	private int WAS_USER_ID;
+	private String WAS_USER_ID;
 	//为true时，表示为取消关注
 	private String disAttention;
 
-	public void setWAS_USER_ID(int wASUSERID) {
+	public void setWAS_USER_ID(String wASUSERID) {
 		WAS_USER_ID = wASUSERID;
 	}
 
@@ -50,7 +51,7 @@ public class AttentionUser extends ActionSupport {
 		int USER_ID=this.getSessionUserId();
 		
 		//获取被光注用户实体
-		Element element = userAttentionService.getUserAttentionEleById(USER_ID, WAS_USER_ID);
+		Element element = userAttentionService.getUserAttentionEleById(USER_ID, NumberUtils.toInt(WAS_USER_ID));
 		if(BooleanUtils.toBoolean(disAttention)){ //取消关注
 			if(element!=null){
 				flag = userAttentionService.cancelUserAttention(element, null);

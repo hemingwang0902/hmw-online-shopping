@@ -1,5 +1,7 @@
 package com.baizhi.index.action.wtymtit;
 
+import org.apache.commons.lang.math.NumberUtils;
+
 import com.baizhi.commons.ActionSupport;
 import com.baizhi.index.service.WtymtitService;
 
@@ -17,18 +19,18 @@ public class AnswerVote  extends ActionSupport{
 
 	private WtymtitService wtymtitService;
 	
-	private int ANSWER_ID;
+	private String ANSWER_ID;
 	private String voteField;
 
 	public void setWtymtitService(WtymtitService wtymtitService) {
 		this.wtymtitService = wtymtitService;
 	}
 
-	public int getANSWER_ID() {
+	public String getANSWER_ID() {
 		return ANSWER_ID;
 	}
 
-	public void setANSWER_ID(int aNSWERID) {
+	public void setANSWER_ID(String aNSWERID) {
 		ANSWER_ID = aNSWERID;
 	}
 
@@ -42,7 +44,10 @@ public class AnswerVote  extends ActionSupport{
 
 	@Override
 	public String execute() throws Exception {
-		wtymtitService.answerVote(ANSWER_ID, getSessionUserId(), voteField);
+		int answerId = NumberUtils.toInt(ANSWER_ID);
+		if(answerId > 0){
+			wtymtitService.answerVote(answerId, getSessionUserId(), voteField);
+		}
 		return JSONSUCCESS;
 	}
 }

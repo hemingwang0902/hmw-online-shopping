@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.commons.lang.BooleanUtils;
+import org.apache.commons.lang.math.NumberUtils;
 import org.dom4j.Element;
 import org.dom4j.tree.DefaultElement;
 
@@ -26,16 +27,15 @@ public class AttentionTalk extends ActionSupport {
 	private static final long serialVersionUID = 2015784261932508599L;
 	private UserAttentiontalkService userAttentiontalkService;//用户关注人信息表业务类
 	//被关注话题的ID
-	private int TALK_ID;
+	private String TALK_ID;
 	//为true时，表示为取消关注
 	private String disAttention;
 
-	public void setUserAttentiontalkService(
-			UserAttentiontalkService userAttentiontalkService) {
+	public void setUserAttentiontalkService(UserAttentiontalkService userAttentiontalkService) {
 		this.userAttentiontalkService = userAttentiontalkService;
 	}
 
-	public void setTALK_ID(int tALKID) {
+	public void setTALK_ID(String tALKID) {
 		TALK_ID = tALKID;
 	}
 
@@ -51,7 +51,7 @@ public class AttentionTalk extends ActionSupport {
 		int USER_ID=this.getSessionUserId();
 		
 		//获取被光注用户实体
-		Element element = userAttentiontalkService.getUserAttentionEleById(USER_ID, TALK_ID);
+		Element element = userAttentiontalkService.getUserAttentionEleById(USER_ID, NumberUtils.toInt(TALK_ID));
 		if(BooleanUtils.toBoolean(disAttention)){ //取消关注
 			if(element!=null){
 				flag = userAttentiontalkService.deleteUserAttentiontalk(element.elementTextTrim("ATTENTIONTALK_ID"));

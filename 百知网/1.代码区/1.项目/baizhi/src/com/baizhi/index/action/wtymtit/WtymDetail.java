@@ -28,7 +28,7 @@ public class WtymDetail  extends ActionSupport{
 	private ProblemService problemService;
 	private HomeService homeService;
 	
-	private int problemId;
+	private String problemId;
 	//问题详细
 	private Map<String, Object> problem;
 	// 问题所属的话题
@@ -53,11 +53,11 @@ public class WtymDetail  extends ActionSupport{
 		this.homeService = homeService;
 	}
 
-	public int getProblemId() {
+	public String getProblemId() {
 		return problemId;
 	}
 
-	public void setProblemId(int problemId) {
+	public void setProblemId(String problemId) {
 		this.problemId = problemId;
 	}
 
@@ -84,20 +84,21 @@ public class WtymDetail  extends ActionSupport{
 	@SuppressWarnings("unchecked")
 	@Override
 	public String execute() throws Exception {
-		problem = problemService.getProblemMapById(problemId, getSessionUserId());
+		int problem_id = NumberUtils.toInt(problemId);
+		problem = problemService.getProblemMapById(problem_id, getSessionUserId());
 		if(problem == null || problem.isEmpty()){
 			return INPUT; //问题不存在
 		}
 		
-		talkList = wtymtitService.getTalkList(problemId);
+		talkList = wtymtitService.getTalkList(problem_id);
 		
-		talkUserList = wtymtitService.getTalkUserList(problemId);
+		talkUserList = wtymtitService.getTalkUserList(problem_id);
 		if(talkUserList != null){
 			talkUserCount = talkUserList.size();
 		}
 		
 		int nowPage=1, onePageCount=4;
-		Map<String, Object> resultMap = wtymtitService.getNearProblemList(problemId, getSessionUserId(), nowPage, onePageCount);
+		Map<String, Object> resultMap = wtymtitService.getNearProblemList(problem_id, getSessionUserId(), nowPage, onePageCount);
 		nearProblemList = (List<Map<String, Object>>) resultMap.get(KEY_LIST);
 		if(nearProblemList == null || nearProblemList.isEmpty()){
 			int province = 0, city=0;
@@ -112,7 +113,7 @@ public class WtymDetail  extends ActionSupport{
 		}
 
 		//更新浏览次数
-		int browseCount = wtymtitService.updateBrowseCount(problemId);
+		int browseCount = wtymtitService.updateBrowseCount(problem_id);
 		problem.put("BROWSE_COUNT", browseCount);
 		
 		return SUCCESS;

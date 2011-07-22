@@ -1,6 +1,7 @@
 package com.baizhi.index.action.pqlb;
 
 import org.apache.commons.lang.BooleanUtils;
+import org.apache.commons.lang.math.NumberUtils;
 
 import com.baizhi.commons.ActionSupport;
 import com.baizhi.index.service.PqlbService;
@@ -17,14 +18,14 @@ import com.baizhi.index.service.PqlbService;
 public class AttentionBrand  extends ActionSupport {
 	private static final long serialVersionUID = -6392040870159838265L;
 	private PqlbService pqlbService;//品牌列表业务类
-	private int BRAND_ID;
+	private String BRAND_ID;
 	private String disAttention;
 
 	public void setPqlbService(PqlbService pqlbService) {
 		this.pqlbService = pqlbService;
 	}
-	
-	public void setBRAND_ID(int bRANDID) {
+
+	public void setBRAND_ID(String bRANDID) {
 		BRAND_ID = bRANDID;
 	}
 
@@ -34,7 +35,10 @@ public class AttentionBrand  extends ActionSupport {
 
 	@Override
 	public String execute() throws Exception {
-		pqlbService.attentionBrand(getSessionUserId(), BRAND_ID, BooleanUtils.toBoolean(disAttention));
+		int brandId = NumberUtils.toInt(BRAND_ID);
+		if(brandId > 0){
+			pqlbService.attentionBrand(getSessionUserId(), brandId, BooleanUtils.toBoolean(disAttention));
+		}
 		return JSONSUCCESS;
 	}
 

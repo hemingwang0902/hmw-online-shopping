@@ -20,27 +20,9 @@ import com.baizhi.index.service.HomeService;
 public class GetHottestProblemList extends ActionSupport {
 	private static final long serialVersionUID = -6718283521893339785L;
 	private HomeService homeService;
-	private int nowPage;
-	private int onePageCount;
 
 	public void setHomeService(HomeService homeService) {
 		this.homeService = homeService;
-	}
-
-	public int getNowPage() {
-		return nowPage;
-	}
-
-	public void setNowPage(int nowPage) {
-		this.nowPage = nowPage;
-	}
-
-	public int getOnePageCount() {
-		return onePageCount;
-	}
-
-	public void setOnePageCount(int onePageCount) {
-		this.onePageCount = onePageCount;
 	}
 
 	@Override

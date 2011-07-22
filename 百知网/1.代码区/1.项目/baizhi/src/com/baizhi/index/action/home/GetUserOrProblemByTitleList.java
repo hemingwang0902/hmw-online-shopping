@@ -18,8 +18,6 @@ public class GetUserOrProblemByTitleList extends ActionSupport {
 	private static final long serialVersionUID = 1680897793903369039L;
 	private HomeService homeService;
 	private String q;
-	private int nowPage;
-	private int onePageCount;
 
 	public void setHomeService(HomeService homeService) {
 		this.homeService = homeService;
@@ -33,26 +31,10 @@ public class GetUserOrProblemByTitleList extends ActionSupport {
 		this.q = q;
 	}
 
-	public int getNowPage() {
-		return nowPage;
-	}
-
-	public void setNowPage(int nowPage) {
-		this.nowPage = nowPage;
-	}
-
-	public int getOnePageCount() {
-		return onePageCount;
-	}
-
-	public void setOnePageCount(int onePageCount) {
-		this.onePageCount = onePageCount;
-	}
-
 	@Override
 	public String execute() throws Exception {
 		// 查询结果列表
-		Map<String, Object> returnMap = homeService.getUserOrProblemByTitleList(q + "%", nowPage, onePageCount);
+		Map<String, Object> returnMap = homeService.getUserOrProblemByTitleList(q + "%", getNowPage(), getOnePageCount());
 		this.setResult(returnMap);
 		return JSONSUCCESS;
 	}

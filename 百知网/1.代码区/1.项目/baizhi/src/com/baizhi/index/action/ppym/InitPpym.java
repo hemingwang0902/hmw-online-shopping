@@ -3,6 +3,8 @@ package com.baizhi.index.action.ppym;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang.math.NumberUtils;
+
 import com.baizhi.commons.ActionSupport;
 import com.baizhi.index.service.PpymService;
 
@@ -19,7 +21,7 @@ public class InitPpym extends ActionSupport{
 
 	private static final long serialVersionUID = -6389710365724898495L;
 	private PpymService ppymService;
-	private int BRAND_ID;
+	private String BRAND_ID;
 	private Map<String, Object> brand;
 	private List<Map<String, Object>> wasAttentionUserList; 
 
@@ -27,7 +29,7 @@ public class InitPpym extends ActionSupport{
 		this.ppymService = ppymService;
 	}
 
-	public void setBRAND_ID(int bRANDID) {
+	public void setBRAND_ID(String bRANDID) {
 		BRAND_ID = bRANDID;
 	}
 
@@ -42,8 +44,11 @@ public class InitPpym extends ActionSupport{
 	@SuppressWarnings("unchecked")
 	@Override
 	public String execute() throws Exception {
-		brand = ppymService.getBrandById(BRAND_ID, getSessionUserId());
-		wasAttentionUserList = (List<Map<String, Object>>) ppymService.getWasAttentionUserListByBrandId(BRAND_ID, 1, 21).get(KEY_LIST);
+		int brandId = NumberUtils.toInt(BRAND_ID);
+		if(brandId > 0){
+			brand = ppymService.getBrandById(brandId, getSessionUserId());
+			wasAttentionUserList = (List<Map<String, Object>>) ppymService.getWasAttentionUserListByBrandId(brandId, 1, 21).get(KEY_LIST);
+		}
 		return SUCCESS;
 	}
 

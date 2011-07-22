@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang.math.NumberUtils;
 
 import com.baizhi.commons.ActionSupport;
 import com.baizhi.index.service.WtymtitService;
@@ -21,21 +22,21 @@ public class SaveProblemAnswer  extends ActionSupport{
 
 	private static final long serialVersionUID = -2206076413627129232L;
 	private WtymtitService wtymtitService;
-	private int problemId;
+	private String problemId;
 	private String CONTENT; 
 	
 	public void setWtymtitService(WtymtitService wtymtitService) {
 		this.wtymtitService = wtymtitService;
 	}
 	
-	public int getProblemId() {
+	public String getProblemId() {
 		return problemId;
 	}
 
-	public void setProblemId(int problemId) {
+	public void setProblemId(String problemId) {
 		this.problemId = problemId;
 	}
-	
+
 	public String getCONTENT() {
 		return CONTENT;
 	}
@@ -46,10 +47,13 @@ public class SaveProblemAnswer  extends ActionSupport{
 
 	@Override
 	public String execute() throws Exception {
-		// 查询结果列表
-		Map<String, Object> returnMap = new HashMap<String, Object>();
-		returnMap.put("ANSWER_ID", wtymtitService.addAnswer(StringUtils.defaultString(CONTENT), problemId, getSessionUserId()));
-		this.setResult(returnMap);
+		int problem_id = NumberUtils.toInt(problemId);
+		if(problem_id > 0){
+			// 查询结果列表
+			Map<String, Object> returnMap = new HashMap<String, Object>();
+			returnMap.put("ANSWER_ID", wtymtitService.addAnswer(StringUtils.trimToEmpty(CONTENT), problem_id, getSessionUserId()));
+			this.setResult(returnMap);
+		}
 		return JSONSUCCESS;
 	}
 

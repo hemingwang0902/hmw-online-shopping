@@ -1,5 +1,7 @@
 package com.baizhi.index.action.wtymtit;
 
+import org.apache.commons.lang.math.NumberUtils;
+
 import com.baizhi.commons.ActionSupport;
 import com.baizhi.index.service.WtymtitService;
 
@@ -16,22 +18,22 @@ public class AddProblemInvite  extends ActionSupport{
 	private static final long serialVersionUID = 1303095726159142667L;
 
 	private WtymtitService wtymtitService;
-	private int PROBLEM_ID;
-	private int WAS_USER_ID;
-	
-	public int getPROBLEM_ID() {
+	private String PROBLEM_ID;
+	private String WAS_USER_ID;
+
+	public String getPROBLEM_ID() {
 		return PROBLEM_ID;
 	}
 
-	public void setPROBLEM_ID(int pROBLEMID) {
+	public void setPROBLEM_ID(String pROBLEMID) {
 		PROBLEM_ID = pROBLEMID;
 	}
 
-	public int getWAS_USER_ID() {
+	public String getWAS_USER_ID() {
 		return WAS_USER_ID;
 	}
 
-	public void setWAS_USER_ID(int wASUSERID) {
+	public void setWAS_USER_ID(String wASUSERID) {
 		WAS_USER_ID = wASUSERID;
 	}
 
@@ -41,7 +43,7 @@ public class AddProblemInvite  extends ActionSupport{
 
 	@Override
 	public String execute() throws Exception {
-		wtymtitService.addProblemInvite(PROBLEM_ID, getSessionUserId(), WAS_USER_ID);
+		wtymtitService.addProblemInvite(NumberUtils.toInt(PROBLEM_ID), getSessionUserId(), NumberUtils.toInt(WAS_USER_ID));
 		return JSONSUCCESS;
 	}
 }

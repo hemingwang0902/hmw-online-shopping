@@ -2,6 +2,8 @@ package com.baizhi.index.action.wtymtit;
 
 import java.util.Map;
 
+import org.apache.commons.lang.math.NumberUtils;
+
 import com.baizhi.commons.ActionSupport;
 import com.baizhi.index.service.WtymtitService;
 
@@ -18,27 +20,30 @@ public class GetNearProblemList  extends ActionSupport{
 
 	private static final long serialVersionUID = -5163338377350613555L;
 	private WtymtitService wtymtitService;
-	private int problemId;
+	private String problemId;
 	
 	public void setWtymtitService(WtymtitService wtymtitService) {
 		this.wtymtitService = wtymtitService;
 	}
 	
-	public int getProblemId() {
+	public String getProblemId() {
 		return problemId;
 	}
 
-	public void setProblemId(int problemId) {
+	public void setProblemId(String problemId) {
 		this.problemId = problemId;
 	}
-	
+
 	@Override
 	public String execute() throws Exception {
-		// 查询结果列表
-		Map<String, Object> returnMap = wtymtitService.getNearProblemList(problemId, getSessionUserId(), this.getNowPage(), this.getOnePageCount());
-		//判断是否存在查询记录
-		if (returnMap != null && returnMap.size() != 0) {
-			this.setResult(returnMap);
+		int problem_id = NumberUtils.toInt(problemId);
+		if(problem_id > 0){
+			// 查询结果列表
+			Map<String, Object> returnMap = wtymtitService.getNearProblemList(problem_id, getSessionUserId(), this.getNowPage(), this.getOnePageCount());
+			//判断是否存在查询记录
+			if (returnMap != null && returnMap.size() != 0) {
+				this.setResult(returnMap);
+			}
 		}
 		return JSONSUCCESS;
 	}

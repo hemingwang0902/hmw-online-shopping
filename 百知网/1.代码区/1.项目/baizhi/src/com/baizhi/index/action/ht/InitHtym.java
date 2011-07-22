@@ -3,6 +3,8 @@ package com.baizhi.index.action.ht;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang.math.NumberUtils;
+
 import com.baizhi.commons.ActionSupport;
 import com.baizhi.index.service.HtymService;
 
@@ -18,7 +20,7 @@ import com.baizhi.index.service.HtymService;
 public class InitHtym extends ActionSupport{
 	private static final long serialVersionUID = 4027082091347478551L;
 	private HtymService htymService;
-	private int TALK_ID;
+	private String TALK_ID;
 	private Map<String, Object> talk;
 	private List<Map<String, Object>> wasAttentionUserList; 
 
@@ -30,7 +32,7 @@ public class InitHtym extends ActionSupport{
 		this.htymService = htymService;
 	}
 
-	public void setTALK_ID(int tALKID) {
+	public void setTALK_ID(String tALKID) {
 		TALK_ID = tALKID;
 	}
 
@@ -41,12 +43,15 @@ public class InitHtym extends ActionSupport{
 	@SuppressWarnings("unchecked")
 	@Override
 	public String execute() throws Exception {
-		talk = htymService.getTalkById(TALK_ID, getSessionUserId());
-		if(talk.get("INTRODUCTION") == null){
-			talk.put("INTRODUCTION", "");
+		int talkId = NumberUtils.toInt(TALK_ID);
+		if(talkId > 0){
+			talk = htymService.getTalkById(talkId, getSessionUserId());
+			if(talk.get("INTRODUCTION") == null){
+				talk.put("INTRODUCTION", "");
+			}
+			
+			wasAttentionUserList = (List<Map<String, Object>>) htymService.getWasAttentionUserListByTalkId(talkId, 1, 21).get(KEY_LIST);
 		}
-		
-		wasAttentionUserList = (List<Map<String, Object>>) htymService.getWasAttentionUserListByTalkId(TALK_ID, 1, 21).get(KEY_LIST);
 		return SUCCESS;
 	}
 
