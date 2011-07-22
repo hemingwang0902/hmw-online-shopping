@@ -3,12 +3,12 @@ package com.baizhi.problem.action;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.commons.lang.StringUtils;
 import org.dom4j.Element;
 import org.dom4j.tree.DefaultElement;
 
 import com.baizhi.commons.support.DateUtils;
 import com.baizhi.commons.support.Elements;
-import com.baizhi.commons.support.StringUtils;
 import com.baizhi.problem.service.ProblemService;
 /**
  * 
@@ -42,12 +42,9 @@ public class SaveProblem extends ProblemForm{
 	
 	@Override
 	public String execute() throws Exception {
-		if(getRELEVANT_DETAILS() == null){
-			setRELEVANT_DETAILS(""); //相关细节
-		}
-		if(getIS_ANONYMITY() == null){
-			setIS_ANONYMITY("0");	//是否匿名
-		}
+		setCONTENT(StringUtils.trimToEmpty(getCONTENT()));
+		setRELEVANT_DETAILS(StringUtils.trimToEmpty(getRELEVANT_DETAILS())); //相关细节
+		setIS_ANONYMITY(StringUtils.defaultIfEmpty(getIS_ANONYMITY(), "0"));	//是否匿名
 		
 		Element element = null;
 		String keyid="";

@@ -2,6 +2,9 @@ package com.baizhi.index.action.sz;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import org.apache.commons.lang.StringUtils;
+
 import com.baizhi.commons.ActionSupport;
 import com.baizhi.commons.support.DateUtils;
 import com.baizhi.index.service.SzService;
@@ -49,7 +52,7 @@ public class SaveBasic extends ActionSupport{
 		boolean exec=true;
 		//判断姓名是否修改
 		if(!o_name.equals(NAME)&&(o_name_modifytime.equals("")||isTime(o_name_modifytime))){
-			params.put("NAME", NAME);
+			params.put("NAME", StringUtils.trimToEmpty(NAME));
 			params.put("NAME_MODIFYTIME", DateUtils.getCurrentTime(DateUtils.SHOW_DATE_FORMAT));
 		}else if(!o_name.equals(NAME)){
 			message="姓名修改失败,一个月只能修改一次";
@@ -57,7 +60,7 @@ public class SaveBasic extends ActionSupport{
 		}
 		//判断个性网址是否修改
 		if(!o_website.equals(WEBSITE)&&(o_website_modifytime.equals("")||isTime(o_website_modifytime))){
-			params.put("WEBSITE", WEBSITE);
+			params.put("WEBSITE", StringUtils.trimToEmpty(WEBSITE));
 			params.put("WEBSITE_MODIFYTIME", DateUtils.getCurrentTime(DateUtils.SHOW_DATE_FORMAT));
 		}else if(!o_website.equals(WEBSITE)){
 			message="个性网址修改失败,一个月只能修改一次";

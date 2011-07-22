@@ -3,6 +3,7 @@ package com.baizhi.index.action.wtymtit;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.math.NumberUtils;
 
 import com.baizhi.commons.ActionSupport;
@@ -49,7 +50,7 @@ public class AddAnswerReview  extends ActionSupport{
 		Map<String, Object> returnMap = new HashMap<String, Object>();
 		int answerId = NumberUtils.toInt(ANSWER_ID);
 		if(answerId > 0){
-			returnMap.put("REVIEW_ID", wtymtitService.addAnswerReview(answerId, CONTENT, getSessionUserId()));
+			returnMap.put("REVIEW_ID", wtymtitService.addAnswerReview(answerId, StringUtils.trimToEmpty(CONTENT), getSessionUserId()));
 		}
 		setResult(returnMap);
 		return JSONSUCCESS;
