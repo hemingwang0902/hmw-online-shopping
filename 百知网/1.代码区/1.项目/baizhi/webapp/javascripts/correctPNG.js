@@ -45,7 +45,7 @@ function load_person_image_102_102(obj){
 
 //60*53 尺寸 品牌
 function load_brand_image_60_53(obj){
-	obj.src='../images/main/xner.jpg';
+	obj.src='../images/main/pptp_1.png';
 }
 
 //74*74 尺寸 品牌

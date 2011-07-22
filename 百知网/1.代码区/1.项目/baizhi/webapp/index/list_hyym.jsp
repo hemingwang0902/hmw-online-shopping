@@ -111,12 +111,17 @@
 	            	</ul>
 				</div>
         	<div class="title_hyym_anniu">
+        	<s:if test="ATTENTION>0">
 				<input id='gzht_<s:property value="TALK_ID"/>' type="button" value="取&nbsp;消" style="width:55px; height:25px; background-color:#dadade" isDisAttention="true" onclick="attentionTalk('<s:property value="TALK_ID"/>');"/>
+			</s:if>
+            <s:else>
+				<input id='gzht_<s:property value="TALK_ID"/>' type="button" value="关&nbsp;注" style="width:55px; height:25px; background-color:#dadade" isDisAttention="false" onclick="attentionTalk('<s:property value="TALK_ID"/>');"/>
+			</s:else>
         	</div>
         	<div class="clear"></div>
 		</div>
 		</s:iterator>
-			<div class="more"><a href='getTalkListByUserId.go?userId=<s:property value="userId"/>'>更多 &gt;&gt;</a></div>
+			<div class="more"><a href='initWgzdht.go?userId=<s:property value="userId"/>'>更多 &gt;&gt;</a></div>
 		</div>
         <div class="r_column">
             <div class="column">关注的人</div>

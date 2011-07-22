@@ -115,10 +115,19 @@ function attentionTalk(TALK_ID){
 		"TALK_ID": TALK_ID,
 		"disAttention": isDisAttention
 	}, function(result){
-		if(isDisAttention == "true"){
-			$("#gzht_"+TALK_ID).attr("isDisAttention", false).html("关&nbsp;注");
+		if(result==null||result==''){
+			return;
+		}
+		
+		var data = eval("("+result+")");
+		if(data != null && data["flag"]){
+			if(isDisAttention == "true"){
+				$("#gzht_"+TALK_ID).attr("isDisAttention", false).val("关 注");
+			}else{
+				$("#gzht_"+TALK_ID).attr("isDisAttention", true).val("取 消");
+			}
 		}else{
-			$("#gzht_"+TALK_ID).attr("isDisAttention", true).html("取&nbsp;消");
+			show_showmessage({message:"操作失败！",type:"error"});
 		}
 	});
 }
