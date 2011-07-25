@@ -47,7 +47,7 @@ public class GetHylbList  extends ActionSupport {
 					if(IMAGE_PATH.equals("")){
 						IMAGE_PATH="/images/main/xner.jpg";
 					}
-					newmap.put("IMAGE_PATH",this.getContext_path()+IMAGE_PATH);
+					newmap.put("IMAGE_PATH", IMAGE_PATH);
 					
 					newmap.put("INTRODUCTION",getValue(newmap, "INTRODUCTION"));
 					
