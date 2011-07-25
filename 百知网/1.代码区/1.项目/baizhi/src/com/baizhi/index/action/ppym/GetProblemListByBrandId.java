@@ -33,7 +33,7 @@ public class GetProblemListByBrandId extends ActionSupport{
 	public String execute() throws Exception {
 		int brandId = NumberUtils.toInt(BRAND_ID);
 		if(brandId > 0){
-			Map<String, Object> jsonMap = ppymService.getProblemListByBrandId(brandId, getNowPage(), getOnePageCount());
+			Map<String, Object> jsonMap = ppymService.getProblemListByBrandId(brandId, getSessionUserId(), getNowPage(), getOnePageCount());
 			setResult(jsonMap);
 		}
 		return JSONSUCCESS;

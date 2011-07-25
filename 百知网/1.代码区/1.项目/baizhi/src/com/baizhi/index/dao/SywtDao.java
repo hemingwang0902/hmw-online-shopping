@@ -14,16 +14,19 @@ public class SywtDao extends DaoSupport{
 	 * @param onePageCount
 	 * @return
 	 */
-	public Map<String,Object> getAllProblemList(int userId, int nowPage, int onePageCount){
+	public Map<String,Object> getAllProblemList(int userId, int loginUserId, int nowPage, int onePageCount){
 		//组织查询语句
 		StringBuffer sql = new StringBuffer()		
 		.append(" SELECT ").append(ALL_PROBLEM_FIELDS).append(", UB.NAME AS NAME, UB.IMAGE_PATH AS IMAGE_PATH, UB.WEBSITE AS WEBSITE")
+		.append(",(select count(pa.ATTENTION_ID) from t_problem_attention pa where pa.PROBLEM_ID=a.PROBLEM_ID and pa.USER_ID=?) as IS_ATTENTION")
+		.append(",(select count(pc.COLLECTION_ID) from t_problem_collection pc where pc.PROBLEM_ID=a.PROBLEM_ID and pc.USER_ID=?) as IS_COLLECTION")
 		.append(" FROM T_PROBLEM a, T_USER_BASIC UB")
 		.append(" WHERE a.USER_ID=UB.USER_ID")
 		.append(" AND (a.WAS_USERID IS NULL OR a.WAS_USERID=?)")
 		.append(" ORDER BY a.CREATE_TIME DESC");
 
-		return queryForListWithSQLQuery(sql.toString(), new Object[]{userId}, nowPage, onePageCount);
+		Object[] params = new Object[]{loginUserId, loginUserId, userId};
+		return queryForListWithSQLQuery(sql.toString(), params, nowPage, onePageCount);
 	}
 	
 	/**
@@ -33,16 +36,19 @@ public class SywtDao extends DaoSupport{
 	 * @param onePageCount
 	 * @return
 	 */
-	public Map<String,Object> getAskMeProblemList(int userId, int nowPage, int onePageCount){
+	public Map<String,Object> getAskMeProblemList(int userId, int loginUserId, int nowPage, int onePageCount){
 		//组织查询语句
 		StringBuffer sql = new StringBuffer()		
 		.append(" SELECT ").append(ALL_PROBLEM_FIELDS).append(", UB.NAME AS NAME, UB.IMAGE_PATH AS IMAGE_PATH, UB.WEBSITE AS WEBSITE")
+		.append(",(select count(pa.ATTENTION_ID) from t_problem_attention pa where pa.PROBLEM_ID=a.PROBLEM_ID and pa.USER_ID=?) as IS_ATTENTION")
+		.append(",(select count(pc.COLLECTION_ID) from t_problem_collection pc where pc.PROBLEM_ID=a.PROBLEM_ID and pc.USER_ID=?) as IS_COLLECTION")
 		.append(" FROM T_PROBLEM a, T_USER_BASIC UB")
 		.append(" WHERE a.USER_ID=UB.USER_ID")
 		.append(" AND a.WAS_USERID=?")
 		.append(" ORDER BY a.CREATE_TIME DESC");
 		
-		return queryForListWithSQLQuery(sql.toString(), new Object[]{userId}, nowPage, onePageCount);
+		Object[] params = new Object[]{loginUserId, loginUserId, userId};
+		return queryForListWithSQLQuery(sql.toString(), params, nowPage, onePageCount);
 	}
 	
 	/**
@@ -52,10 +58,12 @@ public class SywtDao extends DaoSupport{
 	 * @param onePageCount
 	 * @return
 	 */
-	public Map<String,Object> getInviteProblemList(int userId, int nowPage, int onePageCount){
+	public Map<String,Object> getInviteProblemList(int userId, int loginUserId, int nowPage, int onePageCount){
 		//组织查询语句
 		StringBuffer sql = new StringBuffer()		
 		.append(" SELECT ").append(ALL_PROBLEM_FIELDS).append(", UB.NAME AS NAME, UB.IMAGE_PATH AS IMAGE_PATH, UB.WEBSITE AS WEBSITE")
+		.append(",(select count(pa.ATTENTION_ID) from t_problem_attention pa where pa.PROBLEM_ID=a.PROBLEM_ID and pa.USER_ID=?) as IS_ATTENTION")
+		.append(",(select count(pc.COLLECTION_ID) from t_problem_collection pc where pc.PROBLEM_ID=a.PROBLEM_ID and pc.USER_ID=?) as IS_COLLECTION")
 		.append(" FROM T_PROBLEM a")
 		.append(" JOIN")
 		.append(" (SELECT PA.PROBLEM_ID, MAX(PA.CREATE_TIME) AS INVITE_TIME FROM T_PROBLEM_INVITE PA WHERE PA.WAS_USER_ID=? GROUP BY PA.PROBLEM_ID) B")
@@ -64,6 +72,7 @@ public class SywtDao extends DaoSupport{
 		.append(" ON a.USER_ID=UB.USER_ID")
 		.append(" ORDER BY B.INVITE_TIME DESC");
 		
-		return queryForListWithSQLQuery(sql.toString(), new Object[]{userId}, nowPage, onePageCount);
+		Object[] params = new Object[]{loginUserId, loginUserId, userId};
+		return queryForListWithSQLQuery(sql.toString(), params, nowPage, onePageCount);
 	}
 }

@@ -60,17 +60,18 @@ public class PpymDao extends DaoSupport{
 	 * @param onePageCount
 	 * @return
 	 */
-	public Map<String,Object> getProblemListByBrandId(int BRAND_ID, int nowPage, int onePageCount){
+	public Map<String,Object> getProblemListByBrandId(int BRAND_ID, int loginUserId, int nowPage, int onePageCount){
 		StringBuffer sql = new StringBuffer()		
 		.append("SELECT ").append(ALL_PROBLEM_FIELDS)
+		.append(",(select count(pa.ATTENTION_ID) from t_problem_attention pa where pa.PROBLEM_ID=a.PROBLEM_ID and pa.USER_ID=?) as IS_ATTENTION")
+		.append(",(select count(pc.COLLECTION_ID) from t_problem_collection pc where pc.PROBLEM_ID=a.PROBLEM_ID and pc.USER_ID=?) as IS_COLLECTION")
 		.append(" FROM T_PROBLEM a, T_PROBLEM_TALK pt")
 		.append(" WHERE a.PROBLEM_ID=pt.PROBLEM_ID")
 		.append(" AND pt.TALK_ID=?")
 		.append(" AND pt.TALK_TYPE=").append(IConstants.TALK_TYPE_BRAND)
 		.append(" order by pt.CREATE_TIME desc");
 		
-		Object[] params = new Object[]{BRAND_ID};
-		
+		Object[] params = new Object[]{loginUserId, loginUserId, BRAND_ID};
 		return queryForListWithSQLQuery(sql.toString(), params, nowPage, onePageCount);
 	
 	}

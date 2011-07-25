@@ -23,7 +23,7 @@ public class HtymService  extends ServiceSupport{
 		return htymDao.getWasAttentionUserListByTalkId(TALK_ID, nowPage, onePageCount);
 	}
 
-	public Map<String,Object> getProblemListByTalkId(int TALK_ID, int nowPage, int onePageCount){
-		return htymDao.getProblemListByTalkId(TALK_ID, nowPage, onePageCount);
+	public Map<String,Object> getProblemListByTalkId(int TALK_ID, int loginUserId, int nowPage, int onePageCount){
+		return htymDao.getProblemListByTalkId(TALK_ID, loginUserId, nowPage, onePageCount);
 	}
 }

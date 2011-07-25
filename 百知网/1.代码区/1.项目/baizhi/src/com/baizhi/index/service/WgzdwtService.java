@@ -19,7 +19,7 @@ public class WgzdwtService  extends ServiceSupport{
 		this.wgzdwtDao = wgzdwtDao;
 	}
 	
-	public Map<String,Object> getAttentionProblemList(int userId, int nowPage, int onePageCount){
-		return wgzdwtDao.getAttentionProblemList(userId, nowPage, onePageCount);
+	public Map<String,Object> getAttentionProblemList(int userId, int loginUserId, int nowPage, int onePageCount){
+		return wgzdwtDao.getAttentionProblemList(userId, loginUserId, nowPage, onePageCount);
 	}
 }

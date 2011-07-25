@@ -33,7 +33,7 @@ public class GetProblemListByTalkId extends ActionSupport{
 	public String execute() throws Exception {
 		int talkId = NumberUtils.toInt(TALK_ID);
 		if(talkId > 0){
-			Map<String, Object> jsonMap = htymService.getProblemListByTalkId(talkId, getNowPage(), getOnePageCount());
+			Map<String, Object> jsonMap = htymService.getProblemListByTalkId(talkId, getSessionUserId(), getNowPage(), getOnePageCount());
 			setResult(jsonMap);
 		}
 		return JSONSUCCESS;

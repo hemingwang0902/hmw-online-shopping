@@ -23,7 +23,7 @@ public class PpymService  extends ServiceSupport{
 		return ppymDao.getWasAttentionUserListByBrandId(BRAND_ID, nowPage, onePageCount);
 	}
 
-	public Map<String,Object> getProblemListByBrandId(int BRAND_ID, int nowPage, int onePageCount){
-		return ppymDao.getProblemListByBrandId(BRAND_ID, nowPage, onePageCount);
+	public Map<String,Object> getProblemListByBrandId(int BRAND_ID, int loginUserId, int nowPage, int onePageCount){
+		return ppymDao.getProblemListByBrandId(BRAND_ID, loginUserId, nowPage, onePageCount);
 	}
 }

@@ -102,6 +102,8 @@ public class HomeDao extends DaoSupport{
 		.append(" SELECT DISTINCT ")
 		.append(ALL_PROBLEM_FIELDS.replaceAll("a\\.", "T88."))
 		.append(", UB.NAME AS NAME, UB.IMAGE_PATH AS IMAGE_PATH, UB.WEBSITE AS WEBSITE")
+		.append(",(select count(pa.ATTENTION_ID) from t_problem_attention pa where pa.PROBLEM_ID=T88.PROBLEM_ID and pa.USER_ID=?) as IS_ATTENTION")
+		.append(",(select count(pc.COLLECTION_ID) from t_problem_collection pc where pc.PROBLEM_ID=T88.PROBLEM_ID and pc.USER_ID=?) as IS_COLLECTION")
 		.append(" FROM (SELECT ")
 		.append(ALL_PROBLEM_FIELDS)
 		.append(", A.CREATE_TIME AS LAST_TIME FROM T_PROBLEM A")
@@ -142,7 +144,7 @@ public class HomeDao extends DaoSupport{
 		.append(" AND (T88.WAS_USERID IS NULL OR T88.WAS_USERID=?)")
 		.append(" GROUP BY T88.PROBLEM_ID  ORDER BY T88.LAST_TIME DESC");
 
-		Object[] params = new Object[6];
+		Object[] params = new Object[8];
 		for (int i = 0; i < params.length; i++) {
 			params[i] = userId;
 		}
@@ -162,6 +164,8 @@ public class HomeDao extends DaoSupport{
 		.append("SELECT ")
 		.append(ALL_PROBLEM_FIELDS)
 		.append(", UB.NAME AS NAME, UB.IMAGE_PATH AS IMAGE_PATH, UB.WEBSITE AS WEBSITE")
+		.append(",(select count(pa.ATTENTION_ID) from t_problem_attention pa where pa.PROBLEM_ID=a.PROBLEM_ID and pa.USER_ID=?) as IS_ATTENTION")
+		.append(",(select count(pc.COLLECTION_ID) from t_problem_collection pc where pc.PROBLEM_ID=a.PROBLEM_ID and pc.USER_ID=?) as IS_COLLECTION")
 		.append(" FROM T_PROBLEM a")
 		.append(" LEFT JOIN")
 		.append(" (SELECT PA.PROBLEM_ID, COUNT(PROBLEM_ID) AS ANSWER_COUNT FROM T_PROBLEM_ANSWER PA GROUP BY PA.PROBLEM_ID) B")
@@ -171,10 +175,10 @@ public class HomeDao extends DaoSupport{
 		.append(" WHERE (a.WAS_USERID IS NULL OR a.WAS_USERID=?)");
 		if(province > 0){ //只查同省问题
 			sql.append(" AND (ub.PROVINCE is null or ub.PROVINCE=?)"); 
-			params = new Object[]{userId, province};
+			params = new Object[]{userId, userId, userId, province};
 		}else if(city > 0){//只查同城的问题
 			sql.append(" AND (ub.CITY is null or ub.CITY=?)") ;
-			params = new Object[]{userId, city};
+			params = new Object[]{userId, userId, userId, city};
 		}
 		sql.append(" ORDER BY B.ANSWER_COUNT DESC, A.BROWSE_COUNT DESC");
 		

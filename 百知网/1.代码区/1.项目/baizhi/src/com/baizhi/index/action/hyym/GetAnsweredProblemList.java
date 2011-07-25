@@ -39,7 +39,7 @@ public class GetAnsweredProblemList extends ActionSupport {
 		int uid = NumberUtils.toInt(userId);
 		if(uid > 0){
 			// 查询结果列表
-			Map<String, Object> returnMap = hyymService.getAnsweredProblemList(uid, this.getNowPage(), this.getOnePageCount());
+			Map<String, Object> returnMap = hyymService.getAnsweredProblemList(uid, getSessionUserId(), this.getNowPage(), this.getOnePageCount());
 			//判断是否存在查询记录
 			if (returnMap != null && returnMap.size() != 0) {
 				this.setResult(returnMap);

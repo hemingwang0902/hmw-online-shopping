@@ -29,8 +29,8 @@ public class HyymService extends ServiceSupport{
 	 * @param onePageCount
 	 * @return
 	 */
-	public Map<String,Object> getProblemListByUserId(int userId, int nowPage, int onePageCount){
-		return hyymDao.getProblemListByUserId(userId, nowPage, onePageCount);
+	public Map<String,Object> getProblemListByUserId(int userId, int loginUserId, int nowPage, int onePageCount){
+		return hyymDao.getProblemListByUserId(userId, loginUserId, nowPage, onePageCount);
 	}
 	
 	/**
@@ -40,8 +40,8 @@ public class HyymService extends ServiceSupport{
 	 * @param onePageCount
 	 * @return
 	 */
-	public Map<String,Object> getAnsweredProblemList(int userId, int nowPage, int onePageCount){
-		return hyymDao.getAnsweredProblemList(userId, nowPage, onePageCount);
+	public Map<String,Object> getAnsweredProblemList(int userId, int loginUserId, int nowPage, int onePageCount){
+		return hyymDao.getAnsweredProblemList(userId, loginUserId, nowPage, onePageCount);
 	}
 	
 	/**

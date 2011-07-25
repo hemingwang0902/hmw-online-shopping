@@ -25,7 +25,7 @@ public class GetAttentionProblemList extends ActionSupport {
 	@Override
 	public String execute() throws Exception {
 		// 查询结果列表
-		Map<String, Object> returnMap = wgzdwtService.getAttentionProblemList(getSessionUserId(), this.getNowPage(), this.getOnePageCount());
+		Map<String, Object> returnMap = wgzdwtService.getAttentionProblemList(getSessionUserId(), getSessionUserId(), this.getNowPage(), this.getOnePageCount());
 		//判断是否存在查询记录
 		if (returnMap != null && returnMap.size() != 0) {
 			this.setResult(returnMap);

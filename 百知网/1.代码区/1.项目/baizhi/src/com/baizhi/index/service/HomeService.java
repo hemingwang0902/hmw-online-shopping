@@ -104,7 +104,7 @@ public class HomeService  extends ServiceSupport{
 		
 		//判断主键是否为空，如果不为空，则保存成功
 		if(b){
-			int COLLECTION_COUNT = NumberUtils.toInt("COLLECTION_COUNT"); //收藏数量
+			int COLLECTION_COUNT = NumberUtils.toInt(problem.elementTextTrim("COLLECTION_COUNT")); //收藏数量
 			Elements.setElementValue(problem, "COLLECTION_COUNT", (disCollection ? COLLECTION_COUNT-1 : COLLECTION_COUNT+1));
 			problemDao.saveOrUpdateProblem(problem);
 		}
@@ -143,7 +143,7 @@ public class HomeService  extends ServiceSupport{
 		
 		//判断主键是否为空，如果不为空，则保存成功
 		if(b){
-			int ATTENTION_COUNT = NumberUtils.toInt("ATTENTION_COUNT"); //关注数量
+			int ATTENTION_COUNT = NumberUtils.toInt(problem.elementTextTrim("ATTENTION_COUNT")); //关注数量
 			Elements.setElementValue(problem, "ATTENTION_COUNT", (isDisAttention ? ATTENTION_COUNT-1 : ATTENTION_COUNT+1));
 			problemDao.saveOrUpdateProblem(problem);
 		}

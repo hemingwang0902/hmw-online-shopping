@@ -24,15 +24,18 @@ public class HyymDao extends DaoSupport{
 	 * @param onePageCount
 	 * @return
 	 */
-	public Map<String,Object> getProblemListByUserId(int userId, int nowPage, int onePageCount){
+	public Map<String,Object> getProblemListByUserId(int userId, int loginUserId, int nowPage, int onePageCount){
 		//组织查询语句
 		StringBuffer sql = new StringBuffer()		
 		.append(" SELECT ").append(ALL_PROBLEM_FIELDS)
+		.append(",(select count(pa.ATTENTION_ID) from t_problem_attention pa where pa.PROBLEM_ID=a.PROBLEM_ID and pa.USER_ID=?) as IS_ATTENTION")
+		.append(",(select count(pc.COLLECTION_ID) from t_problem_collection pc where pc.PROBLEM_ID=a.PROBLEM_ID and pc.USER_ID=?) as IS_COLLECTION")
 		.append(" FROM T_PROBLEM A")
 		.append(" WHERE A.USER_ID=?")
 		.append(" ORDER BY a.CREATE_TIME DESC");
 
-		return queryForListWithSQLQuery(sql.toString(), new Object[]{userId}, nowPage, onePageCount);
+		Object[] params = new Object[]{loginUserId, loginUserId, userId}; 
+		return queryForListWithSQLQuery(sql.toString(), params, nowPage, onePageCount);
 	}
 	
 	/**
@@ -42,16 +45,19 @@ public class HyymDao extends DaoSupport{
 	 * @param onePageCount
 	 * @return
 	 */
-	public Map<String,Object> getAnsweredProblemList(int userId, int nowPage, int onePageCount){
+	public Map<String,Object> getAnsweredProblemList(int userId, int loginUserId, int nowPage, int onePageCount){
 		//组织查询语句
 		StringBuffer sql = new StringBuffer()		
 		.append(" SELECT ").append(ALL_PROBLEM_FIELDS)
+		.append(",(select count(pa.ATTENTION_ID) from t_problem_attention pa where pa.PROBLEM_ID=a.PROBLEM_ID and pa.USER_ID=?) as IS_ATTENTION")
+		.append(",(select count(pc.COLLECTION_ID) from t_problem_collection pc where pc.PROBLEM_ID=a.PROBLEM_ID and pc.USER_ID=?) as IS_COLLECTION")
 		.append(" FROM T_PROBLEM A")
 		.append(" WHERE A.PROBLEM_ID IN(")
 		.append(" SELECT PROBLEM_ID FROM T_PROBLEM_ANSWER PA WHERE PA.USER_ID=?")
 		.append(") ORDER BY a.CREATE_TIME DESC");
 		
-		return queryForListWithSQLQuery(sql.toString(), new Object[]{userId}, nowPage, onePageCount);
+		Object[] params = new Object[]{loginUserId, loginUserId, userId}; 
+		return queryForListWithSQLQuery(sql.toString(), params, nowPage, onePageCount);
 	}
 	
 	/**
