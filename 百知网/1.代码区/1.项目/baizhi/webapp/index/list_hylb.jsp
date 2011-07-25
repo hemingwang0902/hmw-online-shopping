@@ -34,7 +34,7 @@
             <s:if test="#hotlist!=null&&#hotlist.USER_ID!=''">
             <div class="column_contentgxq">
               <div class="colun_c_gxq">
-                <div style="float:left;"><a href="../index/initHyym.go?userId=${hotlist.USER_ID }"><img src="${cpath }/${hotlist.IMAGE_PATH }" onerror="load_person_image_25_25(this)" width="25" height="25" border="0" /></a></div>
+                <div style="float:left;"><a href="../index/initHyym.go?userId=${hotlist.USER_ID }"><img src="${basePath }/${hotlist.IMAGE_PATH }" onerror="load_person_image_25_25(this)" width="25" height="25" border="0" /></a></div>
                     <div class="colun_l"><a href="../index/initHyym.go?userId=${hotlist.USER_ID }">${hotlist.NAME }</a></div>
                 </div>
                 <div class=" colun_c_main">${hotlist.INTRODUCTION}</div>
@@ -51,7 +51,7 @@
           	<s:if test="#newlist!=null&&#newlist.USER_ID!=''">
             <div class="column_contentgxq">
               <div class="colun_c_gxq">
-                <div style="float:left;"><a href="../index/initHyym.go?userId=${newlist.USER_ID }"><img src="${cpath }/${newlist.IMAGE_PATH }" onerror="load_person_image_25_25(this)" width="25" height="25" border="0" /></a></div>
+                <div style="float:left;"><a href="../index/initHyym.go?userId=${newlist.USER_ID }"><img src="${basePath }/${newlist.IMAGE_PATH }" onerror="load_person_image_25_25(this)" width="25" height="25" border="0" /></a></div>
                     <div class="colun_l"><a href="../index/initHyym.go?userId=${newlist.USER_ID }">${newlist.NAME }</a></div>
                 </div>
                 <div class=" colun_c_main">${newlist.INTRODUCTION}</div>

@@ -25,7 +25,7 @@ function getDataList(nowPage){
 			for(var i=0;i<data["list"].length;i++){
 				map=data["list"][i];
 				content+="<div class='title_xgwt'>";
-				content+="	<div class='title_xgwt_tu'><a href='../index/initHyym.go?userId="+map.USER_ID+"'><img src='"+data.cpath+"/"+map.IMAGE_PATH+"' heigth='74' width='74' onerror=\"load_person_image_74_74(this)\"  /></a></div>";
+				content+="	<div class='title_xgwt_tu'><a href='../index/initHyym.go?userId="+map.USER_ID+"'><img src='"+path.basePath+map.IMAGE_PATH+"' heigth='74' width='74' onerror=\"load_person_image_74_74(this)\"  /></a></div>";
 				content+="	<div class='title_xgwt_xner'>";
 				content+="		<ul>";
 				content+="			<li class='tit'><a href='../index/initHyym.go?userId="+map.USER_ID+"'>"+map.NAME+"</a></li>";
