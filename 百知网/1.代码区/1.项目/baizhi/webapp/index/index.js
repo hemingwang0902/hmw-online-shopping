@@ -212,6 +212,8 @@ function getProblemList(action, more){
 			var REPORT_COUNT = ""; //举报次数
 			var CREATE_TIME = ""; //创建时间
 			var MODIFY_TIME = ""; //修改时间
+			var IS_ATTENTION = 0;
+			var IS_COLLECTION = 0;
 			
 			var NAME = ""; //用户姓名
 			var IMAGE_PATH = ""; //头像路径
@@ -233,7 +235,9 @@ function getProblemList(action, more){
 				REPORT_COUNT = data["list"][i]["REPORT_COUNT"];//举报次数
 				CREATE_TIME = data["list"][i]["CREATE_TIME"];//创建时间
 				MODIFY_TIME = data["list"][i]["MODIFY_TIME"];//修改时间
-				
+				IS_ATTENTION = data["list"][i]["IS_ATTENTION"];
+				IS_COLLECTION = data["list"][i]["IS_COLLECTION"];
+			
 				NAME = data["list"][i]["NAME"]; //用户姓名
 				IMAGE_PATH = data["list"][i]["IMAGE_PATH"]; //头像路径
 				WEBSITE = data["list"][i]["WEBSITE"]; //修改网址
@@ -251,7 +255,19 @@ function getProblemList(action, more){
 				content += "  <div class='tit_content'>"+RELEVANT_DETAILS+"</div>";
 				content += "  <div class='tit_bot'>";
 				content += "    <div class='tit_bot_zl'>&nbsp;</div>";
-				content += "    <div class='tit_bot_gz'>"+ANSWER_COUNT+" 个答案 • <span id='gz_sp_"+PROBLEM_ID+"'><a href='javascript:void(0);' onclick='guanZhu("+PROBLEM_ID+")'><label id='gz_"+PROBLEM_ID+"'>"+ATTENTION_COUNT+"</label>个关注</a></span> • <span id='sc_"+PROBLEM_ID+"'><a href='javascript:void(0);' onclick='shouCang("+PROBLEM_ID+")'>收藏</a></span> • <a href='javascript:void(0);'>分享</a></div>";
+				content += "    <div class='tit_bot_gz'>"+ANSWER_COUNT+" 个答案";
+				if(IS_ATTENTION){
+					content += "  		 • <span id='gz_sp_"+PROBLEM_ID+"'><label id='gz_"+PROBLEM_ID+"'>"+ATTENTION_COUNT+"</label>个关注</span>";
+				}else{
+					content += "  		 • <span id='gz_sp_"+PROBLEM_ID+"'><a href='javascript:void(0);' onclick='guanZhu("+PROBLEM_ID+")'><label id='gz_"+PROBLEM_ID+"'>"+ATTENTION_COUNT+"</label>个关注</a></span>";
+				}
+				if(IS_COLLECTION){
+					content += "  		 • <span id='sc_"+PROBLEM_ID+"'>收藏</span>";
+				}else{
+					content += "  		 • <span id='sc_"+PROBLEM_ID+"'><a href='javascript:void(0);' onclick='shouCang("+PROBLEM_ID+")'>收藏</a></span>";
+				}
+				content += "  		 • <a href='javascript:void(0);'>分享</a>";
+				content += "  	</div>";
 				content += "  </div>";
 				content += "</div>";
 			}
