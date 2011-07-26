@@ -51,8 +51,8 @@ public class HyymService extends ServiceSupport{
 	 * @param onePageCount
 	 * @return
 	 */
-	public Map<String,Object> getUserListByName(String name, int nowPage, int onePageCount){
-		return hyymDao.getUserListByName(name, nowPage, onePageCount);
+	public Map<String,Object> getUserListByName(String name, int loginUserId, int nowPage, int onePageCount){
+		return hyymDao.getUserListByName(name, loginUserId, nowPage, onePageCount);
 	}
 	
 	/**

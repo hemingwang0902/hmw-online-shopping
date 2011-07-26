@@ -68,16 +68,15 @@ public class HyymDao extends DaoSupport{
 	 * @param onePageCount
 	 * @return
 	 */
-	public Map<String,Object> getUserListByName(String name, int nowPage, int onePageCount){
+	public Map<String,Object> getUserListByName(String name, int loginUserId, int nowPage, int onePageCount){
 		//组织查询语句
 		StringBuffer sql = new StringBuffer()		
 		.append("SELECT a.BASIC_ID as BASIC_ID,a.USER_ID as USER_ID,a.USER_TYPE as USER_TYPE,a.NAME as NAME,a.SOURCE as SOURCE,a.PROVINCE as PROVINCE,a.CITY as CITY,a.INDUSTRY as INDUSTRY,a.YEARS as YEARS,a.LINK_MODE as LINK_MODE,a.IS_OPEN as IS_OPEN,a.INTRODUCTION as INTRODUCTION,a.MOTTO as MOTTO,a.IMAGE_PATH as IMAGE_PATH,a.WEBSITE as WEBSITE,a.PRIVATE_SET as PRIVATE_SET,a.LEVEL as LEVEL,a.SCORE as SCORE,a.REMARK as REMARK,a.CREATE_TIME as CREATE_TIME,a.MODIFY_TIME as MODIFY_TIME")
-		.append(" FROM T_USER_BASIC a WHERE a.NAME LIKE ?");
+		.append(",(select count(*) from T_USER_ATTENTION where WAS_USERID=a.USER_ID and USER_ID=?) as IS_ATTENTION")
+		.append(" FROM T_USER_BASIC a WHERE a.NAME LIKE ?")
+		.append(" ORDER BY a.CREATE_TIME DESC");
 		
-		Object[] params = new Object[]{name};
-		
-		sql.append(" ORDER BY a.CREATE_TIME DESC");
-		
+		Object[] params = new Object[]{loginUserId, name};
 		return queryForListWithSQLQuery(sql.toString(), params, nowPage, onePageCount);
 	}
 	

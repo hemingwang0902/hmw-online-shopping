@@ -22,10 +22,7 @@
 		</action>
 		<!-- 根据姓名模糊查询会员列表 -->
 		<action name="getUserListByName" class="com.baizhi.index.action.hyym.GetUserListByName">
-			<result name="success" type="redirect">list_hyssjg.jsp</result>
-		</action>
-		<!-- 根据姓名模糊查询会员列表(Ajax) -->
-		<action name="getUserListByNameWithAjax" class="com.baizhi.index.action.hyym.GetUserListByName">
+			<result name="success">list_hyssjg.jsp</result>
 			<result name="jsonsuccess" type="json">
 		      <param name="root">result</param>
 		    </result>
