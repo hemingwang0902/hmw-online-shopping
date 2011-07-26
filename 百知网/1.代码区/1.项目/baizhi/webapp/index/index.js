@@ -24,8 +24,9 @@ $(document).ready(function(){
 		user: {
 			detail		: basePath + "/index/initHyym.go?userId=",
 			interested	: basePath + "/index/getMayInterestedUser.go",
-			attention	: "",
-			disAttention: ""
+			attention	: basePath + "/userattention/saveUserAttention.go",
+			disAttention: basePath + "/userattention/cancelUserAttention.go",
+			getByName	: basePath + "/index/getUserListByName.go"
 		},
 		
 		brand: {
@@ -380,6 +381,104 @@ function getAttentionBrandList(userId){
 				content += '<div style="clear:both; font-size:0;"></div>';
 			}
 			$("#attentionUserList").append(content);
+		}
+	});
+}
+
+/**
+ * 根据会员姓名模糊查询会员列表
+ */
+function getUserListByName(name){
+	var onePageCount=parseInt($("#onePageCount").val());
+	var nowPage=$("#nowPage").val();
+	$.post(path.user.getByName,{
+		nowPage: nowPage,
+		onePageCount: onePageCount,
+		q:name,
+		"ajax": true
+	},function(result){
+		if(result==null||result==''){
+			return;
+		}
+		var data = eval("("+result+")");
+		var content = "";
+		if (data != null && data["list"] != null && data["list"].length > 0) {
+			var map;
+			for(var i=0;i<data["list"].length;i++){
+				map=data["list"][i];
+				content+="<div class='title_xgwt'>";
+				content+="	<div class='title_xgwt_tu'><a href='"+path.user.detail+map.USER_ID+"'><img src='"+path.basePath+map.IMAGE_PATH+"' heigth='74' width='74' onerror=\"load_person_image_74_74(this)\"  /></a></div>";
+				content+="	<div class='title_xgwt_xner'>";
+				content+="		<ul>";
+				content+="			<li class='tit'><a href='"+path.user.detail+map.USER_ID+"'>"+map.NAME+"</a></li>";
+				content+="			<li class='tit_con'>"+map.INTRODUCTION+"</li>";
+				content+="		</ul>";
+				content+="	</div>";
+				content+="	<div class='title_xgwt_anniu'>";
+				if(map.IS_ATTENTION<=0){
+					content+="		<p><input name='' id='USER_ATT_"+map.USER_ID+"' type='button' value='添加关注' class='baizhi_button_1' onclick=\"user_att("+map.USER_ID+");\" /></p>";
+				}else{
+					content+="		<p><input name='' id='USER_ATT_"+map.USER_ID+"' type='button' value='取消关注' class='baizhi_button_1' onclick=\"user_att("+map.USER_ID+");\" /></p>";
+				}
+				content+="	</div>";
+				content+="	<div class='clear'></div>";
+				content+="</div>";
+				
+			}
+			$("#problemList").append(content);
+		}
+
+		if(data["list"].length < onePageCount){
+			$(".tiao").html("<span>更多 &gt;&gt;</span>");
+		} else{ //查询到的记录条数为空,禁用"更多"
+			$(".tiao").html('<a href="javascript:void(0);" onclick="getUserListByName(\''+name+'\');">更多 &gt;&gt;</a>');
+		}
+	});
+}
+
+/**
+ * 添加关注/取消关注 会员
+ * @param {Object} WAS_USERID
+ */
+function user_att(WAS_USERID){
+	if($("#USER_ATT_"+WAS_USERID).val()=="添加关注"){
+		saveUserAttention(WAS_USERID);
+		$("#USER_ATT_"+WAS_USERID).val("取消关注");
+	}else{
+		cancelUserAttention(WAS_USERID);
+		$("#USER_ATT_"+WAS_USERID).val("添加关注");
+	}
+}
+
+
+//添加关注会员
+function saveUserAttention(WAS_USERID){
+	$.post(path.user.attention,{
+		WAS_USERID:WAS_USERID
+	},function(result){
+		if(result==null||result==''){
+			return;
+		}
+		var data = eval("("+result+")");
+		if(data!=null&&data["flag"]==true){
+		}else{
+			show_showmessage({message:data["message"],type:"error"});
+		}
+	});
+}
+
+//取消关注会员
+function cancelUserAttention(WAS_USERID){
+	$.post(path.user.disAttention,{
+		WAS_USERID:WAS_USERID
+	},function(result){
+		if(result==null||result==''){
+			return;
+		}
+		var data = eval("("+result+")");
+		if(data!=null&&data["flag"]==true){
+		}else{
+			show_showmessage({message:data["message"],type:"error"});
 		}
 	});
 }
