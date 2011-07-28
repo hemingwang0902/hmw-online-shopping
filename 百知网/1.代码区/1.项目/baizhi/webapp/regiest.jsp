@@ -25,7 +25,6 @@
     <input type="hidden" id="PROVINCE_NAME" name="PROVINCE_NAME" />
     <input type="hidden" id="CITY_NAME" name="CITY_NAME" />
     
-    <input type="hidden" id="USER_TYPE" name="USER_TYPE" value="1" />
     <!--
      <div class="login_3" >
    <div class="login_4">邀请码</div>
@@ -48,6 +47,13 @@
     <div class="login_4">所在地区</div>
     <select id="PROVINCE" name="PROVINCE"  onchange="setSelectValue(this.selectedIndex,true,document.getElementById('CITY'));"></select>省
     <select id="CITY" name="CITY"></select>市
+    </div>
+    <div class="login_3">
+    <div class="login_4">用户类型</div>
+    <select id="USER_TYPE" name="USER_TYPE" style="width: 137px;" >
+    	<option value="1">普通</option>
+    	<option value="2">品牌</option>
+    </select>
     </div>
     <div class="login_3">
     <div class="login_4">密码（至少6位）</div>

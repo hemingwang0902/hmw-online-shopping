@@ -60,7 +60,7 @@
             	<li><input name="NAME" id="NAME" type="text" value="${returnMap.NAME }" />一个月只能修改一次 </li>
                 <li><textarea cols="" rows="1" id="INTRODUCTION" name="INTRODUCTION" class="list_sz_js">${returnMap.INTRODUCTION }</textarea>
                 </li>
-                <li>http://www.zhihu.com/people/&nbsp;<input name="WEBSITE" id="WEBSITE" type="text" value="${returnMap.WEBSITE }" /></li>
+                <li>http://www.100zhi.cn/people/&nbsp;<input name="WEBSITE" id="WEBSITE" type="text" value="${returnMap.WEBSITE }" /></li>
                 <li>可输入 4~20 位的英文或数字 , 一个月只能修改一次${returnMap.WEBSITE_NAME} </li>
                 <li><input name="" type="submit" class="list_sz_an" value="保存设置"/></li>
            	</ul>
