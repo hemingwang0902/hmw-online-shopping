@@ -356,3 +356,62 @@ color:black;
 .guanbi{ width:560px; line-height:30px; text-align:right; padding-right:10px; margin-top:10px; margin-bottom:10px;}
 .guanbi a{ color:#98b012}
 .guanbi .an_pl{ width:66px; height:30px; background:url(../images/main/an_pl.jpg) no-repeat; border:0;}
+
+/**************    百知协议 .css   *****************/
+
+.bzxy{ width:570px; line-height:25px; font-weight:bold; font-size:14px;}
+.wel{ width:570px; line-height:20px; padding:20px 0;}
+.wel a{ color:#98b012}
+.bzxy_sy{ font-weight:bold; line-height:25px;}
+
+/**************    百知指南 .css   *****************/
+
+.bzzn{width:570px; height:30px; }
+.bzzn_quwt{ font-size:16px; font-weight:bold; line-height:36px;}
+.bzzn_yx{ line-height:30px;}
+.bzzn_ql{width:570px; height:30px; padding-bottom:5px; border-bottom:3px solid #bdd11a;}
+.bzzn_ql a{ color:#98b012; line-height:35px;}
+.bzzn_da{ font-size:14px; line-height:30px; border-bottom:1px solid #bdd11a;}
+.bzzn_da a{color:#98b012;}
+.bzzn_hw{ width:570px; height:25px; line-height:25px; float:left;font-weight:bold; padding-top:10px;}
+.bzzn_hw a{ color:#98b012; font-size:14px;  float:left;}
+.bzzn_hw a:hover{ color:#ff7200;}
+.bzzn_hw span{ float: right;  height:25px; width:25px;}
+.bzzn_tp{ line-height:25px;  width:570px; height:25px;}
+.bzzn_tp a{color:#999;}
+.bzzn_tp a:hover{ color:#ff7200;}
+.bzzn_bzrm{ line-height:25px; font-weight:bold; width:570px;}
+.bzzn_rhsy{ line-height:50px; width:570px;}
+.bzzn_rhsy a{ font-weight:bold; color:#98b012;}
+.bzzn_bz{ width:570px; line-height:30px; height:30px; border-bottom:1px solid #bdd11a; padding-bottom:5px;}
+.bzzn_bz a{color:#98b012;}
+.bzzn_di{ margin-top:10px; width:570px; height:30px; line-height:30px; background:#eee; text-align:center}
+.bzzn_di a{color:#98b012;}
+
+
+/**************    百知提问 .css   *****************/
+.bzzn_tw{ line-height:25px;}
+.bzzn_tw a{ color:#333}
+.bzzn_wd{ width:180px; padding-top:10px; padding-left:20px;}
+.bzzn_wd ul li{ margin-bottom:5px; }
+.bzzn_wd ul li a{ color:#98b012;width:200px; line-height:25px;text-align:left;}
+.bzzn_wd ul li a:hover{ background:#ccdba2; color:#ff6633;}
+.bztw{ width:570px; line-height:25px; padding-bottom:10px;}
+.bztw_img{ width:533px; padding:0 10px;}
+.bztw_img img{ border:5px solid #eee;}
+.bztw_ck{ line-height:30px;}
+.bztw_ck a{ color:#98b102}
+
+/**************    404 .css   *****************/
+.bz_404{ width:360px; margin:0 auto; padding-top:15%;}
+.bz_404_lg{ width:206px; height:47px; padding-bottom:20px;}
+.bz_404_bj{ width:358px; background:#fff; border:1px solid #ccc; text-align:center}
+.bz_404_zs{ line-height:50px; font-size:14px; font-weight:bold; }
+.bz_404_ly{ line-height:50px; font-size:14px; color:#999; }
+.bz_404_ho{ line-height:100px; color:999; font-size:14px;}
+.bz_404_ho a{ color:#688415;}
+
+/**************    关于百知 .css   *****************/
+
+.bz_lxwm{ line-height:30px;}
+.bz_lxwm span{ font-weight:bold;}
