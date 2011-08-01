@@ -85,11 +85,12 @@ public class HomeDao extends DaoSupport{
 	/**
 	 * 根据登录用户的ID，查询网站首页“最新问题”列表，返回的结果集中包含如下问题：
 	 * <ol>
-	 * <li>我关注的人或品牌新发表的问题</li>
-	 * <li>我关注的人或品牌新回答的问题</li>
-	 * <li>我关注的话题下面有新的问题</li>
+	 * <li>我关注的人新发表的问题</li>
+	 * <li>我关注的人新回答的问题</li>
+	 * <li>我关注的话题下新发表的问题</li>
 	 * <li>我关注的问题有了新回答的问题</li>
 	 * <li>我回答过的问题有了新回答</li>
+	 * <li>我自己发表的问题</li>
 	 * </ol>
 	 * @param userId 用户ID
 	 * @param nowPage 当前页
@@ -139,12 +140,18 @@ public class HomeDao extends DaoSupport{
 		.append(" (SELECT PROBLEM_ID, MAX(PA.CREATE_TIME) LAST_TIME FROM T_PROBLEM_ANSWER PA WHERE PA.USER_ID=? GROUP BY PA.PROBLEM_ID) T2")
 		.append(" )")
 		.append(" WHERE T1.PROBLEM_ID=T2.PROBLEM_ID AND T1.LAST_TIME>T2.LAST_TIME) B")
-		.append(" WHERE A.PROBLEM_ID=B.PROBLEM_ID) T88, T_USER_BASIC UB")
+		.append(" WHERE A.PROBLEM_ID=B.PROBLEM_ID")
+		.append(" UNION")
+		.append(" SELECT ")
+		.append(ALL_PROBLEM_FIELDS)
+		.append(", a.MODIFY_TIME as LAST_TIME FROM T_PROBLEM a")
+		.append(" WHERE a.USER_ID=?")
+		.append(") T88, T_USER_BASIC UB")
 		.append(" WHERE T88.USER_ID=UB.USER_ID")
 		.append(" AND (T88.WAS_USERID IS NULL OR T88.WAS_USERID=?)")
 		.append(" GROUP BY T88.PROBLEM_ID  ORDER BY T88.LAST_TIME DESC");
 
-		Object[] params = new Object[8];
+		Object[] params = new Object[9];
 		for (int i = 0; i < params.length; i++) {
 			params[i] = userId;
 		}
