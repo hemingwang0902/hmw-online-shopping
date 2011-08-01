@@ -6828,6 +6828,24 @@ jQuery.each( "ajaxStart ajaxStop ajaxComplete ajaxError ajaxSuccess ajaxSend".sp
 
 jQuery.each( [ "get", "post" ], function( i, method ) {
 	jQuery[ method ] = function( url, data, callback, type ) {
+		
+		
+		jQuery.ajax({
+			type: "post",
+			url: "../ajaxRequest.go",
+			data: {},
+			success: function(result){
+				if(result==null||result==''){
+					return;
+				}
+				var data = eval("("+result+")");
+				if(data.flag==true){
+					location.href="../blank.jsp";
+				}
+			}})
+		
+		
+		
 		// shift arguments if data argument was omitted
 		if ( jQuery.isFunction( data ) ) {
 			type = type || callback;
