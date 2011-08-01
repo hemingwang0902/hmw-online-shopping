@@ -1,13 +1,13 @@
 $(function(){
 	//获取功能菜单
-	$.ajax({url:"functionlist/getFunctionlistList.go",type: "POST",data:"",async: false,success:function(result){
+	/*$.ajax({url:"functionlist/getFunctionlistList.go",type: "POST",data:"",async: false,success:function(result){
 		var data = eval("("+result+")");
 		if (data != null ) {
 			$("#myjquerymenu").html(data["content"]);
 			jquerycssmenu.buildmenu("myjquerymenu", arrowimages);
 		}
-	}});
-	
+	}});*/
+	$("#menu_list").show();
 });
 
 
@@ -17,6 +17,7 @@ $(function(){
  * param　href  链接地址
  */
 function addTab(title,href){
+	$('#menu_list').hide();
 	$("#tt").css("display","block");
 	$("#tt").css("width",1002);
 	$('#iframe_main').attr("src",href);
