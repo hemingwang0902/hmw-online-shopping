@@ -6,6 +6,9 @@
 	<%@include file="../common/jsCss.jsp" %>
 	<script type="text/javascript" language="javascript"  src="index.js"></script>
 	<script type="text/javascript" language="javascript"  src="list_htym.js"></script>
+	<style type="text/css">
+		.error{color: #ff0000;}
+	</style>
 </head>
 
 <body>
@@ -23,7 +26,17 @@
             <div class="tit_google_con">
             	<ul>
                 	<li><a href="javascript:void(0);"><s:property value="talk.CONTENT"/></a></li>
-                    <li class="tit_google_conter"><s:property value="talk.INTRODUCTION"/></li>
+                    <li class="tit_google_conter">
+                    	<div id="DIV_TALK_INTRODUCTION_0">
+                    	<span id="SPAN_TALK_INTRODUCTION"><s:property value="talk.INTRODUCTION"/></span>
+                    	<a href="javascript:void(0);" onclick="$('#DIV_TALK_INTRODUCTION_0').hide();$('#DIV_TALK_INTRODUCTION_1').show();">修改</a>
+						</div>
+		<div id="DIV_TALK_INTRODUCTION_1" style="display: none;">
+			<textarea id="TALK_INTRODUCTION"><s:property value="talk.CONTENT"/></textarea>
+			<div id="error_3" class="error"></div>
+			<input type="button" id="btnSaveTalk" value="保存" onclick="updateTalkIntroduction();">
+		</div>
+                    </li>
                 </ul>
             </div>
             <div class="clear"></div>

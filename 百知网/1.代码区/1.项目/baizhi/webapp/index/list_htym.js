@@ -56,3 +56,25 @@ function attentionBrand(domLink){
 		});
 	}
 }
+
+/**
+ * 修改话题描述
+ */
+function updateTalkIntroduction(){
+	var TALK_INTRODUCTION = $.trim($("#TALK_INTRODUCTION").val());
+	if(TALK_INTRODUCTION == ''){
+		$("#error_3").text("话题描述不能为空");
+		$("#TALK_INTRODUCTION").focus();
+		return;
+	}
+	
+	$("#error_3").text(" ");
+	$.post("updateTalk.go",{
+		TALK_ID: $("#TALK_ID").val(),
+		"INTRODUCTION": TALK_INTRODUCTION
+	},function(){
+		$("#SPAN_TALK_INTRODUCTION").text(TALK_INTRODUCTION);
+		$("#DIV_TALK_INTRODUCTION_0").show();
+		$("#DIV_TALK_INTRODUCTION_1").hide();
+	});
+}
