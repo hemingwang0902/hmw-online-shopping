@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.baizhi.IConstants;
 import com.baizhi.commons.DaoSupport;
+import com.baizhi.commons.ParametersSupport;
 
 public class HtymDao extends DaoSupport{
 	private final String ALL_TALK_FIELDS = "t.TALK_ID as TALK_ID,t.CONTENT as CONTENT,t.USER_ID as USER_ID,t.INTRODUCTION as INTRODUCTION,t.IMAGE_PATH as IMAGE_PATH,t.CREATE_TIME as CREATE_TIME,t.MODIFY_TIME as MODIFY_TIME";
@@ -72,6 +73,19 @@ public class HtymDao extends DaoSupport{
 		
 		Object[] params = new Object[]{loginUserId, loginUserId, TALK_ID};
 		return queryForListWithSQLQuery(sql.toString(), params, nowPage, onePageCount);
+	}
 	
+	/**
+	 * 修改话题表
+	 */
+	public int updateTalk(Map<String, Object> params,int TALK_ID) {
+		int count=-1;
+		StringBuffer sql = new StringBuffer();
+		ParametersSupport ps=new ParametersSupport(params,ParametersSupport.EXECUTETYPE);
+		sql.append("update T_TALK set "+ps.getConditions()+" where TALK_ID=?");
+		List<Object> list = ps.getValuesList();
+		list.add(TALK_ID);
+		count=this.executeUpdate(sql.toString(), list.toArray());
+		return count;
 	}
 }

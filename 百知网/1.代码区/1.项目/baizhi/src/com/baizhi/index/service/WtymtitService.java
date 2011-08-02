@@ -1,5 +1,6 @@
 package com.baizhi.index.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -296,5 +297,11 @@ public class WtymtitService  extends ServiceSupport{
 		Elements.setElementValue(element, "MODIFY_TIME", DateUtils.getCurrentTime(DateUtils.SHOW_DATE_FORMAT));// 修改时间
 		//如果保存成功，返回主键
 		return answerReviewDao.saveOrUpdateAnswerReview(element);
+	}
+	
+	public int updateAnswer(int answerId, String content){
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("CONTENT", content);
+		return wtymtitDao.updateAnswer(params, answerId);
 	}
 }

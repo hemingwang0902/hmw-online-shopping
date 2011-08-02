@@ -1,5 +1,7 @@
 package com.baizhi.index.service;
 
+import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 
 import com.baizhi.commons.ServiceSupport;
@@ -26,4 +28,11 @@ public class HtymService  extends ServiceSupport{
 	public Map<String,Object> getProblemListByTalkId(int TALK_ID, int loginUserId, int nowPage, int onePageCount){
 		return htymDao.getProblemListByTalkId(TALK_ID, loginUserId, nowPage, onePageCount);
 	}
+	
+	public int updateTalkImagePath(String IMAGE_PATH,int TALK_ID){
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("IMAGE_PATH", IMAGE_PATH);
+		params.put("MODIFY_TIME", new Date());
+		return htymDao.updateTalk(params, TALK_ID);
+	} 
 }

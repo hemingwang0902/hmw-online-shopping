@@ -22,5 +22,9 @@
 			<result name="success" >list_wgzdht.jsp</result>
 			<result name="error" >error_invalidParam.jsp</result>
 		</action>
+		<!-- 修改话题LOGO -->
+		<action name="uploadTalkImage" class="com.baizhi.index.action.ht.UploadTalkImage">
+			<result name="success" type="redirect">/index/initHtym.go?TALK_ID=${TALK_ID}</result>
+		</action>
 	</package>
 </struts>

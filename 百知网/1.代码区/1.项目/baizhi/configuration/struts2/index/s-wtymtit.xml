@@ -58,5 +58,11 @@
 		      <param name="root">result</param>
 		    </result>
 		</action>
+		<!-- 修改问题回复 -->
+		<action name="updateProblemAnswer" class="com.baizhi.index.action.wtymtit.UpdateProblemAnswer">
+			<result name="jsonsuccess" type="json">
+		      <param name="root">result</param>
+		    </result>
+		</action>
 	</package>
 </struts>
