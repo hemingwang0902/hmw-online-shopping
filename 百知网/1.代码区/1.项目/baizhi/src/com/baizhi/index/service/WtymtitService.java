@@ -117,6 +117,7 @@ public class WtymtitService  extends ServiceSupport{
 		Element element = new DefaultElement("T_TALK");
 		Elements.setElementValue(element, "CONTENT", CONTENT);// 内容
 		Elements.setElementValue(element, "USER_ID", userId);// 用户ID
+		Elements.setElementValue(element, "IMAGE_PATH", "");
 		Elements.setElementValue(element, "CREATE_TIME", DateUtils.getCurrentTime(DateUtils.SHOW_DATE_FORMAT));// 创建时间
 		Elements.setElementValue(element, "MODIFY_TIME", DateUtils.getCurrentTime(DateUtils.SHOW_DATE_FORMAT));// 修改时间
 		//如果保存成功，返回主键

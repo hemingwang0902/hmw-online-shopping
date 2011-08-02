@@ -35,4 +35,11 @@ public class HtymService  extends ServiceSupport{
 		params.put("MODIFY_TIME", new Date());
 		return htymDao.updateTalk(params, TALK_ID);
 	} 
+	
+	public int updateTalkIntroduction(String introduction,int TALK_ID){
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("INTRODUCTION", introduction);
+		params.put("MODIFY_TIME", new Date());
+		return htymDao.updateTalk(params, TALK_ID);
+	} 
 }

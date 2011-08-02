@@ -12,5 +12,11 @@
 		      <param name="root">result</param>
 		    </result>
 		</action>
+		<!-- 修改话题介绍 -->
+		<action name="updateTalk" class="com.baizhi.index.action.ht.UpdateTalk">
+			<result name="jsonsuccess" type="json">
+		      <param name="root">result</param>
+		    </result>
+		</action>
 	</package>
 </struts>

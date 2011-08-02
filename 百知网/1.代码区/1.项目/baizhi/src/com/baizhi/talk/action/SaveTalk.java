@@ -45,7 +45,7 @@ public class SaveTalk extends TalkForm{
 			//Elements.setElementValue(element, "TALK_ID", this.getTALK_ID());// 话题ID
 			Elements.setElementValue(element, "CONTENT", this.getCONTENT());// 内容
 			Elements.setElementValue(element, "INTRODUCTION", this.getINTRODUCTION());
-			Elements.setElementValue(element, "IMAGE_PATH", this.getIMAGE_PATH());
+			Elements.setElementValue(element, "IMAGE_PATH", org.apache.commons.lang.StringUtils.trimToEmpty(this.getIMAGE_PATH()));
 			Elements.setElementValue(element, "MODIFY_TIME", DateUtils.getCurrentTime(DateUtils.SHOW_DATE_FORMAT));// 修改时间
 			
 			//如果保存成功，返回主键
