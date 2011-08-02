@@ -450,3 +450,47 @@ function addProblemInvite(){
 		$("#div_USER").hide();
 	});
 }
+
+/**
+ * 修改问题标题
+ */
+function updateProblemContent(){
+	var CONTENT = $.trim($("#PROBLEM_CONTENT").val());
+	if(CONTENT == ''){
+		$("#error_3").text("问题不能为空");
+		$("#PROBLEM_CONTENT").focus();
+		return;
+	}
+	
+	$("#error_3").text(" ");
+	$.post("updateProblem.go",{
+		"PROBLEM_ID": $("#problemId").val(),
+		"CONTENT": CONTENT
+	},function(){
+		$("#span_problem_content").text(CONTENT);
+		$("#div_problem_content_0").show();
+		$("#div_problem_content_1").hide();
+	});
+}
+
+/**
+ * 修改问题细节
+ */
+function updateProblemDetail(){
+	var RELEVANT_DETAILS = $.trim($("#PROBLEM_RELEVANT_DETAILS").val());
+	if(RELEVANT_DETAILS == ''){
+		$("#error_4").text("细节不能为空");
+		$("#PROBLEM_RELEVANT_DETAILS").focus();
+		return;
+	}
+	
+	$("#error_4").text(" ");
+	$.post("updateProblem.go",{
+		"PROBLEM_ID": $("#problemId").val(),
+		"RELEVANT_DETAILS": RELEVANT_DETAILS
+	},function(){
+		$("#span_problem_DETAILS_0").text(RELEVANT_DETAILS);
+		$("#div_problem_DETAILS_0").show();
+		$("#div_problem_DETAILS_1").hide();
+	});
+}

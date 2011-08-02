@@ -35,10 +35,25 @@
       	</span>
       </div>
       <div class="subMenu_hylb">
-		<div class="title_wtym_tit"><s:property value="problem.CONTENT"/></div>
-           <div class="title_wtym_con">
-               <p><s:property value="problem.RELEVANT_DETAILS"/></p>
-           </div>
+		<div id="div_problem_content_0" class="title_wtym_tit">
+			<span id="span_problem_content"><s:property value="problem.CONTENT"/></span>
+			<a href="javascript:void(0);" onclick="$('#div_problem_content_0').hide();$('#div_problem_content_1').show();">修改</a>
+		</div>
+		<div id="div_problem_content_1" class="title_wtym_tit" style="display: none;">
+			<textarea id="PROBLEM_CONTENT"><s:property value="problem.CONTENT"/></textarea>
+			<div id="error_3" class="error"></div>
+			<input type="button" id="btnSaveProblem_0" value="保存" onclick="updateProblemContent();">
+		</div>
+		
+        <div id="div_problem_DETAILS_0" class="title_wtym_con">
+            <span id="span_problem_DETAILS_0"><s:property value="problem.RELEVANT_DETAILS"/></span>
+            <a href="javascript:void(0);" onclick="$('#div_problem_DETAILS_0').hide();$('#div_problem_DETAILS_1').show();">修改</a>
+        </div>
+        <div id="div_problem_DETAILS_1" class="title_wtym_con" style="display: none;">
+            <textarea id="PROBLEM_RELEVANT_DETAILS"><s:property value="problem.RELEVANT_DETAILS"/></textarea>
+            <div id="error_4" class="error"></div>
+            <input type="button" id="btnSaveProblem_1" value="保存" onclick="updateProblemDetail();">
+        </div>
       </div>
       <div class="line_1"></div>
  	<%@include file="../common/problemList.jsp" %>
