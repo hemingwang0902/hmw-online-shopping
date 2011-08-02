@@ -304,4 +304,13 @@ public class WtymtitService  extends ServiceSupport{
 		params.put("CONTENT", content);
 		return wtymtitDao.updateAnswer(params, answerId);
 	}
+	
+	public int updateProblem(int problemId, String content, String relevantDetails){
+		Map<String, Object> params = new HashMap<String, Object>();
+		if(StringUtils.isNotBlank(content))
+			params.put("CONTENT", content);
+		if(StringUtils.isNotBlank(relevantDetails))
+			params.put("RELEVANT_DETAILS", relevantDetails);
+		return wtymtitDao.updateProblem(params, problemId);
+	}
 }

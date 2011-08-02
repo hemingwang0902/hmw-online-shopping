@@ -139,7 +139,6 @@ public class WtymtitDao extends DaoSupport{
 		return queryForListWithSQLQuery(sql.toString(), new Object[]{ANSWER_ID});
 	}
 	
-	
 	/**
 	 * 修改问题回答
 	 */
@@ -149,6 +148,19 @@ public class WtymtitDao extends DaoSupport{
 		String sql = "update T_PROBLEM_ANSWER set "+ps.getConditions()+" where ANSWER_ID=?";
 		List<Object> list = ps.getValuesList();
 		list.add(ANSWER_ID);
+		count=this.executeUpdate(sql.toString(), list.toArray());
+		return count;
+	}
+	
+	/**
+	 * 修改问题
+	 */
+	public int updateProblem(Map<String, Object> params,int PROBLEM_ID) {
+		int count=-1;
+		ParametersSupport ps=new ParametersSupport(params,ParametersSupport.EXECUTETYPE);
+		String sql = "update T_PROBLEM set "+ps.getConditions()+" where PROBLEM_ID=?";
+		List<Object> list = ps.getValuesList();
+		list.add(PROBLEM_ID);
 		count=this.executeUpdate(sql.toString(), list.toArray());
 		return count;
 	}
