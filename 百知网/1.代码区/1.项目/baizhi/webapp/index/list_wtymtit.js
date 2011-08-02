@@ -199,7 +199,24 @@ function _showAnswer(answers){
 		content += '<div style=" margin-top:15px;">';
 		content += '	<div class="title_wtym">';
 		content += '		<div class="title_wtym_tit"><a href="'+path.user.detail+USER_ID+'">'+NAME+'</a>， '+INTRODUCTION+'</div>';
-		content += '		<div class="title_wtym_con">'+CONTENT+'</div>';
+		content += '		<div class="title_wtym_con">';
+		content += '		<span id="ANSWER_CONTENT_'+ANSWER_ID+'">' + CONTENT + '</span>';
+		if(USER_ID == $("#loginUser_USER_ID").val()){
+			$("#div_tjda").remove();
+			content += '		<a id="updateLink" href="javascript:void(0);" onclick="$(\'#div_xgda\').show();$(\'#ANSWER_CONTENT_'+ANSWER_ID+',#updateLink\').hide();">修改</a>';
+			content += '        <div id="div_xgda" class="wtym_tjda" style="display: none;">';
+			content += '        <div class="tit_wtym_daan">';
+			content += '			<textarea id="ANSWER_CONTENT" cols="0" rows="0" style="width:540px; height:130px;">'+CONTENT+'</textarea>';
+			content += '		</div>';
+			content += '		<div id="error_2" class="error" style="margin-right: 10px;float: left"></div>';
+			content += '		<div class="tit_wtym_tjda_anniu">';
+			content += '			<input type="button" style="width:88px;cursor: pointer;" onclick="updateAnswer(\''+ANSWER_ID+'\');" class="bot_tjda" />';
+			content += '		</div>';
+			content += '		</div>';
+		}else{
+			$("#div_tjda").show();
+		}
+		content += '		</div>';
 		content += '	</div>';
 		content += '	<div class="tit_bot_wtym">';
 		content += '		<a href="javascript:void(0);" onclick="showAnswerReview(\''+ANSWER_ID+'\', \''+REVIEW_COUNT+'\');"><span id="pl_'+ANSWER_ID+'">'+REVIEW_COUNT+'</span> 条评论</a>';
@@ -316,6 +333,32 @@ function addAnswer(){
 		}else{
 			show_showmessage({message:"添加回复失败。",type:"error"});
 		}
+	});
+}
+
+/**
+ * 修改回复
+ * @param {Object} ANSWER_ID
+ */
+function updateAnswer(ANSWER_ID){
+	var ANSWER_CONTENT = $.trim($("#ANSWER_CONTENT").val());
+	if(ANSWER_CONTENT == ''){
+		$("#error_2").text("回复内容不能为空。");
+		return false;
+	}
+	
+	$("#error_2").text(" ");
+	$.post("updateProblemAnswer.go",{
+		"ANSWER_ID": ANSWER_ID,
+		"CONTENT": $("#ANSWER_CONTENT").val()
+	},function(result){
+		if(result==null||result==''){
+			return;
+		}
+		
+		$('#div_xgda').hide();
+		$('#ANSWER_CONTENT_'+ANSWER_ID).text(ANSWER_CONTENT).show();
+		$('#updateLink').show();
 	});
 }
 

@@ -10,6 +10,7 @@
 
 <body>
 	<input type="hidden" id="TALK_ID" value='<s:property value="talk.TALK_ID"/>' />
+ 	<a href='${basePath }/index/updateTalkImage.jsp?TALK_ID=<s:property value="talk.TALK_ID"/>' id="item_talkImage"></a>
 	<%@include file="../common/head.jsp" %>
 <div class="content">
 	<div class="c_left">
@@ -17,7 +18,7 @@
       <div class="line_1"></div>
       <div class="tit_1">
       		<div class="tit_google">
-      		<img width="100" height="100" src='${basePath }<s:property value="talk.IMAGE_PATH"/>' onerror="load_brand_image_100_100(this);"/>
+      		<img width="100" height="100" src='${basePath }<s:property value="talk.IMAGE_PATH"/>' onerror="load_brand_image_100_100(this);" style="cursor: pointer;" onclick="$('#item_talkImage').click();"/>
       		</div>
             <div class="tit_google_con">
             	<ul>

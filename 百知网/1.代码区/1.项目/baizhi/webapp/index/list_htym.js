@@ -1,6 +1,15 @@
 $(document).ready(function(){
 	//获取数据列表
 	getMoreProblemList();
+	
+		//新增问题弹出框
+	$("#item_talkImage").fancybox({
+		'width'				: 450,      //弹出框宽度
+		'height'			: 300,      //弹出框高度
+		'type'				: 'iframe', //弹出框类型
+		'transitionIn'	    : 'elastic',//弹入方式
+		'transitionOut'	    : 'elastic'//弹出方式
+	});
 });
 
 /**

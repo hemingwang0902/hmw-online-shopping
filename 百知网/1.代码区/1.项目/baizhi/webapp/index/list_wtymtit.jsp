@@ -42,7 +42,7 @@
       </div>
       <div class="line_1"></div>
  	<%@include file="../common/problemList.jsp" %>
-      <div class="wtym_tjda">
+      <div id="div_tjda" class="wtym_tjda" style="display: none;">
           <div class="tit_wtym_tjda">添加答案</div>
           <div class="tit_wtym_daan">
           	<textarea id="ANSWER_CONTENT" cols="0" rows="0" style="width:540px; height:130px;"></textarea>

@@ -6,7 +6,7 @@
 <meta http-equiv="keywords" content="百知网">
 <meta http-equiv="description" content="百知网">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>百知网</title>
+<title>100zhi.cn--百知网一个有趣网络问答社区，分享知识，发现价值</title>
 
 <link type="text/css" rel="stylesheet" href="${cssBasePath }/style_home.css" />
 <link type="text/css" rel="stylesheet" href="${cssBasePath }/lightbox.css" media="screen"/>
