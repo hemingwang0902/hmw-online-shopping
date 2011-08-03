@@ -5,35 +5,43 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>百知网</title>
-	<link rel="stylesheet" type="text/css" href="styles/index.css" />
-	<link rel="stylesheet" type="text/css" href="styles/lightbox.css" />
-	<script type="text/javascript" src="javascripts/jquery-1.6.1.js"></script>
-	<script type="text/javascript" src="javascripts/jquery.lightbox.js"></script>
-	<script type="text/javascript" src="javascripts/jquery.lightboxmousewheel.js"></script>
-	<script type="text/javascript" src="index.js"></script>
+
+	<style type="text/css">
+	ul,li{ list-style:none;}
+	#droplinebar {overflow: hidden;}
+	.droplinebar ul{margin: 0;padding: 0;float: left;width:1003px; height:41px;font: bold 14px "\5B8B\4F53",san-serif;text-align:center;background:url(images/menu/pic_922tu.gif) no-repeat; }
+	.droplinebar ul li{display: inline;}
+	.droplinebar ul li a{float: left;display: block;color: white;width:90px;padding:11px 0;margin:0 5px;text-decoration: none;}
+	.droplinebar ul li a:hover, .droplinebar ul li .current{color:#000;background: transparent url(images/menu/01.gif) 0 3px repeat-x;margin-top:2px;}
+	.droplinebar ul li ul{position: absolute;color:#000;z-index: 100;padding:0 10px;background:transparent url(images/menu/22.gif) no-repeat; visibility: hidden;}
+	.droplinebar ul li ul li a{font: normal 14px "\5B8B\4F53",san-serif;color:#000;margin:0;}
+	.droplinebar ul li ul li a:hover{text-align:center;background:transparent url(images/menu/33.gif) 0 7px no-repeat;margin:0;}
+	</style>
 	
+	<script type="text/javascript" src="javascripts/jquery-1.6.1.js"></script>
+	<script type="text/javascript" src="javascripts/droplinemenu.js"></script>
+	<script type="text/javascript">
+	//build menu with DIV ID="myslidemenu" on page:
+	droplinemenu.buildmenu("mydroplinemenu")
+	</script>
 </head>
 <body scroll="no" style="overflow:hidden;width:100%;">
 	<div style="width:1003px; margin:0 auto; border:#0067CB 1px solid;">
-		<s:include value="header.jsp"></s:include> 
-		
-        <div id="menu_list">
-        	<div onclick="addTab('会员管理','user/userlist.jsp')" style="cursor: pointer;">会员管理</div>
-        	<div onclick="addTab('邀请会员','userinvite/userinvitelist.jsp')" style="cursor: pointer;">邀请会员</div>
-        	<div onclick="addTab('积分级别设置','scorelevel/scorelevellist.jsp')" style="cursor: pointer;">积分级别设置</div>
-        	<div onclick="addTab('话题管理','talk/talklist.jsp')" style="cursor: pointer;">话题管理</div>
-        	<div onclick="addTab('问题管理','problem/problemlist.jsp')" style="cursor: pointer;">问题管理</div>
-        	<div onclick="addTab('地区设置','area/provincelist.jsp')" style="cursor: pointer;">地区设置</div>
-        	<div onclick="addTab('广告设置','ad/adlist.jsp')" style="cursor: pointer;">广告设置</div>
-        	<div onclick="addTab('品牌审核','userbrand/userbrandlist.jsp')" style="cursor: pointer;">品牌审核</div>
-        </div>
-		<div id="tt" style="height:auto;overflow:hidden;text-align: center;display:none;">
-			<div closable='true' style='padding:0px;float:left;width:100%;overflow:hidden;' cache='false' >
-				<iframe scrolling='yes' id="iframe_main" frameborder='0'　 onload="turnHeight('iframe_main');"   style='width:100%;overflow:hidden;;height:600px;padding-bottom:20px;'></iframe>
-			</div>
-		</div>
+		<div id="mydroplinemenu" class="droplinebar" >
+			<ul>
+				<li><a href="index/home.jsp">网站首页</a></li>
+				<li><a target="iframe_main" href="user/userlist.jsp" >会员管理</a></li>
+				<li><a target="iframe_main" href="userinvite/userinvitelist.jsp" >邀请会员</a></li>
+				<li><a target="iframe_main" href="scorelevel/scorelevellist.jsp" >积分级别限制</a></li>
+				<li><a target="iframe_main" href="talk/talklist.jsp" >话题管理</a></li> 
+				<li><a target="iframe_main" href="problem/problemlist.jsp" >问题管理</a></li>
+				<li><a target="iframe_main" href="area/provincelist.jsp" >地区设置</a></li>
+				<li><a target="iframe_main" href="ad/adlist.jsp" >广告设置</a> </li>
+				<li><a target="iframe_main" href="userbrand/userbrandlist.jsp" >品牌审核</a></li>
+			</ul>
+		</div>  
+		<iframe scrolling='yes' id="iframe_main"  name="iframe_main" frameborder='0' style='width:100%;overflow:hidden;;height:600px;padding-bottom:20px;'></iframe>
         <div style=" clear:both;"></div>
 	</div>
 </body>
-
 </html>
