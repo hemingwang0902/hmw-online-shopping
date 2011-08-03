@@ -53,9 +53,13 @@ public class GetUserBrandByList extends UserBrandForm {
 		if(getSOURCE()!=null&&!getSOURCE().trim().equals("")){
 			this.setMap(params, "a.SOURCE like ?", "%"+this.getSOURCE()+"%");// 发源地
 		}
+		if(this.getPROVINCE()!=null&&!this.getPROVINCE().trim().equals("null")){
+			this.setMap(params, "a.PROVINCE=?", this.getPROVINCE());// 所在地区(省：地区信息表ID)
+		}
+		if(this.getCITY()!=null&&!this.getCITY().trim().equals("null")){
+			this.setMap(params, "a.CITY=?", this.getCITY());// 所在地区(市：地区信息表ID)
+		}
 		
-		this.setMap(params, "a.PROVINCE=?", this.getPROVINCE());// 所在地区(省：地区信息表ID)
-		this.setMap(params, "a.CITY=?", this.getCITY());// 所在地区(市：地区信息表ID)
 		
 		if(getINDUSTRY()!=null&&!getINDUSTRY().trim().equals("")){
 			this.setMap(params, "a.INDUSTRY=?", "%"+this.getINDUSTRY()+"%");// 从事行业(字典)
