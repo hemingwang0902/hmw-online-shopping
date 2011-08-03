@@ -49,6 +49,7 @@ public class SessionFilter implements Filter,Serializable {
 		excepServlets.add("/regiest.go");
 		excepServlets.add("/user/checkEmail.go");
 		excepServlets.add("/ajaxRequest.go");
+		excepServlets.add("/index/getAdByPosition.go");
 	}
 
 	@SuppressWarnings("unchecked")

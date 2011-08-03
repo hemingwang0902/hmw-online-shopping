@@ -1,5 +1,8 @@
 package com.baizhi.index.service;
 
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
@@ -147,5 +150,15 @@ public class HomeService  extends ServiceSupport{
 			Elements.setElementValue(problem, "ATTENTION_COUNT", (isDisAttention ? ATTENTION_COUNT-1 : ATTENTION_COUNT+1));
 			problemDao.saveOrUpdateProblem(problem);
 		}
+	}
+	
+	public Map<String, Object> GetAdByPosition(String SHOW_TYPE){
+		List<Map<String, Object>> adList = homeDao.getAdByShowTypeAndDate(SHOW_TYPE, new Date());
+		if(adList == null || adList.isEmpty()){
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("CONTENT", "广告位招商中...");
+			return map;
+		}
+		return adList.get(0);
 	}
 }

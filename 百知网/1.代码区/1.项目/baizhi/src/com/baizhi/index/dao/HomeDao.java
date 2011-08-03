@@ -1,5 +1,7 @@
 package com.baizhi.index.dao;
 
+import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 import com.baizhi.IConstants;
@@ -299,4 +301,23 @@ public class HomeDao extends DaoSupport{
 		return queryForListWithSQLQuery(sql.toString(), params, nowPage, onePageCount);
 	}
 	
+	/**
+	 * 查询广告
+	 * @param showType
+	 * @param date
+	 * @return
+	 */
+	public List<Map<String,Object>> getAdByShowTypeAndDate(String showType, Date date){
+		StringBuffer sql = new StringBuffer()		
+		.append("SELECT AD_ID,TITLE,CONTENT,IMAGE,SHOW_TYPE,HREF,ORDER_BY,START_TIME,END_TIME,STATUS,REMARK")
+		.append(" FROM T_AD a")
+		.append(" WHERE a.STATUS=2")
+		.append(" and a.SHOW_TYPE=?")
+		.append(" AND a.START_TIME<=?")
+		.append(" AND a.END_TIME>?");
+		
+		Object[] params = new Object[]{showType, date, date};
+		
+		return queryForListWithSQLQuery(sql.toString(), params);
+	}
 }

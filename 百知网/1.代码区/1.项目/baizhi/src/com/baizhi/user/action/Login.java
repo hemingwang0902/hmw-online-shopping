@@ -35,11 +35,11 @@ public class Login extends ActionSupport{
 	private UserService userService;  
 	
 	private String username; //用户名
-	
 	private String userpwd;  //密码
-	
 	private String remenberMe;  //记住我
 	private String redirect;  //转发的URL
+	//是否是从Cookie中读取的用户名和密码（上次登录时勾选了“记住我”）
+	private Boolean isCookie = false; 
 	
 	public UserService getUserService() {
 		return userService;
@@ -81,12 +81,15 @@ public class Login extends ActionSupport{
 		this.redirect = redirect;
 	}
 
+	public Boolean getIsCookie() {
+		return isCookie;
+	}
+
 	@Override
 	public String execute() throws Exception {
 		HttpServletRequest request = ServletActionContext.getRequest();
 		HttpServletResponse response = ServletActionContext.getResponse();
 		
-		boolean isCookie = false;
 		// 用户名为空，检查 Cookie
 		if(StringUtils.isBlank(username)){
 			isCookie = checkCookie(request);
@@ -171,8 +174,4 @@ public class Login extends ActionSupport{
 		cookie.setMaxAge(Long.valueOf(DateUtils.MILLIS_PER_DAY * 60 / 1000).intValue());
 		response.addCookie(cookie);
 	}
-	
-	
-	
-
 }

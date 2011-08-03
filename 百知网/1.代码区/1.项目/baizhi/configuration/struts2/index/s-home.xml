@@ -66,5 +66,9 @@
 		      <param name="root">result</param>
 		    </result>
 		</action>
+		<!-- 查询广告 -->
+		<action name="getAdByPosition" class="com.baizhi.index.action.home.GetAdByPosition">
+			<result name="success">../popAd.jsp</result>
+		</action>
 	</package>
 </struts>
