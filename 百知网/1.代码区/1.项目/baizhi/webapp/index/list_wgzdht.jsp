@@ -62,7 +62,7 @@
           </div>
     	</s:iterator>
     	</div>
-        <div class="left_b_tp"><img src="../images/main/tupian.png" /></div>
+        <iframe frameborder="0" width="200" height="200" scrolling="no" src="${basePath}/index/getAdByPosition.go?SHOW_TYPE=3" style="margin: 0;padding: 0"></iframe>
     </div>
 	<div class="clear"></div>
 </div>

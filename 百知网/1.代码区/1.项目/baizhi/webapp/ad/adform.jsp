@@ -43,9 +43,16 @@
 						<td class="lightbox_content">
 						<%--<input type="text" class="input_width" id="SHOW_TYPE" name="SHOW_TYPE" value='<s:property value="SHOW_TYPE"/>'/>--%>
 							<select id="SHOW_TYPE" name="SHOW_TYPE" class="input_width" initValue='<s:property value="SHOW_TYPE"/>'>
-								<option value="1">左边悬浮</option>
-								<option value="2">中间悬浮</option>
-								<option value="3">右边悬浮</option>
+								<option value="1">首页</option>
+								<option value="2">问题列表页</option>
+								<option value="3">话题列表页</option>
+								<option value="4">品牌列表页</option>
+								<option value="5">会员列表页</option>
+								<option value="6">问题详细页</option>
+								<option value="7">话题详细页</option>
+								<option value="8">品牌详细页</option>
+								<option value="9">会员详细页</option>
+								<option value="10">弹出广告</option>
 							</select>
 						</td>
 					</tr>

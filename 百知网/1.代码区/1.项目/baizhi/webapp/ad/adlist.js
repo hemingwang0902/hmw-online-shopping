@@ -46,13 +46,40 @@ function getDataList(){
 					END_TIME = data["list"][i]["END_TIME"];//终止时间
 					STATUS = data["list"][i]["STATUS"];//状态(字典：1申请、2通过、3不通过)
 					REMARK = data["list"][i]["REMARK"];//备注
-					
-					if(SHOW_TYPE==1){
-						SHOW_TYPE="左边悬浮";
-					}else if(SHOW_TYPE==2){
-						SHOW_TYPE="中间悬浮";
-					}else if(SHOW_TYPE==3){
-						SHOW_TYPE="右边悬浮";
+					switch(parseInt(SHOW_TYPE)){
+						case 1:
+							SHOW_TYPE="首页";
+							break;
+						case 2:
+							SHOW_TYPE="问题列表页";
+							break;
+						case 3:
+							SHOW_TYPE="话题列表页";
+							break;
+						case 4:
+							SHOW_TYPE="品牌列表页";
+							break;
+						case 5:
+							SHOW_TYPE="会员列表页";
+							break;
+						case 6:
+							SHOW_TYPE="问题详细页";
+							break;
+						case 7:
+							SHOW_TYPE="话题详细页";
+							break;
+						case 8:
+							SHOW_TYPE="品牌详细页";
+							break;
+						case 9:
+							SHOW_TYPE="会员详细页";
+							break;
+						case 10:
+							SHOW_TYPE="弹出广告";
+							break;
+						default:
+							SHOW_TYPE="未定义";
+							break;
 					}
 					
 					if(STATUS==1){
