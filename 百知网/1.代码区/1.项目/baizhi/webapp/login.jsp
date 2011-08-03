@@ -4,6 +4,9 @@
 <html>
 <head>
 	<%@include file="common/jsCss.jsp" %>
+	<script type="text/javascript">
+		window.open("index/getAdByPosition.go?SHOW_TYPE=10","ad");
+	</script>
 </head>
 <body>
 
@@ -14,18 +17,18 @@
     	<input type="hidden" id="redirect" name="redirect" value="${param.redirect }">
     	<div class="loginbar_l">
         	<div class="loginbar_l_t">邮箱&gt;&nbsp;
-        	  <input type="text" id="username" name="username"  value="bb@qq.com" class="login_text" tabindex="1"/>
+        	  <input type="text" id="username" name="username"  value="" class="login_text" tabindex="1"/>
         	</div>
           <div class="loginbar_l_j"><input id="remenberMe" name="remenberMe" type="checkbox" value="true" tabindex="4"/><label for="remenberMe">记住我</label></div>
         </div>
         <div class="loginbar_r">
-        	<div class="loginbar_l_t">密码&gt;&nbsp;<input type="password" id="userpwd" name="userpwd" value="111111" class="login_pass" tabindex="2"/></div>
+        	<div class="loginbar_l_t">密码&gt;&nbsp;<input type="password" id="userpwd" name="userpwd" value="" class="login_pass" tabindex="2"/></div>
           <div class="loginbar_l_w"><a href="forget.jsp" tabindex="5">忘记密码？</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="regiest.jsp" tabindex="5">注册</a></div>        
         </div>
         <div class="loginbar_d"><input name="" type="submit" class="loginbar_but" value="" tabindex="3"/></div>
         </form>
     </div>
-    <div class="loginbar_toy">© 2011 百知问答平台 • 京ICP证110888号 </div>
+    <div class="loginbar_toy">© 2011 百知• 蒙ICP备11001704号-2 </div>
 </div>
 
 </body>
