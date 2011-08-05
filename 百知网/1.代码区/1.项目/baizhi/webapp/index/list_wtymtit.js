@@ -140,12 +140,15 @@ function getProblemAnswerList(){
 
 		if(result==null||result==''){
 			$(".tiao").html("<span>更多 >></span>");
+			$("#div_tjda").show();
 			return;
 		}
 		
 		var data = eval("("+result+")");
 		if (data != null && data["list"] != null && data["list"].length > 0) {
 			_showAnswer(data["list"]);
+		}else{
+			$("#div_tjda").show();
 		}
 		
 		if(data["list"].length < onePageCount){
@@ -329,7 +332,8 @@ function addAnswer(){
 				INTRODUCTION: $("#loginUser_INTRODUCTION").val()
 			}];
 			_showAnswer(answers);
-			$("#ANSWER_CONTENT").val("")
+			//$("#ANSWER_CONTENT").val("");
+			$("#div_tjda").remove();
 		}else{
 			show_showmessage({message:"添加回复失败。",type:"error"});
 		}

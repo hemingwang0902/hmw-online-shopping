@@ -143,6 +143,7 @@ a,a:active,a:visited,a:focus {
 			</div>
 			<div class="modal-dialog-content">
 				<form id="ProblemForm">
+				<div id="error_1" style="color: #f00;"></div>
 				<div class="tr temphooker">
 					<textarea id="CONTENT" class="it label-input-label" title="在这里输入问题"></textarea>
 				</div>

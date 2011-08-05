@@ -3,41 +3,38 @@ $(document).ready(function(){
 	if(q != "搜索问题、品牌或会员 >>"){
 		$("#CONTENT").val(q);
 	}
-	
-	$("#ProblemForm").validate({
-		rules:{
-			CONTENT: {required: true}
-		},
-		messages:{
-			CONTENT: {required: "请输入问题内容"}
-		},
-		submitHandler:function(form){
-            form.submit();
-        }   
-	});
 		
 	$("#save").click(function(){
-		if($("#ProblemForm").valid()){
+		var content = $.trim($("#CONTENT").val());
+		if(content){
 			$.post("../problem/saveProblemByAjax.go",{
 				PROBLEM_TYPE: "1", 
-				CONTENT: $("#CONTENT").val(),
+				CONTENT: content,
 				IS_ANONYMITY: $("#IS_ANONYMITY").attr("checked") ? "1" : "0",
 				RELEVANT_DETAILS: $("#RELEVANT_DETAILS").val(),
 				isAjax: true
 			}, function(result){
 				if(result==null||result==''){
-					showmessage({message:"添加问题失败！",type:"error"});
+					$("#error_1").text("添加问题失败！");
+					return ;
 				}
+
 				var data = eval("("+result+")");
-				var content = "";
-				if (data != null && data["id"] != null && data["id"].length > 0) {
-					//showmessage({message:"添加问题成功",type:"info"});
-					//parent.$.fancybox.close();
-					parent.document.location="wtymDetail.go?problemId=" + data["id"];
+				var message_0 = data["message"];
+				var problemId = data["id"];
+				if(message_0){
+					$("#error_1").text(message_0);
 				}else{
-					showmessage({message:"添加问题失败！",type:"error"});
+					if (problemId != null && problemId.length > 0) {
+						parent.document.location="wtymDetail.go?problemId=" + problemId;
+					}else{
+						$("#error_1").text("添加问题失败！");
+					}
 				}
 			});
-		}		
+		}else{
+			$("#CONTENT").focus();
+			$("#error_1").text("请输入问题内容");
+		}
 	});
 });

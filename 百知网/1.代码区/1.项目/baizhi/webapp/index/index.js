@@ -149,6 +149,34 @@ function getMoreProblemList(){
 	
 }
 
+function get_cookie(Name) {
+  var search = Name + "="
+  var returnvalue = "";
+  if (document.cookie.length > 0) {
+    offset = document.cookie.indexOf(search)
+    if (offset != -1) { // if cookie exists
+      offset += search.length
+      // set index of beginning of value
+      end = document.cookie.indexOf(";", offset);
+      // set index of end of cookie value
+      if (end == -1)
+         end = document.cookie.length;
+      returnvalue=unescape(document.cookie.substring(offset, end))
+      }
+   }
+  return returnvalue;
+}
+
+/**
+ * 弹出广告页
+ */
+function loadpopup(){
+	if (get_cookie('popped')==''){
+		window.open($("#basePath").val() + "/index/getAdByPosition.go?SHOW_TYPE=10","ad");
+		document.cookie="popped=yes"
+	}
+}
+
 /**
  * 关注
  */

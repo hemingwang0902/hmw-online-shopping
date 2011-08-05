@@ -17,23 +17,34 @@ $(document).ready(function(){
 	});
 	
 	$("#save").click(function(){
-		if($("#ProblemForm").valid()){
+		var content = $.trim($("#CONTENT").val());
+		if(content){
 			$.post(path.basePath + "/talk/saveTalkByAjax.go",{
 				CONTENT: $("#CONTENT").val(),
 				INTRODUCTION: $("#INTRODUCTION").val(),
 				isAjax: true
 			}, function(result){
 				if(result==null||result==''){
-					showmessage({message:"添加话题失败！",type:"error"});
+					$("#error_1").text("添加话题失败！");
+					return ;
 				}
+				
 				var data = eval("("+result+")");
-				var content = "";
-				if (data != null && data["id"] != null && data["id"].length > 0) {
-					parent.document.location=path.talk.detail + data["id"];
+				var message_0 = data["message"];
+				var talkId = data["id"];
+				if(message_0){
+					$("#error_1").text(message_0);
 				}else{
-					showmessage({message:"添加问题失败！",type:"error"});
+					if (talkId != null && talkId.length > 0) {
+						parent.document.location=path.talk.detail + talkId;
+					}else{
+						$("#error_1").text("添加话题失败！");
+					}
 				}
 			});
-		}		
+		}else{
+			$("#CONTENT").focus();
+			$("#error_1").text("请输入问题内容");
+		}
 	});
 });

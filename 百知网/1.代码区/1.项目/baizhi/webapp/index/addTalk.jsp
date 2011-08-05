@@ -145,6 +145,7 @@ a,a:active,a:visited,a:focus {
 			</div>
 			<div class="modal-dialog-content">
 				<form id="ProblemForm">
+				<div id="error_1" style="color: #f00;"></div>
 				<div class="tr temphooker">
 					<textarea id="CONTENT" name="CONTENT" class="it label-input-label" title="在这里输入话题名称"></textarea>
 				</div>
@@ -152,6 +153,7 @@ a,a:active,a:visited,a:focus {
 				<strong>可选：</strong>话题介绍
 				<div class="tr">
 					<textarea id="INTRODUCTION" name="INTRODUCTION" class="it"></textarea>
+					
 				</div>
 				<div class="ty">
 					<a href="javascript:void(0);" id="cancel" class="sy" onclick="parent.$.fancybox.close();">取消</a>
