@@ -1,6 +1,7 @@
 package com.baizhi.problem.action;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
@@ -69,34 +70,42 @@ public class SaveProblem extends ProblemForm{
 				return UPDATESUCCESS;
 			}
 		}else{
-			element = new DefaultElement("T_PROBLEM");
-			Elements.setElementValue(element, "PROBLEM_TYPE", this.getPROBLEM_TYPE());// 问题类型(字典：1普通、2我问的问题)
-			Elements.setElementValue(element, "CONTENT", this.getCONTENT());// 问题内容
-			Elements.setElementValue(element, "IS_ANONYMITY", this.getIS_ANONYMITY());// 是否匿名(0否、1是)
-			Elements.setElementValue(element, "RELEVANT_DETAILS", this.getRELEVANT_DETAILS());// 相关细节
-			Elements.setElementValue(element, "USER_ID", this.getSessionUserId());// 用户ID
-			if(this.getWAS_USERID()!=null&&!this.getWAS_USERID().trim().equals("")){
-				Elements.setElementValue(element, "WAS_USERID", this.getWAS_USERID());// 被问用户ID
+			Map<String, Object> conditions = new HashMap<String, Object>();
+			conditions.put("CONTENT=?", getCONTENT());
+			List<Map<String, Object>> list = problemService.getProblemList(conditions);
+			if(list.isEmpty()){ //不存在 content 相同的问题，添加
+				element = new DefaultElement("T_PROBLEM");
+				Elements.setElementValue(element, "PROBLEM_TYPE", this.getPROBLEM_TYPE());// 问题类型(字典：1普通、2我问的问题)
+				Elements.setElementValue(element, "CONTENT", getCONTENT());// 问题内容
+				Elements.setElementValue(element, "IS_ANONYMITY", this.getIS_ANONYMITY());// 是否匿名(0否、1是)
+				Elements.setElementValue(element, "RELEVANT_DETAILS", this.getRELEVANT_DETAILS());// 相关细节
+				Elements.setElementValue(element, "USER_ID", this.getSessionUserId());// 用户ID
+				if(this.getWAS_USERID()!=null&&!this.getWAS_USERID().trim().equals("")){
+					Elements.setElementValue(element, "WAS_USERID", this.getWAS_USERID());// 被问用户ID
+				}
+				Elements.setElementValue(element, "ANSWER_COUNT", 0);// 答案数量
+				Elements.setElementValue(element, "REVIEW_COUNT", 0);// 评论数量
+				Elements.setElementValue(element, "ATTENTION_COUNT",0);// 关注数量
+				Elements.setElementValue(element, "COLLECTION_COUNT",0);// 收藏数量
+				Elements.setElementValue(element, "BROWSE_COUNT", 0);// 浏览次数
+				Elements.setElementValue(element, "IS_REPORT", 0);// 是否举报(0否、1是)
+				Elements.setElementValue(element, "REPORT_COUNT", 0);// 举报次数
+				Elements.setElementValue(element, "CREATE_TIME", DateUtils.getCurrentTime(DateUtils.SHOW_DATE_FORMAT));// 创建时间
+				//如果保存成功，返回主键
+				keyid = problemService.saveOrUpdateProblem(element);
+			}else{//已经存放 content 相同的问题，则直接给出提示信息后返回
+				this.setMessage("问题已经存在");
 			}
-			Elements.setElementValue(element, "ANSWER_COUNT", 0);// 答案数量
-			Elements.setElementValue(element, "REVIEW_COUNT", 0);// 评论数量
-			Elements.setElementValue(element, "ATTENTION_COUNT",0);// 关注数量
-			Elements.setElementValue(element, "COLLECTION_COUNT",0);// 收藏数量
-			Elements.setElementValue(element, "BROWSE_COUNT", 0);// 浏览次数
-			Elements.setElementValue(element, "IS_REPORT", 0);// 是否举报(0否、1是)
-			Elements.setElementValue(element, "REPORT_COUNT", 0);// 举报次数
-			Elements.setElementValue(element, "CREATE_TIME", DateUtils.getCurrentTime(DateUtils.SHOW_DATE_FORMAT));// 创建时间
-			//如果保存成功，返回主键
-			keyid = problemService.saveOrUpdateProblem(element);
 			
-			Map<String, Object> returnMap = new HashMap<String, Object>();
-			returnMap.put("id", keyid);
-			//判断主键是否为空，如果不为空，则保存成功
-			if(StringUtils.isNotEmpty(keyid)){
-				if(Boolean.TRUE.equals(isAjax)){
-					setResult(returnMap);
-					return JSONSUCCESS;
-				}else{
+			if(Boolean.TRUE.equals(isAjax)){
+				Map<String, Object> returnMap = new HashMap<String, Object>();
+				returnMap.put("id", keyid);
+				returnMap.put("message", StringUtils.trimToEmpty(getMessage()));
+				setResult(returnMap);
+				return JSONSUCCESS;
+			}else{
+				//判断主键是否为空，如果不为空，则保存成功
+				if(StringUtils.isNotEmpty(keyid)){
 					return SUCCESS;
 				}
 			}
