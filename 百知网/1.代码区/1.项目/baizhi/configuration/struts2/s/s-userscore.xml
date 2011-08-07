@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="userscore" extends="json-default" namespace="/userscore">
+		<action name="getUserScoreList" class="com.baizhi.userscore.action.GetUserScoreList">
+			<result name="jsonsuccess" type="json">
+		      <param name="root">result</param>
+		    </result>
+		</action>
+		<action name="initUserScoreForm" class="com.baizhi.userscore.action.InitUserScoreForm">
+			<result name="success" type="dispatcher">userscoreform.jsp</result>
+		</action>
+		<action name="saveUserScore" class="com.baizhi.userscore.action.SaveUserScore">
+			<result name="error"  type="dispatcher" >userscoreform.jsp</result>
+			<result name="success" type="redirect" >userscorelist.jsp</result>
+			<result name="update" type="dispatcher" >userscoreform.jsp</result>
+			<result name="invalid.token" type="freemarker">userscoreform.jsp</result> 
+			<interceptor-ref name="defaultStack"><param name="workflow.excludeMethods">default</param></interceptor-ref> 
+			<interceptor-ref name="tokenSession"><param name="excludeMethods">default</param></interceptor-ref>
+		</action>
+		<action name="delUserScore" class="com.baizhi.userscore.action.DelUserScore">
+			<result name="jsonsuccess" type="json">
+		      <param name="root">result</param>
+		    </result>
+		</action>
+		<action name="getUserScoreById" class="com.baizhi.userscore.action.GetUserScoreById">
+			<result name="success" type="dispatcher" >userscoreform.jsp</result>
+		</action>
+	</package>
+</struts>

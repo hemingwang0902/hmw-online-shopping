@@ -3,10 +3,8 @@ package com.baizhi.index.dao;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import org.hibernate.Query;
 import org.hibernate.Session;
-
 import com.baizhi.IConstants;
 import com.baizhi.commons.DaoSupport;
 import com.baizhi.commons.PagerSupport;
@@ -58,15 +56,30 @@ public class PqlbDao extends DaoSupport{
 			   .append("a.USER_ID as USER_ID,")//用户ID
 			   .append("a.NAME as NAME,")//姓名/品牌名称
 			   .append("a.INTRODUCTION as INTRODUCTION,")//个人介绍/品牌介绍
-			   .append("a.IMAGE_PATH as IMAGE_PATH,")//相片路径/LOGO路径
-			   .append("count(c.BATTENTION_ID) as BATTENTION_COUNT)")//发表问题数量
-			   .append("FROM T_USER_BRAND a,T_USER_BASIC b,T_USER_BATTENTION c ")
-			   .append("WHERE a.USER_ID=b.USER_ID and a.BRAND_ID=c.BRAND_ID  and a.STAUS=3  ")
-			   .append(" group by a.BRAND_ID,a.USER_ID,b.NAME,b.INTRODUCTION,b.IMAGE_PATH order by BATTENTION_COUNT DESC ");
+			   .append("a.IMAGE_PATH as IMAGE_PATH) ")//相片路径/LOGO路径
+			   .append("FROM T_USER_BRAND a,T_USER_BASIC b ")
+			   .append("WHERE a.USER_ID=b.USER_ID and a.STAUS=3  ")
+			   .append(" order by (a.ATT_USER_COUNT+a.PROBLEM_COUNT) DESC ");
 			 List<Map<String, Object>> hotlist = PagerSupport.getList(session, session.createQuery(sql.toString()),nowPage, onePageCount);
 			 if(hotlist!=null&&hotlist.size()>0){
 					returnMap.put("hotlist", hotlist);
-				}
+			 }
+			 
+			 //推荐品牌
+			sql = new StringBuffer();
+			sql.append("SELECT new Map(")
+			   .append("a.BRAND_ID as BRAND_ID,")//品牌信息ID
+			   .append("a.USER_ID as USER_ID,")//用户ID
+			   .append("a.NAME as NAME,")//姓名/品牌名称
+			   .append("a.INTRODUCTION as INTRODUCTION,")//个人介绍/品牌介绍
+			   .append("a.IMAGE_PATH as IMAGE_PATH) ")//相片路径/LOGO路径
+			   .append("FROM T_USER_BRAND a,T_USER_BASIC b ")
+			   .append("WHERE a.USER_ID=b.USER_ID and a.STAUS=3 and a.IS_COMMEND=1  ")
+			   .append(" order by a.COMMEND_TIME DESC ");
+			 List<Map<String, Object>> commendlist = PagerSupport.getList(session, session.createQuery(sql.toString()),nowPage, onePageCount);
+			 if(commendlist!=null&&commendlist.size()>0){
+					returnMap.put("commendlist", commendlist);
+			 }
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

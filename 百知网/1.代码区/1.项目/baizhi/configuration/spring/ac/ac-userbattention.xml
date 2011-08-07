@@ -4,6 +4,7 @@
 	<bean id="userBattentionDao" class="com.baizhi.userbattention.dao.UserBattentionDao" parent="daoSupport">
 		<property name="userNoticeDao" ref="userNoticeDao" />
 		<property name="userDynamicDao" ref="userDynamicDao" />
+		<property name="userBrandDao" ref="userBrandDao" />
 	</bean>
 	
 	<bean id="userBattentionService" class="com.baizhi.userbattention.service.UserBattentionService" parent="serviceSupport">

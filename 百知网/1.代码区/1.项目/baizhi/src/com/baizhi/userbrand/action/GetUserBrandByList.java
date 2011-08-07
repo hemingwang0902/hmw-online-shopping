@@ -81,6 +81,9 @@ public class GetUserBrandByList extends UserBrandForm {
 				for (int i = 0; i < list.size(); i++) {
 					Map<String, Object> newmap = list.get(i);
 					newmap.put("AUDIT_TIME", getTime(newmap, "AUDIT_TIME"));
+					if(newmap.get("COMMEND_TIME")!=null&&!String.valueOf(newmap.get("COMMEND_TIME")).trim().equals("")){
+						newmap.put("COMMEND_TIME", getTime(newmap, "COMMEND_TIME"));
+					}
 				}
 				
 			}

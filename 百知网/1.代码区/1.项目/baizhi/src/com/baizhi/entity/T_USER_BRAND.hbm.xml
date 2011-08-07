@@ -63,6 +63,26 @@
 				<comment>相片路径/LOGO路径</comment>
 			</column>
 		</property>
+		<property name="ATT_USER_COUNT" type="int">
+			<column name="ATT_USER_COUNT"  >
+				<comment>关注人数</comment>
+			</column>
+		</property>
+		<property name="PROBLEM_COUNT" type="int">
+			<column name="PROBLEM_COUNT"  >
+				<comment>问题数量</comment>
+			</column>
+		</property>
+		<property name="IS_COMMEND" type="int">
+			<column name="IS_COMMEND"  >
+				<comment>是否推荐</comment>
+			</column>
+		</property>
+		<property name="COMMEND_TIME" type="java.util.Date">
+			<column name="COMMEND_TIME"  >
+				<comment>推荐时间</comment>
+			</column>
+		</property>
 		<property name="STAUS" type="int">
 			<column name="STAUS"  >
 				<comment>状态(1：未申请、2：申请、3：通过、4：未通过)</comment>
@@ -83,14 +103,14 @@
 				<comment>不通过原因</comment>
 			</column>
 		</property>
+		<property name="BRAND_LABEL" type="string">
+			<column name="BRAND_LABEL" length="1000" >
+				<comment>品牌标签</comment>
+			</column>
+		</property>
 		<property name="REMARK" type="string">
 			<column name="REMARK" length="1000" >
 				<comment>备注</comment>
-			</column>
-		</property>
-		<property name="BRAND_LABEL" type="string">
-			<column name="BRAND_LABEL" length="1000" >
-				<comment>标签</comment>
 			</column>
 		</property>
 		<property name="CREATE_TIME" type="java.util.Date">

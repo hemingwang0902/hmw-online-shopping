@@ -8,6 +8,7 @@ import org.hibernate.EntityMode;
 import org.hibernate.Session;
 import com.baizhi.commons.DaoSupport;
 import com.baizhi.commons.ParametersSupport;
+import com.baizhi.userbrand.dao.UserBrandDao;
 import com.baizhi.userdynamic.dao.UserDynamicDao;
 import com.baizhi.usernotice.dao.UserNoticeDao;
 
@@ -26,6 +27,8 @@ public class UserBattentionDao extends DaoSupport{
 	
 	private UserDynamicDao userDynamicDao;
 	
+	private UserBrandDao userBrandDao;
+	
 	public UserNoticeDao getUserNoticeDao() {
 		return userNoticeDao;
 	}
@@ -42,6 +45,14 @@ public class UserBattentionDao extends DaoSupport{
 		this.userDynamicDao = userDynamicDao;
 	}
 	
+	public UserBrandDao getUserBrandDao() {
+		return userBrandDao;
+	}
+
+	public void setUserBrandDao(UserBrandDao userBrandDao) {
+		this.userBrandDao = userBrandDao;
+	}
+
 	/**
 	 * 新增或修改用户关注品牌信息表信息
 	 * 
@@ -70,6 +81,8 @@ public class UserBattentionDao extends DaoSupport{
 				keyid=serializableid.toString();
 			}
 			Integer BRAND_ID=Integer.parseInt(element.elementText("BRAND_ID"));
+			//新增关注品牌人数
+			userBrandDao.modifyAttUserCount(BRAND_ID, 1, dom4jSession);
 			//判断对方是否设置是屏蔽关注我的品牌提醒，如果没有屏蔽则添加消息
 			//获取新增品牌人
 			List<Map<String, Object>> list=setQueryParameters(session.createQuery("select new Map(a.USER_ID as USER_ID,b.NAME as NAME) from T_USER_BATTENTION a,T_USER_BRAND b where a.BRAND_ID=b.BRAND_ID and a.BRAND_ID=?"), new Object[]{BRAND_ID}).list();
@@ -103,7 +116,19 @@ public class UserBattentionDao extends DaoSupport{
 	 */
 	public boolean cancel(Integer BRAND_ID,Integer USER_ID) {
 		int count=-1;
-		count=this.executeUpdate("delete from T_USER_BATTENTION where BRAND_ID=? and USER_ID=?", new Object[]{BRAND_ID,USER_ID});
+		Session session = getSession();
+		try {
+			session.beginTransaction();
+			count = setQueryParameters(session.createQuery("delete from T_USER_BATTENTION where BRAND_ID=? and USER_ID=?"), new Object[]{BRAND_ID,USER_ID}).executeUpdate();
+			//删除关注品牌人数
+			userBrandDao.modifyAttUserCount(BRAND_ID, -1, session);
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			session.beginTransaction().rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
 		if(count>0){
 			return true;
 		}

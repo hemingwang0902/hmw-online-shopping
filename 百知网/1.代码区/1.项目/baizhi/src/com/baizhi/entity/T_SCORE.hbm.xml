@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+	
+<hibernate-mapping>
+	<class entity-name="T_SCORE" table="T_SCORE" lazy="false">
+		<comment>积分信息表</comment>
+		<id name="SCORE_ID" column="SCORE_ID" type="int" >
+			<generator class="identity" />
+		</id>
+		<property name="NAME" type="string">
+			<column name="NAME" length="50" >
+				<comment>积分名称</comment>
+			</column>
+		</property>
+		<property name="SOCRE_TYPE" type="int">
+			<column name="SOCRE_TYPE"  >
+				<comment>积分类型(1、会员邀请朋友注册获得积分2、提问题3、回答问题)</comment>
+			</column>
+		</property>
+		<property name="SOCRE" type="int">
+			<column name="SOCRE"  >
+				<comment>积分</comment>
+			</column>
+		</property>
+		<property name="IS_VALID" type="int">
+			<column name="IS_VALID"  >
+				<comment>是否禁用</comment>
+			</column>
+		</property>
+		<property name="REMARK" type="string">
+			<column name="REMARK" length="1000" >
+				<comment>备注</comment>
+			</column>
+		</property>
+	</class>
+</hibernate-mapping>

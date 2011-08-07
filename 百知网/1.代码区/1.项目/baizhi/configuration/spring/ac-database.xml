@@ -51,6 +51,8 @@
 				<value>com/baizhi/entity/T_ANSWER_REVIEW.hbm.xml</value>
 				<value>com/baizhi/entity/T_ANSWER_VOTE.hbm.xml</value>
 				<value>com/baizhi/entity/T_USER_ATTENTIONTALK.hbm.xml</value>
+				<value>com/baizhi/entity/T_SCORE.hbm.xml</value>
+				<value>com/baizhi/entity/T_USER_SCORE.hbm.xml</value>
 			</list>
 		</property>
 	</bean>

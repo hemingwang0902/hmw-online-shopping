@@ -63,6 +63,16 @@ public class UserBrandService extends ServiceSupport{
 	}
 	
 	/**
+	 * 推荐品牌
+	 * @param BRAND_ID       品牌ID
+	 * @param IS_COMMEND     是否推荐(0:否、1:是)
+	 * @return 是否成功
+	 */
+	public boolean modifyCommend (Integer BRAND_ID,Integer IS_COMMEND){
+		return userBrandDao.modifyCommend(BRAND_ID, IS_COMMEND);
+	}
+	
+	/**
 	 * 根据用户品牌信息表ID获取用户品牌信息表实体
 	 * @param BRAND_ID 用户品牌信息表ID
 	 * @return 返回用户品牌信息表实体,如果无查询记录则返回null

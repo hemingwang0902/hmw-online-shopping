@@ -27,6 +27,28 @@
     
     <div class="c_right">
     <div class="r_column">
+            <div class="column">推荐品牌</div>
+          
+          <s:iterator value="returnMap.commendlist" var="commendlist">
+           <s:if test="#commendlist!=null&&#commendlist.BRAND_ID!=''">
+          <div class="column_contentgxq">
+				<div class="colun_c_pptu">
+					<div style="float:left;"><a href="initPpym.go?BRAND_ID=${newlist.BRAND_ID }">
+                	<img src="${cpath }/${newlist.IMAGE_PATH }" onerror="load_brand_image_60_53(this)" width="60" height="53" border="0" />
+                	</a></div>
+                </div>
+                <div class=" colun_c_ppwz">
+                    <div class="colun_c_xnr"><a href="initPpym.go?BRAND_ID=${commendlist.BRAND_ID }">${commendlist.NAME }</a></div>
+                    <div class="colun_c_xnrcon">${commendlist.INTRODUCTION}</div>
+              </div>
+                <div style=" clear:both;font-size:0;"></div>
+          	</div>
+			</s:if>
+            </s:iterator>
+          
+          <!--<div class="more"><a href="#">更多 &gt;&gt;</a></div>
+        --></div>
+    <div class="r_column">
             <div class="column">热点品牌</div>
             
           <s:iterator value="returnMap.hotlist" var="hotlist">

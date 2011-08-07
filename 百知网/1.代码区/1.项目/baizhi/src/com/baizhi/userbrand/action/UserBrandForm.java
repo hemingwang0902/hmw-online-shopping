@@ -5,14 +5,15 @@ import com.baizhi.commons.ActionSupport;
  * 类名： UserBrandList.java<br>
  * 描述：  获取用户品牌信息表列表信息
  * 创建者：江红
- * 创建日期： 2011-07-10 13:09:53
+ * 创建日期： 2011-08-07 20:51:11
  * 版本：V0.9 
  * 修改者：
  * 修改日期：
  */
 public abstract class UserBrandForm extends ActionSupport {
-
-	private static final long serialVersionUID = -207481668166999681L;
+	
+	private static final long serialVersionUID = 4140724442805008735L;
+	
 	private String BRAND_ID;//品牌ID
 	private String USER_ID;//用户ID
 	private String NAME;//品牌名称
@@ -25,20 +26,16 @@ public abstract class UserBrandForm extends ActionSupport {
 	private String LINK_MODE;//联系方式
 	private String EMAIL;//电子邮箱
 	private String IMAGE_PATH;//相片路径/LOGO路径
+	private String ATT_USER_COUNT;//关注人数
+	private String PROBLEM_COUNT;//问题数量
+	private String IS_COMMEND;//是否推荐(0：否、1：是)
+	private String COMMEND_TIME;//推荐时间
 	private String STAUS;//状态(1：未申请、2：申请、3：通过、4：未通过)
 	private String AUDIT_ID;//审核人
 	private String AUDIT_TIME;//审核时间
 	private String REASON;//不通过原因
+	private String BRAND_LABEL;//品牌标签
 	private String REMARK;//备注
-	private String BRAND_LABEL;
-	public String getBRAND_LABEL() {
-		return BRAND_LABEL;
-	}
-
-	public void setBRAND_LABEL(String brand_label) {
-		BRAND_LABEL = brand_label;
-	}
-
 	private String CREATE_TIME;//创建时间
 	private String MODIFY_TIME;//修改时间
 	
@@ -138,6 +135,38 @@ public abstract class UserBrandForm extends ActionSupport {
 		this.IMAGE_PATH = IMAGE_PATH;
 	}
 	
+	public String getATT_USER_COUNT() {
+		return ATT_USER_COUNT;
+	}
+
+	public void setATT_USER_COUNT(String ATT_USER_COUNT) {
+		this.ATT_USER_COUNT = ATT_USER_COUNT;
+	}
+	
+	public String getPROBLEM_COUNT() {
+		return PROBLEM_COUNT;
+	}
+
+	public void setPROBLEM_COUNT(String PROBLEM_COUNT) {
+		this.PROBLEM_COUNT = PROBLEM_COUNT;
+	}
+	
+	public String getIS_COMMEND() {
+		return IS_COMMEND;
+	}
+
+	public void setIS_COMMEND(String IS_COMMEND) {
+		this.IS_COMMEND = IS_COMMEND;
+	}
+	
+	public String getCOMMEND_TIME() {
+		return COMMEND_TIME;
+	}
+
+	public void setCOMMEND_TIME(String COMMEND_TIME) {
+		this.COMMEND_TIME = COMMEND_TIME;
+	}
+	
 	public String getSTAUS() {
 		return STAUS;
 	}
@@ -168,6 +197,14 @@ public abstract class UserBrandForm extends ActionSupport {
 
 	public void setREASON(String REASON) {
 		this.REASON = REASON;
+	}
+	
+	public String getBRAND_LABEL() {
+		return BRAND_LABEL;
+	}
+
+	public void setBRAND_LABEL(String BRAND_LABEL) {
+		this.BRAND_LABEL = BRAND_LABEL;
 	}
 	
 	public String getREMARK() {

@@ -5,7 +5,6 @@ import java.util.Map;
 import org.dom4j.Element;
 import org.hibernate.Query;
 import org.hibernate.Session;
-
 import com.baizhi.commons.DaoSupport;
 import com.baizhi.commons.ParametersSupport;
 import com.baizhi.commons.support.DateUtils;
@@ -20,6 +19,56 @@ import com.baizhi.commons.support.DateUtils;
  * 修改日期：
  */
 public class UserBrandDao extends DaoSupport{
+	
+	/**
+	 * 修改关注人数数量
+	 * @param BRAND_ID       品牌ID
+	 * @param ATT_USER_COUNT 关注数量
+	 * @param dom4jSession
+	 * @return
+	 * @throws Exception
+	 */
+	public boolean modifyAttUserCount(Integer BRAND_ID,Integer ATT_USER_COUNT,Session dom4jSession)throws Exception{
+		dom4jSession.createQuery("update T_USER_BRAND set ATT_USER_COUNT=ATT_USER_COUNT+"+ATT_USER_COUNT+" where BRAND_ID="+BRAND_ID).executeUpdate();
+		return true;
+	}
+	
+	/**
+	 * 修改问题数量
+	 * @param BRAND_ID       品牌ID
+	 * @param PROBLEM_COUNT  问题数量
+	 * @param dom4jSession
+	 * @return
+	 * @throws Exception
+	 */
+	public boolean modifyProblemCount(Integer BRAND_ID,Integer PROBLEM_COUNT,Session dom4jSession)throws Exception{
+		dom4jSession.createQuery("update T_USER_BRAND set PROBLEM_COUNT=PROBLEM_COUNT+"+PROBLEM_COUNT+" where BRAND_ID="+BRAND_ID).executeUpdate();
+		return true;
+	}
+	
+	/**
+	 * 推荐品牌
+	 * @param BRAND_ID       品牌ID
+	 * @param IS_COMMEND     是否推荐(0:否、1:是)
+	 * @return 是否成功
+	 */
+	public boolean modifyCommend (Integer BRAND_ID,Integer IS_COMMEND){
+		Session session = getSession();
+		boolean flag =false;
+		try {
+			session.beginTransaction();
+			this.executeUpdate("update T_USER_BRAND set IS_COMMEND=?,COMMEND_TIME=? where BRAND_ID=?", new Object[]{IS_COMMEND,DateUtils.getCurrentTime(DateUtils.SHOW_DATE_FORMAT),BRAND_ID});
+			
+			session.getTransaction().commit();
+			flag=true;
+		} catch (Exception e) {
+			session.beginTransaction().rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return flag;
+	}
 	
 	/**
 	 * 新增或修改用户品牌信息表信息
@@ -168,13 +217,15 @@ public class UserBrandDao extends DaoSupport{
 		   .append("a.NAME as NAME,")//品牌名称
 		   .append("a.INTRODUCTION as INTRODUCTION,")//品牌介绍
 		   .append("a.SOURCE as SOURCE,")//发源地(品牌特有)
-		   .append("a.PROVINCE as PROVINCE,")//所在地区(省：地区信息表ID)
-		   .append("a.CITY as CITY,")//所在地区(市：地区信息表ID)
+		   .append("(select DIC_NAME from T_AREA where DIC_CODE=a.PROVINCE ) as PROVINCE,")//所在地区(省：地区信息表ID)
+		   .append("(select DIC_NAME from T_AREA where DIC_CODE=a.CITY )  as CITY,")//所在地区(市：地区信息表ID)
 		   .append("a.INDUSTRY as INDUSTRY,")//从事行业(字典)
 		   .append("a.LINK_NAME as LINK_NAME,")//联系人姓名
 		   .append("a.LINK_MODE as LINK_MODE,")//联系方式
 		   .append("a.EMAIL as EMAIL,")//电子邮箱
 		   .append("a.IMAGE_PATH as IMAGE_PATH,")//相片路径/LOGO路径
+		   .append("a.IS_COMMEND as IS_COMMEND,")//是否推荐
+		   .append("a.COMMEND_TIME as COMMEND_TIME,")//推荐时间
 		   .append("a.STAUS as STAUS,")//状态(1：未申请、2：申请、3：通过、4：未通过)
 		   .append("a.AUDIT_ID as AUDIT_ID,")//审核人
 		   .append("(select NAME from T_USER_BASIC where USER_ID=a.AUDIT_ID)as AUDIT_NAME,")//审核人

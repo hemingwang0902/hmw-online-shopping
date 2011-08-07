@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<bean id="scoreDao" class="com.baizhi.score.dao.ScoreDao" parent="daoSupport"></bean>
+	
+	<bean id="scoreService" class="com.baizhi.score.service.ScoreService" parent="serviceSupport">
+		<property name="scoreDao">
+			<ref local="scoreDao" />
+		</property>
+	</bean>
+</beans>

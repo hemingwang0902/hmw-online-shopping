@@ -137,6 +137,11 @@ public class SaveUserBrand extends UserBrandForm{
 				Elements.setElementValue(element, "STAUS", this.getSTAUS());// 状态(1：未申请、2：申请、3：通过、4：未通过)
 				Elements.setElementValue(element, "BRAND_LABEL", this.getBRAND_LABEL());// 品牌标签
 				Elements.setElementValue(element, "CREATE_TIME",DateUtils.getCurrentTime(DateUtils.SHOW_DATE_FORMAT));// 创建时间
+				
+				Elements.setElementValue(element, "ATT_USER_COUNT","0");// 关注人数
+				Elements.setElementValue(element, "PROBLEM_COUNT","0");// 问题数量
+				Elements.setElementValue(element, "IS_COMMEND", "0");// 是否推荐(0：否、1：是)
+				
 				//如果保存成功，返回主键
 				keyid = userBrandService.saveOrUpdateUserBrand(element);
 				//判断主键是否为空，如果不为空，则保存成功

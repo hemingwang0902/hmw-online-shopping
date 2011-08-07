@@ -40,5 +40,10 @@
 		      <param name="root">result</param>
 		    </result>
 		</action>
+		<action name="commendBrand" class="com.baizhi.userbrand.action.CommendBrand">
+			<result name="jsonsuccess" type="json">
+		      <param name="root">result</param>
+		    </result>
+		</action>
 	</package>
 </struts>

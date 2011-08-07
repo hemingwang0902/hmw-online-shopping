@@ -68,30 +68,37 @@ public class SessionFilter implements Filter,Serializable {
 		Map<String, Object> userinfo = (Map<String, Object>) request.getSession().getAttribute(IConstants.SESSION_USERINFO);
 		String contextPath = request.getContextPath();
 		String servletPath = request.getServletPath();
-	
 		
-		//如果Session为空，则返回到主页面
-		if(userinfo !=null && userinfo.get("USER_ID") != null && StringUtils.isNotBlank("" + userinfo.get("USER_ID"))){
-			//请求后台管理首页
-			if("/index.jsp".equals(servletPath)){
-				//用户类型为“管理员”
-				if(NumberUtils.toInt("" + userinfo.get("USER_TYPE")) == IConstants.USER_TYPE_ADMIN){
-					chain.doFilter(request, response);
+		if(request.getRequestURI().indexOf("person")>0){
+			// 如果是普通会员，则将其重定向至 /index/home.jsp
+			response.sendRedirect(contextPath + "/index/home.jsp");
+		}else{
+			//如果Session为空，则返回到主页面
+			if(userinfo !=null && userinfo.get("USER_ID") != null && StringUtils.isNotBlank("" + userinfo.get("USER_ID"))){
+				//请求后台管理首页
+				if("/index.jsp".equals(servletPath)){
+					//用户类型为“管理员”
+					if(NumberUtils.toInt("" + userinfo.get("USER_TYPE")) == IConstants.USER_TYPE_ADMIN){
+						chain.doFilter(request, response);
+					}else{
+						// 如果是普通会员，则将其重定向至 /index/home.jsp
+						response.sendRedirect(contextPath + "/index/home.jsp");
+					}
 				}else{
-					// 如果是普通会员，则将其重定向至 /index/home.jsp
-					response.sendRedirect(contextPath + "/index/home.jsp");
+					chain.doFilter(request, response);
 				}
 			}else{
-				chain.doFilter(request, response);
-			}
-		}else{
-			//请求的 servlet 为不需要过滤的servlet
-			if(excepServlets.contains(servletPath)){
-				chain.doFilter(request, response);
-			}else{
-				response.sendRedirect(contextPath + "/login.go?redirect=" + (servletPath + "?" + StringUtils.defaultString(request.getQueryString())));
+				//请求的 servlet 为不需要过滤的servlet
+				if(excepServlets.contains(servletPath)){
+					chain.doFilter(request, response);
+				}else{
+					response.sendRedirect(contextPath + "/login.go?redirect=" + (servletPath + "?" + StringUtils.defaultString(request.getQueryString())));
+				}
 			}
 		}
+	
+		
+		
 	}
 
 	public void destroy() {
