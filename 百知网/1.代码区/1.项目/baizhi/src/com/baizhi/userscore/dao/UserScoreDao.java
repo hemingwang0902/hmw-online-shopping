@@ -52,7 +52,7 @@ public class UserScoreDao extends DaoSupport{
 		
 		idValue=save(element,dom4jSession);
 		//修改用户表积分
-		dom4jSession.createQuery("update T_USER_BASIC set SCORE+="+SCORE+" where USER_ID="+USER_ID).executeUpdate();
+		dom4jSession.createQuery("update T_USER_BASIC set SCORE=SCORE+"+SCORE+" where USER_ID="+USER_ID).executeUpdate();
 		
 		return idValue;
 	}

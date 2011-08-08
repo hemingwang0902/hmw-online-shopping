@@ -72,4 +72,11 @@ public interface IConstants {
 	int USER_TYPE_MEMBER = 1;
 	/**用户类型：系统管理员*/
 	int USER_TYPE_ADMIN = 3;
+	
+	/**新增积分的业务类型：会员邀请朋友注册获得积分*/
+	String DYNAMIC_TYPE_INVITE = "1";
+	/**新增积分的业务类型：提问题*/
+	String DYNAMIC_TYPE_ADD_PROBLEM = "2";
+	/**新增积分的业务类型：回答问题*/
+	String DYNAMIC_TYPE_ADD_ANSWER = "3";
 }

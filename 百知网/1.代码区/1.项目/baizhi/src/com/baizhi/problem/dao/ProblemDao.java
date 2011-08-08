@@ -15,6 +15,7 @@ import com.baizhi.commons.ParametersSupport;
 import com.baizhi.commons.constant.Diclist;
 import com.baizhi.userdynamic.dao.UserDynamicDao;
 import com.baizhi.usernotice.dao.UserNoticeDao;
+import com.baizhi.userscore.dao.UserScoreDao;
  /**
  * 
  * 类名：ProblemDao.java
@@ -28,6 +29,7 @@ import com.baizhi.usernotice.dao.UserNoticeDao;
 public class ProblemDao extends DaoSupport{
 	private UserNoticeDao userNoticeDao;
 	private UserDynamicDao userDynamicDao; 
+	private UserScoreDao userScoreDao; 
 	
 	public void setUserNoticeDao(UserNoticeDao userNoticeDao) {
 		this.userNoticeDao = userNoticeDao;
@@ -35,6 +37,10 @@ public class ProblemDao extends DaoSupport{
 
 	public void setUserDynamicDao(UserDynamicDao userDynamicDao) {
 		this.userDynamicDao = userDynamicDao;
+	}
+
+	public void setUserScoreDao(UserScoreDao userScoreDao) {
+		this.userScoreDao = userScoreDao;
 	}
 
 	/**
@@ -61,6 +67,10 @@ public class ProblemDao extends DaoSupport{
 				return idValue;
 			}
 			
+			//给问题发布者增加积分
+			userScoreDao.saveUserScore(NumberUtils.toInt(element.elementText("USER_ID")),NumberUtils.toInt(idValue),IConstants.DYNAMIC_TYPE_ADD_PROBLEM,"",dom4jSession);
+			
+			//给相关用户添加通知
 			int WAS_USERID = NumberUtils.toInt(element.elementText("WAS_USERID"));
 			if(WAS_USERID > 0){
 				//判断对方是否设置接收有人问我问题的通知
@@ -68,6 +78,7 @@ public class ProblemDao extends DaoSupport{
 					userDynamicDao.saveUserDynamic(NumberUtils.toInt(element.elementText("USER_ID")), "", NumberUtils.toInt(idValue), ""+IConstants.NOTICE_TYPE_ASK_ME, "问了你一个问题", WAS_USERID, dom4jSession);
 				}
 			}
+			
 			dom4jSession.getTransaction().commit();
 		} catch (Exception e) {
 			dom4jSession.beginTransaction().rollback();

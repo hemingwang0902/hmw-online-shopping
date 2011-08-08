@@ -15,6 +15,7 @@ import com.baizhi.commons.DaoSupport;
 import com.baizhi.commons.ParametersSupport;
 import com.baizhi.userdynamic.dao.UserDynamicDao;
 import com.baizhi.usernotice.dao.UserNoticeDao;
+import com.baizhi.userscore.dao.UserScoreDao;
 
  /**
  * 类名：ProblemAnswerDao.java<br>
@@ -28,6 +29,7 @@ import com.baizhi.usernotice.dao.UserNoticeDao;
 public class ProblemAnswerDao extends DaoSupport{
 	private UserNoticeDao userNoticeDao;
 	private UserDynamicDao userDynamicDao; 
+	private UserScoreDao userScoreDao; 
 	
 	public void setUserNoticeDao(UserNoticeDao userNoticeDao) {
 		this.userNoticeDao = userNoticeDao;
@@ -35,6 +37,10 @@ public class ProblemAnswerDao extends DaoSupport{
 
 	public void setUserDynamicDao(UserDynamicDao userDynamicDao) {
 		this.userDynamicDao = userDynamicDao;
+	}
+	
+	public void setUserScoreDao(UserScoreDao userScoreDao) {
+		this.userScoreDao = userScoreDao;
 	}
 	
 	/**
@@ -46,7 +52,6 @@ public class ProblemAnswerDao extends DaoSupport{
 	@SuppressWarnings("unchecked")
 	public String saveOrUpdateProblemAnswer(Element element) {
 		//return this.saveOrUpdate(element, "ANSWER_ID");
-
 
 		//是否为修改
 		boolean isUpdate = StringUtils.isNotBlank(element.elementText("ANSWER_ID"));
@@ -63,6 +68,10 @@ public class ProblemAnswerDao extends DaoSupport{
 				return idValue;
 			}
 			
+			//给问题回答者添加积分
+			userScoreDao.saveUserScore(NumberUtils.toInt(element.elementText("USER_ID")),NumberUtils.toInt(idValue),IConstants.DYNAMIC_TYPE_ADD_ANSWER,"",dom4jSession);
+			
+			//添加通知
 			String sql = "select pa.USER_ID as USER_ID from t_problem_attention pa where pa.PROBLEM_ID=?";
 			List<Map<String, Object>> resultList = setQueryParameters(session.createSQLQuery(sql).setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP), new Object[]{element.elementText("PROBLEM_ID")}).list();
 			if(resultList != null && !resultList.isEmpty()){
