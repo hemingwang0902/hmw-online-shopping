@@ -14,7 +14,7 @@ a:hover {
 }
 ul {
 	padding:0;
-	margin:0;
+	margin-bottom: 10px;
 }
 ul li {
 	display:inline;
