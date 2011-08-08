@@ -6,6 +6,7 @@
 	<%@include file="../common/jsCss.jsp" %>
 	<script type="text/javascript" src="index.js"></script>
 	<script type="text/javascript" src="list_wtymtit.js"></script>
+	<script type="text/javascript" src="${jsBasePath}/ckeditor/ckeditor.js"></script>
 	<style type="text/css">
 		.btn_wc{ width:66px; height:30px; background:url(../images/main/an_wc.jpg); border:0;}
 		.error{color: #ff0000;}

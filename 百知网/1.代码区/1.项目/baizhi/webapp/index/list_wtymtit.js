@@ -140,7 +140,7 @@ function getProblemAnswerList(){
 
 		if(result==null||result==''){
 			$(".tiao").html("<span>更多 >></span>");
-			$("#div_tjda").show();
+			dispalyAnswerTextarea(true, null);
 			return;
 		}
 		
@@ -148,7 +148,7 @@ function getProblemAnswerList(){
 		if (data != null && data["list"] != null && data["list"].length > 0) {
 			_showAnswer(data["list"]);
 		}else{
-			$("#div_tjda").show();
+			dispalyAnswerTextarea(true, null);
 		}
 		
 		if(data["list"].length < onePageCount){
@@ -157,6 +157,24 @@ function getProblemAnswerList(){
 			$(".tiao").html('<a href="javascript:void(0);" onclick="getProblemAnswerList();">更多 &gt;&gt;</a>');
 		}
 	});	
+}
+
+/**
+ * 显示添加回复的文本框
+ * @param {Object} isAdd 是否为添加回复（如果已经回答过了，则只能修改）
+ */
+function dispalyAnswerTextarea(isAdd){
+	if(isAdd){
+		$("#div_tjda").show();
+	}else{
+		$("#div_tjda").remove();
+	}
+	
+	if (CKEDITOR.instances['ANSWER_CONTENT']) {
+		 // with or without this line of code - rise an error. Uncaught [CKEDITOR.editor] The instance "ANSWER_CONTENT" already exists.
+		CKEDITOR.remove(CKEDITOR.instances['ANSWER_CONTENT']);
+	}
+	CKEDITOR.replace('ANSWER_CONTENT', {"toolbar":"Answer","width":"550"});
 }
 
 function _showAnswer(answers){
@@ -205,7 +223,6 @@ function _showAnswer(answers){
 		content += '		<div class="title_wtym_con">';
 		content += '		<span id="ANSWER_CONTENT_'+ANSWER_ID+'">' + CONTENT + '</span>';
 		if(USER_ID == $("#loginUser_USER_ID").val()){
-			$("#div_tjda").remove();
 			content += '		<a id="updateLink" href="javascript:void(0);" onclick="$(\'#div_xgda\').show();$(\'#ANSWER_CONTENT_'+ANSWER_ID+',#updateLink\').hide();">修改</a>';
 			content += '        <div id="div_xgda" class="wtym_tjda" style="display: none;">';
 			content += '        <div class="tit_wtym_daan">';
@@ -216,8 +233,6 @@ function _showAnswer(answers){
 			content += '			<input type="button" style="width:88px;cursor: pointer;" onclick="updateAnswer(\''+ANSWER_ID+'\');" class="bot_tjda" />';
 			content += '		</div>';
 			content += '		</div>';
-		}else{
-			$("#div_tjda").show();
 		}
 		content += '		</div>';
 		content += '	</div>';
@@ -247,9 +262,15 @@ function _showAnswer(answers){
 		content += '	<div id="div_pinglun_'+ANSWER_ID+'"></div>';
 		content += '	<div class="clear"></div>';
 		content += '</div>';
-	
 	}
 	$("#problemList").append(content);
+	
+	//当前登录的用户没有回答过这个问题
+	if($("#div_xgda").length == 0){
+		dispalyAnswerTextarea(true);
+	}else{
+		dispalyAnswerTextarea(false);
+	}
 }
 
 /**
@@ -296,8 +317,10 @@ function addTalk(){
  * 添加回复
  */
 function addAnswer(){
-	var ANSWER_CONTENT = $.trim($("#ANSWER_CONTENT").val());
-	if(ANSWER_CONTENT == ''){
+//	var ANSWER_CONTENT = $.trim($("#ANSWER_CONTENT").val());
+	var ANSWER_CONTENT = $.trim(CKEDITOR.instances.ANSWER_CONTENT.getData());
+		
+	if(ANSWER_CONTENT == $.trim($(ANSWER_CONTENT).html())){
 		$("#error_2").text("回复内容不能为空。");
 		return false;
 	}
@@ -333,7 +356,7 @@ function addAnswer(){
 			}];
 			_showAnswer(answers);
 			//$("#ANSWER_CONTENT").val("");
-			$("#div_tjda").remove();
+			//$("#div_tjda").remove();
 		}else{
 			show_showmessage({message:"添加回复失败。",type:"error"});
 		}
@@ -345,8 +368,10 @@ function addAnswer(){
  * @param {Object} ANSWER_ID
  */
 function updateAnswer(ANSWER_ID){
-	var ANSWER_CONTENT = $.trim($("#ANSWER_CONTENT").val());
-	if(ANSWER_CONTENT == ''){
+	//var ANSWER_CONTENT = $.trim($("#ANSWER_CONTENT").val());
+	var ANSWER_CONTENT = $.trim(CKEDITOR.instances.ANSWER_CONTENT.getData());
+		
+	if(ANSWER_CONTENT == $.trim($(ANSWER_CONTENT).html())){
 		$("#error_2").text("回复内容不能为空。");
 		return false;
 	}
@@ -354,14 +379,14 @@ function updateAnswer(ANSWER_ID){
 	$("#error_2").text(" ");
 	$.post("updateProblemAnswer.go",{
 		"ANSWER_ID": ANSWER_ID,
-		"CONTENT": $("#ANSWER_CONTENT").val()
+		"CONTENT": ANSWER_CONTENT
 	},function(result){
 		if(result==null||result==''){
 			return;
 		}
 		
 		$('#div_xgda').hide();
-		$('#ANSWER_CONTENT_'+ANSWER_ID).text(ANSWER_CONTENT).show();
+		$('#ANSWER_CONTENT_'+ANSWER_ID).html(ANSWER_CONTENT).show();
 		$('#updateLink').show();
 	});
 }

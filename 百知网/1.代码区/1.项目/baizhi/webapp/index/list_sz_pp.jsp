@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page import="com.ckeditor.CKEditorConfig"%>
 <%@include file="../common/basePath.jsp" %>
+<%@ taglib uri="http://ckeditor.com" prefix="ckeditor" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -62,6 +64,12 @@
             	</li>
                 <li style="margin-top: 10px;">
                   <textarea name="INTRODUCTION" cols="" rows="1" class="list_sz_js" style="width:420px;" id="INTRODUCTION" >${INTRODUCTION }</textarea>
+					<% 
+					CKEditorConfig settings = new CKEditorConfig();
+					settings.addConfigValue("width", "500");
+					settings.addConfigValue("toolbar", "Brand");
+					%>
+                  <ckeditor:replace basePath="${jsBasePath}/ckeditor/" config="<%=settings %>" replace="INTRODUCTION" />
                 </li>
                
              	<li style="margin-top: 18px;"><input name="SOURCE" type="text" id="SOURCE" value="${SOURCE }"/> </li>
