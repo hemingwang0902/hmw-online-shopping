@@ -38,7 +38,7 @@ public class VerificationCodeUtils {
 		Random r = new Random();
 		for (int i = 0; i < charSize; i++) {
 			c = ch[r.nextInt(ch.length)];
-			// TODO 如果需要做得更加灵活一点，需要修改此循环中的代码
+			//如果需要做得更加灵活一点，需要修改此循环中的代码
 			g.setColor(new Color(r.nextInt(88), r.nextInt(188), r.nextInt(255)));
 			g.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 22));// 输出的字体和大小
 			g.drawString("" + c, (i * 15) + 3, 18);// 写什么数字，在图片的什么位置画

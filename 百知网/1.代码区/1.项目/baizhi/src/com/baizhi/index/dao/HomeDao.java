@@ -172,13 +172,10 @@ public class HomeDao extends DaoSupport{
 		StringBuffer sql = new StringBuffer()		
 		.append("SELECT ")
 		.append(ALL_PROBLEM_FIELDS)
-		.append(", UB.NAME AS NAME, UB.IMAGE_PATH AS IMAGE_PATH, UB.WEBSITE AS WEBSITE")
+		.append(",(a.ANSWER_COUNT+a.ATTENTION_COUNT) as HOT_COUNT , UB.NAME AS NAME, UB.IMAGE_PATH AS IMAGE_PATH, UB.WEBSITE AS WEBSITE")
 		.append(",(select count(pa.ATTENTION_ID) from t_problem_attention pa where pa.PROBLEM_ID=a.PROBLEM_ID and pa.USER_ID=?) as IS_ATTENTION")
 		.append(",(select count(pc.COLLECTION_ID) from t_problem_collection pc where pc.PROBLEM_ID=a.PROBLEM_ID and pc.USER_ID=?) as IS_COLLECTION")
 		.append(" FROM T_PROBLEM a")
-		.append(" LEFT JOIN")
-		.append(" (SELECT PA.PROBLEM_ID, COUNT(PROBLEM_ID) AS ANSWER_COUNT FROM T_PROBLEM_ANSWER PA GROUP BY PA.PROBLEM_ID) B")
-		.append(" ON a.PROBLEM_ID=B.PROBLEM_ID")
 		.append(" JOIN T_USER_BASIC UB")
 		.append(" ON a.USER_ID=UB.USER_ID")
 		.append(" WHERE (a.WAS_USERID IS NULL OR a.WAS_USERID=?)");
@@ -189,7 +186,7 @@ public class HomeDao extends DaoSupport{
 			sql.append(" AND (ub.CITY is null or ub.CITY=?)") ;
 			params = new Object[]{userId, userId, userId, city};
 		}
-		sql.append(" ORDER BY B.ANSWER_COUNT DESC, A.BROWSE_COUNT DESC");
+		sql.append(" ORDER BY HOT_COUNT desc, a.ATTENTION_COUNT DESC");
 		
 		return queryForListWithSQLQuery(sql.toString(), params, nowPage, onePageCount);
 	}

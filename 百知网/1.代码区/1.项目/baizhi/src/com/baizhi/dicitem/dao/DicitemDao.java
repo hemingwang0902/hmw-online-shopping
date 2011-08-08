@@ -51,7 +51,7 @@ public class DicitemDao extends DaoSupport {
 
 	/**
 	 * <p>Title: 根据列表字典代码 CODE 获取字典列表清单实体</p>
-	 * <p>Description: TODO</p>
+	 * <p>Description: </p>
 	 * @param CODE 列表字典代码
 	 * @return
 	 * @author lishilin  2011-6-27 下午11:52:20
