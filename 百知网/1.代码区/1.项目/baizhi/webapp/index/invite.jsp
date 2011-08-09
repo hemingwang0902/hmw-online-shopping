@@ -10,7 +10,7 @@
 <body>
 	<%@include file="../common/head.jsp" %>
 <div class="login_home" style="background:#ccdba2;">
-	<div class="login_h_logo"><img src="../images/main/login_h_l.png" /></div>
+	<div class="login_h_logo"><img src="../images/main/login_h_l.gif" /></div>
   <div class="login_h_jj">一个有趣的网络问答社区，分享知识，发现价值</div>
   	<form id="form1">
   		<input id="url" type="hidden" value="${basePath }/regiest.jsp?USER_ID=">

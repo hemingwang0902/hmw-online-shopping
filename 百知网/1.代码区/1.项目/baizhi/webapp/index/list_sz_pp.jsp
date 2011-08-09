@@ -46,7 +46,7 @@
       	   <div class="title_xgwt_x_sz_2">
            	<ul>
             	<li>名称：</li>
-                <li>品牌介绍：</li>
+                <li style="height:500px;">品牌介绍：</li>
                 <li style="margin-top: 12px;">发源地：</li>
 				<li>所在地区：</li>
 				<li>从事行业：</li>

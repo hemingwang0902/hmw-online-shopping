@@ -33,7 +33,10 @@
 						<td class="lightbox_title"><span class="font_red">*</span>积分名称：</td>
 						<td class="lightbox_content"><input type="text" class="input_width readonly" id="NAME" name="NAME" value='<s:property value="NAME"/>' readonly="readonly"/></td>
 						<td class="lightbox_title"><span class="font_red">*</span>积分类型</td>
-						<td class="lightbox_content"><input type="text" class="input_width readonly" id="SOCRE_TYPE" name="SOCRE_TYPE" value='<s:property value="SOCRE_TYPE"/>' readonly="readonly"/></td>
+						<td class="lightbox_content">
+							<input type="hidden" id="SOCRE_TYPE" name="SOCRE_TYPE" value='<s:property value="SOCRE_TYPE"/>'/>
+							<input type="text" class="input_width readonly" value='<s:property value="SOCRE_TYPE_NAME"/>' readonly="readonly"/>
+						</td>
 					</tr>
 					<tr>
 						<td class="lightbox_title"><span class="font_red">*</span>积分：</td>
