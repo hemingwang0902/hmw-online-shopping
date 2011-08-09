@@ -4,6 +4,7 @@
 	<bean id="userDao" class="com.baizhi.user.dao.UserDao" parent="daoSupport">
 		<property name="userLogDao" ref="userLogDao" ></property>
 		<property name="userNoticeDao" ref="userNoticeDao" ></property>
+		<property name="userScoreDao" ref="userScoreDao" ></property>
 	</bean>
 	
 	<bean id="userService" class="com.baizhi.user.service.UserService" parent="serviceSupport">

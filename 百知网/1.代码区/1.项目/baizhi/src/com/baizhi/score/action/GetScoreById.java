@@ -1,6 +1,8 @@
 package com.baizhi.score.action;
 
 import java.util.Map;
+
+import com.baizhi.IConstants;
 import com.baizhi.score.service.ScoreService;
 /**
  * 
@@ -31,14 +33,16 @@ public class GetScoreById extends ScoreForm{
 		//查询数据
 		Map<String, Object>  returnMap = scoreService.getScoreMapById(this.getSCORE_ID());
 		if(returnMap!=null&&returnMap.size()>0){
+			String SOCRE_TYPE = this.getValue(returnMap,"SOCRE_TYPE");
 			this.setNAME(this.getValue(returnMap,"NAME"));// 积分名称
+			setSOCRE_TYPE(SOCRE_TYPE);
 			// 积分类型(1、会员邀请朋友注册获得积分2、提问题3、回答问题)
-			if(this.getValue(returnMap,"SOCRE_TYPE").equals("1")){
-				this.setSOCRE_TYPE("邀请朋友");
-			}else if(this.getValue(returnMap,"SOCRE_TYPE").equals("2")){
-				this.setSOCRE_TYPE("提问题");
-			}else if(this.getValue(returnMap,"SOCRE_TYPE").equals("3")){
-				this.setSOCRE_TYPE("回答问题");
+			if(IConstants.DYNAMIC_TYPE_INVITE.equals(SOCRE_TYPE)){
+				this.setSOCRE_TYPE_NAME("邀请朋友");
+			}else if(IConstants.DYNAMIC_TYPE_ADD_PROBLEM.equals(SOCRE_TYPE)){
+				this.setSOCRE_TYPE_NAME("提问题");
+			}else if(IConstants.DYNAMIC_TYPE_ADD_ANSWER.equals(SOCRE_TYPE)){
+				this.setSOCRE_TYPE_NAME("回答问题");
 			}
 			
 			this.setSOCRE(this.getValue(returnMap,"SOCRE"));// 积分

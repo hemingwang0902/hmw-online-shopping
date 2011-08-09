@@ -16,6 +16,7 @@ public abstract class ScoreForm extends ActionSupport {
 	private String SCORE_ID;//积分ID
 	private String NAME;//积分名称
 	private String SOCRE_TYPE;//积分类型(1、会员邀请朋友注册获得积分2、提问题3、回答问题)
+	private String SOCRE_TYPE_NAME;
 	private String SOCRE;//积分
 	private String IS_VALID;//是否禁用
 	private String REMARK;//备注
@@ -66,6 +67,14 @@ public abstract class ScoreForm extends ActionSupport {
 
 	public void setREMARK(String REMARK) {
 		this.REMARK = REMARK;
+	}
+
+	public String getSOCRE_TYPE_NAME() {
+		return SOCRE_TYPE_NAME;
+	}
+
+	public void setSOCRE_TYPE_NAME(String sOCRETYPENAME) {
+		SOCRE_TYPE_NAME = sOCRETYPENAME;
 	}
 	
 }

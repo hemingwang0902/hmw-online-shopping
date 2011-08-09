@@ -3,10 +3,14 @@ package com.baizhi.user.dao;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.apache.commons.lang.math.NumberUtils;
 import org.dom4j.Element;
 import org.dom4j.tree.DefaultElement;
 import org.hibernate.EntityMode;
 import org.hibernate.Session;
+
+import com.baizhi.IConstants;
 import com.baizhi.commons.DaoSupport;
 import com.baizhi.commons.ParametersSupport;
 import com.baizhi.commons.constant.Diclist;
@@ -14,6 +18,7 @@ import com.baizhi.commons.support.DateUtils;
 import com.baizhi.commons.support.Elements;
 import com.baizhi.userlog.dao.UserLogDao;
 import com.baizhi.usernotice.dao.UserNoticeDao;
+import com.baizhi.userscore.dao.UserScoreDao;
 /**
  * 
  * 类名：UserDao.java
@@ -29,6 +34,7 @@ public class UserDao extends DaoSupport{
 	private UserLogDao userLogDao;
 	
 	private UserNoticeDao userNoticeDao;
+	private UserScoreDao userScoreDao; 
 	
 	public UserLogDao getUserLogDao() {
 		return userLogDao;
@@ -44,6 +50,10 @@ public class UserDao extends DaoSupport{
 
 	public void setUserNoticeDao(UserNoticeDao userNoticeDao) {
 		this.userNoticeDao = userNoticeDao;
+	}
+
+	public void setUserScoreDao(UserScoreDao userScoreDao) {
+		this.userScoreDao = userScoreDao;
 	}
 
 	/**
@@ -118,23 +128,27 @@ public class UserDao extends DaoSupport{
 		try {
 			dom4jSession.beginTransaction();
 			dom4jSession.save(userelement);
-			Elements.setElementValue(basicelement, "USER_ID", userelement.elementText("USER_ID"));// 用户ID
+			String USER_ID = userelement.elementText("USER_ID");
+			Elements.setElementValue(basicelement, "USER_ID", USER_ID);// 用户ID
 			
 			dom4jSession.save(basicelement);
 			
 			//如果从别人链接注册
 			if(WAS_USERID>0){
 				Element element = new DefaultElement("T_USER_ATTENTION");
-				Elements.setElementValue(element, "USER_ID",  userelement.elementText("USER_ID"));// 用户ID
+				Elements.setElementValue(element, "USER_ID",  USER_ID);// 用户ID
 				Elements.setElementValue(element, "WAS_USERID", WAS_USERID);// 被关注用户
 				Elements.setElementValue(element, "IS_ATTENTION",1);// 是否关注(0否、1是)
 				Elements.setElementValue(element, "CREATE_TIME", DateUtils.getCurrentTime(DateUtils.SHOW_DATE_FORMAT));// 创建时间
 				dom4jSession.save(element);
+				
+				//给邀请人新增积分 何明旺 2011-08-09
+				userScoreDao.saveUserScore(WAS_USERID, NumberUtils.toInt(USER_ID),IConstants.DYNAMIC_TYPE_INVITE,"",dom4jSession);
 			}
 			//初始化消息设置信息
-			userNoticeDao.initUserNotice(Integer.parseInt(userelement.elementText("USER_ID")), dom4jSession);
+			userNoticeDao.initUserNotice(Integer.parseInt(USER_ID), dom4jSession);
 			dom4jSession.getTransaction().commit();
-			returnMap.put("USER_ID",userelement.elementText("USER_ID"));
+			returnMap.put("USER_ID",USER_ID);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally{
