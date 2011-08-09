@@ -15,7 +15,7 @@ $(document).ready(function(){
 		if(eve.which ==13){
 			changUserIds();
 		}
-	}).focus(changUserIds).autocomplete($("#basePath").val() + "/index/getUserListByNameWithAjax.go", {
+	}).focus(changUserIds).autocomplete($("#basePath").val() + "/index/getUserListByName.go", {
 		dataType: "json",
 		extraParams:{
 			"nowPage": 1,
