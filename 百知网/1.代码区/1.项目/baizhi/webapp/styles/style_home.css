@@ -194,8 +194,8 @@ color:black;
 .tit_bot_wtym{float:left; line-height:30px; height:30px; background-color:#f7f7f7; width:550px; padding:0 10px; margin-bottom:15px;}
 .tit_bot_wtym a{ color:#98b012;}
 .tit_bot_wtym a:hover{ color:#333;}
-.tit_wtym_tjda{ width:570px; line-height:30px; color:#98b012; font-weight:bold; font-size:14px;}
-.tit_wtym_daan{ width:550px; height:150px; padding:10px; background:#dadade;}
+.tit_wtym_tjda{ width:560px; line-height:30px; color:#98b012; font-weight:bold; font-size:14px;}
+.tit_wtym_daan{ width:540px; height:300px; padding:10px; background:#dadade;}
 .tit_wtym_tjda_anniu{ height:30px; padding-top:20px; padding-left:480px; width:90px; }
 .tit_wtym_tjda_anniu .bot_tjda{ text-align:right; height:30px; width:88px; background:url(../images/main/tjda.jpg); border:0;}
 
