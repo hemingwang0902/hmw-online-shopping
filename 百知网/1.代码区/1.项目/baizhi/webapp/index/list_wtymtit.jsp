@@ -6,11 +6,13 @@
 	<%@include file="../common/jsCss.jsp" %>
 	<script type="text/javascript" src="index.js"></script>
 	<script type="text/javascript" src="list_wtymtit.js"></script>
+	
 	<script type="text/javascript" src="${jsBasePath}/ckeditor/ckeditor.js"></script>
 	<style type="text/css">
 		.btn_wc{ width:66px; height:30px; background:url(../images/main/an_wc.jpg); border:0;}
 		.error{color: #ff0000;}
 	</style>
+	
 </head>
 
 <body>
@@ -36,12 +38,12 @@
       	</span>
       </div>
       <div class="subMenu_hylb">
-		<div id="div_problem_content_0" class="title_wtym_tit">
+		<div id="div_problem_content_0" class="title_wtym_tit" >
 			<span id="span_problem_content"><s:property value="problem.CONTENT"/></span>
 			<a href="javascript:void(0);" onclick="$('#div_problem_content_0').hide();$('#div_problem_content_1').show();">修改</a>
 		</div>
 		<div id="div_problem_content_1" class="title_wtym_tit" style="display: none;">
-			<textarea id="PROBLEM_CONTENT"><s:property value="problem.CONTENT"/></textarea>
+			<textarea id="PROBLEM_CONTENT" style="width: 420px;height:100px"><s:property value="problem.CONTENT"/></textarea>
 			<div id="error_3" class="error"></div>
 			<input type="button" id="btnSaveProblem_0" value="保存" onclick="updateProblemContent();">
 		</div>
@@ -51,17 +53,17 @@
             <a href="javascript:void(0);" onclick="$('#div_problem_DETAILS_0').hide();$('#div_problem_DETAILS_1').show();">修改</a>
         </div>
         <div id="div_problem_DETAILS_1" class="title_wtym_con" style="display: none;">
-            <textarea id="PROBLEM_RELEVANT_DETAILS"><s:property value="problem.RELEVANT_DETAILS"/></textarea>
+            <textarea id="PROBLEM_RELEVANT_DETAILS" style="width: 420px;height:100px"><s:property value="problem.RELEVANT_DETAILS"/></textarea>
             <div id="error_4" class="error"></div>
             <input type="button" id="btnSaveProblem_1" value="保存" onclick="updateProblemDetail();">
         </div>
       </div>
       <div class="line_1"></div>
  	<%@include file="../common/problemList.jsp" %>
-      <div id="div_tjda" class="wtym_tjda" style="display: none;">
-          <div class="tit_wtym_tjda">添加答案</div>
-          <div class="tit_wtym_daan">
-          	<textarea id="ANSWER_CONTENT" cols="0" rows="0" style="width:540px; height:130px;"></textarea>
+      <div id="div_tjda" class="wtym_tjda" style="display: none;width: 540px;height:290px">
+          <div class="tit_wtym_tjda" style="width: 530px;height:1px">添加答案</div>
+          <div class="tit_wtym_daan" style="width: 540px;height:290px">
+          	<textarea id="ANSWER_CONTENT" cols="0" rows="0" style="width:240px; height:100px;"></textarea>
           </div>
           <div id="error_2" class="error" style="margin-right: 10px;float: left"></div>
           <div class="tit_wtym_tjda_anniu">

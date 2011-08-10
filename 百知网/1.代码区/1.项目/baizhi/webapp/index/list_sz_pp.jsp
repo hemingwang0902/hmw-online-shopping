@@ -43,58 +43,40 @@
         <div class="clear"></div>
       </div>
       <div class="title_xgwt_x_sz">
-      	   <div class="title_xgwt_x_sz_2">
-           	<ul>
-            	<li>名称：</li>
-                <li style="height:500px;">品牌介绍：</li>
-                <li style="margin-top: 12px;">发源地：</li>
-				<li>所在地区：</li>
-				<li>从事行业：</li>
-				<li>联系人姓名：</li>
-				<li>联系手机：</li>
-				<li>电子邮箱：</li>
-				<li>品牌标签：</li>
-				<li>认证状态：</li>
-            </ul>
-        </div>
-           <div class="title_xgwt_x_sz_3">
-           	<ul>
-            	<li style="margin-top: 12px;">
+      	   <table><tr><td  width="106px">名称：</td><td width="456" style="margin-top: 12px;">
             		<input name="NAME" id="NAME" type="text" value="${NAME }" />
-            	</li>
-                <li style="margin-top: 10px;">
-                  <textarea name="INTRODUCTION" cols="" rows="1" class="list_sz_js" style="width:420px;" id="INTRODUCTION" >${INTRODUCTION }</textarea>
+            	</td></tr>
+                <tr> <td idth="106px">品牌介绍：</td><td style="margin-top: 10px;">
+                  <textarea name="INTRODUCTION" cols="" rows="1" class="tdst_sz_js" style="width:420px;" id="INTRODUCTION" >${INTRODUCTION }</textarea>
 					<% 
 					CKEditorConfig settings = new CKEditorConfig();
 					settings.addConfigValue("width", "500");
 					settings.addConfigValue("toolbar", "Brand");
 					%>
                   <ckeditor:replace basePath="${jsBasePath}/ckeditor/" config="<%=settings %>" replace="INTRODUCTION" />
-                </li>
+                </td></tr>
                
-             	<li style="margin-top: 18px;"><input name="SOURCE" type="text" id="SOURCE" value="${SOURCE }"/> </li>
-                <li style="margin-top: 10px;">
+             	<tr> <td style="margin-top: 12px;">发源地：</td><td style="margin-top: 18px;"><input name="SOURCE" type="text" id="SOURCE" value="${SOURCE }"/> </td></tr>
+                <tr><td width="20%">所在地区：</td><td style="margin-top: 10px;">
                 <select id="PROVINCE" name="PROVINCE"  onchange="setSelectValue(this.selectedIndex,true,document.getElementById('CITY'));"></select>省
                 <select id="CITY" name="CITY"></select>市
-                </li>
-				<li style="margin-top: 10px;"><input name="INDUSTRY" id="INDUSTRY" value="${INDUSTRY }" type="text" /></li>
-				<li style="margin-top: 18px;"><input name="LINK_NAME" id="LINK_NAME" value="${LINK_NAME }" type="text" /></li>
-				<li style="margin-top: 23px;"><input name="LINK_MODE" id="LINK_MODE" value="${LINK_MODE }" type="text" /></li>
-				<li style="margin-top: 20px;"><input name="EMAIL" id="EMAIL" value="${EMAIL }" type="text" /></li>
-				<li style="margin-top: 10px;"><input name="BRAND_LABEL" id="BRAND_LABEL" value="${BRAND_LABEL }" type="text" />（以逗号分开，做多可输入5个标签）</li>
-				<li >${STAUS_NAME}&nbsp;<span style="color:red;">${REASON}</span></li>
-				<li>
+                </td></tr>
+				<tr><td>从事行业：</td><td style="margin-top: 10px;"><input name="INDUSTRY" id="INDUSTRY" value="${INDUSTRY }" type="text" /></td></tr>
+				<tr><td style="width:20%">联系人姓名：</td><td style="margin-top: 18px;"><input name="tdNK_NAME" id="tdNK_NAME" value="${tdNK_NAME }" type="text" /></td></tr>
+				<tr><td>联系手机：</td><td style="margin-top: 23px;"><input name="tdNK_MODE" id="tdNK_MODE" value="${tdNK_MODE }" type="text" /></td></tr>
+				<tr><td>电子邮箱：</td><td style="margin-top: 20px;"><input name="EMAIL" id="EMAIL" value="${EMAIL }" type="text" /></td></tr>
+				<tr><td>品牌标签：</td><td style="margin-top: 10px;"><input name="BRAND_LABEL" id="BRAND_LABEL" value="${BRAND_LABEL }" type="text" />（以逗号分开，做多可输入5个标签）</td></tr>
+				<tr><td>认证状态：</td><td >${STAUS_NAME}&nbsp;<span style="color:red;">${REASON}</span></td>
+				</tr>
 				    
-				    <s:if test="STAUS==null||STAUS==''||STAUS==1||STAUS==4">
-				    	<input type="button" class="list_sz_an" onclick="btn_submit(1);" value="保存" /> &nbsp;&nbsp;&nbsp;&nbsp;
-				    	<input type="button" class="list_sz_an" onclick="btn_submit(2);" value="申请认证"/>
+				  <tr><td></td><td>  <s:if test="STAUS==null||STAUS==''||STAUS==1||STAUS==4">
+				    	<input type="button" class="tdst_sz_an" onctdck="btn_submit(1);" value="保存" /> &nbsp;&nbsp;&nbsp;&nbsp;
+				    	<input type="button" class="tdst_sz_an" onctdck="btn_submit(2);" value="申请认证"/>
 				    	<input type="hidden" id="STAUS" name="STAUS" value="1" />
 					</s:if>
 				    	
-				</li>
-				
-            </ul>
-        </div>
+			</td></tr></table>
+      	   
       </div>
       </form>
   </div>

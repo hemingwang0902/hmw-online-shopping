@@ -23,7 +23,7 @@
       		<div class="tit_google">
       		<img width="100" height="100" src='${basePath }<s:property value="talk.IMAGE_PATH"/>' onerror="load_brand_image_100_100(this);" style="cursor: pointer;" onclick="$('#item_talkImage').click();"/>
       		</div>
-            <div class="tit_google_con">
+            <div class="tit_google_con" >
             	<ul>
                 	<li><a href="javascript:void(0);"><s:property value="talk.CONTENT"/></a></li>
                     <li class="tit_google_conter">
@@ -32,7 +32,7 @@
                     	<a href="javascript:void(0);" onclick="$('#DIV_TALK_INTRODUCTION_0').hide();$('#DIV_TALK_INTRODUCTION_1').show();">修改</a>
 						</div>
 		<div id="DIV_TALK_INTRODUCTION_1" style="display: none;">
-			<textarea id="TALK_INTRODUCTION"><s:property value="talk.CONTENT"/></textarea>
+			<textarea  id="TALK_INTRODUCTION" style="width: 420px;height:100px"><s:property value="talk.CONTENT"/></textarea>
 			<div id="error_3" class="error"></div>
 			<input type="button" id="btnSaveTalk" value="保存" onclick="updateTalkIntroduction();">
 		</div>
