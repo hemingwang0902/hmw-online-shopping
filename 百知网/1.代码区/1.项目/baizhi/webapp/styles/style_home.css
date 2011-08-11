@@ -209,7 +209,7 @@ color:black;
 .tit_google_con ul li a:hover{ color:#ff9000;}
 .tit_google_con ul li .tit_google_conter{ line-height:20px;}
 
-/**************    会员页面.css   *****************/
+/**************    会员页面.css  修改login_lo   *****************/
 .subMenu_hyym{width:570px; height:3px; margin-bottom:5px; border-bottom:3px solid #bdd11a; overflow:hidden;}
 .tit_hyym{ width:570px; line-height:30px; color:#333; font-size:14px;}
 .tit_hyym_anniu{ height:30px; padding-top:20px; padding-left:460px; width:110px; padding-bottom:5px;}
@@ -245,6 +245,7 @@ color:black;
 
 .login_bg{ width:100%; height:705px; background:url(../images/main/login_bg.jpg);}
 .login_logo{ width:360px; height:145px; margin:0 auto; padding-top:230px; padding-bottom:80px;}
+.login_lo{ widdth:360px; height:145px; background:url(../img/login_logo.png) no-repeat; filter: 
 .loginbar{ width:540px; height:70px; margin:0 auto;}
 .loginbar_l{ width:220px; height:70px; float:left; padding-right:15px;}
 .loginbar_r{ width:220px; height:70px; float:left;padding-right:15px;}
@@ -320,10 +321,12 @@ color:black;
 .list_se_bcsz_1{ width:570px; line-height:30px; margin-bottom:15px;}
 
 
-/**************    login_home .css   *****************/
+/**************    login_home .css  修改login_h_log,login_h_er *****************/
 .login_h_logo{ width:200px; height:55px; margin:0 auto; padding-top:140px;}
+.login_h_log{ width:200px; height:55px; background:url(../images/main/login_h_l.png);}
 .login_h_jj{ line-height:100px; margin:0 auto; width:260px; height:100px; color:#336600}
 .login_h_e{ width:435px; height:31px; margin:0 auto; margin-top:40px;}
+.login_h_er{ width:435px; height:31px;  background:url(../images/main/e_mail.png);}
 .login_h_an{ width:93px; height:31px; border:0; background:url(../images/main/send.png) no-repeat; }
 .login_h_text{ width:210px; height:29px; background-color:#FFFFFF; border:1px solid #386b06;}
 .login_h_dz{ width:460px; height:90px; margin:0 auto; line-height:90px; color:#360;}
