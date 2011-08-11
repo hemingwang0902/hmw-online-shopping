@@ -88,6 +88,10 @@ public class WtymtitService  extends ServiceSupport{
 		return wtymtitDao.getTalkList(ProblemId);
 	}
 	
+	public List<Map<String, Object>> getBrandList(int ProblemId){
+		return wtymtitDao.getBrandList(ProblemId);
+	}
+	
 	public List<Map<String, Object>> getTalkUserList(int ProblemId){
 		return wtymtitDao.getTalkUserList(ProblemId);
 	}
@@ -132,25 +136,43 @@ public class WtymtitService  extends ServiceSupport{
 		}else {
 			talkId = talk.get("TALK_ID").toString();
 		}
-		return addTalkForProblem(problemId, NumberUtils.toInt(talkId));
+		return addTalkForProblem(problemId, NumberUtils.toInt(talkId), IConstants.TALK_TYPE_TALK);
 	}
 	
 	/**
-	 * 给问题添加话题
+	 * 给问题添加话题或品牌
+	 * @param problemId 问题ID
+	 * @param talkId 话题或品牌ID
+	 * @param TALK_TYPE 话题类型，请参照 <code>com.baizhi.IConstants.TALK_TYPE_*</code>
+	 * @return
 	 */
-	public String addTalkForProblem(int problemId, int talkId){
-		Element element = problemTalkDao.getProblemTalkEleById(problemId, talkId);
+	public String addTalkForProblem(int problemId, int talkId, int TALK_TYPE){
+		Element element = problemTalkDao.getProblemTalkEleById(problemId, talkId, TALK_TYPE);
 		if(element != null)
 			return element.elementTextTrim("PROBLEMTALK_ID");
 			
 		element = new DefaultElement("T_PROBLEM_TALK");
 		Elements.setElementValue(element, "TALK_ID", talkId);// 话题ID
 		Elements.setElementValue(element, "PROBLEM_ID", problemId);// 问题ID
-		Elements.setElementValue(element, "TALK_TYPE", IConstants.TALK_TYPE_TALK);
+		Elements.setElementValue(element, "TALK_TYPE", TALK_TYPE);
 		Elements.setElementValue(element, "CREATE_TIME", DateUtils.getCurrentTime(DateUtils.SHOW_DATE_FORMAT));// 创建时间
 		Elements.setElementValue(element, "MODIFY_TIME", DateUtils.getCurrentTime(DateUtils.SHOW_DATE_FORMAT));// 修改时间
 		//如果保存成功，返回主键
-		return problemTalkDao.saveOrUpdateProblemTalk(element);
+		String id = problemTalkDao.saveOrUpdateProblemTalk(element);
+		if(StringUtils.isNotEmpty(id) && TALK_TYPE == IConstants.TALK_TYPE_BRAND){
+			//如果是给问题添加品牌，则更新品牌下的问题数量
+			updateProblemCountOfBrand(talkId);
+		}
+		return id;
+	}
+	
+	/**
+	 * 更新品牌的“问题数量”字段（在原来的基础上加1）
+	 * @param BRAND_ID 品牌ID
+	 */
+	private void updateProblemCountOfBrand(int BRAND_ID){
+		String sql = "update T_USER_BRAND set PROBLEM_COUNT=PROBLEM_COUNT+1 where BRAND_ID=?";
+		wtymtitDao.executeUpdate(sql, new Object[]{BRAND_ID});
 	}
 	
 	/**

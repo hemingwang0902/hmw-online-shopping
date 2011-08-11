@@ -40,8 +40,20 @@
 		      <param name="root">result</param>
 		    </result>
 		</action>
+		<!-- 根据品牌名称模糊查询品牌列表 -->
+		<action name="getUserBrandByName" class="com.baizhi.userbrand.action.GetUserBrandByName">
+			<result name="jsonsuccess" type="json">
+		      <param name="root">result</param>
+		    </result>
+		</action>
 		<!-- 给问题添加话题 -->
 		<action name="addTalkForProblem" class="com.baizhi.index.action.wtymtit.AddTalkForProblem">
+			<result name="jsonsuccess" type="json">
+		      <param name="root">result</param>
+		    </result>
+		</action>
+		<!-- 给问题添加品牌 -->
+		<action name="addBrandForProblem" class="com.baizhi.index.action.wtymtit.AddBrandForProblem">
 			<result name="jsonsuccess" type="json">
 		      <param name="root">result</param>
 		    </result>

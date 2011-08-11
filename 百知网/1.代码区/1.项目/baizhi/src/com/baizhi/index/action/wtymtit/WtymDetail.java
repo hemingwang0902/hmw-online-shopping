@@ -33,6 +33,8 @@ public class WtymDetail  extends ActionSupport{
 	private Map<String, Object> problem;
 	// 问题所属的话题
 	private List<Map<String, Object>> talkList;
+	// 问题所属的品牌
+	private List<Map<String, Object>> brandList;
 	//话题关注者
 	private List<Map<String, Object>> talkUserList;
 	//话题关注者数量
@@ -73,6 +75,10 @@ public class WtymDetail  extends ActionSupport{
 		return talkList;
 	}
 
+	public List<Map<String, Object>> getBrandList() {
+		return brandList;
+	}
+
 	public List<Map<String, Object>> getNearProblemList() {
 		return nearProblemList;
 	}
@@ -91,6 +97,7 @@ public class WtymDetail  extends ActionSupport{
 		}
 		
 		talkList = wtymtitService.getTalkList(problem_id);
+		brandList = wtymtitService.getBrandList(problem_id);
 		
 		talkUserList = wtymtitService.getTalkUserList(problem_id);
 		if(talkUserList != null){

@@ -128,9 +128,16 @@ public class ProblemTalkDao extends DaoSupport{
 		return this.getByList(sql.toString(), ps.getValues());
 	}
 	
-	public  Element getProblemTalkEleById(int PROBLEM_ID, int TALK_ID){
-		String sql = "FROM T_PROBLEM_TALK where PROBLEM_ID=? and TALK_ID=?";
-		return this.getElementById(sql, new Object[]{PROBLEM_ID, TALK_ID});
+	/**
+	 * 查询问题和话题（品牌）的关联
+	 * @param PROBLEM_ID 问题ID
+	 * @param TALK_ID 话题ID（品牌ID）
+	 * @param TALK_TYPE 话题类型
+	 * @return
+	 */
+	public  Element getProblemTalkEleById(int PROBLEM_ID, int TALK_ID, int TALK_TYPE){
+		String sql = "FROM T_PROBLEM_TALK where PROBLEM_ID=? and TALK_ID=? and TALK_TYPE=?";
+		return this.getElementById(sql, new Object[]{PROBLEM_ID, TALK_ID, TALK_TYPE});
 	}
 }
 

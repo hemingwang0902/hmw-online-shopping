@@ -3,12 +3,14 @@ package com.baizhi.index.dao;
 import java.util.List;
 import java.util.Map;
 
+import com.baizhi.IConstants;
 import com.baizhi.commons.DaoSupport;
 import com.baizhi.commons.ParametersSupport;
 
 public class WtymtitDao extends DaoSupport{
 	private final String ALL_PROBLEM_FIELDS = " a.PROBLEM_ID as PROBLEM_ID,a.PROBLEM_TYPE as PROBLEM_TYPE,a.CONTENT as CONTENT,a.IS_ANONYMITY as IS_ANONYMITY,a.RELEVANT_DETAILS as RELEVANT_DETAILS,a.USER_ID as USER_ID,a.WAS_USERID as WAS_USERID,a.ANSWER_COUNT as ANSWER_COUNT,a.REVIEW_COUNT as REVIEW_COUNT,a.ATTENTION_COUNT as ATTENTION_COUNT,a.COLLECTION_COUNT as COLLECTION_COUNT,a.BROWSE_COUNT as BROWSE_COUNT,a.IS_REPORT as IS_REPORT,a.REPORT_COUNT as REPORT_COUNT,a.CREATE_TIME as CREATE_TIME,a.MODIFY_TIME as MODIFY_TIME ";
 	private final String ALL_USER_BASIC_FIELDS = " UB.BASIC_ID as BASIC_ID, UB.USER_ID as USER_ID, UB.USER_TYPE as USER_TYPE, UB.NAME as NAME, UB.SOURCE as SOURCE, UB.PROVINCE as PROVINCE, UB.CITY as CITY, UB.INDUSTRY as INDUSTRY, UB.YEARS as YEARS, UB.LINK_MODE as LINK_MODE, UB.IS_OPEN as IS_OPEN, UB.INTRODUCTION as INTRODUCTION, UB.MOTTO as MOTTO, UB.IMAGE_PATH as IMAGE_PATH, UB.WEBSITE as WEBSITE, UB.PRIVATE_SET as PRIVATE_SET, UB.LEVEL as LEVEL, UB.SCORE as SCORE, UB.REMARK as REMARK, UB.CREATE_TIME as CREATE_TIME, UB.MODIFY_TIME as MODIFY_TIME ";
+	private final String ALL_USER_BRAND_FIELDS = "a.BRAND_ID as BRAND_ID,a.USER_ID as USER_ID,a.NAME as NAME,a.INTRODUCTION as INTRODUCTION,a.SOURCE as SOURCE,a.PROVINCE as PROVINCE,a.CITY as CITY,a.INDUSTRY as INDUSTRY,a.LINK_NAME as LINK_NAME,a.LINK_MODE as LINK_MODE,a.EMAIL as EMAIL,a.IMAGE_PATH as IMAGE_PATH,a.STAUS as STAUS,a.AUDIT_ID as AUDIT_ID,a.AUDIT_TIME as AUDIT_TIME,a.REASON as REASON,a.REMARK as REMARK,a.BRAND_LABEL as BRAND_LABEL,a.CREATE_TIME as CREATE_TIME,a.MODIFY_TIME as MODIFY_TIME";
 	private final String ALL_TALK_FIELDS = "t.TALK_ID as TALK_ID,t.CONTENT as CONTENT,t.USER_ID as USER_ID,t.INTRODUCTION as INTRODUCTION,t.IMAGE_PATH as IMAGE_PATH,t.CREATE_TIME as CREATE_TIME,t.MODIFY_TIME as MODIFY_TIME";
 	private final String ALL_ANSWER_FIELDS = "a.ANSWER_ID as ANSWER_ID, a.PROBLEM_ID as PROBLEM_ID, a.CONTENT as CONTENT, a.USER_ID as USER_ID, a.AGREE_COUNT as AGREE_COUNT, a.DISAGREE_COUNT as DISAGREE_COUNT, a.THANK_COUNT as THANK_COUNT, a.DISTHANK_COUNT as DISTHANK_COUNT, a.CREATE_TIME as CREATE_TIME, a.MODIFY_TIME as MODIFY_TIME";
 	private final String ALL_ANSWER_REVIEW_FIELDS = "a.REVIEW_ID as REVIEW_ID, a.ANSWER_ID as ANSWER_ID, a.PROBLEM_ID as PROBLEM_ID, a.CONTENT as CONTENT, a.PREVIEW_ID as PREVIEW_ID, a.USER_ID as USER_ID, a.CREATE_TIME as CREATE_TIME, a.MODIFY_TIME as MODIFY_TIME";
@@ -23,8 +25,25 @@ public class WtymtitDao extends DaoSupport{
 		.append("SELECT ").append(ALL_TALK_FIELDS)
 		.append(" FROM  T_TALK t")
 		.append(" WHERE t.TALK_ID IN (")
-		.append(" SELECT pt.TALK_ID FROM T_PROBLEM_TALK pt WHERE pt.PROBLEM_ID=?)");
-		return queryForListWithSQLQuery(sql.toString(), new Object[]{ProblemId});
+		.append(" SELECT pt.TALK_ID FROM T_PROBLEM_TALK pt WHERE pt.PROBLEM_ID=? and pt.TALK_TYPE=?)");
+		Object[] params = new Object[]{ProblemId, IConstants.TALK_TYPE_TALK};
+		return queryForListWithSQLQuery(sql.toString(), params);
+	}
+	
+	/**
+	 * 根据问题ID查找问题所属品牌
+	 * @param ProblemId 问题ID
+	 * @return
+	 */
+	public List<Map<String, Object>> getBrandList(int ProblemId){
+		StringBuffer sql = new StringBuffer()
+		.append("SELECT ").append(ALL_USER_BRAND_FIELDS)
+		.append(" FROM  T_USER_BRAND a")
+		.append(" WHERE a.BRAND_ID IN (")
+		.append(" SELECT pt.TALK_ID FROM T_PROBLEM_TALK pt WHERE pt.PROBLEM_ID=? and pt.TALK_TYPE=?)")
+		.append(" AND a.STAUS=?");
+		Object[] params = new Object[]{ProblemId, IConstants.TALK_TYPE_BRAND, IConstants.BRAND_STAUS_PASSED};
+		return queryForListWithSQLQuery(sql.toString(), params);
 	}
 	
 	/**

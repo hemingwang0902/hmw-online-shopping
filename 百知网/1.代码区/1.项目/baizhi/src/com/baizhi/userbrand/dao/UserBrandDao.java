@@ -279,5 +279,17 @@ public class UserBrandDao extends DaoSupport{
 		return this.getByList(sql.toString(), ps.getValues());
 	}
 	
+	/**
+	 * 更新品牌
+	 */
+	public int updateTalk(Map<String, Object> params,int BRAND_ID) {
+		int count=-1;
+		ParametersSupport ps=new ParametersSupport(params,ParametersSupport.EXECUTETYPE);
+		String sql = "update T_USER_BRAND set "+ps.getConditions()+" where BRAND_ID=?";
+		List<Object> list = ps.getValuesList();
+		list.add(BRAND_ID);
+		count=this.executeUpdate(sql.toString(), list.toArray());
+		return count;
+	}
 }
 
