@@ -45,7 +45,7 @@
       </div>
       <div id="error_5" class="error"></div>
       <div class="list_hylb">
-      	<input id="btnShowAddBrand" type="button" class="bot_tjht" style="float: left;cursor: pointer;"/>
+      	<input id="btnShowAddBrand" type="button" class="bot_tjht" style="float: left;cursor: pointer;background-image: url(../images/main/tjpp.png)"/>
       	<div id="divAddBrand" style="display: none;float: left;">
 	      	<input id="BRAND_ID" type="text" style="height:26px; padding-top:5px; padding-left:5px; width:370px;" />
 			<div id="div_BRAND" style="border: solid 1px;height: 26px;padding:0;margin:0;display: none;">
