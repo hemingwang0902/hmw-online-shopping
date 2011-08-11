@@ -60,9 +60,9 @@
       </div>
       <div class="line_1"></div>
  	<%@include file="../common/problemList.jsp" %>
-      <div id="div_tjda" class="wtym_tjda" style="display: none;width: 540px;height:290px">
-          <div class="tit_wtym_tjda" style="width: 530px;height:1px">添加答案</div>
-          <div class="tit_wtym_daan" style="width: 540px;height:290px">
+       <div id="div_tjda" class="wtym_tjda" style="display: none;width: 540px;height:370px">
+          <div class="tit_wtym_tjda">添加答案</div>
+          <div class="tit_wtym_daan" >
           	<textarea id="ANSWER_CONTENT" cols="0" rows="0" style="width:240px; height:100px;"></textarea>
           </div>
           <div id="error_2" class="error" style="margin-right: 10px;float: left"></div>
