@@ -39,6 +39,13 @@ $(document).ready(function(){
     	$("#divAddTalk").hide();
   	}); 
 	
+	//“添加品牌”按钮的单击事件
+	$("#btnShowAddBrand").toggle(function () {
+    	$("#divAddBrand").show();
+  	}, function () {
+    	$("#divAddBrand").hide();
+  	}); 
+	
 	//“邀请他人回答”按钮的单击事件
 	$("#a_invite").toggle(function () {
     	$("#div_invite").show();
@@ -75,12 +82,46 @@ $(document).ready(function(){
 		}
 	});
 	
+	//给问题添加品牌时，根据输入的内容自动提示
+	$("#BRAND_ID").keyup(function(eve){
+		if(eve.which ==13){
+			changBrandIds();
+		}
+	}).focus(changBrandIds).autocomplete("getUserBrandByName.go", {
+		dataType: "json",
+		extraParams:{
+			"nowPage": 1,
+			"onePageCount": 10,
+			"ajax": "true"
+		},
+		formatItem: function(row, i, max) {
+			return row.NAME;
+		},
+		parse:function(result){ //将从后台返回的数据转化为候选项数组
+			var parsed = [];
+			if(result != null && result != ''){
+				var data = eval("("+result+")");
+				if (data != null && data["list"] != null && data["list"].length > 0) {
+					for(var i=0;i<data["list"].length;i++){
+						var row = data["list"][i];
+						parsed[parsed.length] = {
+							data: row,
+							value: row.BRAND_ID+","+row.NAME,
+							result: row.BRAND_ID+","+row.NAME
+						};
+					}
+				}
+			}
+			return parsed;
+		}
+	});
+	
 	//邀请他人回答时，根据输入的姓名自动提示
 	$("#WAS_USER_ID").keyup(function(eve){
 		if(eve.which ==13){
 			changUserIds();
 		}
-	}).focus(changUserIds).autocomplete("getUserListByNameWithAjax.go", {
+	}).focus(changUserIds).autocomplete("getUserListByName.go", {
 		dataType: "json",
 		extraParams:{
 			"nowPage": 1,
@@ -109,9 +150,16 @@ $(document).ready(function(){
 		}
 	});
 	
+	//删除已选择的人员（邀请他人回答）
 	$("#DEL_USER").click(function(){
 		$("#div_USER").hide();
 		$("#WAS_USER_ID").val("").show();
+	});
+	
+	//删除已选择的品牌（给问题添加品牌）
+	$("#DEL_BRAND").click(function(){
+		$("#div_BRAND").hide();
+		$("#BRAND_ID").val("").show();
 	});
 });
 
@@ -121,6 +169,19 @@ function changUserIds(){
 		$("#WAS_USER_ID").hide().val(v[0]);
 		$("#USER_NAME").text(v[1]);
 		$("#div_USER").show();
+	}else{
+		$("#WAS_USER_ID").val("");
+	}
+}
+
+function changBrandIds(){
+	var v = $("#BRAND_ID").val().split(",");
+	if(v.length == 2){
+		$("#BRAND_ID").hide().val(v[0]);
+		$("#BRAND_NAME").text(v[1]);
+		$("#div_BRAND").show();
+	}else{
+		$("#BRAND_ID").val("");
 	}
 }
 
@@ -284,7 +345,7 @@ function addTalk(){
 	}
 	
 	var result = true;
-	$(".list_xgwt_xght a").each(function(i, domEle){
+	$("#div_xght a").each(function(i, domEle){
 		if($.trim($(domEle).text()) == TALK_CONTENT){
 			$("#error_1").text("该问题已经添加了话题“"+TALK_CONTENT+"”。");
 			result = false;
@@ -305,12 +366,46 @@ function addTalk(){
 			if(data!=null&&data["TALK_ID"]>0){
 				$("#TALK_CONTENT").val("");
 				$("#divAddTalk").hide();
-				$(".list_xgwt_xght").append('<a href="initHtym.go?TALK_ID='+data["TALK_ID"]+'" style="margin-right: 5px;">'+TALK_CONTENT+'</a>');
+				$("#div_xght").append('<a href="initHtym.go?TALK_ID='+data["TALK_ID"]+'" style="margin-right: 5px;">'+TALK_CONTENT+'</a>');
 			}else{
 				show_showmessage({message:"添加话题失败。",type:"error"});
 			}
 		});
 	}
+}
+
+/**
+ * 给问题添加品牌
+ */
+function addBrand(){
+	var BRAND_ID = $.trim($("#BRAND_ID").val());
+	if(BRAND_ID == ''){
+		$("#error_5").text("请选择需要关联的品牌。");
+		return false;
+	}
+	
+	if($("#div_xgpp a[BRAND_ID='"+BRAND_ID+"']").length > 0){
+		$("#error_5").text("该问题已经添加了该品牌“");
+		return false;
+	}
+
+	$("#error_5").text(" ");
+	$.post("addBrandForProblem.go",{
+		PROBLEM_ID: $("#problemId").val(),
+		BRAND_ID: BRAND_ID
+	},function(result){
+		if(result==null||result==''){
+			return;
+		}
+		var data = eval("("+result+")");
+		if(data!=null && data["flag"]){
+			$("#BRAND_ID").val("").show();
+			$("#divAddBrand,#div_BRAND").hide();
+			$("#div_xgpp").append('<a href="'+path.brand.detail+BRAND_ID+'" style="margin-right: 5px;">'+$("#BRAND_NAME").text()+'</a>');
+		}else{
+			show_showmessage({message:"添加品牌失败。",type:"error"});
+		}
+	});
 }
 
 /**

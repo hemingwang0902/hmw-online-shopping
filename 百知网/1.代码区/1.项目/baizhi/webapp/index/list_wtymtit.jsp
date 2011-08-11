@@ -24,19 +24,40 @@
 <div class="content">
 	<div class="c_left">
 	  <%@include file="../common/search.jsp" %>
-      <div class="list_xgwt_xght">话题：
+      <div id="div_xght" class="list_xgwt_xght">话题：
       	<s:iterator value="%{talkList}" >
       		<a href='${basePath }/index/initHtym.go?TALK_ID=<s:property value="TALK_ID"/>' style="margin-right: 5px;"><s:property value="CONTENT"/></a>
       	</s:iterator>
       </div>
       <div id="error_1" class="error"></div>
       <div class="list_hylb">
-      	<input id="btnShowAddTalk" type="button" class="bot_tjht" />
+      	<input id="btnShowAddTalk" type="button" class="bot_tjht" style="cursor: pointer;"/>
       	<span id="divAddTalk" style="display: none;">
 	      	<input id="TALK_CONTENT" type="text" style="height:21px; padding-top:5px; padding-left:5px; width:370px;" />
 	      	<input type="button" class="btn_wc" onclick="addTalk();" style="cursor: pointer;"/>
       	</span>
       </div>
+      
+      <div id="div_xgpp" class="list_xgwt_xght">品牌：
+      	<s:iterator value="%{brandList}" >
+      		<a href='${basePath }/index/initPpym.go?BRAND_ID=<s:property value="BRAND_ID"/>' style="margin-right: 5px;" BRAND_ID='<s:property value="BRAND_ID"/>'><s:property value="NAME"/></a>
+      	</s:iterator>
+      </div>
+      <div id="error_5" class="error"></div>
+      <div class="list_hylb">
+      	<input id="btnShowAddBrand" type="button" class="bot_tjht" style="float: left;cursor: pointer;"/>
+      	<div id="divAddBrand" style="display: none;float: left;">
+	      	<input id="BRAND_ID" type="text" style="height:26px; padding-top:5px; padding-left:5px; width:370px;" />
+			<div id="div_BRAND" style="border: solid 1px;height: 26px;padding:0;margin:0;display: none;">
+				<div style="clear: both;height: 25px;background-color: gray;float: left;border: solid 1px;">
+					<div id="BRAND_NAME" style="height: 25px;float: left;margin:0;">test</div>
+					<div id="DEL_BRAND" style="float: left;background:url(../images/main/hlcr_btn.gif) no-repeat;width: 16px;height: 16px;cursor: pointer;"></div>
+				</div>
+			</div>
+	      	<input type="button" class="btn_wc" onclick="addBrand();" style="cursor: pointer;"/>
+      	</div>
+      </div>
+      
       <div class="subMenu_hylb">
 		<div id="div_problem_content_0" class="title_wtym_tit" >
 			<span id="span_problem_content"><s:property value="problem.CONTENT"/></span>
