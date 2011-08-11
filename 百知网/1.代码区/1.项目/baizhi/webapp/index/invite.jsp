@@ -10,13 +10,13 @@
 <body>
 	<%@include file="../common/head.jsp" %>
 <div class="login_home" style="background:#ccdba2;">
-	<div class="login_h_logo"><img src="../images/main/login_h_l.png" /></div>
+	<div class="login_h_log"></div>
   <div class="login_h_jj">一个有趣的网络问答社区，分享知识，发现价值</div>
   	<form id="form1">
   		<input id="url" type="hidden" value="${basePath }/regiest.jsp?USER_ID=">
   		<div id="error" style="text-align: center;width: 100%;color: #ff0000;" ></div>
-  		 <div class="login_h_e">
-  		 	<img src="../images/main/e_mail.png" />
+  		 <div class="login_h_er">
+  		 	
   		 	<input id="EMAIL" name="EMAIL" type="text" class="login_h_text" />
 			<input name="" type="submit" class="login_h_an" value="" style="cursor: pointer;"/>
 		</div>
