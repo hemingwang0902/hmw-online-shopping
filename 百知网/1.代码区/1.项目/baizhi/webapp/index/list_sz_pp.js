@@ -48,8 +48,9 @@ $(document).ready(function(){
         }   
 	});
 	
+	
 	//加载下拉框
-	initSelect("PROVINCE","CITY",true);
+	initSelect("PROVINCE","CITY",true,$("#PROVINCE_HIDDEN").val(),$("#CITY_HIDDEN").val());
 });
 
 function btn_submit(type){

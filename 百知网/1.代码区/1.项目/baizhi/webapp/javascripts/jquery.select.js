@@ -20,7 +20,8 @@ function initSelect(id1,id2,_isRequired,selectValue1,selectValue2){
 	for(var i=0;i<data[0].list.length;i++){
 		document.getElementById(id1).options[start] =new Option(data[0].list[i].name, data[0].list[i].value);
 		if(data[0].list[i].value==selectValue1){
-			document.getElementById(id1).options[start].selected = true;  
+			document.getElementById(id1).options[start].selected = true;
+			loadindex=start;
 		}
 		start++;
 	}

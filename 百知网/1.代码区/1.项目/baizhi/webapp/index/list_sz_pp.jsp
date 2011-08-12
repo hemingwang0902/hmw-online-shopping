@@ -59,6 +59,8 @@
                
              	<tr> <td style="margin-top: 12px;">发源地：</td><td style="margin-top: 18px;"><input name="SOURCE" type="text" id="SOURCE" value="${SOURCE }"/> </td></tr>
                 <tr><td width="20%">所在地区：</td><td style="margin-top: 10px;">
+                <input type="hidden" id="PROVINCE_HIDDEN" name="PROVINCE_HIDDEN" value="${PROVINCE }" />
+                <input type="hidden" id="CITY_HIDDEN" name="CITY_HIDDEN" value="${CITY}" />
                 <select id="PROVINCE" name="PROVINCE"  onchange="setSelectValue(this.selectedIndex,true,document.getElementById('CITY'));"></select>省
                 <select id="CITY" name="CITY"></select>市
                 </td></tr>
