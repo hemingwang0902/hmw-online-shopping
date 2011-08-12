@@ -9,7 +9,7 @@
 <body>
 	<input type="hidden" id="basePath" value="${basePath }" />
 	<div class="login_bg">
-		<div class="login_lo"></div>
+		<div class="login_logo"><img src="images/main/login_logo.png"  width:180px; height:50px;/></div>
 	    <div class="loginbar">
 	    <form action="login.go" id="loginform" name="loginform" method="post">
 	    	<input type="hidden" id="redirect" name="redirect" value="${param.redirect }">
