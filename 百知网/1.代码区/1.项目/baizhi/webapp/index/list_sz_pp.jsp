@@ -71,8 +71,8 @@
 				</tr>
 				    
 				  <tr><td></td><td>  <s:if test="STAUS==null||STAUS==''||STAUS==1||STAUS==4">
-				    	<input type="button" class="tdst_sz_an" onclick="btn_submit(1);" value="保存" /> &nbsp;&nbsp;&nbsp;&nbsp;
-				    	<input type="button" class="tdst_sz_an" onclick="btn_submit(2);" value="申请认证"/>
+				    	<input type="button" class="list_sz_an" onclick="btn_submit(1);" value="保存" /> &nbsp;&nbsp;&nbsp;&nbsp;
+				    	<input type="button" class="list_sz_an" onclick="btn_submit(2);" value="申请认证"/>
 				    	<input type="hidden" id="STAUS" name="STAUS" value="1" />
 					</s:if>
 				    	
