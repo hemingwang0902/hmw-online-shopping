@@ -54,5 +54,13 @@ $(document).ready(function(){
 
 function btn_submit(type){
 	$("#STAUS").val(type);
+	
+	var INTRODUCTION = $.trim(CKEDITOR.instances.INTRODUCTION.getData());
+	if(!$.trim($(INTRODUCTION).html().replace(/&nbsp;/g, ""))){
+		$("#ERROR_INTRODUCTION").text("回复内容不能为空。");
+		return false;
+	}
+
+	$("#ERROR_INTRODUCTION").text("");	
 	$("#UserBrand_FORM").submit();
 }

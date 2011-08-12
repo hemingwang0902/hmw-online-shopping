@@ -415,7 +415,7 @@ function addAnswer(){
 //	var ANSWER_CONTENT = $.trim($("#ANSWER_CONTENT").val());
 	var ANSWER_CONTENT = $.trim(CKEDITOR.instances.ANSWER_CONTENT.getData());
 		
-	if(ANSWER_CONTENT == $.trim($(ANSWER_CONTENT).html())){
+	if(!$.trim($(ANSWER_CONTENT).html().replace(/&nbsp;/g, ""))){
 		$("#error_2").text("回复内容不能为空。");
 		return false;
 	}

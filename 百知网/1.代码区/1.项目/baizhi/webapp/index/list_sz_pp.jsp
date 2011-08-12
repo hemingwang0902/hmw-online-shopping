@@ -54,6 +54,7 @@
 					settings.addConfigValue("toolbar", "Brand");
 					%>
                   <ckeditor:replace basePath="${jsBasePath}/ckeditor/" config="<%=settings %>" replace="INTRODUCTION" />
+                  <div id="ERROR_INTRODUCTION" style="color: #ff0000;"></div>
                 </td></tr>
                
              	<tr> <td style="margin-top: 12px;">发源地：</td><td style="margin-top: 18px;"><input name="SOURCE" type="text" id="SOURCE" value="${SOURCE }"/> </td></tr>
@@ -70,8 +71,8 @@
 				</tr>
 				    
 				  <tr><td></td><td>  <s:if test="STAUS==null||STAUS==''||STAUS==1||STAUS==4">
-				    	<input type="button" class="tdst_sz_an" onctdck="btn_submit(1);" value="保存" /> &nbsp;&nbsp;&nbsp;&nbsp;
-				    	<input type="button" class="tdst_sz_an" onctdck="btn_submit(2);" value="申请认证"/>
+				    	<input type="button" class="tdst_sz_an" onclick="btn_submit(1);" value="保存" /> &nbsp;&nbsp;&nbsp;&nbsp;
+				    	<input type="button" class="tdst_sz_an" onclick="btn_submit(2);" value="申请认证"/>
 				    	<input type="hidden" id="STAUS" name="STAUS" value="1" />
 					</s:if>
 				    	
