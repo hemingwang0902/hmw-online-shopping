@@ -8,6 +8,11 @@
 		<id name="TALK_ID" column="TALK_ID" type="int" >
 			<generator class="identity" />
 		</id>
+		<property name="TALKTYPE_ID" type="int">
+			<column name="TALKTYPE_ID"  >
+				<comment>话题类型ID</comment>
+			</column>
+		</property>
 		<property name="CONTENT" type="string">
 			<column name="CONTENT" length="1000" >
 				<comment>内容</comment>

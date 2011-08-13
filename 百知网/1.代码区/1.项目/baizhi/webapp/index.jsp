@@ -33,13 +33,16 @@
 				<li><a target="iframe_main" href="user/userlist.jsp" >会员管理</a></li>
 				<li><a target="iframe_main" href="userinvite/userinvitelist.jsp" >邀请会员</a></li>
 				<li><a target="iframe_main" href="score/scorelist.jsp" >积分设置</a></li>
-				<!-- <li><a target="iframe_main" href="scorelevel/scorelevellist.jsp" >积分级别设置</a></li> -->
+				<li><a target="iframe_main" href="scorelevel/scorelevellist.jsp" >积分级别设置</a></li>
+				<li><a target="iframe_main" href="talktype/talktypelist.jsp" >话题分类</a></li>
 				<li><a target="iframe_main" href="talk/talklist.jsp" >话题管理</a></li> 
+				
 				<li><a target="iframe_main" href="problem/problemlist.jsp" >问题管理</a></li>
 				<li><a target="iframe_main" href="area/provincelist.jsp" >地区设置</a></li>
 				<li><a target="iframe_main" href="ad/adlist.jsp" >广告设置</a> </li>
 				<li><a target="iframe_main" href="userbrand/userbrandlist.jsp" >品牌审核</a></li>
 				<li><a target="iframe_main" href="userbrand/userbrandcommendlist.jsp" >推荐品牌</a></li>
+				
 			</ul>
 		</div>  
 		<iframe scrolling='yes' id="iframe_main"  name="iframe_main" frameborder='0' style='width:100%;overflow:hidden;;height:600px;padding-bottom:20px;'></iframe>

@@ -60,4 +60,5 @@
 	<include file="struts2/index/s-htlb.xml" />
 	<include file="struts2/s/s-score.xml" />
 	<include file="struts2/s/s-userscore.xml" />
+	<include file="struts2/s/s-talktype.xml" />
 </struts>

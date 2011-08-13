@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="talktype" extends="json-default" namespace="/talktype">
+		<action name="getTalktypeList" class="com.baizhi.talktype.action.GetTalktypeList">
+			<result name="jsonsuccess" type="json">
+		      <param name="root">result</param>
+		    </result>
+		</action>
+		<action name="initTalktypeForm" class="com.baizhi.talktype.action.InitTalktypeForm">
+			<result name="success" type="dispatcher">talktypeform.jsp</result>
+		</action>
+		<action name="saveTalktype" class="com.baizhi.talktype.action.SaveTalktype">
+			<result name="error"  type="dispatcher" >talktypeform.jsp</result>
+			<result name="success" type="redirect" >talktypelist.jsp</result>
+			<result name="update" type="dispatcher" >talktypeform.jsp</result>
+			<result name="invalid.token" type="freemarker">talktypeform.jsp</result> 
+			<interceptor-ref name="defaultStack"><param name="workflow.excludeMethods">default</param></interceptor-ref> 
+			<interceptor-ref name="tokenSession"><param name="excludeMethods">default</param></interceptor-ref>
+		</action>
+		<action name="delTalktype" class="com.baizhi.talktype.action.DelTalktype">
+			<result name="jsonsuccess" type="json">
+		      <param name="root">result</param>
+		    </result>
+		</action>
+		<action name="getTalktypeById" class="com.baizhi.talktype.action.GetTalktypeById">
+			<result name="success" type="dispatcher" >talktypeform.jsp</result>
+		</action>
+		<action name="getCancelTalkList" class="com.baizhi.talktype.action.GetCancelTalkList">
+			<result name="jsonsuccess" type="json">
+		      <param name="root">result</param>
+		    </result>
+		</action>
+		<action name="getRelationTalkList" class="com.baizhi.talktype.action.GetRelationTalkList">
+			<result name="jsonsuccess" type="json">
+		      <param name="root">result</param>
+		    </result>
+		</action>
+		<action name="settingTalktype" class="com.baizhi.talktype.action.SettingTalktype">
+			<result name="jsonsuccess" type="json">
+		      <param name="root">result</param>
+		    </result>
+		</action>
+	</package>
+</struts>

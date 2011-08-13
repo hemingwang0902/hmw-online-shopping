@@ -27,12 +27,15 @@ a.button_box:hover,input.button_box:hover {background-position:bottom;border:#fe
 .font_red{color:#F00;}
 .input_width{width:200px;height:18px;border:#CCC solid 1px;margin-top:2px;line-height:18px;}
 .tr_bg td {height:21px;padding-top:3px;background:#c9e4f7 url(../images/main/thead_bg.gif) repeat-x;border-bottom:#56b2ec solid 1px;border-right:#56b2ec solid 1px;line-height:21px;color:#264a7b;}
-.bj_btn,.sc_btn,.qd_btn,.qrfp_btn,.hlcr_btn{width:16px;height:16px;display:block;float:left;margin-right:8px;}
+.bj_btn,.sc_btn,.qd_btn,.qrfp_btn,.hlcr_btn,.hc_btn,.qx_btn{width:16px;height:16px;display:block;float:left;margin-right:8px;}
 .bj_btn{background:url(../images/main/bj_btn.gif) no-repeat;}
 .sc_btn{background:url(../images/main/sc_btn.gif) no-repeat;}
 .qd_btn{background:url(../images/main/qd_btn.gif) no-repeat;}
 .qrfp_btn{background:url(../images/main/qrfp_btn.gif) no-repeat;}
 .hlcr_btn{background:url(../images/main/hlcr_btn.gif) no-repeat;}
+.hc_btn{background:url(../images/main/hc_btn.gif) no-repeat;}
+.qx_btn{background:url(../images/main/qx_btn.gif) no-repeat;}
+
 
 .Wdicter{border:#999 1px solid;height:20px;background:#fff url(../images/main/lld_btn.gif) no-repeat right;}
 .Wlightbox{border:#999 1px solid;height:20px;background:#fff url(../images/main/cx_btn.gif) no-repeat right;}

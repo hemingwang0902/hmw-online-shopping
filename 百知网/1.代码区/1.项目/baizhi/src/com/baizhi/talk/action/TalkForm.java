@@ -15,6 +15,7 @@ public abstract class TalkForm extends ActionSupport {
 	private static final long serialVersionUID = 8253312102363058513L;
 	
 	private String TALK_ID;//话题ID
+	private String TALKTYPE_ID;//话题类型ID
 	private String CONTENT;//内容
 	private String USER_ID;//用户ID
 	private String INTRODUCTION;//用户ID
@@ -30,6 +31,14 @@ public abstract class TalkForm extends ActionSupport {
 		this.TALK_ID = TALK_ID;
 	}
 	
+	public String getTALKTYPE_ID() {
+		return TALKTYPE_ID;
+	}
+
+	public void setTALKTYPE_ID(String talktype_id) {
+		TALKTYPE_ID = talktype_id;
+	}
+
 	public String getCONTENT() {
 		return CONTENT;
 	}
