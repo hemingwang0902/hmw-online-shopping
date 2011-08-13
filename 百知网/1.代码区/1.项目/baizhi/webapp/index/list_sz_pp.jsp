@@ -46,7 +46,7 @@
       	   <table><tr><td  width="106px">名称：</td><td width="456" style="margin-top: 12px;">
             		<input name="NAME" id="NAME" type="text" value="${NAME }" />
             	</td></tr>
-                <tr> <td idth="106px">品牌介绍：</td><td style="margin-top: 10px;">
+                <tr> <td width="106">品牌介绍：</td><td style="margin-top: 10px;">
                   <textarea name="INTRODUCTION" cols="" rows="1" class="tdst_sz_js" style="width:420px;" id="INTRODUCTION" >${INTRODUCTION }</textarea>
 					<% 
 					CKEditorConfig settings = new CKEditorConfig();
@@ -65,8 +65,8 @@
                 <select id="CITY" name="CITY"></select>市
                 </td></tr>
 				<tr><td>从事行业：</td><td style="margin-top: 10px;"><input name="INDUSTRY" id="INDUSTRY" value="${INDUSTRY }" type="text" /></td></tr>
-				<tr><td style="width:20%">联系人姓名：</td><td style="margin-top: 18px;"><input name="tdNK_NAME" id="tdNK_NAME" value="${tdNK_NAME }" type="text" /></td></tr>
-				<tr><td>联系手机：</td><td style="margin-top: 23px;"><input name="tdNK_MODE" id="tdNK_MODE" value="${tdNK_MODE }" type="text" /></td></tr>
+				<tr><td style="width:20%">联系人姓名：</td><td style="margin-top: 18px;"><input name="LINK_NAME" id="LINK_NAME" value="${LINK_NAME }" type="text" /></td></tr>
+				<tr><td>联系手机：</td><td style="margin-top: 23px;"><input name="LINK_MODE" id="LINK_MODE" value="${LINK_MODE }" type="text" /></td></tr>
 				<tr><td>电子邮箱：</td><td style="margin-top: 20px;"><input name="EMAIL" id="EMAIL" value="${EMAIL }" type="text" /></td></tr>
 				<tr><td>品牌标签：</td><td style="margin-top: 10px;"><input name="BRAND_LABEL" id="BRAND_LABEL" value="${BRAND_LABEL }" type="text" />（以逗号分开，做多可输入5个标签）</td></tr>
 				<tr><td>认证状态：</td><td >${STAUS_NAME}&nbsp;<span style="color:red;">${REASON}</span></td>
