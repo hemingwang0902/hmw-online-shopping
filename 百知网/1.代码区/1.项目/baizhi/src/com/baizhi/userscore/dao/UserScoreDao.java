@@ -33,6 +33,7 @@ public class UserScoreDao extends DaoSupport{
 	 * @return
 	 * @throws Exception
 	 */
+	@SuppressWarnings("unchecked")
 	public String saveUserScore(Integer USER_ID,Integer BUSINESS_ID,String BUSINESS_TYPE,String DESCRIPTION,Session dom4jSession)throws Exception{
 		//根据类型获取积分
 		Integer SCORE=0;

@@ -1,11 +1,13 @@
 package com.baizhi.index.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import com.baizhi.commons.ServiceSupport;
 import com.baizhi.index.dao.HomeDao;
 import com.baizhi.index.dao.HyymDao;
+import com.baizhi.scorelevel.dao.ScoreLevelDao;
 
 public class HyymService extends ServiceSupport{
 	
@@ -13,6 +15,7 @@ public class HyymService extends ServiceSupport{
 	
 	private HyymDao hyymDao;
 	private HomeDao homeDao;
+	private ScoreLevelDao scoreLevelDao;
 	
 	public void setHyymDao(HyymDao hyymDao) {
 		this.hyymDao = hyymDao;
@@ -20,6 +23,10 @@ public class HyymService extends ServiceSupport{
 	
 	public void setHomeDao(HomeDao homeDao) {
 		this.homeDao = homeDao;
+	}
+
+	public void setScoreLevelDao(ScoreLevelDao scoreLevelDao) {
+		this.scoreLevelDao = scoreLevelDao;
 	}
 
 	/**
@@ -95,6 +102,22 @@ public class HyymService extends ServiceSupport{
 	 */
 	public Map<String, Object> getUserBasicByUserId(String userId, int loginUserId){
 		List<Map<String, Object>> list = hyymDao.getUserBasicMapByUserId(userId, loginUserId);
+		if(list == null || list.isEmpty())
+			return null;
+		return list.get(0);
+	}
+	
+	/**
+	 * 根据积分查询积分对应的积分等级
+	 * @param score 积分
+	 * @return
+	 */
+	public Map<String, Object> getScoreLevelByScore(int score){
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("SOCRE_DOWN<=?", score);
+		params.put("SOCRE_UP>=?", score);
+		List<Map<String, Object>> list = scoreLevelDao.getScoreLevelList(params);
+	
 		if(list == null || list.isEmpty())
 			return null;
 		return list.get(0);

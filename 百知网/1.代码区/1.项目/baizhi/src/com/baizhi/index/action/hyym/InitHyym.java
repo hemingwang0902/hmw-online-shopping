@@ -77,8 +77,16 @@ public class InitHyym extends ActionSupport {
 		if(userBasic == null || userBasic.isEmpty())
 			return INPUT;
 		
-		int uid = NumberUtils.toInt(userId);
+		// 用户等级
+		int score = (Integer)userBasic.get("SCORE");
+		Map<String, Object> scoreLevel = hyymService.getScoreLevelByScore(score);
+		if(scoreLevel == null || scoreLevel.isEmpty()){
+			userBasic.put("LEVEL", "士兵");
+		}else{
+			userBasic.put("LEVEL", scoreLevel.get("NAME"));
+		}
 		
+		int uid = NumberUtils.toInt(userId);
 		attentionTalkList = (List<Map<String, Object>>) hyymService.getAttentionTalkList(uid, getSessionUserId(), 1, 4).get(KEY_LIST);
 		
 		attentionUserList = (List<Map<String, Object>>) hyymService.getAttentionUserList(uid, 1, 21).get(KEY_LIST);

@@ -6,5 +6,6 @@
 	<bean id="hyymService" class="com.baizhi.index.service.HyymService" parent="serviceSupport">
 		<property name="hyymDao" ref="hyymDao" />
 		<property name="homeDao" ref="homeDao" />
+		<property name="scoreLevelDao" ref="scoreLevelDao" />
 	</bean>
 </beans>
