@@ -47,8 +47,8 @@ function getDataList(){
 						content += "    <a href='javascript:;' class='sc_btn' title='删除' onclick=\"delData('"+SCORELEVEL_ID+"')\"/>";
 						content += "  </td>";
 						content += "  <td>"+NAME+"</td>";
-						content += "  <td>"+SOCRE_UP+"</td>";
 						content += "  <td>"+SOCRE_DOWN+"</td>";
+						content += "  <td>"+SOCRE_UP+"</td>";
 						content += "  <td>"+REMARK+"</td>";
 						content += "</tr>"
 					}

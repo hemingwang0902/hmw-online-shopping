@@ -51,8 +51,8 @@
 						<td width="6%"><input type="checkbox" /></td>
 						<td width="10%">操作</td>
 		   				<td width="10%">级别名称</td>
-		   				<td width="10%">积分上限</td>
 		   				<td width="10%">积分下限</td>
+		   				<td width="10%">积分上限</td>
 		   				<td width="10%">备注</td>
 					</tr>
 				</table> 

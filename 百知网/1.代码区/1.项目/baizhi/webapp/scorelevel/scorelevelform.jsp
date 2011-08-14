@@ -34,10 +34,10 @@
 						<td class="lightbox_content" colspan="3"><input type="text" class="input_width" id="NAME" name="NAME" value='<s:property value="NAME"/>'/></td>
 					</tr>
 					<tr>
-						<td class="lightbox_title"><span class="font_red">*</span>积分上限：</td>
-						<td class="lightbox_content"><input type="text" class="input_width" id="SOCRE_UP" name="SOCRE_UP" value='<s:property value="SOCRE_UP"/>'/></td>
 						<td class="lightbox_title"><span class="font_red">*</span>积分下限：</td>
 						<td class="lightbox_content" ><input type="text" class="input_width" id="SOCRE_DOWN" name="SOCRE_DOWN" value='<s:property value="SOCRE_DOWN"/>'/></td>
+						<td class="lightbox_title"><span class="font_red">*</span>积分上限：</td>
+						<td class="lightbox_content"><input type="text" class="input_width" id="SOCRE_UP" name="SOCRE_UP" value='<s:property value="SOCRE_UP"/>'/></td>
 					</tr>
 					<tr>
 						<td class="lightbox_title">&nbsp;备注：</td>

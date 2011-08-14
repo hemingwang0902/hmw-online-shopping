@@ -30,6 +30,7 @@
         <div class="title_xgwt_xner">
         	<ul>
             	<li class="tit"><a href="javascript:void(0);"><s:property value="userBasic.NAME"/></a></li>
+            	<li style="list-style: none;"> <s:property value="userBasic.SCORE"/>个积分 (<b><s:property value="userBasic.LEVEL"/></b>)</li>
                 <li class="tit_con"><s:property value="userBasic.INTRODUCTION"/></li>
             </ul>
         </div>
