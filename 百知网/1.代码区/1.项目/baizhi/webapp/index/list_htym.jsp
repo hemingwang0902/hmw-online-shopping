@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page import="com.ckeditor.CKEditorConfig"%>
 <%@include file="../common/basePath.jsp" %>
+<%@ taglib uri="http://ckeditor.com" prefix="ckeditor" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -28,11 +30,20 @@
                 	<li><a href="javascript:void(0);"><s:property value="talk.CONTENT"/></a></li>
                     <li class="tit_google_conter">
                     	<div id="DIV_TALK_INTRODUCTION_0">
-                    	<span id="SPAN_TALK_INTRODUCTION"><s:property value="talk.INTRODUCTION"/></span>
-                    	<a href="javascript:void(0);" onclick="$('#DIV_TALK_INTRODUCTION_0').hide();$('#DIV_TALK_INTRODUCTION_1').show();">修改</a>
+                    	<span id="SPAN_TALK_INTRODUCTION"><s:property value="talk.INTRODUCTION" escapeHtml="false"/></span>
+                    	<a href="javascript:void(0);" onclick="$('#DIV_TALK_INTRODUCTION_0').hide();$('#DIV_TALK_INTRODUCTION_1').show();">
+                    	<s:if test='"" eq talk.INTRODUCTION'>添加描述</s:if>
+                    	<s:else>修改</s:else>
+                    	</a>
 						</div>
 		<div id="DIV_TALK_INTRODUCTION_1" style="display: none;">
-			<textarea  id="TALK_INTRODUCTION" style="width: 420px;height:100px"><s:property value="talk.CONTENT"/></textarea>
+			<textarea  id="TALK_INTRODUCTION" style="width: 420px;height:100px"><s:property value="talk.INTRODUCTION"/></textarea>
+			<% 
+			CKEditorConfig settings = new CKEditorConfig();
+			settings.addConfigValue("width", "500");
+			settings.addConfigValue("toolbar", "Brand");
+			%>
+            <ckeditor:replace basePath="${jsBasePath}/ckeditor/" config="<%=settings %>" replace="TALK_INTRODUCTION" />
 			<div id="error_3" class="error"></div>
 			<input type="button" id="btnSaveTalk" value="保存" onclick="updateTalkIntroduction();">
 		</div>

@@ -414,6 +414,19 @@ color:black;
 .bz_404_ho a{ color:#688415;}
 
 /**************    关于百知 .css   *****************/
-
 .bz_lxwm{ line-height:30px;}
 .bz_lxwm span{ font-weight:bold;}
+
+/**************    话题广场 .css   *****************/
+.xrk{ line-height:30px; font-size:14px; font-weight:bold; color:#333333;}
+.xao{background:#f6ffde;padding:0 10px;-webkit-border-radius:30px;-moz-border-radius:30px;-o-border-radius:30px;border-radius:30px;text-decoration:none; margin:0 5px 5px 0;display:inline-block;*display:block;*display:inline!important;*zoom:1;}
+.xao:hover{background:#98b012;color:#fff;text-decoration:none;}
+.xuk a{ color:#666; -moz-outline:none;outline:none;}
+.xuk .xao{margin:0 10px 10px 0;background:#fff;border:solid 1px #C5E6B7;}
+.xuk .xao:hover{background:#98b012;border:1px solid #98b012;}
+.xqk>.xao{margin:0;}
+.xao:hover{cursor:pointer;}
+.dzsw_rmht{width:200px; margin:15px 0 15px 0;  }
+.xqk{ height:22px; display:block; border-top-right-radius:15px; border-bottom-right-radius:15px; border-bottom-left-radius:15px; border-top-left-radius:15px; }
+.xpk{ color:#999; float:right;}
+.xqk a{ color:#666;}

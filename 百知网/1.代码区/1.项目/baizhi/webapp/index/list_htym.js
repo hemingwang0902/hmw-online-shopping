@@ -61,11 +61,10 @@ function attentionBrand(domLink){
  * 修改话题描述
  */
 function updateTalkIntroduction(){
-	var TALK_INTRODUCTION = $.trim($("#TALK_INTRODUCTION").val());
-	if(TALK_INTRODUCTION == ''){
+	var TALK_INTRODUCTION = $.trim($(CKEDITOR.instances.TALK_INTRODUCTION.getData()).html());
+	if(TALK_INTRODUCTION == null || TALK_INTRODUCTION.replace(/&nbsp;|\s/g, "") == ""){
 		$("#error_3").text("话题描述不能为空");
-		$("#TALK_INTRODUCTION").focus();
-		return;
+		return false;
 	}
 	
 	$("#error_3").text(" ");
@@ -73,7 +72,7 @@ function updateTalkIntroduction(){
 		TALK_ID: $("#TALK_ID").val(),
 		"INTRODUCTION": TALK_INTRODUCTION
 	},function(){
-		$("#SPAN_TALK_INTRODUCTION").text(TALK_INTRODUCTION);
+		$("#SPAN_TALK_INTRODUCTION").html(TALK_INTRODUCTION);
 		$("#DIV_TALK_INTRODUCTION_0").show();
 		$("#DIV_TALK_INTRODUCTION_1").hide();
 	});

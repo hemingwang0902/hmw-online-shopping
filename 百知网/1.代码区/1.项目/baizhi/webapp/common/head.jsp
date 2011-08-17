@@ -8,6 +8,7 @@
 		</div>
 		<div class="nav">
 			<a href="${basePath }/index/home.jsp">首页</a>&nbsp;&nbsp;
+			<a href="${basePath }/index/initHtgc.go">话题</a>&nbsp;&nbsp;
 			<a href='${basePath }/index/initHyym.go?userId=<s:property value="#session.userinfo.USER_ID"/>'><s:property value="#session.userinfo.NAME"/></a>&nbsp;&nbsp;
 			<s:property value="#session.userinfo.CITY_NAME"/>&nbsp;<a href="${basePath }/city.jsp" id="city_a">切换城市</a>&nbsp;&nbsp;
 			<a href="${basePath }/qbtz/initQbtzForm.go">通知<span id="userdynamic_count"></span></a>&nbsp;&nbsp;
