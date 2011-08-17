@@ -38,7 +38,8 @@ public class SaveTalk extends TalkForm{
 
 	@Override
 	public String execute() throws Exception {
-		String content = org.apache.commons.lang.StringUtils.trimToEmpty(getCONTENT());
+		String content = StringUtils.trimToEmpty(getCONTENT());
+		setINTRODUCTION(StringUtils.trimToEmpty(getINTRODUCTION()));
 		
 		Element element = null;
 		String keyid="";

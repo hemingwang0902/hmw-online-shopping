@@ -88,4 +88,36 @@ public class HtymDao extends DaoSupport{
 		count=this.executeUpdate(sql.toString(), list.toArray());
 		return count;
 	}
+	
+	/**
+	 * 查询热门话题，热门话题的排序方式是按照关注人数和问题数量的倒序排列
+	 * @param nowPage 当前页
+	 * @param onePageCount 每页的记录条数
+	 * @return
+	 */
+	public Map<String,Object> getHottestTalk(int nowPage, int onePageCount){
+		StringBuffer sql = new StringBuffer()
+		.append("select ").append(ALL_TALK_FIELDS)
+		.append(", (select count(ATTENTIONTALK_ID) from t_user_attentiontalk uat where uat.TALK_ID=t.TALK_ID) as ATT_USER_COUNT")
+		.append(", (select count(PROBLEMTALK_ID) from t_problem_talk pt where pt.TALK_ID=t.TALK_ID and pt.TALK_TYPE="+IConstants.TALK_TYPE_TALK+") as PROBLEM_COUNT")
+		.append(" from T_TALK t")
+		.append(" order by ATT_USER_COUNT desc, PROBLEM_COUNT desc");
+		
+		return queryForListWithSQLQuery(sql.toString(), new Object[0], nowPage, onePageCount);
+	}
+	
+	/**
+	 * 查询话题类型和话题之间的对应关系
+	 * @return
+	 */
+	public List<Map<String,Object>> getTalkTypeAndTalk(){
+		StringBuffer sql = new StringBuffer()
+		.append("select ").append(ALL_TALK_FIELDS)
+		.append(", tt.TALKTYPE_ID as TALKTYPE_ID,tt.TYPE_NAME as TYPE_NAME,tt.REMARK as REMARK")
+		.append(" from T_TALK t, t_talktype tt") 
+		.append(" where t.TALKTYPE_ID=tt.TALKTYPE_ID") 
+		.append(" order by tt.TALKTYPE_ID");
+		
+		return queryForListWithSQLQuery(sql.toString(), new Object[0]);
+	}
 }

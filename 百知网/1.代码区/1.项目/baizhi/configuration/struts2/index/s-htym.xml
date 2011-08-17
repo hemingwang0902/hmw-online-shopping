@@ -18,5 +18,9 @@
 		      <param name="root">result</param>
 		    </result>
 		</action>
+		<!-- 跳转到话题广场页面 -->
+		<action name="initHtgc" class="com.baizhi.index.action.ht.InitHtgc">
+			<result name="success">htgc.jsp</result>
+		</action>
 	</package>
 </struts>

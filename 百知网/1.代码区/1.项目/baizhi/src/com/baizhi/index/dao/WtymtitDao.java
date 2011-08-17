@@ -63,29 +63,23 @@ public class WtymtitDao extends DaoSupport{
 	}
 
 	/**
-	 * 根据问题ID查找相关问题，相关问题的查询顺序：
+	 * 根据问题ID查找相关问题，相关问题包括：
 	 * <ol>
 	 * <li>相同话题下的问题</li>
-	 * <li>同一个人问的问题</li>
 	 * </ol>
 	 * @param problemId 问题ID
 	 * @return
 	 */
 	public Map<String, Object> getNearProblemList(int problemId, int loginUserId, int nowPage, int onePageCount) {
 		StringBuffer sql = new StringBuffer()
-		.append("SELECT ").append(ALL_PROBLEM_FIELDS)
-		.append("  FROM (")
 		.append(" SELECT ").append(ALL_PROBLEM_FIELDS)
-		.append(" from t_problem a where a.PROBLEM_ID <> ? and (a.WAS_USERID is null or a.WAS_USERID=?) and a.PROBLEM_ID in(")
-		.append(" select pt.PROBLEM_ID from t_problem_talk pt where pt.PROBLEM_ID=?)")
-		.append(" union")
-		.append(" SELECT ").append(ALL_PROBLEM_FIELDS)
-		.append(" from t_problem a where a.PROBLEM_ID <> ? and (a.WAS_USERID is null or a.WAS_USERID=?) and a.user_id in(")
-		.append(" select p.user_id from t_problem p where p.PROBLEM_ID=?)")
-		.append(") a order by a.create_time desc");
+		.append(" from t_problem a")
+		.append(" where a.PROBLEM_ID <> ?")
+		.append(" and (a.WAS_USERID is null or a.WAS_USERID=?)")
+		.append(" and a.PROBLEM_ID in(select pt.PROBLEM_ID from t_problem_talk pt where pt.PROBLEM_ID=?)")
+		.append(" order by a.create_time desc");
 		
 		Object[] params = new Object[] {
-			problemId, loginUserId, problemId,
 			problemId, loginUserId, problemId
 		};
 		return queryForListWithSQLQuery(sql.toString(), params, nowPage, onePageCount);
