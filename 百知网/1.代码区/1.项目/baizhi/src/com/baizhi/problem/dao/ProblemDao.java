@@ -2,13 +2,11 @@ package com.baizhi.problem.dao;
 
 import java.util.List;
 import java.util.Map;
-
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.math.NumberUtils;
 import org.dom4j.Element;
 import org.hibernate.EntityMode;
 import org.hibernate.Session;
-
 import com.baizhi.IConstants;
 import com.baizhi.commons.DaoSupport;
 import com.baizhi.commons.ParametersSupport;
@@ -81,7 +79,7 @@ public class ProblemDao extends DaoSupport{
 			
 			dom4jSession.getTransaction().commit();
 		} catch (Exception e) {
-			dom4jSession.beginTransaction().rollback();
+			dom4jSession.getTransaction().rollback();
 			e.printStackTrace();
 		} finally {
 			dom4jSession.close();
@@ -98,6 +96,31 @@ public class ProblemDao extends DaoSupport{
 	 */
 	public boolean deleteProblem(String PROBLEM_IDS) {
 		return this.delete("T_PROBLEM","PROBLEM_ID", PROBLEM_IDS);
+	}
+	
+	/**
+	 *　置顶问题信息表信息
+	 * 
+	 * @param PROBLEM_IDS   问题信息表ID值集合以","分隔
+	 * @param IS_TOP 是否置顶(0：否、1：是)
+	 * @return 返回boolean值,成功返回true,失败返回false
+	 */
+	public boolean topProblem(String PROBLEM_IDS,String IS_TOP) {
+		Session session = getSession();
+		boolean flag = false;
+		try {
+			session.beginTransaction();
+			setQueryParameters(session.createQuery("update T_PROBLEM set IS_TOP="+IS_TOP+" where PROBLEM_ID "+getSplitStr(PROBLEM_IDS)),
+					PROBLEM_IDS.split(",")).executeUpdate();
+			session.getTransaction().commit();
+			flag=true;
+		} catch (Exception e) {
+			session.getTransaction().rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return flag;
 	}
 	
 	/**
@@ -212,6 +235,7 @@ public class ProblemDao extends DaoSupport{
 		   .append("a.COLLECTION_COUNT as COLLECTION_COUNT,")//收藏数量
 		   .append("a.BROWSE_COUNT as BROWSE_COUNT,")//浏览次数
 		   .append("a.IS_REPORT as IS_REPORT,")//是否举报(0否、1是)
+		   .append("a.IS_TOP as IS_TOP,")//是否置顶(0否、1是)
 		   .append("a.REPORT_COUNT as REPORT_COUNT,")//举报次数
 		   .append("a.CREATE_TIME as CREATE_TIME,")//创建时间
 		   .append("a.MODIFY_TIME as MODIFY_TIME) ")//修改时间

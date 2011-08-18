@@ -36,6 +36,7 @@ public abstract class DaoSupport extends HibernateDaoSupport {
 	public String save(Element element) {
 		Session session = getSession();
 		Session dom4jSession = session.getSession(EntityMode.DOM4J);
+		
 		String keyid = "";
 		try {
 			dom4jSession.beginTransaction();
@@ -45,7 +46,7 @@ public abstract class DaoSupport extends HibernateDaoSupport {
 				keyid=serializableid.toString();
 			}
 		} catch (Exception e) {
-			dom4jSession.beginTransaction().rollback();
+			dom4jSession.getTransaction().rollback();
 			e.printStackTrace();
 		} finally {
 			dom4jSession.close();
@@ -87,7 +88,7 @@ public abstract class DaoSupport extends HibernateDaoSupport {
 			dom4jSession.getTransaction().commit();
 			idValue = element.elementText(idName);
 		} catch (Exception e) {
-			dom4jSession.beginTransaction().rollback();
+			dom4jSession.getTransaction().rollback();
 			e.printStackTrace();
 		} finally {
 			dom4jSession.close();
@@ -128,7 +129,7 @@ public abstract class DaoSupport extends HibernateDaoSupport {
 			dom4jSession.getTransaction().commit();
 			idValue = element.elementText(idName);
 		} catch (Exception e) {
-			dom4jSession.beginTransaction().rollback();
+			dom4jSession.getTransaction().rollback();
 			e.printStackTrace();
 		} finally {
 			dom4jSession.close();
@@ -165,7 +166,7 @@ public abstract class DaoSupport extends HibernateDaoSupport {
 			dom4jSession.getTransaction().commit();
 			flag=true;
 		} catch (Exception e) {
-			dom4jSession.beginTransaction().rollback();
+			dom4jSession.getTransaction().rollback();
 			e.printStackTrace();
 		} finally {
 			dom4jSession.close();
@@ -210,7 +211,7 @@ public abstract class DaoSupport extends HibernateDaoSupport {
 			session.getTransaction().commit();
 			flag = true;
 		} catch (Exception e) {
-			session.beginTransaction().rollback();
+			session.getTransaction().rollback();
 			e.printStackTrace();
 		} finally {
 			session.close();
@@ -288,7 +289,7 @@ public abstract class DaoSupport extends HibernateDaoSupport {
 			count=query.executeUpdate();
 			session.getTransaction().commit();
 		} catch (Exception e) {
-			session.beginTransaction().rollback();
+			session.getTransaction().rollback();
 			e.printStackTrace();
 		} finally {
 			session.close();

@@ -58,7 +58,7 @@ public class TalktypeDao extends DaoSupport{
 			}
 			session.getTransaction().commit();
 		} catch (Exception e) {
-			session.beginTransaction().rollback();
+			session.getTransaction().rollback();
 			e.printStackTrace();
 		} finally {
 			session.close();

@@ -104,7 +104,7 @@ public class ProblemAnswerDao extends DaoSupport{
 			}
 			dom4jSession.getTransaction().commit();
 		} catch (Exception e) {
-			dom4jSession.beginTransaction().rollback();
+			dom4jSession.getTransaction().rollback();
 			e.printStackTrace();
 		} finally {
 			dom4jSession.close();

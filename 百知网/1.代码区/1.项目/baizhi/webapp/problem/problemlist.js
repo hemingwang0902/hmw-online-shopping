@@ -14,12 +14,14 @@ function getDataList(){
 	var IS_REPORT = $("#IS_REPORT").val();
 	var CREATE_TIME = $("#CREATE_TIME").val();
 	var CREATE_TIME_END = $("#CREATE_TIME_END").val();
+	var IS_TOP = $("#IS_TOP").val();
 	$.post("getProblemList.go",{
 		NAME: NAME,
 		PROBLEM_TYPE: PROBLEM_TYPE,
 		CONTENT: CONTENT,
 		IS_ANONYMITY: IS_ANONYMITY,
 		IS_REPORT: IS_REPORT,
+		IS_TOP: IS_TOP,
 		CREATE_TIME: CREATE_TIME,
 		CREATE_TIME_END: CREATE_TIME_END,
 		nowPage: nowPage,
@@ -50,6 +52,7 @@ function getDataList(){
 					var REPORT_COUNT = ""; //举报次数
 					var CREATE_TIME = ""; //创建时间
 					var MODIFY_TIME = ""; //修改时间
+					var IS_TOP="";//是否置顶
 			
 					for(var i=0;i<data["list"].length;i++){
 						PROBLEM_ID = data["list"][i]["PROBLEM_ID"];//问题ID
@@ -72,6 +75,7 @@ function getDataList(){
 						REPORT_COUNT = data["list"][i]["REPORT_COUNT"];//举报次数
 						CREATE_TIME = data["list"][i]["CREATE_TIME"];//创建时间
 						MODIFY_TIME = data["list"][i]["MODIFY_TIME"];//修改时间
+						IS_TOP = data["list"][i]["IS_TOP"];//是否置顶
 						
 						var edithref = "getProblemById.go?PROBLEM_ID="+PROBLEM_ID;
 						content += "<tr id='problemlist_tr'>";
@@ -88,6 +92,7 @@ function getDataList(){
 						content += "  <td>"+ATTENTION_COUNT+"</td>";
 						content += "  <td>"+COLLECTION_COUNT+"</td>";
 						content += "  <td>"+BROWSE_COUNT+"</td>";
+						content += "  <td>"+IS_TOP+"</td>";
 						content += "  <td>"+IS_ANONYMITY+"</td>";
 						content += "  <td>"+IS_REPORT+"</td>";
 						content += "  <td>"+REPORT_COUNT+"</td>";
@@ -128,6 +133,64 @@ function delData(ids){
 	}});
 	return;
 }
+
+/* 删除数据*/
+function topData(ids){
+	if(ids==null||ids==''){
+		showmessage({message:"请选择问题信息表",type:"info"});
+		return ;
+	}
+	showmessage({message:"是否置顶?",type:"error",callmethod:function(flag){
+		if(flag){
+			$.post("topProblem.go",{
+				IDS:ids,
+				IS_TOP:1
+			},function(result){
+				if(result==null||result==''){
+					return;
+				}
+				var data = eval("("+result+")");
+				if(data!=null&&data["flag"]==true){
+					$("#nowPage").val(1);
+					//查询
+					getDataList();
+				}else{
+					showmessage({message:data["message"],type:"error"});
+				}
+			});
+		}
+	}});
+	return;
+}
+
+function cancelTopData(ids){
+	if(ids==null||ids==''){
+		showmessage({message:"请选择问题信息表",type:"info"});
+		return ;
+	}
+	showmessage({message:"是否取消置顶?",type:"error",callmethod:function(flag){
+		if(flag){
+			$.post("topProblem.go",{
+				IDS:ids,
+				IS_TOP:0
+			},function(result){
+				if(result==null||result==''){
+					return;
+				}
+				var data = eval("("+result+")");
+				if(data!=null&&data["flag"]==true){
+					$("#nowPage").val(1);
+					//查询
+					getDataList();
+				}else{
+					showmessage({message:data["message"],type:"error"});
+				}
+			});
+		}
+	}});
+	return;
+}
+
 
 //字符串操作
 var StringUnit={};

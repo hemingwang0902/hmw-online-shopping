@@ -68,6 +68,7 @@ public class GetProblemList extends ProblemForm {
 		this.setMap(params, "IS_REPORT=?", this.getIS_REPORT());// 是否举报(0否、1是)
 		this.setMap(params, "CREATE_TIME>=?", this.getCREATE_TIME());// 创建时间(起)
 		this.setMap(params, "CREATE_TIME<=?", this.getCREATE_TIME_END());// 创建时间(止)
+		this.setMap(params, "IS_TOP=?", this.getIS_TOP());// 是否置顶(0否、1是)
 		// 查询问题信息表列表
 		Map<String, Object> returnMap = problemService.getProblemList(params, this.getNowPage(), this.getOnePageCount());
 		
@@ -88,12 +89,13 @@ public class GetProblemList extends ProblemForm {
 					
 					String IS_ANONYMITY=getValue(newmap, "IS_ANONYMITY");
 					String IS_REPORT=getValue(newmap, "IS_REPORT");
-					
+					String IS_TOP=getValue(newmap, "IS_TOP");
 					newmap.put("CREATE_TIME", CREATE_TIME.equals("")?"&nbsp;":CREATE_TIME);
 					newmap.put("MODIFY_TIME",MODIFY_TIME.equals("")?"&nbsp;":MODIFY_TIME);
 					
 					newmap.put("IS_ANONYMITY", IS_ANONYMITY.equals("1")?"是":"否");
 					newmap.put("IS_REPORT", IS_REPORT.equals("1")?"是":"否");
+					newmap.put("IS_TOP", IS_TOP.equals("1")?"是":"否");
 				}
 				
 			}

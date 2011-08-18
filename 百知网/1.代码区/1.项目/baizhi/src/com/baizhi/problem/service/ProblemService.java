@@ -50,6 +50,17 @@ public class ProblemService extends ServiceSupport{
 	}
 	
 	/**
+	 *　置顶问题信息表信息
+	 * 
+	 * @param PROBLEM_IDS   问题信息表ID值集合以","分隔
+	 * @param IS_TOP 是否置顶(0：否、1：是)
+	 * @return 返回boolean值,成功返回true,失败返回false
+	 */
+	public boolean topProblem(String PROBLEM_IDS,String IS_TOP) {
+		return problemDao.topProblem(PROBLEM_IDS, IS_TOP);
+	}
+	
+	/**
 	 * 根据问题信息表ID获取问题信息表实体
 	 * @param PROBLEM_ID 问题信息表ID
 	 * @return 返回问题信息表实体,如果无查询记录则返回null

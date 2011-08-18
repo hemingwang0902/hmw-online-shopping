@@ -52,7 +52,7 @@ public class UserPrivateDao extends DaoSupport{
 			dom4jSession.getTransaction().commit();
 			flag=true;
 		} catch (Exception e) {
-			dom4jSession.beginTransaction().rollback();
+			dom4jSession.getTransaction().rollback();
 			e.printStackTrace();
 		} finally {
 			dom4jSession.close();
@@ -116,7 +116,7 @@ public class UserPrivateDao extends DaoSupport{
 			
 			session.getTransaction().commit();
 		} catch (Exception e) {
-			session.beginTransaction().rollback();
+			session.getTransaction().rollback();
 			e.printStackTrace();
 		} finally {
 			session.close();

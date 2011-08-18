@@ -60,6 +60,16 @@
 							</select>
 						</td>
 					</tr>
+					<tr>
+						<td class="lightbox_title">是否置顶：</td>
+						<td class="lightbox_content">
+							<select  name="IS_TOP" id="IS_TOP"  class="select_box3">
+								<option value=""></option>
+								<option value="1">是</option>
+								<option value="0">否</option>
+							</select>
+						</td>
+					</tr>
 		   			<tr>
 						<td class="lightbox_title">创建时间(起)：</td>
 						<td class="lightbox_content">
@@ -89,6 +99,8 @@
 			<div class="lightbox_opt">
 				<input type="button"  value="新增" class="button_box" onclick="location.href='initProblemForm.go';"/>
 				<input type="button"  value="删除" class="button_box" onclick="delData($.fn.getCheckValue())"/>
+				<input type="button"  value="置顶" class="button_box" onclick="topData($.fn.getCheckValue())"/>
+				<input type="button"  value="取消置顶" class="button_box" onclick="cancelTopData($.fn.getCheckValue())"/>
 			</div>
 			<div id="Pagination" class="pagination"><!-- 这里显示分页 --></div>
 			<div class="list_style">
@@ -104,6 +116,7 @@
 		   				<td width="10%">关注数量</td>
 		   				<td width="10%">收藏数量</td>
 		   				<td width="10%">浏览次数</td>
+		   				<td width="10%">是否置顶</td>
 		   				<td width="10%">是否匿名</td>
 		   				<td width="10%">是否举报</td>
 		   				<td width="10%">举报次数</td>

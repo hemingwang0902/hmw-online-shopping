@@ -50,12 +50,12 @@ public class DelTalk extends ActionSupport{
 			//判断删除是否成功
 			if(result){
 				flag=true;
-				message="用户删除成功";
+				message="话题删除成功";
 			}else{
-				message="用户删除失败";
+				message="话题删除失败";
 			}
 		}else{
-			message="请选择要删除的用户";
+			message="请选择要删除的话题";
 		}
 		returnmap.put("flag", flag);
 		returnmap.put("message", message);

@@ -79,7 +79,7 @@ public class UserNoticeDao extends DaoSupport{
 			session.getTransaction().commit();
 			return true;
 		} catch (Exception e) {
-			session.beginTransaction().rollback();
+			session.getTransaction().rollback();
 			e.printStackTrace();
 		} finally {
 			session.close();

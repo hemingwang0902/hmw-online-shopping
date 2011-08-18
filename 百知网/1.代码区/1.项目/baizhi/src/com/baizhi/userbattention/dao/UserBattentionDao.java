@@ -99,7 +99,7 @@ public class UserBattentionDao extends DaoSupport{
 			
 			dom4jSession.getTransaction().commit();
 		} catch (Exception e) {
-			dom4jSession.beginTransaction().rollback();
+			dom4jSession.getTransaction().rollback();
 			e.printStackTrace();
 		} finally {
 			dom4jSession.close();
@@ -124,7 +124,7 @@ public class UserBattentionDao extends DaoSupport{
 			userBrandDao.modifyAttUserCount(BRAND_ID, -1, session);
 			session.getTransaction().commit();
 		} catch (Exception e) {
-			session.beginTransaction().rollback();
+			session.getTransaction().rollback();
 			e.printStackTrace();
 		} finally {
 			session.close();

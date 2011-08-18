@@ -63,7 +63,7 @@ public class UserAttentionDao extends DaoSupport{
 			dom4jSession.getTransaction().commit();
 			idValue = element.elementText("ATTENTION_ID");
 		} catch (Exception e) {
-			dom4jSession.beginTransaction().rollback();
+			dom4jSession.getTransaction().rollback();
 			e.printStackTrace();
 		} finally {
 			dom4jSession.close();
@@ -94,7 +94,7 @@ public class UserAttentionDao extends DaoSupport{
 			dom4jSession.getTransaction().commit();
 			flag = true;
 		} catch (Exception e) {
-			dom4jSession.beginTransaction().rollback();
+			dom4jSession.getTransaction().rollback();
 			e.printStackTrace();
 		} finally {
 			dom4jSession.close();

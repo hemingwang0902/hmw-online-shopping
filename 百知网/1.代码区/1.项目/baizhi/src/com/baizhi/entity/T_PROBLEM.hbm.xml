@@ -73,6 +73,11 @@
 				<comment>举报次数</comment>
 			</column>
 		</property>
+		<property name="IS_TOP" type="int">
+			<column name="IS_TOP"  >
+				<comment>是否置顶(0否、1是)</comment>
+			</column>
+		</property>
 		<property name="CREATE_TIME" type="java.util.Date">
 			<column name="CREATE_TIME"  >
 				<comment>创建时间</comment>

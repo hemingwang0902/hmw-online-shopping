@@ -75,7 +75,7 @@ public class UserDao extends DaoSupport{
 			dom4jSession.getTransaction().commit();
 			idValue = element.elementText("USER_ID");
 		} catch (Exception e) {
-			dom4jSession.beginTransaction().rollback();
+			dom4jSession.getTransaction().rollback();
 			e.printStackTrace();
 		} finally {
 			dom4jSession.close();
@@ -104,7 +104,7 @@ public class UserDao extends DaoSupport{
 			session.getTransaction().commit();
 			flag=true;
 		} catch (Exception e) {
-			session.beginTransaction().rollback();
+			session.getTransaction().rollback();
 			e.printStackTrace();
 		} finally {
 			session.close();
@@ -196,7 +196,7 @@ public class UserDao extends DaoSupport{
 			session.getTransaction().commit();
 			flag=true;
 		} catch (Exception e) {
-			session.beginTransaction().rollback();
+			session.getTransaction().rollback();
 			e.printStackTrace();
 		} finally {
 			session.close();

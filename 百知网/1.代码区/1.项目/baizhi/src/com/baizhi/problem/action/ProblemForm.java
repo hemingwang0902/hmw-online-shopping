@@ -28,6 +28,7 @@ public abstract class ProblemForm extends ActionSupport {
 	private String BROWSE_COUNT;//浏览次数
 	private String IS_REPORT;//是否举报(0否、1是)
 	private String REPORT_COUNT;//举报次数
+	private String IS_TOP;//是否置顶
 	private String CREATE_TIME;//创建时间
 	private String MODIFY_TIME;//修改时间
 	
@@ -143,6 +144,14 @@ public abstract class ProblemForm extends ActionSupport {
 		this.REPORT_COUNT = REPORT_COUNT;
 	}
 	
+	public String getIS_TOP() {
+		return IS_TOP;
+	}
+
+	public void setIS_TOP(String is_top) {
+		IS_TOP = is_top;
+	}
+
 	public String getCREATE_TIME() {
 		return CREATE_TIME;
 	}
