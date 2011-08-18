@@ -18,9 +18,8 @@ import com.baizhi.commons.DaoSupport;
  */
 public class HomeDao extends DaoSupport{
 	private final String ALL_PROBLEM_FIELDS = " a.PROBLEM_ID as PROBLEM_ID,a.PROBLEM_TYPE as PROBLEM_TYPE,a.CONTENT as CONTENT,a.IS_ANONYMITY as IS_ANONYMITY,a.RELEVANT_DETAILS as RELEVANT_DETAILS,a.USER_ID as USER_ID,a.WAS_USERID as WAS_USERID,a.ANSWER_COUNT as ANSWER_COUNT,a.REVIEW_COUNT as REVIEW_COUNT,a.ATTENTION_COUNT as ATTENTION_COUNT,a.COLLECTION_COUNT as COLLECTION_COUNT,a.BROWSE_COUNT as BROWSE_COUNT,a.IS_REPORT as IS_REPORT,a.REPORT_COUNT as REPORT_COUNT,a.CREATE_TIME as CREATE_TIME,a.MODIFY_TIME as MODIFY_TIME ";
-	private final String ALL_ANSWER_FIELDS = " pa.ANSWER_ID as ANSWER_ID,pa.PROBLEM_ID as PROBLEM_ID,pa.CONTENT as CONTENT,pa.USER_ID as USER_ID,pa.AGREE_COUNT as AGREE_COUNT,pa.DISAGREE_COUNT as DISAGREE_COUNT,pa.THANK_COUNT as THANK_COUNT,pa.DISTHANK_COUNT as DISTHANK_COUNT,pa.CREATE_TIME as CREATE_TIME,pa.MODIFY_TIME as MODIFY_TIME ";
-	private final String ALL_USER_BASIC_FIELDS = " UB.BASIC_ID as BASIC_ID, UB.USER_ID as USER_ID, UB.USER_TYPE as USER_TYPE, UB.NAME as NAME, UB.SOURCE as SOURCE, UB.PROVINCE as PROVINCE, UB.CITY as CITY, UB.INDUSTRY as INDUSTRY, UB.YEARS as YEARS, UB.LINK_MODE as LINK_MODE, UB.IS_OPEN as IS_OPEN, UB.INTRODUCTION as INTRODUCTION, UB.MOTTO as MOTTO, UB.IMAGE_PATH as IMAGE_PATH, UB.WEBSITE as WEBSITE, UB.PRIVATE_SET as PRIVATE_SET, UB.LEVEL as LEVEL, UB.SCORE as SCORE, UB.REMARK as REMARK, UB.CREATE_TIME as CREATE_TIME, UB.MODIFY_TIME as MODIFY_TIME ";
-	private final String ALL_USER_BRAND_FIELDS = " UB.BRAND_ID as BRAND_ID, UB.USER_ID as USER_ID, UB.NAME as NAME, UB.INTRODUCTION as INTRODUCTION, UB.SOURCE as SOURCE, UB.PROVINCE as PROVINCE, UB.CITY as CITY, UB.INDUSTRY as INDUSTRY, UB.LINK_NAME as LINK_NAME, UB.LINK_MODE as LINK_MODE, UB.EMAIL as EMAIL, UB.IMAGE_PATH as IMAGE_PATH, UB.STAUS as STAUS, UB.AUDIT_ID as AUDIT_ID, UB.AUDIT_TIME as AUDIT_TIME, UB.REASON as REASON, UB.REMARK as REMARK, UB.CREATE_TIME as CREATE_TIME, UB.MODIFY_TIME as MODIFY_TIME ";
+	private final String ALL_USER_BASIC_FIELDS = " ub.BASIC_ID as BASIC_ID, ub.USER_ID as USER_ID, ub.USER_TYPE as USER_TYPE, ub.NAME as NAME, ub.SOURCE as SOURCE, ub.PROVINCE as PROVINCE, ub.CITY as CITY, ub.INDUSTRY as INDUSTRY, ub.YEARS as YEARS, ub.LINK_MODE as LINK_MODE, ub.IS_OPEN as IS_OPEN, ub.INTRODUCTION as INTRODUCTION, ub.MOTTO as MOTTO, ub.IMAGE_PATH as IMAGE_PATH, ub.WEBSITE as WEBSITE, ub.PRIVATE_SET as PRIVATE_SET, ub.LEVEL as LEVEL, ub.SCORE as SCORE, ub.REMARK as REMARK, ub.CREATE_TIME as CREATE_TIME, ub.MODIFY_TIME as MODIFY_TIME ";
+	private final String ALL_USER_BRAND_FIELDS = " ub.BRAND_ID as BRAND_ID, ub.USER_ID as USER_ID, ub.NAME as NAME, ub.INTRODUCTION as INTRODUCTION, ub.SOURCE as SOURCE, ub.PROVINCE as PROVINCE, ub.CITY as CITY, ub.INDUSTRY as INDUSTRY, ub.LINK_NAME as LINK_NAME, ub.LINK_MODE as LINK_MODE, ub.EMAIL as EMAIL, ub.IMAGE_PATH as IMAGE_PATH, ub.STAUS as STAUS, ub.AUDIT_ID as AUDIT_ID, ub.AUDIT_TIME as AUDIT_TIME, ub.REASON as REASON, ub.REMARK as REMARK, ub.CREATE_TIME as CREATE_TIME, ub.MODIFY_TIME as MODIFY_TIME ";
 	
 	/**
 	 * 根据名称模糊查询会员、品牌、问题和话题
@@ -31,10 +30,10 @@ public class HomeDao extends DaoSupport{
 		//组织查询语句
 		
 		StringBuffer sql = new StringBuffer();
-		sql.append("SELECT U.USER_ID AS ID, UB.NAME AS TITLE, '1' AS TYPE")
-		   .append(" FROM T_USER U, T_USER_BASIC UB")
-		   .append(" WHERE U.USER_ID=UB.USER_ID")
-		   .append(" AND UB.NAME LIKE ?")
+		sql.append("SELECT U.USER_ID AS ID, ub.NAME AS TITLE, '1' AS TYPE")
+		   .append(" FROM T_USER U, T_USER_BASIC ub")
+		   .append(" WHERE U.USER_ID=ub.USER_ID")
+		   .append(" AND ub.NAME LIKE ?")
 		   .append(" UNION")
 		   .append(" SELECT ub.BRAND_ID AS ID, ub.NAME AS TITLE, '2' AS TYPE")
 		   .append(" FROM T_USER_BRAND ub")
@@ -60,10 +59,10 @@ public class HomeDao extends DaoSupport{
 	 */
 	public Map<String,Object> getListByTitleWithFull(String title, int nowPage, int onePageCount){
 		StringBuffer sql = new StringBuffer();
-		sql.append("SELECT ub.USER_ID AS ID, UB.NAME AS TITLE, '1' AS TYPE, ub.INTRODUCTION as INTRODUCTION, ub.IMAGE_PATH as IMAGE_PATH, ub.WEBSITE as WEBSITE")
+		sql.append("SELECT ub.USER_ID AS ID, ub.NAME AS TITLE, '1' AS TYPE, ub.INTRODUCTION as INTRODUCTION, ub.IMAGE_PATH as IMAGE_PATH, ub.WEBSITE as WEBSITE")
 		.append(", (SELECT COUNT(ua.ATTENTION_ID) FROM T_USER_ATTENTION ua WHERE ua.WAS_USERID=ub.USER_ID) as ATTENTION_COUNT")
-		.append(" FROM T_USER_BASIC UB")
-		.append(" WHERE UB.NAME LIKE ?")
+		.append(" FROM T_USER_BASIC ub")
+		.append(" WHERE ub.NAME LIKE ?")
 		.append(" UNION")
 		.append(" SELECT b.BRAND_ID AS ID, b.NAME AS TITLE, '2' AS TYPE, b.INTRODUCTION as INTRODUCTION, b.IMAGE_PATH as IMAGE_PATH, null as WEBSITE")
 		.append(", (SELECT COUNT(uba.BATTENTION_ID) FROM T_USER_BATTENTION uba WHERE uba.BRAND_ID=b.BRAND_ID) as ATTENTION_COUNT")
@@ -104,10 +103,11 @@ public class HomeDao extends DaoSupport{
 		//组织查询语句
 		StringBuffer sql = new StringBuffer()		
 		.append(" SELECT DISTINCT ")
-		.append(ALL_PROBLEM_FIELDS.replaceAll("a\\.", "T88."))
-		.append(", UB.NAME AS NAME, UB.IMAGE_PATH AS IMAGE_PATH, UB.WEBSITE AS WEBSITE")
+		.append(ALL_PROBLEM_FIELDS.replaceAll("a\\.", "t88."))
+		.append(", ub.NAME AS NAME, ub.IMAGE_PATH AS IMAGE_PATH, ub.WEBSITE AS WEBSITE, ub.INTRODUCTION as INTRODUCTION")
 		.append(",(select count(pa.ATTENTION_ID) from t_problem_attention pa where pa.PROBLEM_ID=T88.PROBLEM_ID and pa.USER_ID=?) as IS_ATTENTION")
 		.append(",(select count(pc.COLLECTION_ID) from t_problem_collection pc where pc.PROBLEM_ID=T88.PROBLEM_ID and pc.USER_ID=?) as IS_COLLECTION")
+		.append(", pa1.ANSWER_ID as ANSWER_ID, pa1.ANSWER_CONTENT as ANSWER_CONTENT, pa1.ANSWER_USER_ID as ANSWER_USER_ID, pa1.ANSWER_USER_NAME as ANSWER_USER_NAME, pa1.ANSWER_USER_INTRODUCTION as ANSWER_USER_INTRODUCTION")
 		.append(" FROM (SELECT ")
 		.append(ALL_PROBLEM_FIELDS)
 		.append(", A.CREATE_TIME AS LAST_TIME FROM T_PROBLEM A")
@@ -149,10 +149,14 @@ public class HomeDao extends DaoSupport{
 		.append(ALL_PROBLEM_FIELDS)
 		.append(", a.MODIFY_TIME as LAST_TIME FROM T_PROBLEM a")
 		.append(" WHERE a.USER_ID=?")
-		.append(") T88, T_USER_BASIC UB")
-		.append(" WHERE T88.USER_ID=UB.USER_ID")
-		.append(" AND (T88.WAS_USERID IS NULL OR T88.WAS_USERID=?)")
-		.append(" GROUP BY T88.PROBLEM_ID  ORDER BY T88.LAST_TIME DESC");
+		.append(") t88 inner join T_USER_BASIC ub")
+		.append(" on t88.USER_ID=ub.USER_ID")
+		.append(" left join (select pa.ANSWER_ID as ANSWER_ID, pa.CONTENT as ANSWER_CONTENT, pa.PROBLEM_ID as PROBLEM_ID, ub.USER_ID as ANSWER_USER_ID, ub.NAME as ANSWER_USER_NAME, ub.INTRODUCTION as ANSWER_USER_INTRODUCTION from T_PROBLEM_ANSWER pa, T_USER_BASIC ub where pa.USER_ID=ub.USER_ID) pa1")
+		.append(" on t88.PROBLEM_ID=pa1.PROBLEM_ID")
+		.append(" WHERE (t88.WAS_USERID IS NULL OR t88.WAS_USERID=?)")
+		.append(" and (pa1.ANSWER_ID is null or pa1.ANSWER_ID in(select max(ANSWER_ID) from t_problem_answer group by PROBLEM_ID))")
+		.append(" GROUP BY T88.PROBLEM_ID")
+		.append(" ORDER BY T88.LAST_TIME DESC");
 
 		Object[] params = new Object[9];
 		for (int i = 0; i < params.length; i++) {
@@ -173,13 +177,17 @@ public class HomeDao extends DaoSupport{
 		StringBuffer sql = new StringBuffer()		
 		.append("SELECT ")
 		.append(ALL_PROBLEM_FIELDS)
-		.append(",(a.ANSWER_COUNT+a.ATTENTION_COUNT) as HOT_COUNT , UB.NAME AS NAME, UB.IMAGE_PATH AS IMAGE_PATH, UB.WEBSITE AS WEBSITE")
+		.append(",(a.ANSWER_COUNT+a.ATTENTION_COUNT) as HOT_COUNT , ub.NAME AS NAME, ub.IMAGE_PATH AS IMAGE_PATH, ub.WEBSITE AS WEBSITE, ub.INTRODUCTION as INTRODUCTION")
 		.append(",(select count(pa.ATTENTION_ID) from t_problem_attention pa where pa.PROBLEM_ID=a.PROBLEM_ID and pa.USER_ID=?) as IS_ATTENTION")
 		.append(",(select count(pc.COLLECTION_ID) from t_problem_collection pc where pc.PROBLEM_ID=a.PROBLEM_ID and pc.USER_ID=?) as IS_COLLECTION")
+		.append(", pa1.ANSWER_ID as ANSWER_ID, pa1.ANSWER_CONTENT as ANSWER_CONTENT, pa1.ANSWER_USER_ID as ANSWER_USER_ID, pa1.ANSWER_USER_NAME as ANSWER_USER_NAME, pa1.ANSWER_USER_INTRODUCTION as ANSWER_USER_INTRODUCTION")
 		.append(" FROM T_PROBLEM a")
-		.append(" JOIN T_USER_BASIC UB")
-		.append(" ON a.USER_ID=UB.USER_ID")
-		.append(" WHERE (a.WAS_USERID IS NULL OR a.WAS_USERID=?)");
+		.append(" JOIN T_USER_BASIC ub")
+		.append(" ON a.USER_ID=ub.USER_ID")
+		.append(" left join (select pa.ANSWER_ID as ANSWER_ID, pa.CONTENT as ANSWER_CONTENT, pa.PROBLEM_ID as PROBLEM_ID, ub.USER_ID as ANSWER_USER_ID, ub.NAME as ANSWER_USER_NAME, ub.INTRODUCTION as ANSWER_USER_INTRODUCTION from T_PROBLEM_ANSWER pa, T_USER_BASIC ub where pa.USER_ID=ub.USER_ID) pa1")
+		.append("  on a.PROBLEM_ID=pa1.PROBLEM_ID")
+		.append(" WHERE (a.WAS_USERID IS NULL OR a.WAS_USERID=?)")
+		.append(" and (pa1.ANSWER_ID is null or pa1.ANSWER_ID in(select max(ANSWER_ID) from t_problem_answer group by PROBLEM_ID))");
 		if(province > 0){ //只查同省问题
 			sql.append(" AND (ub.PROVINCE is null or ub.PROVINCE=?)"); 
 			params = new Object[]{userId, userId, userId, province};
@@ -208,26 +216,26 @@ public class HomeDao extends DaoSupport{
 		//组织查询语句
 		StringBuffer sql = new StringBuffer()
 		.append("SELECT").append(ALL_USER_BASIC_FIELDS).append(" FROM (")
-		.append(" SELECT").append(ALL_USER_BASIC_FIELDS).append(" FROM T_USER_BASIC UB, T_USER_BASIC UB2")
-		.append(" WHERE UB.CITY=UB2.CITY")
-		.append(" AND UB.BASIC_ID<>UB2.BASIC_ID")
+		.append(" SELECT").append(ALL_USER_BASIC_FIELDS).append(" FROM T_USER_BASIC ub, T_USER_BASIC UB2")
+		.append(" WHERE ub.CITY=UB2.CITY")
+		.append(" AND ub.BASIC_ID<>UB2.BASIC_ID")
 		.append(" AND UB2.USER_ID=?")
 		.append(" UNION")
-		.append(" SELECT").append(ALL_USER_BASIC_FIELDS).append(" FROM T_USER_BASIC UB")
-		.append(" WHERE UB.USER_ID IN(")
+		.append(" SELECT").append(ALL_USER_BASIC_FIELDS).append(" FROM T_USER_BASIC ub")
+		.append(" WHERE ub.USER_ID IN(")
 		.append(" SELECT UA1.USER_ID FROM T_USER_ATTENTION UA1, T_USER_ATTENTION UA2")
 		.append(" WHERE UA1.WAS_USERID=UA2.WAS_USERID")
 		.append(" AND UA1.USER_ID<>UA2.USER_ID")
 		.append(" AND UA2.USER_ID=?")
 		.append(" )")
 		.append(" UNION")
-		.append(" SELECT").append(ALL_USER_BASIC_FIELDS).append(" FROM T_USER_BASIC UB")
-		.append(" WHERE UB.USER_ID IN(")
+		.append(" SELECT").append(ALL_USER_BASIC_FIELDS).append(" FROM T_USER_BASIC ub")
+		.append(" WHERE ub.USER_ID IN(")
 		.append(" SELECT UA1.USER_ID FROM T_USER_ATTENTIONTALK UA1, T_USER_ATTENTIONTALK UA2")
 		.append(" WHERE UA1.TALK_ID=UA2.TALK_ID")
 		.append(" AND UA1.USER_ID<>UA2.USER_ID")
 		.append(" AND UA2.USER_ID=?)")
-		.append(" ) AS UB WHERE UB.USER_ID NOT IN(")
+		.append(" ) AS ub WHERE ub.USER_ID NOT IN(")
 		.append(" SELECT UA.WAS_USERID FROM T_USER_ATTENTION UA where user_id=?")
 		.append(" )");
 		
@@ -249,8 +257,8 @@ public class HomeDao extends DaoSupport{
 	public Map<String,Object> getAttentionUser(int userId, int nowPage, int onePageCount){
 		StringBuffer sql = new StringBuffer()		
 		.append("SELECT ").append(ALL_USER_BASIC_FIELDS)
-		.append(" FROM T_USER_ATTENTION UA, T_USER_BASIC UB")
-		.append(" WHERE UA.WAS_USERID=UB.USER_ID")
+		.append(" FROM T_USER_ATTENTION UA, T_USER_BASIC ub")
+		.append(" WHERE UA.WAS_USERID=ub.USER_ID")
 		.append(" AND UA.USER_ID=?");
 		
 		Object[] params = new Object[]{userId};
@@ -268,8 +276,8 @@ public class HomeDao extends DaoSupport{
 	public Map<String,Object> getWasAttentionUser(int userId, int nowPage, int onePageCount){
 		StringBuffer sql = new StringBuffer()		
 		.append("SELECT ").append(ALL_USER_BASIC_FIELDS)
-		.append(" FROM T_USER_ATTENTION UA, T_USER_BASIC UB")
-		.append(" WHERE UA.USER_ID=UB.USER_ID")
+		.append(" FROM T_USER_ATTENTION UA, T_USER_BASIC ub")
+		.append(" WHERE UA.USER_ID=ub.USER_ID")
 		.append(" AND UA.WAS_USERID=?");
 		
 		Object[] params = new Object[]{userId};
