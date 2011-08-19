@@ -84,7 +84,7 @@ function getDataList(){
 						content += "    <a href='"+edithref+"' class='bj_btn' title='编辑'/>";
 						content += "    <a href='javascript:;' class='sc_btn' title='删除' onclick=\"delData('"+PROBLEM_ID+"')\"/>";
 						content += "  </td>";
-						content += "  <td>"+PROBLEM_TYPE_NAME+"</td>";
+						//content += "  <td>"+PROBLEM_TYPE_NAME+"</td>";
 						content += "  <td title='"+CONTENT+"'>"+tempContent+"</td>";
 						content += "  <td>"+NAME+"</td>";
 						content += "  <td>"+ANSWER_COUNT+"</td>";

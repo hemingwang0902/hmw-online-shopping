@@ -22,6 +22,7 @@
 			<div class="lightbox_header"><span class="font_span">查询条件</span></div>
 			<form id="ProblemList" >
 				<table width="100%;" border="0" cellspacing="0" cellpadding="0" class="lightbox_table">
+				<%--
 		   			<tr>
 						<td class="lightbox_title">问题类型：</td>
 						<td class="lightbox_content">
@@ -32,6 +33,7 @@
 				      		</select>
 						</td>
 					</tr>
+					--%>
 					<tr>
 						<td class="lightbox_title">姓名：</td>
 						<td class="lightbox_content"><input type="text" class="input_width3" name="NAME" id="NAME" /> </td>
@@ -108,7 +110,7 @@
 					<tr class="tr_bg">
 						<td width="6%"><input type="checkbox" /></td>
 						<td width="10%"><div style="width:60px;">操作</div></td>
-		   				<td width="10%">问题类型</td>
+		   				<%--<td width="10%">问题类型</td>--%>
 		   				<td width="10%">问题内容</td>
 		   				<td width="10%">姓名</td>
 		   				<td width="10%">答案数量</td>
