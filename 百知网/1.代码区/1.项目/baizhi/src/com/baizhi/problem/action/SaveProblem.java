@@ -90,6 +90,7 @@ public class SaveProblem extends ProblemForm{
 				Elements.setElementValue(element, "BROWSE_COUNT", 0);// 浏览次数
 				Elements.setElementValue(element, "IS_REPORT", 0);// 是否举报(0否、1是)
 				Elements.setElementValue(element, "REPORT_COUNT", 0);// 举报次数
+				Elements.setElementValue(element, "IS_TOP", 0);// 是否置顶
 				Elements.setElementValue(element, "CREATE_TIME", DateUtils.getCurrentTime(DateUtils.SHOW_DATE_FORMAT));// 创建时间
 				//如果保存成功，返回主键
 				keyid = problemService.saveOrUpdateProblem(element);

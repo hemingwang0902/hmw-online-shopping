@@ -23,7 +23,7 @@ public class SywtDao extends DaoSupport{
 		.append(" FROM T_PROBLEM a, T_USER_BASIC UB")
 		.append(" WHERE a.USER_ID=UB.USER_ID")
 		.append(" AND (a.WAS_USERID IS NULL OR a.WAS_USERID=?)")
-		.append(" ORDER BY a.CREATE_TIME DESC");
+		.append(" ORDER BY a.IS_TOP DESC, a.CREATE_TIME DESC");
 
 		Object[] params = new Object[]{loginUserId, loginUserId, userId};
 		return queryForListWithSQLQuery(sql.toString(), params, nowPage, onePageCount);
