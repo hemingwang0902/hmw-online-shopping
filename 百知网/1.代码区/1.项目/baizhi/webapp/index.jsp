@@ -8,8 +8,8 @@
 
 	<style type="text/css">
 	ul,li{ list-style:none;}
-	#droplinebar {overflow: hidden;}
-	.droplinebar ul{margin: 0;padding: 0;float: left;width:1003px; height:41px;font: bold 14px "\5B8B\4F53",san-serif;text-align:center;background:url(images/menu/pic_922tu.gif) no-repeat; }
+	#droplinebar {overflow: hidden; width:1240px;}
+	.droplinebar ul{margin: 0;padding: 0;float: left;width:1240px; height:41px;font: bold 14px "\5B8B\4F53",san-serif;text-align:center;background:url(images/menu/pic_922tu.gif) no-repeat; }
 	.droplinebar ul li{display: inline;}
 	.droplinebar ul li a{float: left;display: block;color: white;width:90px;padding:11px 0;margin:0 5px;text-decoration: none;}
 	.droplinebar ul li a:hover, .droplinebar ul li .current{color:#000;background: transparent url(images/menu/01.gif) 0 3px repeat-x;margin-top:2px;}
@@ -25,9 +25,9 @@
 	droplinemenu.buildmenu("mydroplinemenu")
 	</script>
 </head>
-<body scroll="no" style="overflow:hidden;width:100%;">
-	<div style="width:1003px; margin:0 auto; border:#0067CB 1px solid;">
-		<div id="mydroplinemenu" class="droplinebar" >
+<body scroll="no" style="overflow:hidden;width:100%;" background="images/main/bigbj.jpg">
+	<div style="width:1240px; margin:0 auto; border:#0067CB 1px solid;">
+		<div id="mydroplinemenu"  class="droplinebar" >
 			<ul>
 				<li><a href="index/home.jsp">网站首页</a></li>
 				<li><a target="iframe_main" href="user/userlist.jsp" >会员管理</a></li>
@@ -45,7 +45,7 @@
 				
 			</ul>
 		</div>  
-		<iframe scrolling='yes' id="iframe_main"  name="iframe_main" frameborder='0' style='width:100%;overflow:hidden;;height:600px;padding-bottom:20px;'></iframe>
+		<iframe scrolling='yes' id="iframe_main"  name="iframe_main" frameborder='0' style='width:100%;overflow:hidden;height:700px;padding-bottom:10px;'></iframe>
         <div style=" clear:both;"></div>
 	</div>
 </body>

@@ -13,7 +13,7 @@
 <script type="text/javascript" language="javascript"  src="../javascripts/jquery.message.js"></script>
 <script type="text/javascript" language="javascript"  src="cancellist.js"></script>
 </head>
-<body>
+<body background='../images/main/mixbj.jpg;'>
 <input type="hidden"  id="TALKTYPE_ID" name="TALKTYPE_ID" value='<s:property value="#parameters.TALKTYPE_ID"/>' />
 <div id="page_shadow" class="page_shadow"></div>
 <div id="page_loading" class="page_loading"></div>

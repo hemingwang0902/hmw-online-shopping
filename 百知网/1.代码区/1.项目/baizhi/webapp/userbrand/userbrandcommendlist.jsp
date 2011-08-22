@@ -15,7 +15,7 @@
 <script type="text/javascript" language="javascript"  src="../javascripts/jquery.select.js"></script>
 <script type="text/javascript" language="javascript"  src="userbrandcommendlist.js"></script>
 </head>
-<body>
+<body background='../images/main/mixbj.jpg;'>
 <div id="page_shadow" class="page_shadow"></div>
 <div id="page_loading" class="page_loading"></div>
 <div class="container">
