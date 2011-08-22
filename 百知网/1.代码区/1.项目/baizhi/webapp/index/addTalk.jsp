@@ -157,7 +157,7 @@ a,a:active,a:visited,a:focus {
 				</div>
 				<div class="ty">
 					<a href="javascript:void(0);" id="cancel" class="sy" onclick="parent.$.fancybox.close();">取消</a>
-					<a href="javascript:void(0);" id="save" class="w q">添加话题</a>
+					<a href="javascript:void(0);" id="save" class="wq">添加话题</a>
 				</div>
 				</form>
 			</div>

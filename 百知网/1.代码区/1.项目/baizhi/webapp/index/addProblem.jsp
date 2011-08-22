@@ -157,7 +157,7 @@ a,a:active,a:visited,a:focus {
 						<input type="checkbox" id="IS_ANONYMITY" value="1" class="jn"> 匿名添加问题
 					</label>
 					<a href="javascript:void(0);" id="cancel" class="sy" onclick="parent.$.fancybox.close();">取消</a>
-					<a href="javascript:void(0);" id="save" class="w q">添加问题</a>
+					<a href="javascript:void(0);" id="save" class="wq">添加问题</a>
 				</div>
 				</form>
 			</div>
