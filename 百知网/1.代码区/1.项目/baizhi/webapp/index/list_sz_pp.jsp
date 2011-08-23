@@ -5,6 +5,18 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+  <TITLE> 品牌设置 </TITLE>
+  <META NAME="Generator" CONTENT="EditPlus">
+  <META NAME="Author" CONTENT="">
+  <META NAME="Keywords" CONTENT="">
+  <META NAME="Description" CONTENT="">
+<style type="text/css">
+<!--
+body {
+ line-height: 50px;
+}
+-->
+</style>
 	<%@include file="../common/jsCss.jsp" %>
 	<script type="text/javascript" language="javascript"  src="../areadata.js"></script>
 	<script type="text/javascript" language="javascript"  src="../javascripts/jquery.select.js"></script>
@@ -43,33 +55,33 @@
         <div class="clear"></div>
       </div>
       <div class="title_xgwt_x_sz">
-      	   <table><tr><td  width="106px">名称：</td><td width="456" style="margin-top: 12px;">
-            		<input name="NAME" id="NAME" type="text" value="${NAME }" />
+      	   <table width="100%" height="100%"><tr width="100%" height="30px" ><td  width="100%">名称：</td><td width="456" style="margin-top: 12px;">
+            		<input name="NAME" id="NAME" type="text" style="width: 300px" value="${NAME }" />
             	</td></tr>
-                <tr> <td width="106">品牌介绍：</td><td style="margin-top: 10px;">
+                <tr > <td width="100%">品牌介绍：</td><td style="margin-top: 10px;">
                   <textarea name="INTRODUCTION" cols="" rows="1" class="tdst_sz_js" style="width:420px;" id="INTRODUCTION" >${INTRODUCTION }</textarea>
 					<% 
 					CKEditorConfig settings = new CKEditorConfig();
-					settings.addConfigValue("width", "500");
+					settings.addConfigValue("width", "450");
 					settings.addConfigValue("toolbar", "Brand");
 					%>
                   <ckeditor:replace basePath="${jsBasePath}/ckeditor/" config="<%=settings %>" replace="INTRODUCTION" />
                   <div id="ERROR_INTRODUCTION" style="color: #ff0000;"></div>
                 </td></tr>
                
-             	<tr> <td style="margin-top: 12px;">发源地：</td><td style="margin-top: 18px;"><input name="SOURCE" type="text" id="SOURCE" value="${SOURCE }"/> </td></tr>
-                <tr><td width="20%">所在地区：</td><td style="margin-top: 10px;">
+             	<tr height="30px"> <td style="margin-top: 12px;">发源地：</td><td style="margin-top: 18px;"><input name="SOURCE" style="width: 300px" type="text" id="SOURCE" value="${SOURCE }"/> </td></tr>
+                <tr height="30px"><td width="20%">所在地区：</td><td style="margin-top: 10px;">
                 <input type="hidden" id="PROVINCE_HIDDEN" name="PROVINCE_HIDDEN" value="${PROVINCE }" />
                 <input type="hidden" id="CITY_HIDDEN" name="CITY_HIDDEN" value="${CITY}" />
                 <select id="PROVINCE" name="PROVINCE"  onchange="setSelectValue(this.selectedIndex,true,document.getElementById('CITY'));"></select>省
                 <select id="CITY" name="CITY"></select>市
                 </td></tr>
-				<tr><td>从事行业：</td><td style="margin-top: 10px;"><input name="INDUSTRY" id="INDUSTRY" value="${INDUSTRY }" type="text" /></td></tr>
-				<tr><td style="width:20%">联系人姓名：</td><td style="margin-top: 18px;"><input name="LINK_NAME" id="LINK_NAME" value="${LINK_NAME }" type="text" /></td></tr>
-				<tr><td>联系手机：</td><td style="margin-top: 23px;"><input name="LINK_MODE" id="LINK_MODE" value="${LINK_MODE }" type="text" /></td></tr>
-				<tr><td>电子邮箱：</td><td style="margin-top: 20px;"><input name="EMAIL" id="EMAIL" value="${EMAIL }" type="text" /></td></tr>
-				<tr><td>品牌标签：</td><td style="margin-top: 10px;"><input name="BRAND_LABEL" id="BRAND_LABEL" value="${BRAND_LABEL }" type="text" />（以逗号分开，做多可输入5个标签）</td></tr>
-				<tr><td>认证状态：</td><td >${STAUS_NAME}&nbsp;<span style="color:red;">${REASON}</span></td>
+				<tr height="30px"><td>从事行业：</td><td style="margin-top: 10px;"><input name="INDUSTRY" id="INDUSTRY" value="${INDUSTRY }" style="width: 300px" type="text" /></td></tr>
+				<tr height="30px"><td width="100px">联系人姓名：</td><td style="margin-top: 18px;"><input name="LINK_NAME" id="LINK_NAME" style="width: 300px" value="${LINK_NAME }" type="text" /></td></tr>
+				<tr height="30px"><td>联系手机：</td><td style="margin-top: 23px;"><input name="LINK_MODE" id="LINK_MODE" value="${LINK_MODE }" style="width: 300px" type="text" /></td></tr>
+				<tr height="30px"><td>电子邮箱：</td><td style="margin-top: 20px;"><input name="EMAIL" id="EMAIL" value="${EMAIL }" style="width: 300px" type="text" /></td></tr>
+				<tr height="30px"><td>品牌标签：</td><td style="margin-top: 10px;"><input name="BRAND_LABEL" id="BRAND_LABEL" style="width: 300px" value="${BRAND_LABEL }" type="text" />（以逗号分开，最多可输入5个标签）</td></tr>
+				<tr height="30px"><td>认证状态：</td><td >${STAUS_NAME}&nbsp;<span style="color:red;">${REASON}</span></td>
 				</tr>
 				    
 				  <tr><td></td><td>  <s:if test="STAUS==null||STAUS==''||STAUS==1||STAUS==4">
