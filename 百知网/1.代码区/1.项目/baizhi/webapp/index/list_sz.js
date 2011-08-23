@@ -26,7 +26,8 @@ $(document).ready(function(){
             form.submit();
         }   
 	});
-	
+	//加载下拉框
+	initSelect("PROVINCE","CITY",true,$("#PROVINCE_HIDDEN").val(),$("#CITY_HIDDEN").val());
 });
 
 
@@ -35,7 +36,9 @@ function saveData(){
 	$.post("saveBasic.go",{
 		NAME:$("#NAME").val(),
 		INTRODUCTION:$("#INTRODUCTION").val(),
-		WEBSITE:$("#WEBSITE").val()
+		WEBSITE:$("#WEBSITE").val(),
+		PROVINCE:$("#PROVINCE").val(),
+		CITY:$("#CITY").val()
 	},function(result){
 		if(result==null||result==''){
 			return;

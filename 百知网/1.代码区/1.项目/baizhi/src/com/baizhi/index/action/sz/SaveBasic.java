@@ -68,10 +68,20 @@ public class SaveBasic extends ActionSupport{
 		}
 		if(exec){
 			params.put("INTRODUCTION", INTRODUCTION);
+			
+			params.put("PROVINCE", PROVINCE);
+			params.put("CITY", CITY);
+			
 			int count=szService.updateUserBasic(params, this.getSessionUserId());
 			if(count>0){
 				flag=true;
 				message="基本信息设置成功";
+				//改变session值
+				/*Map<String, Object> userinfo = this.getSessionUserInfo();
+				userinfo.put("PROVINCE", PROVINCE);
+				userinfo.put("CITY", CITY);*/
+				
+				
 			}else{
 				message="基本信息设置失败";
 			}
@@ -99,6 +109,10 @@ public class SaveBasic extends ActionSupport{
 	private String INTRODUCTION;
 	
 	private String WEBSITE;
+	
+	private String PROVINCE;//所在地区(省：地区信息表ID)
+	
+	private String CITY;//所在地区(市：地区信息表ID)
 
 	public String getNAME() {
 		return NAME;
@@ -122,6 +136,22 @@ public class SaveBasic extends ActionSupport{
 
 	public void setWEBSITE(String website) {
 		WEBSITE = website;
+	}
+
+	public String getPROVINCE() {
+		return PROVINCE;
+	}
+
+	public void setPROVINCE(String province) {
+		PROVINCE = province;
+	}
+
+	public String getCITY() {
+		return CITY;
+	}
+
+	public void setCITY(String city) {
+		CITY = city;
 	}
 	
 	

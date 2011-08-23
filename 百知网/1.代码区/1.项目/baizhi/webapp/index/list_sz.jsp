@@ -5,7 +5,10 @@
 <head>
 	<link type="text/css" rel="stylesheet" href="../styles/message.css" />
 	<%@include file="../common/jsCss.jsp" %>
+	<script type="text/javascript" language="javascript"  src="../areadata.js"></script>
+	<script type="text/javascript" language="javascript"  src="../javascripts/jquery.select.js"></script>
 	<script type="text/javascript" language="javascript" src="../index/list_sz.js"></script>
+	
 </head>
 
 <body>
@@ -49,6 +52,7 @@
       	   <div class="title_xgwt_x_sz_2">
            	<ul>
             	<li>姓名：</li>
+            	<li>地区：</li>
                 <li>个人介绍：</li>
                 <li>个性网址：</li>
             </ul>
@@ -56,6 +60,12 @@
            <div class="title_xgwt_x_sz_3">
            	<ul>
             	<li><input name="NAME" id="NAME" type="text" value="${returnMap.NAME }" />一个月只能修改一次 </li>
+            	<li>
+            	<input type="hidden" id="PROVINCE_HIDDEN" name="PROVINCE_HIDDEN" value="${returnMap.PROVINCE }" />
+                <input type="hidden" id="CITY_HIDDEN" name="CITY_HIDDEN" value="${returnMap.CITY}" />
+    			<select id="PROVINCE" name="PROVINCE"  onchange="setSelectValue(this.selectedIndex,true,document.getElementById('CITY'));"></select>省
+    			<select id="CITY" name="CITY"></select>市
+            	</li>
                 <li><textarea cols="" rows="1" id="INTRODUCTION" name="INTRODUCTION" class="list_sz_js">${returnMap.INTRODUCTION }</textarea>
                 </li>
                 <li>http://www.100zhi.cn/people/&nbsp;<input name="WEBSITE" id="WEBSITE" type="text" value="${returnMap.WEBSITE }" /></li>

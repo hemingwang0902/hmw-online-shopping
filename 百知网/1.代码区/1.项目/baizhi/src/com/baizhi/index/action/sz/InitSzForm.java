@@ -78,6 +78,9 @@ public class InitSzForm  extends ActionSupport{
 			}
 			returnMap.put("IS_WEBSITE_MODIFY", IS_WEBSITE_MODIFY);
 			returnMap.put("WEBSITE_NAME", WEBSITE_NAME);
+			
+			returnMap.put("PROVINCE", this.getValue(this.getSessionUserInfo(), "PROVINCE"));
+			returnMap.put("CITY", this.getValue(this.getSessionUserInfo(), "CITY"));
 		}
 		return SUCCESS;
 	}
