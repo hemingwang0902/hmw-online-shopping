@@ -26,7 +26,7 @@
 				<div class="fs">支持 jpg, gif, png 格式的图片，不要超过 2MB。建议图片尺寸大于 100×100</div>
 				<div class="ty">
 					<a href="javascript:void(0);" id="cancel" class="sy" onclick="parent.$.fancybox.close();">取消</a>
-					<a href="javascript:void(0);" id="save" class="w q" onclick='$("#UPLOAD_FORM").submit();'>开始上传</a>
+					<a href="javascript:void(0);" id="save" class="wq" onclick='$("#UPLOAD_FORM").submit();'>开始上传</a>
 				</div>
 				</form>
 			</div>
