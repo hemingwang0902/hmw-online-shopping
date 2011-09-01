@@ -145,12 +145,12 @@ function getProblemList(action, more){
 					content += "  		 • <span id='sc_"+PROBLEM_ID+"'><a href='javascript:void(0);' onclick='shouCang("+PROBLEM_ID+")'>收藏</a></span>";
 				}
 				content += "  		 • <a href='javascript:void(0);'>分享到</a>";
-				content += "  		 <img src='../images/ico_sina.gif' alt='新浪微博' width='16' height='16' hspace='2' align='absmiddle' style='cursor:pointer;' onclick='window.open('http://v.t.sina.com.cn/share/share.php?appkey=2684493555&url='+location)' />";
-				content += "  		 <img src='../images/ico_qq_t.png' alt='腾讯微博' width='16' height='16' hspace='2' align='absmiddle'  style='cursor:pointer;' onclick='javascript:window.open('http://v.t.qq.com/share/share.php?url='+location)'/>";
-				content += "  		<img src='../images/ico_msn.png' alt='MSN' width='16' height='16' hspace='2' align='absmiddle' style='cursor:pointer;' onclick='javascript:window.open('http://profile.live.com/Badge/?wa='+location)'/>";
-				content += "  		 <img src='../images/ico_renren.gif' alt='人人网' width='16' height='16' hspace='2' align='absmiddle'style='cursor:pointer;' onclick='javascript:window.open('http://share.renren.com/share/buttonshare.do?link='+location)' />";
-				content += "  		<img src='../images/ico_dou_16x16.png' alt='豆瓣' width='16' height='16' hspace='2' align='absmiddle' style='cursor:pointer;' onclick='javascript:window.open('http://www.douban.com/recommend/?url='+location+'&title=yunlab')'/>";
-				content += "  		 <img src='../images/ico_kaixin.gif' alt='开心网' width='16' height='16' hspace='2' align='absmiddle' style='cursor:pointer;' onclick='javascript:window.open('http://www.kaixin001.com/repaste/share.php?rtitle=云计算&rurl='+location)'/>";
+				content += "  		 <img src='../images/ico_sina.gif' alt='新浪微博' width='16' height='16' hspace='2' align='absmiddle' style='cursor:pointer;' onclick='window.open(\"http://v.t.sina.com.cn/share/share.php?appkey=2684493555&url="+path.problem.detail +PROBLEM_ID+"\")' />";
+				content += "  		 <img src='../images/ico_qq_t.png' alt='腾讯微博' width='16' height='16' hspace='2' align='absmiddle'  style='cursor:pointer;' onclick='window.open(\"http://v.t.qq.com/share/share.php?url="+path.problem.detail +PROBLEM_ID+"\")'/>";
+				content += "  		<img src='../images/ico_msn.png' alt='MSN' width='16' height='16' hspace='2' align='absmiddle' style='cursor:pointer;' onclick='window.open(\"http://profile.live.com/Badge/?wa="+path.problem.detail +PROBLEM_ID+"\")'/>";
+				content += "  		 <img src='../images/ico_renren.gif' alt='人人网' width='16' height='16' hspace='2' align='absmiddle'style='cursor:pointer;' onclick='window.open(\"http://share.renren.com/share/buttonshare.do?link="+path.problem.detail +PROBLEM_ID+"\")' />";
+				content += "  		<img src='../images/ico_dou_16x16.png' alt='豆瓣' width='16' height='16' hspace='2' align='absmiddle' style='cursor:pointer;' onclick='window.open(\"http://www.douban.com/recommend/?url="+path.problem.detail +PROBLEM_ID+"&title="+CONTENT+"\")'/>";
+				content += "  		 <img src='../images/ico_kaixin.gif' alt='开心网' width='16' height='16' hspace='2' align='absmiddle' style='cursor:pointer;' onclick='window.open(\"http://www.kaixin001.com/repaste/share.php?rtitle="+CONTENT+"&rurl="+path.problem.detail +PROBLEM_ID+"\")'/>";
 				content += "  	</div>";
 				content += "  </div>";
 				content += "</div>";
