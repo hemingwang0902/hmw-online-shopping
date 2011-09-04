@@ -112,7 +112,7 @@ public class Login extends ActionSupport{
 		Map<String, Object> data = userService.login(username, userpwd,IP);
 		//判断登录是否正确
 		if(data==null||data.get("USER_ID")==null||String.valueOf(data.get("USER_ID")).trim().equals("")){
-			this.setMessage("用户名密码错误");
+			this.setMessage("提示信息：用户名密码错误");
 			return ERROR;
 		}  
 		

@@ -10,6 +10,7 @@
 	<input type="hidden" id="basePath" value="${basePath }" />
 	<div class="login_bg">
 		<div class="login_logo"><img src="images/main/login_logo.png"  width="360px" height="145px"/></div>
+		<div style="text-align: center;height: 30px;color: white;">${message }</div>
 	    <div class="loginbar">
 	    <form action="login.go" id="loginform" name="loginform" method="post">
 	    	<input type="hidden" id="redirect" name="redirect" value="${param.redirect }">

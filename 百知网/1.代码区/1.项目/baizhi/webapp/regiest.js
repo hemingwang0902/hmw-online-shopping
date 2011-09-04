@@ -41,6 +41,7 @@ $(document).ready(function(){
 	
 	$("#PROVINCE").change(function(){
 		$("#PROVINCE_NAME").val($("#PROVINCE option:selected").text());
+		$("#CITY_NAME").val($("#CITY option:selected").text());
 	});
 	
 	$("#CITY").change(function(){

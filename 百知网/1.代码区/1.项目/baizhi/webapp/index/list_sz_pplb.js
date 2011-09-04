@@ -28,11 +28,11 @@ function getDataList(){
 				}
 				
 				content+="<div class='title_xgwt_x'>";
-				content+="	<div class='title_xgwt_tu'><img height='74px' width='74px' src='"+data.cpath+"/"+map.IMAGE_PATH+"' onerror='load_brand_image_74_74(this)' /></div>";
+				content+="	<div class='title_xgwt_tu'><img height='74px' width='74px' src='"+data.cpath+map.IMAGE_PATH+"' onerror='load_brand_image_74_74(this)' /></div>";
 				content+="	<div class='title_xgwt_xner'>";
 				content+="		<ul>";
 				content+="			<li class='tit'>"+map.NAME+"("+STAUS_NAME+")</li>";
-				content+="			<li class='tit_con'>"+map.INTRODUCTION+"</li>";
+				content+="			<li class='tit_con' >"+map.INTRODUCTION+"</li>";
 				content+="		</ul>";
 				content+="	</div>";
 				content+="	<div class='title_xgwt_anniu'>";
