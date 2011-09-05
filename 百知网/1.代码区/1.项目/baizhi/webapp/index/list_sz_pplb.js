@@ -32,7 +32,7 @@ function getDataList(){
 				content+="	<div class='title_xgwt_xner'>";
 				content+="		<ul>";
 				content+="			<li class='tit'>"+map.NAME+"("+STAUS_NAME+")</li>";
-				content+="			<li class='tit_con' >"+map.INTRODUCTION+"</li>";
+				content+="			<li class='tit_con' style='line-height:20px;'>"+map.INTRODUCTION+"</li>";
 				content+="		</ul>";
 				content+="	</div>";
 				content+="	<div class='title_xgwt_anniu'>";
