@@ -26,7 +26,7 @@ function getDataList(nowPage){
 			for(var i=0;i<data["list"].length;i++){
 				map=data["list"][i];
 				content+="<div class='title_xgwt'>";
-				content+="	<div class='title_xgwt_tu'><a href='initPpym.go?BRAND_ID="+map.BRAND_ID+"'><img src='"+map.IMAGE_PATH+"' height='77' width='77' onerror=\"load_brand_image_74_74(this)\" /></a></div>";
+				content+="	<div class='title_xgwt_tu'><a href='initPpym.go?BRAND_ID="+map.BRAND_ID+"'><img src='"+data.cpath+map.IMAGE_PATH+"' height='77' width='77' onerror=\"load_brand_image_74_74(this)\" /></a></div>";
 				content+="	<div class='title_xgwt_xner'style='width:345px;'>";
 				content+="		<ul>";
 				content+="			<li class='tit'><a href='initPpym.go?BRAND_ID="+map.BRAND_ID+"'>"+map.NAME+"</a></li>";

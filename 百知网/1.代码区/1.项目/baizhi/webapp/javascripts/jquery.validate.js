@@ -1029,11 +1029,11 @@ $.extend($.validator, {
 		},
 	
 		mobile: function(value, element) {
-			return this.optional(element) || /^(130|131|132|133|134|135|136|137|138|139|150|153|157|158|159|180|187|188|189)\d{8}$/.test(value);
+			return this.optional(element) || /^(130|131|132|133|134|135|136|137|138|139|150|153|157|158|159|180|186|187|188|189)\d{8}$/.test(value);
 		},
 		
 		linkmode: function(value, element) {
-			return this.optional(element) || /^(130|131|132|133|134|135|136|137|138|139|150|153|157|158|159|180|187|188|189)\d{8}$|^0\d{2,3}\-\d{7,8}$/.test(value);
+			return this.optional(element) || /^(130|131|132|133|134|135|136|137|138|139|150|153|157|158|159|180|186|187|188|189)\d{8}$|^0\d{2,3}\-\d{7,8}$/.test(value);
 		},
 		
 		idcard: function(value, element) {

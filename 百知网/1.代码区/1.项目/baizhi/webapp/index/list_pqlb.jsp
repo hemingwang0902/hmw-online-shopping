@@ -33,14 +33,14 @@
            <s:if test="#commendlist!=null&&#commendlist.BRAND_ID!=''">
           <div class="column_contentgxq">
 				<div class="colun_c_pptu">
-					<div style="float:left;"><a href="initPpym.go?BRAND_ID=${newlist.BRAND_ID }">
-                	<img src="${cpath }/${newlist.IMAGE_PATH }" onerror="load_brand_image_60_53(this)" width="60" height="53" border="0" />
+					<div style="float:left;"><a href="initPpym.go?BRAND_ID=${commendlist.BRAND_ID }">
+                	<img src="${commendlist.IMAGE_PATH }" onerror="load_brand_image_60_53(this)" width="60" height="53" border="0" />
                 	</a></div>
                 </div>
                 <div class=" colun_c_ppwz">
                     <div class="colun_c_xnr"><a href="initPpym.go?BRAND_ID=${commendlist.BRAND_ID }">${commendlist.NAME }</a></div>
-                    <div class="colun_c_xnrcon">${commendlist.INTRODUCTION}</div>
-              </div>
+                    <!--<div class="colun_c_xnrcon">${commendlist.INTRODUCTION}</div>
+              --></div>
                 <div style=" clear:both;font-size:0;"></div>
           	</div>
 			</s:if>
@@ -56,13 +56,14 @@
 	          <div class="column_contentgxq">
 					<div class="colun_c_pptu">
 						<div style="float:left;"><a href="initPpym.go?BRAND_ID=${hotlist.BRAND_ID }">
-	                	<img src="${cpath }/${hotlist.IMAGE_PATH }" onerror="load_brand_image_60_53(this)" width="60" height="53" border="0" />
+						
+	                	<img src="${hotlist.IMAGE_PATH }" onerror="load_brand_image_60_53(this)" width="60" height="53" border="0" />
 	                	</a></div>
 	                </div>
 	                <div class=" colun_c_ppwz">
 	                    <div class="colun_c_xnr"><a href="initPpym.go?BRAND_ID=${hotlist.BRAND_ID }">${hotlist.NAME }</a></div>
-	                    <div class="colun_c_xnrcon">${hotlist.INTRODUCTION}</div>
-	              </div>
+	                    <!--<div class="colun_c_xnrcon">${hotlist.INTRODUCTION}</div>
+	              --></div>
 	                <div style=" clear:both;font-size:0;"></div>
 	          	</div>
           </s:if>
@@ -78,13 +79,13 @@
           <div class="column_contentgxq">
 				<div class="colun_c_pptu">
 					<div style="float:left;"><a href="initPpym.go?BRAND_ID=${newlist.BRAND_ID }">
-                	<img src="${cpath }/${newlist.IMAGE_PATH }" onerror="load_brand_image_60_53(this)" width="60" height="53" border="0" />
+                	<img src="${newlist.IMAGE_PATH }" onerror="load_brand_image_60_53(this)" width="60" height="53" border="0" />
                 	</a></div>
                 </div>
                 <div class=" colun_c_ppwz">
                     <div class="colun_c_xnr"><a href="initPpym.go?BRAND_ID=${newlist.BRAND_ID }">${newlist.NAME }</a></div>
-                    <div class="colun_c_xnrcon">${newlist.INTRODUCTION}</div>
-              </div>
+                    <!--<div class="colun_c_xnrcon">${newlist.INTRODUCTION}</div>
+              --></div>
                 <div style=" clear:both;font-size:0;"></div>
           	</div>
 			</s:if>

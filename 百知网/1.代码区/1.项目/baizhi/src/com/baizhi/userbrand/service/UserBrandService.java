@@ -120,5 +120,15 @@ public class UserBrandService extends ServiceSupport{
 	public List<Map<String,Object>> getUserBrandList(Map<String, Object> params){
 		return userBrandDao.getUserBrandList(params);
 	}
+	
+	/**
+     * 获取用户品牌信息表信息
+     * 
+     * @param  BRAND_IDS 品牌IDS
+     * @return 成功返回用户品牌信息表信息,如果无查询记录则返回null
+     */
+	public List<Map<String,Object>> getUserBrandList(String BRAND_IDS){
+		return userBrandDao.getUserBrandList(BRAND_IDS);
+	}
 
 }

@@ -39,7 +39,7 @@ public class PqlbDao extends DaoSupport{
 			   .append("a.BRAND_ID as BRAND_ID,")//品牌信息ID
 			   .append("a.USER_ID as USER_ID,")//用户ID
 			   .append("a.NAME as NAME,")//姓名/品牌名称
-			   .append("a.INTRODUCTION as INTRODUCTION,")//个人介绍/品牌介绍
+			   //.append("a.INTRODUCTION as INTRODUCTION,")//个人介绍/品牌介绍
 			   .append("a.IMAGE_PATH as IMAGE_PATH)")//相片路径/LOGO路径
 			   .append("FROM T_USER_BRAND a,T_USER b ")
 			   .append("WHERE a.USER_ID=b.USER_ID and a.STAUS=3 ")
@@ -55,7 +55,7 @@ public class PqlbDao extends DaoSupport{
 			   .append("a.BRAND_ID as BRAND_ID,")//品牌信息ID
 			   .append("a.USER_ID as USER_ID,")//用户ID
 			   .append("a.NAME as NAME,")//姓名/品牌名称
-			   .append("a.INTRODUCTION as INTRODUCTION,")//个人介绍/品牌介绍
+			   //.append("a.INTRODUCTION as INTRODUCTION,")//个人介绍/品牌介绍
 			   .append("a.IMAGE_PATH as IMAGE_PATH) ")//相片路径/LOGO路径
 			   .append("FROM T_USER_BRAND a,T_USER_BASIC b ")
 			   .append("WHERE a.USER_ID=b.USER_ID and a.STAUS=3  ")
@@ -71,7 +71,7 @@ public class PqlbDao extends DaoSupport{
 			   .append("a.BRAND_ID as BRAND_ID,")//品牌信息ID
 			   .append("a.USER_ID as USER_ID,")//用户ID
 			   .append("a.NAME as NAME,")//姓名/品牌名称
-			   .append("a.INTRODUCTION as INTRODUCTION,")//个人介绍/品牌介绍
+			   //.append("a.INTRODUCTION as INTRODUCTION,")//个人介绍/品牌介绍
 			   .append("a.IMAGE_PATH as IMAGE_PATH) ")//相片路径/LOGO路径
 			   .append("FROM T_USER_BRAND a,T_USER_BASIC b ")
 			   .append("WHERE a.USER_ID=b.USER_ID and a.STAUS=3 and a.IS_COMMEND=1  ")

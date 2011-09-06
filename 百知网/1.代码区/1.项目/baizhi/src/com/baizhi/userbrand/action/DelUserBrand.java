@@ -2,6 +2,7 @@ package com.baizhi.userbrand.action;
 
 import java.io.File;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.struts2.ServletActionContext;
@@ -59,12 +60,19 @@ public class DelUserBrand extends ActionSupport{
 		Map<String,Object> returnmap=new HashMap<String, Object>();
 		boolean flag=false;
 		String message="";
+		boolean bool=false;
 		//判断参数是否为空
 		if(BRAND_ID!=null&&!BRAND_ID.trim().equals("")){
-			Map<String, Object> realmap = userBrandService.getUserBrandMapById(BRAND_ID);
-			String IMAGE_PATH=this.getValue(realmap, "IMAGE_PATH");
-			//将图片删除
-			boolean bool=delImage(IMAGE_PATH);
+			List<Map<String, Object>> list = userBrandService.getUserBrandList(BRAND_ID);
+			if(list!=null){
+				for (int i = 0; i < list.size(); i++) {
+					Map<String, Object> realmap = list.get(i);
+					String IMAGE_PATH=this.getValue(realmap, "IMAGE_PATH");
+					//将图片删除
+					bool=delImage(IMAGE_PATH);
+				}
+			}
+			
 			if(bool){
 				//删除品牌
 				boolean result = userBrandService.deleteUserBrand(BRAND_ID);

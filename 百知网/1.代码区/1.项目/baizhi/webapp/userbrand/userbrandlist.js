@@ -98,10 +98,11 @@ function getDataList(){
 							content += "&nbsp;";
 						}
 						content += "  </td>";
-						content += "  <td>";
+						content += "  <td><div style='width:80px;'>";
 						content += "    <a href='javascript:;' class='qrfp_btn' title='同意'   onclick=\"agreeData('"+BRAND_ID+"')\"/>";
-						content += "    <a href='javascript:;' class='sc_btn' title='不同意' onclick=\"disagreeData('"+BRAND_ID+"')\"/>";
-						content += "  </td>";
+						content += "    <a href='javascript:;' class='btg_btn' title='不同意' onclick=\"disagreeData('"+BRAND_ID+"')\"/>";
+						content += "    <a href='javascript:;' class='sc_btn' title='删除' onclick=\"delData('"+BRAND_ID+"')\"/>";
+						content += "  </div></td>";
 						content += "  <td>"+USER_NAME+"</td>";
 						content += "  <td>"+NAME+"</td>";
 						//content += "  <td>"+INTRODUCTION+"</td>";
@@ -185,7 +186,33 @@ function agreeData(ids){
 	return;
 }
 
-
+/* 删除数据*/
+function delData(ids){
+	if(ids==null||ids==''){
+		showmessage({message:"请选择删除品牌信息",type:"info"});
+		return ;
+	}
+	showmessage({message:"是否删除?",type:"error",callmethod:function(flag){
+		if(flag){
+			$.post("delUserBrand.go",{
+				BRAND_ID:ids
+			},function(result){
+				if(result==null||result==''){
+					return;
+				}
+				var data = eval("("+result+")");
+				if(data!=null&&data["flag"]==true){
+					$("#nowPage").val(1);
+					//查询
+					getDataList();
+				}else{
+					showmessage({message:data["message"],type:"error"});
+				}
+			});
+		}
+	}});
+	return;
+}
 
 $(document).ready(function(){
 	//获取数据列表

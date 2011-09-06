@@ -94,6 +94,7 @@
 			<div class="lightbox_opt">
 				<input type="button"  value="通过" class="button_box" onclick="agreeData($.fn.getCheckValue())"/>
 				<input type="button"  value="不通过" class="button_box" onclick="disagreeData($.fn.getCheckValue())"/>
+				<input type="button"  value="删除" class="button_box" onclick="delData($.fn.getCheckValue())"/>
 			</div>
 			<div id="Pagination" class="pagination"><!-- 这里显示分页 --></div>
 			<div class="list_style">

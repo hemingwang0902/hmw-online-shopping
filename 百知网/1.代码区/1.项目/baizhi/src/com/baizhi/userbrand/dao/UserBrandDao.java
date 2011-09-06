@@ -280,6 +280,41 @@ public class UserBrandDao extends DaoSupport{
 	}
 	
 	/**
+     * 获取用户品牌信息表信息
+     * 
+     * @param  BRAND_IDS 品牌IDS
+     * @return 成功返回用户品牌信息表信息,如果无查询记录则返回null
+     */
+	public List<Map<String,Object>> getUserBrandList(String BRAND_IDS){
+		//组织查询语句
+		StringBuffer sql = new StringBuffer();
+		sql.append("SELECT new Map(")
+		   .append("a.BRAND_ID as BRAND_ID,")//品牌ID
+		   .append("a.USER_ID as USER_ID,")//用户ID
+		   .append("a.NAME as NAME,")//品牌名称
+		   .append("a.INTRODUCTION as INTRODUCTION,")//品牌介绍
+		   .append("a.SOURCE as SOURCE,")//发源地(品牌特有)
+		   .append("a.PROVINCE as PROVINCE,")//所在地区(省：地区信息表ID)
+		   .append("a.CITY as CITY,")//所在地区(市：地区信息表ID)
+		   .append("a.INDUSTRY as INDUSTRY,")//从事行业(字典)
+		   .append("a.LINK_NAME as LINK_NAME,")//联系人姓名
+		   .append("a.LINK_MODE as LINK_MODE,")//联系方式
+		   .append("a.EMAIL as EMAIL,")//电子邮箱
+		   .append("a.IMAGE_PATH as IMAGE_PATH,")//相片路径/LOGO路径
+		   .append("a.STAUS as STAUS,")//状态(1：未申请、2：申请、3：通过、4：未通过)
+		   .append("a.AUDIT_ID as AUDIT_ID,")//审核人
+		   .append("a.AUDIT_TIME as AUDIT_TIME,")//审核时间
+		   .append("a.REASON as REASON,")//不通过原因
+		   .append("a.REMARK as REMARK,")//备注
+		   .append("a.CREATE_TIME as CREATE_TIME,")//创建时间
+		   .append("a.MODIFY_TIME as MODIFY_TIME) ")//修改时间
+		   .append("FROM T_USER_BRAND a where BRAND_ID in("+BRAND_IDS+") ");
+		
+		return this.getByList(sql.toString(), null);
+	}
+	
+	
+	/**
 	 * 更新品牌
 	 */
 	public int updateTalk(Map<String, Object> params,int BRAND_ID) {

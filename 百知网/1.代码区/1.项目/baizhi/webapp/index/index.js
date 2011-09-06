@@ -404,7 +404,7 @@ function getAttentionBrandList(userId){
 				content += '</div>';
 				content += '<div class=" colun_c_ppwz">';
 				content += '	<div class="colun_c_xnr"><a href="'+url+'">'+NAME+'</a></div>';
-				content += '	<div class="colun_c_xnrcon">'+INTRODUCTION+'</div>';
+				//content += '	<div class="colun_c_xnrcon">'+INTRODUCTION+'</div>';
 				content += '</div>';
 				content += '<div style="clear:both; font-size:0;"></div>';
 			}
