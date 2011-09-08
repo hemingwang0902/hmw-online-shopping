@@ -308,12 +308,8 @@ shadow:0 1px 0 rgba(255,255,255,.3) inset,0 1px 0 rgba(0,0,0,.3);box-shadow:0 1p
 .loginbar_l_w a{color:#ffcc00;}
 .loginbar_l_w a:hover{  color:#ff7200; text-decoration:underline;}
 .loginbar_d{ width:70px; float:left; height:70px;padding-left:180px;}
-.loginbar_but{ width:70px; height:30px; background:url(../images/main/login_d.png) no-repeat; border:none; cursor: 
-
-pointer;}
-.loginbar_toy{ width:540px; height:30px; text-align:center; line-height:30px; color:#fff; margin:0 auto; padding-
-
-top:40px;}
+.loginbar_but{ width:70px; height:30px; background:url(../images/main/login_d.png) no-repeat; border:none; cursor:pointer;}
+.loginbar_toy{ width:540px; height:30px; text-align:center; line-height:30px; color:#fff; margin:0 auto; padding-top:40px;}
 
 
 
