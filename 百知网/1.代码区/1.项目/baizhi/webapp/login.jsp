@@ -24,7 +24,7 @@
 	        	<div class="loginbar_l_t">密码&gt;&nbsp;<input type="password" id="userpwd" name="userpwd" value="" class="login_pass" tabindex="2"/></div>
 	          <div class="loginbar_l_w"><a href="forget.jsp" tabindex="5">忘记密码？</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="regiest.jsp" tabindex="5">注册</a></div>        
 	        </div>
-	        <div class="loginbar_d"><input type="submit" class="loginbar_but" tabindex="3" value="　　　"/></div>
+	        <div class="loginbar_d"><input type="submit" class="loginbar_but" tabindex="3" value="　"/></div>
 	        </form>
 	    </div>
 	    <div class="loginbar_toy">© 2011 百知• 蒙ICP备11001704号-2 </div>
