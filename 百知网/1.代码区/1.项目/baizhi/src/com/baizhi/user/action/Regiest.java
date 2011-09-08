@@ -3,12 +3,16 @@ package com.baizhi.user.action;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.struts2.ServletActionContext;
 import org.dom4j.Element;
 import org.dom4j.tree.DefaultElement;
+import org.springframework.mail.javamail.MimeMessageHelper;
+
+import com.baizhi.commons.component.SendEmailUtils;
 import com.baizhi.commons.ip.IPSeeker;
 import com.baizhi.commons.support.DateUtils;
 import com.baizhi.commons.support.Elements;
@@ -29,6 +33,7 @@ public class Regiest  extends UserForm{
 	private static final long serialVersionUID = 5467791910146539619L;
 	
 	private UserService  userService;//用户信息表业务类
+	private SendEmailUtils  sendEmailUtils;
 	
 	private String NAME;//姓名
 	
@@ -44,6 +49,10 @@ public class Regiest  extends UserForm{
 	
 	public void setUserService(UserService userService) {
 		this.userService = userService;
+	}
+	
+	public void setSendEmailUtils(SendEmailUtils sendEmailUtils) {
+		this.sendEmailUtils = sendEmailUtils;
 	}
 	
 	public void setNAME(String name) {
@@ -143,8 +152,26 @@ public class Regiest  extends UserForm{
 			//将值设置到Session对象中
 			session.setAttribute("userinfo", returnMap);
 			session.setAttribute("USER_ID", returnMap.get("USER_ID"));
+			//发送邮件
+			sendMail();
 			return SUCCESS;
 		}
 		return ERROR;
+	}
+	
+	private void sendMail(){
+		Map<String, Object> rootMap = new HashMap<String, Object>();
+		rootMap.put("name", NAME);
+		rootMap.put("email", getEMAIL());
+		rootMap.put("password", getPASSWORD());
+		
+		try {
+			MimeMessageHelper helper = sendEmailUtils.getMimeMessageHelper();
+			helper.setTo(this.getEMAIL());
+			helper.setSubject(getSessionUserName() + "，感谢您注册百知网");
+			sendEmailUtils.sendTemplateMail("AfterUserRegist.ftl", rootMap);
+		} catch (MessagingException e) {
+			log.error("发送注册通知邮件至" + this.getEMAIL() + "失败。", e);
+		}
 	}
 }
