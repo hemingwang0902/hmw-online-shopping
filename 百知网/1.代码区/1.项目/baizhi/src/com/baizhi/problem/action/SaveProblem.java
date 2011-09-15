@@ -5,11 +5,14 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang.math.NumberUtils;
 import org.dom4j.Element;
 import org.dom4j.tree.DefaultElement;
 
+import com.baizhi.IConstants;
 import com.baizhi.commons.support.DateUtils;
 import com.baizhi.commons.support.Elements;
+import com.baizhi.index.service.WtymtitService;
 import com.baizhi.problem.service.ProblemService;
 /**
  * 
@@ -26,19 +29,30 @@ public class SaveProblem extends ProblemForm{
 	private static final long serialVersionUID = -1349659000089046904L;
 	
 	private Boolean isAjax;
+	private String TALK_ID; //话题ID
+	private String BRAND_ID; //品牌ID
 	
 	private ProblemService problemService;//问题信息表业务类
-	
-	public Boolean getIsAjax() {
-		return isAjax;
-	}
+	private WtymtitService wtymtitService;
 
 	public void setIsAjax(Boolean isAjax) {
 		this.isAjax = isAjax;
 	}
 
+	public void setTALK_ID(String tALKID) {
+		TALK_ID = tALKID;
+	}
+
+	public void setBRAND_ID(String bRANDID) {
+		BRAND_ID = bRANDID;
+	}
+
 	public void setProblemService(ProblemService problemService) {
 		this.problemService = problemService;
+	}
+	
+	public void setWtymtitService(WtymtitService wtymtitService) {
+		this.wtymtitService = wtymtitService;
 	}
 	
 	@Override
@@ -94,6 +108,17 @@ public class SaveProblem extends ProblemForm{
 				Elements.setElementValue(element, "CREATE_TIME", DateUtils.getCurrentTime(DateUtils.SHOW_DATE_FORMAT));// 创建时间
 				//如果保存成功，返回主键
 				keyid = problemService.saveOrUpdateProblem(element);
+				
+				int talkId = NumberUtils.toInt(TALK_ID);
+				if(talkId > 0){
+					wtymtitService.addTalkForProblem(NumberUtils.toInt(keyid), talkId, IConstants.TALK_TYPE_TALK);
+				}
+				
+				int brandId = NumberUtils.toInt(BRAND_ID);
+				if(brandId > 0){
+					wtymtitService.addTalkForProblem(NumberUtils.toInt(keyid), brandId, IConstants.TALK_TYPE_BRAND);
+				}
+				
 			}else{//已经存放 content 相同的问题，则直接给出提示信息后返回
 				this.setMessage("问题已经存在");
 			}
