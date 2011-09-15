@@ -1,3 +1,4 @@
+<!-- /index/list_ppym.jsp -->
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@include file="../common/basePath.jsp" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -22,7 +23,7 @@
             <div class="tit_google_con">
             	<ul>
                 	<li><a href="javascript:void(0);"><s:property value="brand.NAME"/></a></li>
-                    <li class="tit_google_conter"><s:property value="brand.INTRODUCTION"/></li>
+                    <li class="tit_google_conter"><s:property escapeHtml="false" value="brand.INTRODUCTION"/></li>
                 </ul>
             </div>
             <div class="clear"></div>

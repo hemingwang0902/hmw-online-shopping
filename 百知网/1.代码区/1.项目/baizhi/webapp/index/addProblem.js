@@ -12,7 +12,9 @@ $(document).ready(function(){
 				CONTENT: content,
 				IS_ANONYMITY: $("#IS_ANONYMITY").attr("checked") ? "1" : "0",
 				RELEVANT_DETAILS: $("#RELEVANT_DETAILS").val(),
-				isAjax: true
+				isAjax: true,
+				TALK_ID: parent.$("#TALK_ID").val(),
+				BRAND_ID: parent.$("#BRAND_ID").val()
 			}, function(result){
 				if(result==null||result==''){
 					$("#error_1").text("添加问题失败！");
