@@ -106,7 +106,7 @@ public class PqlbDao extends DaoSupport{
 			   .append("a.INTRODUCTION as INTRODUCTION,")
 			   .append("a.IMAGE_PATH as IMAGE_PATH,")
 			   .append("'1' as IS_ATTENTION ) ")
-			   .append("FROM T_USER_BRAND a,T_USER_BATTENTION b where a.BRAND_ID=b.BRAND_ID and a.STAUS=3 and b.USER_ID=? order by a.CREATE_TIME DESC ");
+			   .append("FROM T_USER_BRAND a,T_USER_BATTENTION b where a.BRAND_ID=b.BRAND_ID and a.STAUS=3 and b.USER_ID="+params.get("USER_ID")+" order by a.CREATE_TIME DESC ");
 		}else{
 			sql.append("SELECT new Map(")
 			   .append("a.BRAND_ID as BRAND_ID,")
@@ -114,15 +114,16 @@ public class PqlbDao extends DaoSupport{
 			   .append("a.NAME as NAME,")
 			   .append("a.INTRODUCTION as INTRODUCTION,")
 			   .append("a.IMAGE_PATH as IMAGE_PATH,")
-			   .append("(select count(*) from T_USER_BATTENTION where BRAND_ID=a.BRAND_ID and USER_ID=?) as IS_ATTENTION ) ")
+			   .append("(select count(*) from T_USER_BATTENTION where BRAND_ID=a.BRAND_ID and USER_ID="+params.get("USER_ID")+") as IS_ATTENTION ) ")
 			   .append("FROM T_USER_BRAND a where a.STAUS=3   order by CREATE_TIME DESC ");
 		}
 		Map<String,Object> returnMap = null;
 		Session session = getSession();
 		try {
-			Object[] condition=new Object[]{params.get("USER_ID")};
+			/*Object[] condition=new Object[]{params.get("USER_ID")};
 			Query query = setQueryParameters(session.createQuery(sql.toString()),condition );
-			returnMap = PagerSupport.getList(session, query, "T_USER_BRAND", condition,nowPage, onePageCount);
+			returnMap = PagerSupport.getList(session, query, "T_USER_BRAND", condition,nowPage, onePageCount);*/
+			returnMap=this.getByList(sql.toString(), null, "T_USER_BRAND", nowPage, onePageCount);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -146,16 +147,17 @@ public class PqlbDao extends DaoSupport{
 		   .append("a.NAME as NAME,")//姓名/品牌名称
 		   .append("a.INTRODUCTION as INTRODUCTION,")//个人介绍/品牌介绍
 		   .append("a.IMAGE_PATH as IMAGE_PATH,")//相片路径/LOGO路径
-		   .append("(select count(*) from T_USER_BATTENTION where BRAND_ID=a.BRAND_ID and USER_ID=?) as IS_ATTENTION ) ")
+		   .append("(select count(*) from T_USER_BATTENTION where BRAND_ID=a.BRAND_ID and USER_ID="+params.get("USER_ID")+") as IS_ATTENTION ) ")
 		   .append("FROM T_USER_BRAND a,T_USER_BASIC b ")
 		   .append("WHERE a.USER_ID=b.USER_ID and a.STAUS=3 and a.IS_COMMEND=1  ")
 		   .append(" order by a.COMMEND_TIME DESC ");
 		Map<String,Object> returnMap = null;
 		Session session = getSession();
 		try {
-			Object[] condition=new Object[]{params.get("USER_ID")};
+			/*Object[] condition=new Object[]{params.get("USER_ID")};
 			Query query = setQueryParameters(session.createQuery(sql.toString()),condition );
-			returnMap = PagerSupport.getList(session, query, "T_USER_BRAND", condition,nowPage, onePageCount);
+			returnMap = PagerSupport.getList(session, query, "T_USER_BRAND", condition,nowPage, onePageCount);*/
+			returnMap=this.getByList(sql.toString(), null, "T_USER_BRAND", nowPage, onePageCount);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -179,7 +181,7 @@ public class PqlbDao extends DaoSupport{
 		   .append("a.NAME as NAME,")//姓名/品牌名称
 		   .append("a.INTRODUCTION as INTRODUCTION,")//个人介绍/品牌介绍
 		   .append("a.IMAGE_PATH as IMAGE_PATH,")//相片路径/LOGO路径
-		   .append("(select count(*) from T_USER_BATTENTION where BRAND_ID=a.BRAND_ID and USER_ID=?) as IS_ATTENTION ) ")
+		   .append("(select count(*) from T_USER_BATTENTION where BRAND_ID=a.BRAND_ID and USER_ID="+params.get("USER_ID")+") as IS_ATTENTION ) ")
 		   .append("FROM T_USER_BRAND a,T_USER b ")
 		   .append("WHERE a.USER_ID=b.USER_ID and a.STAUS=3 ")
 		   .append("and  ('"+DateUtils.getCurrentTime(DateUtils.SHOW_DATE_FORMAT)+"'>b.LAST_FREEZETIME or b.LAST_FREEZETIME is null) ")
@@ -187,9 +189,10 @@ public class PqlbDao extends DaoSupport{
 		Map<String,Object> returnMap = null;
 		Session session = getSession();
 		try {
-			Object[] condition=new Object[]{params.get("USER_ID")};
+			/*Object[] condition=new Object[]{params.get("USER_ID")};
 			Query query = setQueryParameters(session.createQuery(sql.toString()),condition );
-			returnMap = PagerSupport.getList(session, query, "T_USER_BRAND", condition,nowPage, onePageCount);
+			returnMap = PagerSupport.getList(session, query, "T_USER_BRAND", condition,nowPage, onePageCount);*/
+			returnMap=this.getByList(sql.toString(), null, "T_USER_BRAND", nowPage, onePageCount);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -213,16 +216,17 @@ public class PqlbDao extends DaoSupport{
 		   .append("a.NAME as NAME,")//姓名/品牌名称
 		   .append("a.INTRODUCTION as INTRODUCTION,")//个人介绍/品牌介绍
 		   .append("a.IMAGE_PATH as IMAGE_PATH,")//相片路径/LOGO路径
-		   .append("(select count(*) from T_USER_BATTENTION where BRAND_ID=a.BRAND_ID and USER_ID=?) as IS_ATTENTION ) ")
+		   .append("(select count(*) from T_USER_BATTENTION where BRAND_ID=a.BRAND_ID and USER_ID="+params.get("USER_ID")+") as IS_ATTENTION ) ")
 		   .append("FROM T_USER_BRAND a,T_USER_BASIC b ")
 		   .append("WHERE a.USER_ID=b.USER_ID and a.STAUS=3  ")
 		   .append(" order by (a.ATT_USER_COUNT+a.PROBLEM_COUNT) DESC ");
 		Map<String,Object> returnMap = null;
 		Session session = getSession();
 		try {
-			Object[] condition=new Object[]{params.get("USER_ID")};
+			/*Object[] condition=new Object[]{params.get("USER_ID")};
 			Query query = setQueryParameters(session.createQuery(sql.toString()),condition );
-			returnMap = PagerSupport.getList(session, query, "T_USER_BRAND", condition,nowPage, onePageCount);
+			returnMap = PagerSupport.getList(session, query, "T_USER_BRAND", condition,nowPage, onePageCount);*/
+			returnMap=this.getByList(sql.toString(), null, "T_USER_BRAND", nowPage, onePageCount);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
