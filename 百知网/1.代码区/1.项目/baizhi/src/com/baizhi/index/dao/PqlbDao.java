@@ -131,6 +131,106 @@ public class PqlbDao extends DaoSupport{
 		return returnMap;
 	}
 	
+	/**
+	 * 获取推荐品牌信息
+	 * @param params 参数
+	 * @param nowPage 当前页
+	 * @param onePageCount 每页显示多少条
+	 * @return
+	 */
+	public Map<String,Object> getCommendPqlbList(Map<String, Object> params,int nowPage,int onePageCount){
+		StringBuffer sql = new StringBuffer();
+		sql.append("SELECT new Map(")
+		   .append("a.BRAND_ID as BRAND_ID,")//品牌信息ID
+		   .append("a.USER_ID as USER_ID,")//用户ID
+		   .append("a.NAME as NAME,")//姓名/品牌名称
+		   .append("a.INTRODUCTION as INTRODUCTION,")//个人介绍/品牌介绍
+		   .append("a.IMAGE_PATH as IMAGE_PATH,")//相片路径/LOGO路径
+		   .append("(select count(*) from T_USER_BATTENTION where BRAND_ID=a.BRAND_ID and USER_ID=?) as IS_ATTENTION ) ")
+		   .append("FROM T_USER_BRAND a,T_USER_BASIC b ")
+		   .append("WHERE a.USER_ID=b.USER_ID and a.STAUS=3 and a.IS_COMMEND=1  ")
+		   .append(" order by a.COMMEND_TIME DESC ");
+		Map<String,Object> returnMap = null;
+		Session session = getSession();
+		try {
+			Object[] condition=new Object[]{params.get("USER_ID")};
+			Query query = setQueryParameters(session.createQuery(sql.toString()),condition );
+			returnMap = PagerSupport.getList(session, query, "T_USER_BRAND", condition,nowPage, onePageCount);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return returnMap;
+	}
+	
+	/**
+	 * 获取最新品牌信息
+	 * @param params 参数
+	 * @param nowPage 当前页
+	 * @param onePageCount 每页显示多少条
+	 * @return
+	 */
+	public Map<String,Object> getNewPqlbList(Map<String, Object> params,int nowPage,int onePageCount){
+		StringBuffer sql = new StringBuffer();
+		sql.append("SELECT new Map(")
+		   .append("a.BRAND_ID as BRAND_ID,")//品牌信息ID
+		   .append("a.USER_ID as USER_ID,")//用户ID
+		   .append("a.NAME as NAME,")//姓名/品牌名称
+		   .append("a.INTRODUCTION as INTRODUCTION,")//个人介绍/品牌介绍
+		   .append("a.IMAGE_PATH as IMAGE_PATH,")//相片路径/LOGO路径
+		   .append("(select count(*) from T_USER_BATTENTION where BRAND_ID=a.BRAND_ID and USER_ID=?) as IS_ATTENTION ) ")
+		   .append("FROM T_USER_BRAND a,T_USER b ")
+		   .append("WHERE a.USER_ID=b.USER_ID and a.STAUS=3 ")
+		   .append("and  ('"+DateUtils.getCurrentTime(DateUtils.SHOW_DATE_FORMAT)+"'>b.LAST_FREEZETIME or b.LAST_FREEZETIME is null) ")
+		   .append(" order by  a.CREATE_TIME DESC ");
+		Map<String,Object> returnMap = null;
+		Session session = getSession();
+		try {
+			Object[] condition=new Object[]{params.get("USER_ID")};
+			Query query = setQueryParameters(session.createQuery(sql.toString()),condition );
+			returnMap = PagerSupport.getList(session, query, "T_USER_BRAND", condition,nowPage, onePageCount);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return returnMap;
+	}
+	
+	/**
+	 * 获取最热品牌信息
+	 * @param params 参数
+	 * @param nowPage 当前页
+	 * @param onePageCount 每页显示多少条
+	 * @return
+	 */
+	public Map<String,Object> getHotPqlbList(Map<String, Object> params,int nowPage,int onePageCount){
+		StringBuffer sql = new StringBuffer();
+		sql.append("SELECT new Map(")
+		   .append("a.BRAND_ID as BRAND_ID,")//品牌信息ID
+		   .append("a.USER_ID as USER_ID,")//用户ID
+		   .append("a.NAME as NAME,")//姓名/品牌名称
+		   .append("a.INTRODUCTION as INTRODUCTION,")//个人介绍/品牌介绍
+		   .append("a.IMAGE_PATH as IMAGE_PATH,")//相片路径/LOGO路径
+		   .append("(select count(*) from T_USER_BATTENTION where BRAND_ID=a.BRAND_ID and USER_ID=?) as IS_ATTENTION ) ")
+		   .append("FROM T_USER_BRAND a,T_USER_BASIC b ")
+		   .append("WHERE a.USER_ID=b.USER_ID and a.STAUS=3  ")
+		   .append(" order by (a.ATT_USER_COUNT+a.PROBLEM_COUNT) DESC ");
+		Map<String,Object> returnMap = null;
+		Session session = getSession();
+		try {
+			Object[] condition=new Object[]{params.get("USER_ID")};
+			Query query = setQueryParameters(session.createQuery(sql.toString()),condition );
+			returnMap = PagerSupport.getList(session, query, "T_USER_BRAND", condition,nowPage, onePageCount);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return returnMap;
+	}
+	
 	
 	/**
 	 * 最热品牌

@@ -38,19 +38,19 @@ public class InitPqlbPage extends ActionSupport {
 		this.returnMap = returnMap;
 	}
 	
-	private Integer myself;
+	private Integer type;
 	
-	public Integer getMyself() {
-		return myself;
+	public Integer getType() {
+		return type;
 	}
 
-	public void setMyself(Integer myself) {
-		this.myself = myself;
+	public void setType(Integer type) {
+		this.type = type;
 	}
 
 	@Override
 	public String execute() throws Exception {
-		returnMap=pqlbService.getBrandList( 1, 10);
+		returnMap=pqlbService.getBrandList( 1, 5);
 		if(returnMap!=null&&returnMap.size()>0){
 			//最新
 			if(returnMap.get("newlist")!=null){

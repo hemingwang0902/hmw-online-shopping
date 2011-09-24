@@ -11,7 +11,7 @@ function getDataList(nowPage){
 	}
 	var onePageCount=parseInt($("#onePageCount").val());
 	
-	$.post("getPqlbList.go",{myself:$("#myself").val(),nowPage: nowPage,onePageCount: onePageCount},function(result){
+	$.post("getPqlbList.go",{type:$("#type").val(),nowPage: nowPage,onePageCount: onePageCount},function(result){
 		if(result==null||result==''){
 			return;
 		}

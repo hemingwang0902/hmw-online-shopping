@@ -14,7 +14,7 @@
 	<div class="c_left">
 	  <%@include file="../common/search.jsp" %>
       <div class="line_1"></div>
-      <input type="hidden" id="myself" name="myself" value="${myself }" />
+      <input type="hidden" id="type" name="type" value="${type}" />
       <input type="hidden" id="nowPage" name="nowPage" value="1" />
       <input type="hidden" id="onePageCount" name="onePageCount" value="10" />
       <div id="list_pqlb">
@@ -46,8 +46,8 @@
 			</s:if>
             </s:iterator>
           
-          <!--<div class="more"><a href="#">更多 &gt;&gt;</a></div>
-        --></div>
+          <div class="more"><a href="${basePath }/index/initPqlbPage.go?type=1">更多 &gt;&gt;</a></div>
+        </div>
     <div class="r_column">
             <div class="column">热点品牌</div>
             
@@ -69,8 +69,8 @@
           </s:if>
 			
             </s:iterator>
-          	<!--<div class="more"><a href="#">更多 &gt;&gt;</a></div>
-        --></div>
+          	<div class="more"><a href="${basePath }/index/initPqlbPage.go?type=2">更多 &gt;&gt;</a></div>
+       </div>
         <div class="r_column">
             <div class="column">最新品牌</div>
           
@@ -91,8 +91,8 @@
 			</s:if>
             </s:iterator>
           
-          <!--<div class="more"><a href="#">更多 &gt;&gt;</a></div>
-        --></div>
+          <div class="more"><a href="${basePath }/index/initPqlbPage.go?type=3">更多 &gt;&gt;</a></div>
+        </div>
  
     </div>
 	<div class="clear"></div>

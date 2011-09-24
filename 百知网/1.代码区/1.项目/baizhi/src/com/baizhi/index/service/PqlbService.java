@@ -82,6 +82,39 @@ public class PqlbService  extends ServiceSupport{
 	public Map<String,Object> getPqlbList(Map<String, Object> params,int nowPage,int onePageCount){
 		return pqlbDao.getPqlbList(params, nowPage, onePageCount);
 	}
+	
+	/**
+	 * 获取推荐品牌信息
+	 * @param params 参数
+	 * @param nowPage 当前页
+	 * @param onePageCount 每页显示多少条
+	 * @return
+	 */
+	public Map<String,Object> getCommendPqlbList(Map<String, Object> params,int nowPage,int onePageCount){
+		return pqlbDao.getCommendPqlbList(params, nowPage, onePageCount);
+	}
+	
+	/**
+	 * 获取最新品牌信息
+	 * @param params 参数
+	 * @param nowPage 当前页
+	 * @param onePageCount 每页显示多少条
+	 * @return
+	 */
+	public Map<String,Object> getNewPqlbList(Map<String, Object> params,int nowPage,int onePageCount){
+		return pqlbDao.getNewPqlbList(params, nowPage, onePageCount);
+	}
+	
+	/**
+	 * 获取最热品牌信息
+	 * @param params 参数
+	 * @param nowPage 当前页
+	 * @param onePageCount 每页显示多少条
+	 * @return
+	 */
+	public Map<String,Object> getHotPqlbList(Map<String, Object> params,int nowPage,int onePageCount){
+		return pqlbDao.getHotPqlbList(params, nowPage, onePageCount);
+	}
 
 	
 	public void attentionBrand(int USER_ID, int BRAND_ID, boolean disAttention){

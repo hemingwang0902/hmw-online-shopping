@@ -3,5 +3,5 @@
 <div class="r_column">
 	<div class="column">关注品牌</div>
 	<div id="attentionUserList"></div>
-	<div class="more"><a href="${basePath }/index/initPqlbPage.go?myself=1">更多 &gt;&gt;</a></div>
+	<div class="more"><a href="${basePath }/index/initPqlbPage.go?type=4">更多 &gt;&gt;</a></div>
 </div>

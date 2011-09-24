@@ -29,24 +29,42 @@ public class GetPqlbList  extends ActionSupport {
 		this.pqlbService = pqlbService;
 	}
 	
-	private Integer myself;
+	private Integer type;//类型 1推荐2热点3最新、4自己关注品牌
 	
-	public Integer getMyself() {
-		return myself;
+	
+	
+	public Integer getType() {
+		return type;
 	}
 
-	public void setMyself(Integer myself) {
-		this.myself = myself;
+	public void setType(Integer type) {
+		this.type = type;
 	}
-	
+
 	@Override
 	public String execute() throws Exception {
+		Map<String, Object> returnMap =null;
+		//组织参数
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("USER_ID", this.getSessionUserId());
-		if(myself!=null&&myself==1){
-			params.put("myself", myself);
+		//根据类型判断查询品牌数据
+		if(type!=null){
+			if(type==1){//查询推荐品牌
+				returnMap=pqlbService.getCommendPqlbList(params, this.getNowPage(), this.getOnePageCount());
+			}else if(type==2){//查询热点品牌
+				returnMap=pqlbService.getHotPqlbList(params, this.getNowPage(), this.getOnePageCount());
+			}else if(type==3){//查询最新品牌
+				returnMap=pqlbService.getNewPqlbList(params, this.getNowPage(), this.getOnePageCount());
+			}else if(type==4){//查询自己关注品牌
+				params.put("myself", 1);
+				returnMap=pqlbService.getPqlbList(params, this.getNowPage(), this.getOnePageCount());
+			}else{
+				returnMap=pqlbService.getPqlbList(params, this.getNowPage(), this.getOnePageCount());
+			}
+		}else{
+			returnMap=pqlbService.getPqlbList(params, this.getNowPage(), this.getOnePageCount());
 		}
-		Map<String, Object> returnMap = pqlbService.getPqlbList(params, this.getNowPage(), this.getOnePageCount());
+		//将品牌数据转换成json数据
 		if (returnMap != null && returnMap.size() != 0) {
 			this.setResult(returnMap);
 		}
