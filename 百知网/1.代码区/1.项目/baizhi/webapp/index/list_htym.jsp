@@ -14,7 +14,7 @@
 	</style>
 </head>
 
-<body>
+<body style="text-align:center;">
 	<input type="hidden" id="TALK_ID" value='<s:property value="talk.TALK_ID"/>' />
  	<a href='${basePath }/index/updateTalkImage.jsp?TALK_ID=<s:property value="talk.TALK_ID"/>' id="item_talkImage"></a>
 	<%@include file="../common/head.jsp" %>

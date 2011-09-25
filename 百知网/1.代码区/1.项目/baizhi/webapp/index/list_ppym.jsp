@@ -9,7 +9,7 @@
 	<script type="text/javascript" language="javascript"  src="list_ppym.js"></script>
 </head>
 
-<body>
+<body style="text-align:center;">
 	<input type="hidden" id="BRAND_ID" value='<s:property value="brand.BRAND_ID"/>' />
 	<%@include file="../common/head.jsp" %>
 <div class="content">

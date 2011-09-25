@@ -3,7 +3,7 @@
 
 <div class="top">
 	<div class="top_big">
-		<div class="logo">
+		<div class="logo" style="width:155px;height:37px;">
 			<img src="${imgBasePath }/main/logo.png" />
 		</div>
 		<div class="nav">

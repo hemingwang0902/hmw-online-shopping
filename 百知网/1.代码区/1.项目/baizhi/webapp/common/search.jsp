@@ -4,9 +4,9 @@
  <form id="searchForm" name="searchForm" action="${basePath }/index/search.go" method="post">
  	<a href="${basePath }/index/addProblem.jsp" id="item_a"></a>
  	<a href="${basePath }/index/addTalk.jsp" id="item_talk"></a>
-	<input type="text" id="q" name="q" value="搜索问题、品牌或会员 >>" style="height:21px; float:left; color:#999; padding-top:5px;  padding-left:5px; width:350px;"/>  
-	<input type="button" class="bot_tjht"  value="" style=" bottom:0px; float:right;cursor: pointer;" onclick="$('#item_talk').click();"/>
-	<input type="button" class="bot_t" value="" style=" bottom:0px; float:right;cursor: pointer;" onclick="$('#item_a').click();"/>
+	<input type="text" id="q" name="q" value="搜索问题、品牌或会员 >>" style="height:28px;float:left;color:#999; padding-top:5px;  padding-left:5px; width:350px;"/>  
+	<input type="button" class="bot_tjht"  value="" style=" bottom:0px; line-height:40px;float:right;cursor: pointer;" onclick="$('#item_talk').click();"/>
+	<input type="button" class="bot_t" value="" style=" bottom:0px; line-height:40px;float:right;cursor: pointer;" onclick="$('#item_a').click();"/>
 </form>
  </div>
 
