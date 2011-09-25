@@ -1,4 +1,4 @@
-body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td { 
+﻿body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td { 
 	margin:0;
 	padding:0;
 }
@@ -119,7 +119,7 @@ background:url(../images/main/kuai.png) no-repeat; padding-left:20px;font-size:1
 
 .colun_l a{ text-decoration:none; color:#333;line-height:27px;}
 .colun_l a:hover{ color:#ff7200;}
-.column_contentgxq{width:160px; margin:15px 0 15px 0; border-bottom:1px solid #777; padding:0 20px 10px 20px;}
+.column_contentgxq{width:160px; margin:15px 0 15px 0; border-bottom:1px solid #777;}
 .colun_c_main{ line-height:20px; font-size:12px; color:#999;}
 .colun_c_pptu{ height:60px; float:left; width:60px; padding-top:5px;}
 .colun_c_ppwz{ width:90px; float:left; padding-left:10px;}
