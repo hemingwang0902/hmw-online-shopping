@@ -84,8 +84,7 @@
                 </div>
                 <div class=" colun_c_ppwz">
                     <div class="colun_c_xnr"><a href="initPpym.go?BRAND_ID=${newlist.BRAND_ID }">${newlist.NAME }</a></div>
-                    <!--<div class="colun_c_xnrcon">${newlist.INTRODUCTION}</div>
-              --></div>
+                    <!--<div class="colun_c_xnrcon">${newlist.INTRODUCTION}</div>--></div>
                 <div style=" clear:both;font-size:0;"></div>
           	</div>
 			</s:if>

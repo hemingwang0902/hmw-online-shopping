@@ -53,7 +53,7 @@ function getDataList(nowPage){
 			for(var i=0;i<data["list"].length;i++){
 				map=data["list"][i];
 				if(map.DYNAMIC_TYPE==1){
-					content += "<div class='su' style='background:#f7ffe1;'>";
+					content += "<div class='su' style='background:#DFEAF4;'>";
 					content += "	<a href='../index/initHyym.go?userId="+map.USER_ID+"' class='qu' onclick=\"modifyIsOpen("+map.DYNAMIC_ID+")\">";
 					content += "		<img class='eu' src='"+data.cpath+"/"+map.IMAGE_PATH+"' height='25' width='25' onerror='load_person_image_25_25(this)' />";
 					content += "	</a>";
@@ -63,7 +63,7 @@ function getDataList(nowPage){
 					content += "	</div></div>";
 					content += "</div>";
 				}else{
-					content += "<div class='su' style='background:#f7ffe1;'>";
+					content += "<div class='su' style='background:#DFEAF4;'>";
 					content += "	<a href='../index/initHyym.go?userId="+map.USER_ID+"' class='qu' >";
 					content += "		<img class='eu' src='"+data.cpath+"/"+map.IMAGE_PATH+"' height='25' width='25' onerror='load_person_image_25_25(this)' />";
 					content += "	</a>";

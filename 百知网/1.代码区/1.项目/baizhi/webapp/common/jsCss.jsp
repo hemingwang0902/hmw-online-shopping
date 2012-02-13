@@ -3,10 +3,10 @@
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">
 <meta http-equiv="expires" content="0">    
-<meta http-equiv="keywords" content="百知网">
-<meta http-equiv="description" content="百知网">
+<meta http-equiv="keywords" content="需知网">
+<meta http-equiv="description" content="需知网">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>百知100zhi.cn —— 一个有趣的网络问答社区，分享知识，发现价值</title>
+<title>需知网 —— 这里有你想知道的，有你要表达的，有你感兴趣的</title>
 
 <link type="text/css" rel="stylesheet" href="${cssBasePath }/style_home.css" />
 <link type="text/css" rel="stylesheet" href="${cssBasePath }/lightbox.css" media="screen"/>

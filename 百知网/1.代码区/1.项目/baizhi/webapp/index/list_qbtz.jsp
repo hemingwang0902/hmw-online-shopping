@@ -15,7 +15,7 @@
 	  <div class="subMenu">
       	<ul>
             <li class="zui" id="noreadmessage"><a href="javascript:;">未读通知</a></li>
-            <li class="re" id="allreadmessage"><a href="javascript:;">全部通知</a></li>
+            <li class="re" id="allreadmessage"><a href="javascript:;">已读通知</a></li>
       	</ul>
       </div>
       <div class="line_1"></div>

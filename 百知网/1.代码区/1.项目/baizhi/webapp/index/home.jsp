@@ -8,11 +8,12 @@
 	<script type="text/javascript" src="${basePath}/index/home.js"></script>
 	<style type="text/css">
 	a.checked{
-		background-color: #888888;
+	  
+	   
 	}
 	</style>
 </head>
-<body>
+<body >
 	<%@include file="../common/head.jsp" %>
 	<input type="hidden" id="problemType" value="zui">
 	

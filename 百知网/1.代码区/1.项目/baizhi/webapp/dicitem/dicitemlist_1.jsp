@@ -4,7 +4,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=GBK">
-	<title>百知网</title>
+	<title>需知网</title>
 	<link rel="stylesheet" type="text/css" href="../styles/jquery.autocomplete.css" />
 	<script type="text/javascript" src="../javascripts/jquery-1.6.1.js"></script>
 	<script type="text/javascript" src="../javascripts/jquery.autocomplete.min-1.1.js"></script>

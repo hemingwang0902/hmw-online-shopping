@@ -17,11 +17,12 @@
 <div id="page_loading" class="page_loading"></div>
 <div class="container">
 	<div class="content">
-		<div id="tip_message" class="tip_message" ><s:property value="message"/></div>
-		<form action="saveTalktype.go" method="post" id="TalktypeForm">
-			<input type="hidden"  id="TALKTYPE_ID" name="TALKTYPE_ID" value='<s:property value="TALKTYPE_ID"/>' />
-			<s:token></s:token>
-			<input type="hidden" id="ID" name="ID" value='<s:property value="ID"/>'/>
+		<div id="tip_message" class="tip_message" >${message}</div>
+		<!--  <form action="saveTalktype.go" method="post" id="TalktypeForm">-->
+			<form action="<%=request.getContextPath() %>/fileUpload" method="post" id="TalktypeForm"  enctype="multipart/form-data" >
+			<input type="hidden"  id="TALKTYPE_ID" name="TALKTYPE_ID" value='${TALKTYPE_ID}' />
+			
+			<input type="hidden" id="ID" name="ID" value='${ID}'/>
 			<div class="lightbox_header"><span class="font_span">话题类型表单</span></div>
 			<div class="btn_box">
 				<input type="submit" value="保存" class="button_box"/>
@@ -31,17 +32,33 @@
 				<table width="100%;" border="0" cellspacing="0" cellpadding="0" class="lightbox_table">
 					<tr>
 						<td class="lightbox_title"><span class="font_red">*</span>类型名称：</td>
-						<td class="lightbox_content"><input type="text" class="input_width" id="TYPE_NAME" name="TYPE_NAME" value='<s:property value="TYPE_NAME"/>'/></td>
+						<td class="lightbox_content"><input type="text" class="input_width" id="TYPE_NAME" name="TYPE_NAME" value='${TYPE_NAME}'/></td>
 						<td class="lightbox_title">&nbsp;</td>
 						<td class="lightbox_content">&nbsp;</td>
 					</tr>
 					<tr>
 						<td class="lightbox_title">&nbsp;备注：</td>
-						<td colspan="3" class="lightbox_content"><textarea  class="textarea_box"  id="REMARK" name="REMARK" ><s:property value="REMARK"/></textarea></td>
+						<td colspan="3" class="lightbox_content"><textarea  class="textarea_box"  id="REMARK" name="REMARK" >${REMARK}</textarea></td>
+					</tr>
+					<tr>
+						<td class="lightbox_title">&nbsp;LOGO：</td>
+						<td><input name="talklogo" type="file" value="选择文件" /></td>
 					</tr>
 				</table>
 			</div>
 		</form>
+		<!-- 
+		<form action="" method="post" name="fileupload" >
+			 <div class="form_style">
+				<table width="100%;" border="0" cellspacing="0" cellpadding="0" class="lightbox_table">
+					<tr>
+						<td class="lightbox_title">&nbsp;LOGO：</td>
+						<td><input type="file" value="选择文件" /></td>
+					</tr>
+				</table>
+			</div>
+		</form>
+		-->
 	</div>
 </div>
 </body>

@@ -1,0 +1,18 @@
+body { font-family:Verdana; font-size:14px; margin:0;}
+#all {margin:0 auto; width:100%; _height:176px; background:#E7E8E8;}
+#container {margin:0 auto; width:960px; height:400px;}
+#header { height:176px; background:#E7E8E8; }
+#mainContent { height:300px;  }
+#footer { height:30px; }
+
+.row{
+/*����ÿ��*/ 
+width:100%; clear:both;
+}
+.left,.right{ float:left; width:300px;padding-top:10px; 
+}
+.right{ float:right;}
+
+
+.tb{width:300px;line-height:25px;list-style: none; padding-left:0px;}
+.tb li{float:left; width:auto;}

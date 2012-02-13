@@ -3,10 +3,10 @@
 
 <div class="top">
 	<div class="top_big">
-		<div class="logo" style="width:155px;height:37px;">
-			<img src="${imgBasePath }/main/logo.png" />
+		<div class="logo">
+			<img src="${imgBasePath }/main/logo.png"  width="155px" height="37px"/>
 		</div>
-		<div class="nav">
+		<div class="nav" style="color:#fff;">
 			<a href="${basePath }/index/home.jsp">首页</a>&nbsp;&nbsp;
 			<a href="${basePath }/index/initPqlbPage.go">品牌</a>&nbsp;&nbsp;
 			<a href="${basePath }/index/initHtgc.go">话题</a>&nbsp;&nbsp;

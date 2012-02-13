@@ -9,7 +9,7 @@
 	<script type="text/javascript" src="list_hyym.js"></script>
 	<style type="text/css">
 	.current{
-		background-color: #888888;
+		text-decoration:underline;
 	}
 	</style>
 </head>
@@ -39,10 +39,10 @@
       <s:if test="userId != #session.USER_ID">
       <div class="wtym_tjda">
           <div class="tit_hyym">问<s:property value="userBasic.NAME"/>一个问题（仅他能回答）</div>
-          <div class="tit_wtym_daan">
+          <div class="tit_wtym_daana">
           <textarea id="CONTENT" cols="0" rows="0" style="width:540px; height:130px;"></textarea>
           </div>
-          <div class="tit_hyym_anniu"><input type="button" style="width:107px;cursor: pointer;" class="bot_xttw" onclick="addProblem();"/></div>
+          <div class="tit_hyym_anniu"><input type="button" style="width:90px;cursor: pointer;" class="bot_xttw" onclick="addProblem();"/></div>
       </div>
       </s:if>
       <div class="tit_hyym_twwt">

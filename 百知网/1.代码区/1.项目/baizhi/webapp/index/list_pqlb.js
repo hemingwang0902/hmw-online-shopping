@@ -25,15 +25,12 @@ function getDataList(nowPage){
 			
 			for(var i=0;i<data["list"].length;i++){
 				map=data["list"][i];
-				var INTRODUCTION=map.INTRODUCTION;
-				var shortINTRODUCTION=substr(INTRODUCTION,70);
-				
 				content+="<div class='title_xgwt'>";
 				content+="	<div class='title_xgwt_tu'><a href='initPpym.go?BRAND_ID="+map.BRAND_ID+"'><img src='"+data.cpath+map.IMAGE_PATH+"' height='77' width='77' onerror=\"load_brand_image_74_74(this)\" /></a></div>";
 				content+="	<div class='title_xgwt_xner'style='width:345px;'>";
 				content+="		<ul>";
 				content+="			<li class='tit'><a href='initPpym.go?BRAND_ID="+map.BRAND_ID+"'>"+map.NAME+"</a></li>";
-				content+="			<li class='tit_con'>"+shortINTRODUCTION+"</li>";
+				content+="			<li class='tit_con'>"+map.INTRODUCTION==null?"":map.INTRODUCTION+"</li>";
 				content+="		</ul>";
 				content+="	</div>";
 				content+="	<div class='title_xgwt_anniu' >";
@@ -54,36 +51,6 @@ function getDataList(nowPage){
 	});
 	return;
 }
-
-//获取字符串字节数
-function substr(str, len) {  
-	if(!str || !len) { 
-		return ''; 
-	}       
-	//预期计数：中文2字节，英文1字节     
-	var a = 0;       
-	//循环计数     
-	var i = 0;       
-	//临时字串    
-	var temp = '';       
-	for (i=0;i<str.length;i++){         
-		if (str.charCodeAt(i)>255){             
-			//按照预期计数增加2             
-			a+=2;         
-		}else{            
-			a++;        
-		}        
-		//如果增加计数后长度大于限定长度，就直接返回临时字符串        
-		if(a > len) { 
-			return temp+"..."; 
-		}          
-		//将当前内容加到临时字符串        
-		temp += str.charAt(i);     
-	}
-	//如果全部是单字节字符，就直接返回源字符串     
-	return str; 
-} 
-
 
 
 function brand_att(BRAND_ID){

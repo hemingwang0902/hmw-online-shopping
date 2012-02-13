@@ -14,12 +14,12 @@
 	</style>
 </head>
 
-<body style="text-align:center;">
+<body  style="text-align:center;">
 	<input type="hidden" id="TALK_ID" value='<s:property value="talk.TALK_ID"/>' />
  	<a href='${basePath }/index/updateTalkImage.jsp?TALK_ID=<s:property value="talk.TALK_ID"/>' id="item_talkImage"></a>
 	<%@include file="../common/head.jsp" %>
 <div class="content">
-	<div class="c_left">
+	<div class="c_left" style="text-align: left;">
 	  <%@include file="../common/search.jsp" %>
       <div class="line_1"></div>
       <div class="tit_1">
@@ -28,7 +28,7 @@
       		</div>
             <div class="tit_google_con" >
             	<ul>
-                	<li><a href="javascript:void(0);"><s:property value="talk.CONTENT"/></a></li>
+                	<li>&quot;<a href="javascript:void(0);"><s:property value="talk.CONTENT"/></a></li>
                     <li class="tit_google_conter">
                     	<div id="DIV_TALK_INTRODUCTION_0">
                     	<span id="SPAN_TALK_INTRODUCTION"><s:property value="talk.INTRODUCTION" escapeHtml="false"/></span>
@@ -56,7 +56,7 @@
       <%@include file="../common/problemList.jsp" %>
   </div>
     
-    <div class="c_right">
+    <div class="c_right" style="text-align:left;">
     	<div class="right_subMenu">
             <ul>
             <s:if test="talk.ATTENTION>0">

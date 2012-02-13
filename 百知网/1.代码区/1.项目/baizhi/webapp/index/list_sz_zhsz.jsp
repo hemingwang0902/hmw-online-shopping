@@ -18,10 +18,10 @@
           <div class="column_sz">设置选项</div>
           <div class="list_sz">
           	<ul>
-            	<li><a href="../sz/initSzForm.go">基本资料</a></li>
-            	<li><a href="../index/list_sz_pplb.jsp" >品牌资料</a></li>
-                <li><a href="javascript:;"  style="background-color:#CCDBA2;"><font color="#FF6633">账户设置</font></a></li>
-                <li><a href="../usernotice/getUserNoticeList.go">通知设置</a></li>
+            	<li><a href="../sz/initSzForm.go" style="font-weight:bold;">基本资料</a></li>
+            	<li><a href="../index/list_sz_pplb.jsp" style="font-weight:bold;">品牌资料</a></li>
+                <li><a href="javascript:;"   style="font-weight:bold;"><font color="#E0E0E0">账户设置</font></a></li>
+                <li><a href="../usernotice/getUserNoticeList.go" style="font-weight:bold;">通知设置</a></li>
             </ul>
           </div>
     </div>

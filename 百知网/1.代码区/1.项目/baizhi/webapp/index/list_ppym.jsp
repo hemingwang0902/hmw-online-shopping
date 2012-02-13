@@ -13,7 +13,7 @@
 	<input type="hidden" id="BRAND_ID" value='<s:property value="brand.BRAND_ID"/>' />
 	<%@include file="../common/head.jsp" %>
 <div class="content">
-	<div class="c_left">
+	<div class="c_left" style="text-align:left;">
 	  <%@include file="../common/search.jsp" %>
       <div class="line_1"></div>
       <div class="tit_1">
@@ -32,7 +32,7 @@
   </div>
     
     
-    <div class="c_right">
+    <div class="c_right" style="text-align:left;">
     	<div class="right_subMenu">
             <ul>
             <s:if test="brand.ATTENTION>0">

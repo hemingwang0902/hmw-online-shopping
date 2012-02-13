@@ -11,7 +11,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>百知网</title>
+<title>需知网</title>
 <link href="../styles/style.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" language="javascript" src="../calendar/WdatePicker.js"></script>
 <script type="text/javascript" language="javascript" src="../javascripts/jquery-1.6.1.js"></script>
