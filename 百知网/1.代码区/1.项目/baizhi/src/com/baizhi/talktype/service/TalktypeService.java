@@ -1,5 +1,7 @@
 package com.baizhi.talktype.service;
 
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.dom4j.Element;
@@ -29,6 +31,23 @@ public class TalktypeService extends ServiceSupport{
 		this.talktypeDao = talktypeDao;
 	}
 	
+	public Map<String,Object> getTalkTypeById(int TALKTYPE_ID, int loginUserId){
+		return talktypeDao.getTalkTypeById(TALKTYPE_ID, loginUserId);
+		
+	}
+	
+	/**
+	 * 修改话题的Logo
+	 * @param IMAGE_PATH
+	 * @param TALK_ID
+	 * @return
+	 */
+	public int updateTalkImagePath(String PICLOGO,int TALKTYPE_ID){
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("PICLOGO", PICLOGO);
+		params.put("MODIFY_TIME", new Date());
+		return talktypeDao.updateTalk(params, TALKTYPE_ID);// htymDao.updateTalk(params, TALK_ID);
+	} 
 	/**
 	 * 新增或修改话题类型表信息
 	 * 

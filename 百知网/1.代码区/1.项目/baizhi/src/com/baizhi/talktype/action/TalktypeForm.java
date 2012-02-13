@@ -19,6 +19,7 @@ public abstract class TalktypeForm extends ActionSupport {
 	private String REMARK;//备注
 	private String CREATE_TIME;//创建时间
 	private String MODIFY_TIME;//修改时间
+	private String PICLOGO;//话题图片
 	
 	public String getTALKTYPE_ID() {
 		return TALKTYPE_ID;
@@ -58,6 +59,14 @@ public abstract class TalktypeForm extends ActionSupport {
 
 	public void setMODIFY_TIME(String MODIFY_TIME) {
 		this.MODIFY_TIME = MODIFY_TIME;
+	}
+
+    public String getPICLOGO() {
+		return PICLOGO;
+	}
+
+	public void setPICLOGO(String PICLOGO) {
+		this.PICLOGO = PICLOGO;
 	}
 	
 }

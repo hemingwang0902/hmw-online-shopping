@@ -28,6 +28,37 @@ public class TalktypeDao extends DaoSupport{
 		return this.saveOrUpdate(element, "TALKTYPE_ID");
 	}
 	
+	
+	/**
+	 * 修改话题表
+	 */
+	public int updateTalk(Map<String, Object> params,int TALKTYPE_ID) {
+		int count=-1;
+		StringBuffer sql = new StringBuffer();
+		ParametersSupport ps=new ParametersSupport(params,ParametersSupport.EXECUTETYPE);
+		sql.append("update T_TALKTYPE set "+ps.getConditions()+" where TALKTYPE_ID=?");
+		List<Object> list = ps.getValuesList();
+		list.add(TALKTYPE_ID);
+		count=this.executeUpdate(sql.toString(), list.toArray());
+		return count;
+	}
+	/**
+	 * 根据话题ID，查询话题详细信息
+	 * @param TALK_ID 话题ID
+	 * @param 当前页
+	 * @param onePageCount 每页显示的记录条数
+	 * @return 查询到的结果集
+	 */
+	public Map<String,Object> getTalkTypeById(int TALKTYPE_ID, int loginUserId){
+		StringBuffer sql = new StringBuffer()		
+		.append("SELECT count(*) FROM T_TALKTYPE a WHERE TALKType_ID=? ");
+		Object[] params = new Object[]{loginUserId, TALKTYPE_ID};
+		List<Map<String,Object>> list = queryForListWithSQLQuery(sql.toString(), params);
+		if(list == null || list.isEmpty())
+			return null;
+		return list.get(0);
+	}
+	
 	/**
 	 *　删除话题类型表信息
 	 * 
@@ -37,6 +68,7 @@ public class TalktypeDao extends DaoSupport{
 	public boolean deleteTalktype(String TALKTYPE_IDS) {
 		return this.delete("T_TALKTYPE","TALKTYPE_ID", TALKTYPE_IDS);
 	}
+	
 	
 	/**
 	 *　设置取消话题类型

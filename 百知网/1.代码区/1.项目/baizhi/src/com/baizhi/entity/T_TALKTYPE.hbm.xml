@@ -1,32 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-	
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-	<class entity-name="T_TALKTYPE" table="T_TALKTYPE" lazy="false">
-		<comment>话题类型表</comment>
-		<id name="TALKTYPE_ID" column="TALKTYPE_ID" type="int" >
-			<generator class="identity" />
-		</id>
-		<property name="TYPE_NAME" type="string">
-			<column name="TYPE_NAME" length="1000" >
-				<comment>类型名称</comment>
+ <class entity-name="T_TALKTYPE" lazy="false" table="T_TALKTYPE">
+  <comment>话题类型表</comment>
+  <id column="TALKTYPE_ID" name="TALKTYPE_ID" type="int">
+   <generator class="identity"/>
+  </id>
+  <property generated="never" lazy="false" name="TYPE_NAME" type="string">
+   <column length="1000" name="TYPE_NAME">
+    <comment>类型名称</comment>
+   </column>
+  </property>
+  <property generated="never" lazy="false" name="REMARK" type="string">
+   <column length="1000" name="REMARK">
+    <comment>备注</comment>
+   </column>
+  </property>
+  <property generated="never" lazy="false" name="CREATE_TIME" type="java.util.Date">
+   <column name="CREATE_TIME">
+    <comment>创建时间</comment>
+   </column>
+  </property>
+  <property generated="never" lazy="false" name="MODIFY_TIME" type="java.util.Date">
+   <column name="MODIFY_TIME">
+    <comment>修改时间</comment>
+   </column>
+  </property> 
+  <property name="PICLOGO" type="string">
+			<column name="PICLOGO" length="100"  >
+				<comment>话题图片</comment>
 			</column>
 		</property>
-		<property name="REMARK" type="string">
-			<column name="REMARK" length="1000" >
-				<comment>备注</comment>
-			</column>
-		</property>
-		<property name="CREATE_TIME" type="java.util.Date">
-			<column name="CREATE_TIME"  >
-				<comment>创建时间</comment>
-			</column>
-		</property>
-		<property name="MODIFY_TIME" type="java.util.Date">
-			<column name="MODIFY_TIME"  >
-				<comment>修改时间</comment>
-			</column>
-		</property>
-	</class>
+  
+ </class>
 </hibernate-mapping>

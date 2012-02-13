@@ -8,4 +8,10 @@
 			<ref local="talktypeDao" />
 		</property>
 	</bean>
+	
+	<bean id="uploadServlet" class="com.baizhi.talktype.action.UploadServlet" >
+		<property name="talktypeService">
+			<ref bean="talktypeService" />
+		</property>
+	</bean>
 </beans>
