@@ -61,4 +61,5 @@
 	<include file="struts2/s/s-score.xml" />
 	<include file="struts2/s/s-userscore.xml" />
 	<include file="struts2/s/s-talktype.xml" />
+	<include file="struts2/s/s-usermood.xml" />
 </struts>

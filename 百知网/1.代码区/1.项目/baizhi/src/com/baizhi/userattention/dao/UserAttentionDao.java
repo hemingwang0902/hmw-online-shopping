@@ -3,6 +3,8 @@ package com.baizhi.userattention.dao;
 import org.dom4j.Element;
 import org.hibernate.EntityMode;
 import org.hibernate.Session;
+
+import com.baizhi.IConstants;
 import com.baizhi.commons.DaoSupport;
 import com.baizhi.userdynamic.dao.UserDynamicDao;
 import com.baizhi.usernotice.dao.UserNoticeDao;
@@ -57,8 +59,8 @@ public class UserAttentionDao extends DaoSupport{
 				dom4jSession.update(was_element);
 			}
 			//判断对方是否设置是屏蔽加我为好友，如果没有屏蔽则添加消息
-			if(userNoticeDao.isUserNotice(Integer.parseInt(element.elementText("WAS_USERID")), 1, dom4jSession)){
-				userDynamicDao.saveUserDynamic(Integer.parseInt(element.elementText("USER_ID")), "", Integer.parseInt(element.elementText("ATTENTION_ID")), "1", "关注了你", Integer.parseInt(element.elementText("WAS_USERID")), dom4jSession);
+			if(userNoticeDao.isUserNotice(Integer.parseInt(element.elementText("WAS_USERID")), IConstants.NoticeType.attentionMe, dom4jSession)){
+				userDynamicDao.saveUserDynamic(Integer.parseInt(element.elementText("USER_ID")), "", Integer.parseInt(element.elementText("ATTENTION_ID")), IConstants.NoticeType.attentionMe, "关注了你", Integer.parseInt(element.elementText("WAS_USERID")), dom4jSession);
 			}
 			dom4jSession.getTransaction().commit();
 			idValue = element.elementText("ATTENTION_ID");

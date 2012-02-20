@@ -72,8 +72,8 @@ public class ProblemDao extends DaoSupport{
 			int WAS_USERID = NumberUtils.toInt(element.elementText("WAS_USERID"));
 			if(WAS_USERID > 0){
 				//判断对方是否设置接收有人问我问题的通知
-				if(userNoticeDao.isUserNotice(WAS_USERID, IConstants.NOTICE_TYPE_ASK_ME, dom4jSession)){
-					userDynamicDao.saveUserDynamic(NumberUtils.toInt(element.elementText("USER_ID")), "", NumberUtils.toInt(idValue), ""+IConstants.NOTICE_TYPE_ASK_ME, "问了你一个问题", WAS_USERID, dom4jSession);
+				if(userNoticeDao.isUserNotice(WAS_USERID, IConstants.NoticeType.askMe, dom4jSession)){
+					userDynamicDao.saveUserDynamic(NumberUtils.toInt(element.elementText("USER_ID")), "", NumberUtils.toInt(idValue), IConstants.NoticeType.askMe, "问了你一个问题", WAS_USERID, dom4jSession);
 				}
 			}
 			

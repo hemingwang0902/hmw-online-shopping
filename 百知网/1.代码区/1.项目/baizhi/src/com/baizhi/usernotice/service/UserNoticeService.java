@@ -1,5 +1,6 @@
 package com.baizhi.usernotice.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import com.baizhi.commons.ServiceSupport;
@@ -32,11 +33,10 @@ public class UserNoticeService extends ServiceSupport{
 	 * 修改用户通知设置表信息
 	 * @param USER_ID  用户ID
 	 * @param types  通知类型
-	 * @param vals  设置类型 
-	 * @return 返回主键ID,失败返回""
+	 * @return 返回 <code>true</code>,失败返回 <code>false</code>
 	 */
-	public boolean updateUserNotice(int USER_ID,int[] types,String[] vals) {
-		return userNoticeDao.updateUserNotice(USER_ID,types,vals);
+	public boolean updateUserNotice(int USER_ID, Map<Integer, Integer> types) {
+		return userNoticeDao.updateUserNotice(USER_ID, types);
 	}
 	
 	
@@ -47,7 +47,8 @@ public class UserNoticeService extends ServiceSupport{
      * @return 成功返回用户通知设置表信息,如果无查询记录则返回null
      */
 	public List<Map<String,Object>> getUserNoticeList(Map<String, Object> params){
-		return userNoticeDao.getUserNoticeList(params);
+	    List<Map<String,Object>> list = userNoticeDao.getUserNoticeList(params);
+	    return list == null ? new ArrayList<Map<String,Object>>() : list;
 	}
 
 }

@@ -62,8 +62,8 @@ public class ProblemAttentionDao extends DaoSupport{
 					int WAS_USERID = NumberUtils.toInt(""+map.get("USER_ID"));
 					if(WAS_USERID > 0){
 						//判断对方是否设置接收“有人关注了我品牌问题”的通知
-						if(userNoticeDao.isUserNotice(WAS_USERID, IConstants.NOTICE_TYPE_ATTENTION_PROBLEM_BRAND, dom4jSession)){
-							userDynamicDao.saveUserDynamic(NumberUtils.toInt(element.elementText("USER_ID")), "", NumberUtils.toInt(idValue), ""+IConstants.NOTICE_TYPE_ATTENTION_PROBLEM_BRAND, "关注了你品牌下的问题", WAS_USERID, dom4jSession);
+						if(userNoticeDao.isUserNotice(WAS_USERID, IConstants.NoticeType.attentionProblemBrand, dom4jSession)){
+							userDynamicDao.saveUserDynamic(NumberUtils.toInt(element.elementText("USER_ID")), "", NumberUtils.toInt(idValue), IConstants.NoticeType.attentionProblemBrand, "关注了你品牌下的问题", WAS_USERID, dom4jSession);
 						}
 					}
 				}

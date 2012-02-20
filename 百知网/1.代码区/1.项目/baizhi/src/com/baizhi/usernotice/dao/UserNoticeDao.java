@@ -1,11 +1,15 @@
 package com.baizhi.usernotice.dao;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import org.dom4j.Element;
 import org.dom4j.tree.DefaultElement;
+import org.hibernate.EntityMode;
 import org.hibernate.Query;
 import org.hibernate.Session;
+
+import com.baizhi.IConstants;
 import com.baizhi.commons.DaoSupport;
 import com.baizhi.commons.ParametersSupport;
 import com.baizhi.commons.support.DateUtils;
@@ -30,13 +34,16 @@ public class UserNoticeDao extends DaoSupport{
 	 * @throws Exception
 	 */
 	public boolean initUserNotice(Integer USER_ID,Session dom4jSession) throws Exception {
-		//通知类型(1：有人关注了我、2：有人问了我一个问题、3：有人邀请我回答一个问题、4：我关注的问题有了新答案、5：有人关注了我的品牌、6：谁可以给我发私信、7：有人关注了我品牌问题、8：我关注的品牌问题有了新答案)
-		Integer[] NOTICE_TYPES=new Integer[]{1,2,3,4,5,6,7,8};
-		Integer[] SET_TYPES=new Integer[]{1,1,1,1,1,3,1,1};
-		for (int i = 0; i < NOTICE_TYPES.length; i++) {
-			dom4jSession.save(this.getEle(USER_ID, NOTICE_TYPES[i], SET_TYPES[i]));
+		IConstants.NoticeType[] noticeTypes = IConstants.NoticeType.values();
+		for (int i = 0; i < noticeTypes.length; i++) {
+			dom4jSession.save(this.getEle(USER_ID, noticeTypes[i].key, noticeTypes[i].defaultVal));
 		}
 		return true;
+	}
+
+	public boolean insertUserNotice(Integer userId, int noticetype, int setType,Session dom4jSession) throws Exception {
+	    dom4jSession.save(this.getEle(userId, noticetype, setType));
+	    return true;
 	}
 	
 	/**
@@ -61,26 +68,29 @@ public class UserNoticeDao extends DaoSupport{
 	 * 修改用户通知设置表信息
 	 * @param USER_ID  用户ID
 	 * @param types  通知类型
-	 * @param vals  设置类型 
-	 * @return 返回主键ID,失败返回""
+	 * @return 返回<code>true</code>,失败返回 <code>false</code>
 	 */
-	public boolean updateUserNotice(int USER_ID,int[] types,String[] vals) {
-		Session session = getSession();
+	public boolean updateUserNotice(int USER_ID, Map<Integer, Integer> types) {
+		Session session = getSession().getSession(EntityMode.DOM4J);
 		String sql="update T_USER_NOTICE set SET_TYPE=? where USER_ID=? and NOTICE_TYPE=?";
 		try {
 			session.beginTransaction();
-			for (int i = 0; i < types.length; i++) {
-				Query query = session.createQuery(sql);
-				query.setString(0, vals[i]);
-				query.setInteger(1, USER_ID);
-				query.setInteger(2, types[i]);
-				query.executeUpdate();
-			}
+			for (Iterator<Map.Entry<Integer, Integer>> iter = types.entrySet().iterator(); iter.hasNext();) {
+			    Map.Entry<Integer, Integer> entry = iter.next();
+                Query query = session.createQuery(sql);
+                query.setInteger(0, entry.getValue());
+                query.setInteger(1, USER_ID);
+                query.setInteger(2, entry.getKey());
+                int rows = query.executeUpdate();
+                if(rows == 0){
+                    insertUserNotice(USER_ID, entry.getKey(), entry.getValue(), session);
+                }
+            }
 			session.getTransaction().commit();
 			return true;
 		} catch (Exception e) {
 			session.getTransaction().rollback();
-			e.printStackTrace();
+			log.error("修改用户的通知设置信息失败！", e);
 		} finally {
 			session.close();
 		}
@@ -109,7 +119,6 @@ public class UserNoticeDao extends DaoSupport{
 		return this.getByList(sql.toString(), ps.getValues());
 	}
 	
-	@SuppressWarnings("unchecked")
 	/**
 	 *　判断是否发送消息
 	 *
@@ -118,14 +127,14 @@ public class UserNoticeDao extends DaoSupport{
 	 * 
 	 * @return 返回是否发送通知消息，发送返回true，不发送返回false
 	 */
-	public boolean isUserNotice(Integer USER_ID,Integer NOTICE_TYPE,Session session) throws Exception{
+	public boolean isUserNotice(Integer USER_ID, IConstants.NoticeType NOTICE_TYPE,Session session) throws Exception{
 		//组织查询语句
 		StringBuffer sql = new StringBuffer();
 		sql.append("SELECT SET_TYPE FROM T_USER_NOTICE a WHERE a.USER_ID=? and NOTICE_TYPE=? ");
 		boolean flag=false;
 		int SET_TYPE=-1;
-		Query query = setQueryParameters(session.createQuery(sql.toString()), new Object[]{USER_ID,NOTICE_TYPE});
-		List list=query.list();
+		Query query = setQueryParameters(session.createQuery(sql.toString()), new Object[]{USER_ID, NOTICE_TYPE.key});
+		List<?> list=query.list();
 		if(list!=null&&list.size()>0){
 			SET_TYPE=Integer.parseInt(String.valueOf(list.get(0)));
 		}

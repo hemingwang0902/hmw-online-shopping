@@ -5,6 +5,8 @@ import java.util.Map;
 import org.dom4j.Element;
 import org.dom4j.tree.DefaultElement;
 import org.hibernate.Session;
+
+import com.baizhi.IConstants;
 import com.baizhi.commons.DaoSupport;
 import com.baizhi.commons.ParametersSupport;
 import com.baizhi.commons.support.DateUtils;
@@ -43,13 +45,13 @@ public class UserDynamicDao extends DaoSupport{
 	 * @return
 	 * @throws Exception
 	 */
-	public String saveUserDynamic(Integer USER_ID,String TITLE,Integer BUSINESS_ID,String DYNAMIC_TYPE,String CONTENT,Integer WARN_USERID,Session dom4jSession)throws Exception{
+	public String saveUserDynamic(Integer USER_ID,String TITLE,Integer BUSINESS_ID, IConstants.NoticeType DYNAMIC_TYPE,String CONTENT,Integer WARN_USERID,Session dom4jSession)throws Exception{
 		String idValue = "";
 		Element element = new DefaultElement("T_USER_DYNAMIC");
 		Elements.setElementValue(element, "USER_ID", USER_ID);// 用户ID
 		Elements.setElementValue(element, "TITLE", TITLE);// 动态主题
 		Elements.setElementValue(element, "BUSINESS_ID", BUSINESS_ID);// 业务主键(回复问题ID、关注会员ID)
-		Elements.setElementValue(element, "DYNAMIC_TYPE", DYNAMIC_TYPE);// 动态类型(字典：1回答问题、2关注会员)
+		Elements.setElementValue(element, "DYNAMIC_TYPE", "" + DYNAMIC_TYPE.key);// 动态类型(字典：1回答问题、2关注会员)
 		Elements.setElementValue(element, "CONTENT", CONTENT);// 动态内容(存放组织好的html内容)
 		Elements.setElementValue(element, "WARN_USERID", WARN_USERID);// 提醒用户ID
 		Elements.setElementValue(element, "IS_OPEN", 0);// 是否查看(0否、1是)

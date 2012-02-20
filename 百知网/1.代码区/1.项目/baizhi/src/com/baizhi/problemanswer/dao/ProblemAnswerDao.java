@@ -80,8 +80,8 @@ public class ProblemAnswerDao extends DaoSupport{
 					WAS_USER_ID = NumberUtils.toInt(map.get("USER_ID").toString());
 					if(WAS_USER_ID > 0){
 						//判断对方是否设置接收“我关注的问题有了新答案”的通知
-						if(userNoticeDao.isUserNotice(WAS_USER_ID, IConstants.NOTICE_TYPE_NEW_ANSWER, dom4jSession)){
-							userDynamicDao.saveUserDynamic(NumberUtils.toInt(element.elementText("USER_ID")), "", NumberUtils.toInt(idValue), ""+IConstants.NOTICE_TYPE_NEW_ANSWER, "关注的问题有了新回答", WAS_USER_ID, dom4jSession);
+						if(userNoticeDao.isUserNotice(WAS_USER_ID, IConstants.NoticeType.newAnswer, dom4jSession)){
+							userDynamicDao.saveUserDynamic(NumberUtils.toInt(element.elementText("USER_ID")), "", NumberUtils.toInt(idValue), IConstants.NoticeType.newAnswer, "关注的问题有了新回答", WAS_USER_ID, dom4jSession);
 						}
 					}
 				}
@@ -96,8 +96,8 @@ public class ProblemAnswerDao extends DaoSupport{
 					WAS_USER_ID = NumberUtils.toInt(map.get("USER_ID").toString());
 					if(WAS_USER_ID > 0){
 						//判断对方是否设置接收“我关注的品牌下的问题有了新答案”的通知
-						if(userNoticeDao.isUserNotice(WAS_USER_ID, IConstants.NOTICE_TYPE_NEW_ANSWER_BRAND, dom4jSession)){
-							userDynamicDao.saveUserDynamic(NumberUtils.toInt(element.elementText("USER_ID")), "", NumberUtils.toInt(idValue), ""+IConstants.NOTICE_TYPE_NEW_ANSWER_BRAND, "关注的品牌下的问题有了新回答", WAS_USER_ID, dom4jSession);
+						if(userNoticeDao.isUserNotice(WAS_USER_ID, IConstants.NoticeType.newAnswerBrand, dom4jSession)){
+							userDynamicDao.saveUserDynamic(NumberUtils.toInt(element.elementText("USER_ID")), "", NumberUtils.toInt(idValue), IConstants.NoticeType.newAnswerBrand, "关注的品牌下的问题有了新回答", WAS_USER_ID, dom4jSession);
 						}
 					}
 				}

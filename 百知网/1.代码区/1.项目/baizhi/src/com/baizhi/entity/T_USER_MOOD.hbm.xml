@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+	
+<hibernate-mapping>
+	<class entity-name="T_USER_MOOD" table="T_USER_MOOD" lazy="false">
+		<comment>用户心情随记</comment>
+		<id name="id" column="id" type="int" >
+			<generator class="identity" />
+		</id>
+		<property name="user_id" type="int">
+			<column name="user_id"  >
+				<comment>用户ID</comment>
+			</column>
+		</property>
+		<property name="descript" type="string">
+			<column name="descript" length="255" >
+				<comment>心情随记的内容</comment>
+			</column>
+		</property>
+		<property name="publish_time" type="java.util.Date">
+			<column name="publish_time"  >
+				<comment>发表时间</comment>
+			</column>
+		</property>
+	</class>
+</hibernate-mapping>

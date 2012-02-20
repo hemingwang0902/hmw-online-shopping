@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<bean id="userMoodDao" class="com.baizhi.usermood.dao.UserMoodDao" parent="daoSupport"></bean>
+	
+	<bean id="userMoodService" class="com.baizhi.usermood.service.UserMoodService" parent="serviceSupport">
+		<property name="userMoodDao">
+			<ref local="userMoodDao" />
+		</property>
+	</bean>
+</beans>

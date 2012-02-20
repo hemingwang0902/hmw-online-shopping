@@ -6,6 +6,8 @@ import java.util.Map;
 import org.dom4j.Element;
 import org.hibernate.EntityMode;
 import org.hibernate.Session;
+
+import com.baizhi.IConstants;
 import com.baizhi.commons.DaoSupport;
 import com.baizhi.commons.ParametersSupport;
 import com.baizhi.userbrand.dao.UserBrandDao;
@@ -90,8 +92,8 @@ public class UserBattentionDao extends DaoSupport{
 				Map<String, Object> newMap = list.get(0);
 				Integer USER_ID=Integer.parseInt(String.valueOf(newMap.get("USER_ID")));
 				String NAME=String.valueOf(newMap.get("NAME"));
-				if(userNoticeDao.isUserNotice(USER_ID, 5, dom4jSession)){
-					userDynamicDao.saveUserDynamic(Integer.parseInt(element.elementText("USER_ID")), "", Integer.parseInt(keyid), "5", "<span onclick=\"location.href='../index/initPpym.go?BRAND_ID="+BRAND_ID+"';\">关注了《"+NAME+"》</span>", USER_ID, dom4jSession);
+				if(userNoticeDao.isUserNotice(USER_ID, IConstants.NoticeType.attentionBrand, dom4jSession)){
+					userDynamicDao.saveUserDynamic(Integer.parseInt(element.elementText("USER_ID")), "", Integer.parseInt(keyid), IConstants.NoticeType.attentionBrand, "<span onclick=\"location.href='../index/initPpym.go?BRAND_ID="+BRAND_ID+"';\">关注了《"+NAME+"》</span>", USER_ID, dom4jSession);
 				}
 			}else{
 				dom4jSession.getTransaction().rollback();

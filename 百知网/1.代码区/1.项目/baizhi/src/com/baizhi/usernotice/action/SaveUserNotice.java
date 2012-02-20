@@ -1,5 +1,11 @@
 package com.baizhi.usernotice.action;
 
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+import org.apache.commons.lang.math.NumberUtils;
+
 import com.baizhi.usernotice.service.UserNoticeService;
 /**
  * 
@@ -34,7 +40,7 @@ public class SaveUserNotice extends UserNoticeForm{
 	public void setValues(String values) {
 		this.values = values;
 	}
-
+/*
 	@Override
 	public String execute() throws Exception {
 		boolean flag=false;
@@ -55,5 +61,24 @@ public class SaveUserNotice extends UserNoticeForm{
 		this.setMessage("通知设置失败");
 		return ERROR;
 	}
+*/
+    @Override
+    public String execute() throws Exception {
+        boolean flag=false;
+        
+        String[] types = values.split(",");
+        Map<Integer, Integer> typeMap = new LinkedHashMap<Integer, Integer>(types.length);
+        for (String str : types) {
+            String[] keyVal = str.split("=");
+            typeMap.put(NumberUtils.createInteger(keyVal[0]), NumberUtils.createInteger(keyVal[1]));
+        }
+        
+        //如果保存成功，返回true
+        flag = userNoticeService.updateUserNotice(this.getSessionUserId(),typeMap);
 
+        Map<String, Object> returnMap = new HashMap<String, Object>();
+        returnMap.put("flag", flag);
+        this.setResult(returnMap);
+        return JSONSUCCESS;
+    }
 }

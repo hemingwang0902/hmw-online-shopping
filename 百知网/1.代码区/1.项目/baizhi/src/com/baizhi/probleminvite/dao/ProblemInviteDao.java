@@ -55,8 +55,8 @@ public class ProblemInviteDao extends DaoSupport{
 			int WAS_USER_ID = NumberUtils.toInt(element.elementText("WAS_USER_ID"));
 			if(WAS_USER_ID > 0){
 				//判断对方是否设置接收有人问我问题的通知
-				if(userNoticeDao.isUserNotice(WAS_USER_ID, IConstants.NOTICE_TYPE_INVITE_ME, dom4jSession)){
-					userDynamicDao.saveUserDynamic(NumberUtils.toInt(element.elementText("USER_ID")), "", NumberUtils.toInt(idValue), ""+IConstants.NOTICE_TYPE_INVITE_ME, "邀请你回答一个问题", WAS_USER_ID, dom4jSession);
+				if(userNoticeDao.isUserNotice(WAS_USER_ID, IConstants.NoticeType.inviteMe, dom4jSession)){
+					userDynamicDao.saveUserDynamic(NumberUtils.toInt(element.elementText("USER_ID")), "", NumberUtils.toInt(idValue), IConstants.NoticeType.inviteMe, "邀请你回答一个问题", WAS_USER_ID, dom4jSession);
 				}
 			}
 			dom4jSession.getTransaction().commit();
