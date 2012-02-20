@@ -1,6 +1,9 @@
 var count;
 /* 获取数据列表*/
 function getDataList(){
+	//高亮显示左侧导航的“品牌资料”
+	$("#setting_left_nav a:eq(1)").attr("href", "javascript:;").css("color", "#f00");
+	
 	//删除原有记录
 	$("#userbrandlist").html("");
 	

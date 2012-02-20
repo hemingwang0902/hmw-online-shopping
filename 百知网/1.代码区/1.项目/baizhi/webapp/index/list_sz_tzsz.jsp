@@ -1,94 +1,95 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@include file="../common/basePath.jsp" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- /webapp/index/list_sz_tzsz.jsp -->
 <html>
 <head>
 	<%@include file="../common/jsCss.jsp" %>
-	<script type="text/javascript" language="javascript" src="../index/list_sz_tzsz.js"></script>
+	<%--<script type="text/javascript" language="javascript" src="../index/list_sz_tzsz.js"></script>--%>
+	<script type="text/javascript" language="javascript">
+	$(document).ready(function(){
+		//高亮显示左侧导航的“通知设置”
+		$("#setting_left_nav a:eq(3)").attr("href", "javascript:;").css("color", "#f00");
+		
+		var noticeTypes = ${result };
+		$(":checkbox, :radio").each(function(i, ele){
+			var setType = noticeTypes[ele.name];
+			if(setType == ele.value){
+				ele.checked = true;
+			} else if(setType == 0){
+				ele.checked = false;
+			}
+		});
+		
+		$("#btn_save").click(function(){
+			var values = "";
+			
+			$(":checkbox").each(function(i, ele){
+				var key = ele.name.substr(ele.name.lastIndexOf("_") + 1);
+				var val = ele.checked ? ele.value : "0";
+				values += ("," + key + "=" + val);
+			});
+			
+			$(":radio:checked").each(function(i, ele){
+				var key = ele.name.substr(ele.name.lastIndexOf("_") + 1);
+				values += ("," + key + "=" + ele.value);
+			});
+			
+			$.getJSON("${basePath}/usernotice/saveUserNotice.go", {"values": values.substr(1)}, function(jsonStr){
+				var jsonObject = eval("("+jsonStr+")");
+				if(jsonObject.flag){
+					show_showmessage({message:"提醒通知保存成功",type:"info"});
+				}else{
+					show_showmessage({message:"提醒通知保存失败",type:"error"});
+				}
+			})
+		});
+	});
+	</script>
 </head>
 
 <body>
 	<%@include file="../common/head.jsp" %>
-<div class="content">
-<div class="c_right_1">
-  <div class="r_column">
-          <div class="column_sz">设置选项</div>
-          <div class="list_sz">
-          	<ul>
-            	<li><a href="../sz/initSzForm.go" style="font-weight:bold;">基本资料</a></li>
-            	<li><a href="../index/list_sz_pplb.jsp" style="font-weight:bold;">品牌资料</a></li>
-                <li><a href="../index/list_sz_zhsz.jsp" style="font-weight:bold;">账户设置</a></li>
-                <li><a href="javascript:;" style="font-weight:bold;"><font color="#276399">通知设置</font></a></li>
-            </ul>
-          </div>
-    </div>
-  </div>
-	<div class="c_left">
-	<form action="../usernotice/saveUserNotice.go" method="post">
-	<input type="hidden" id="values" name="values" value="${returnMap.values }" /> 
-	<input type="hidden" id="message" value="${message }" />
-	<input type="hidden" id="type" value="<s:property value="#parameters.type"/>" />
-	
-	  <div class="list_xgwt_xght_sz">
-	    请选择提醒通知
-	  </div>
-      <div class="line_1"></div>
-      <div class="list_sz_tzsz">
-      <s:if test="returnMap.SET_TYPE_1==1">
-      	<input type="checkbox" checked="checked" id="SET_TYPE_1" />&nbsp;有人关注了我<br />
-      </s:if>
-      <s:else>
-      	<input type="checkbox"  id="SET_TYPE_1" />&nbsp;有人关注了我<br />
-      </s:else>
-      <s:if test="returnMap.SET_TYPE_2==1">
-      	<input type="checkbox" checked="checked" id="SET_TYPE_2" />&nbsp;有人问了我一个问题<br />
-      </s:if>
-      <s:else>
-      	<input type="checkbox"  id="SET_TYPE_2" />&nbsp;有人问了我一个问题<br />
-      </s:else>
-      <s:if test="returnMap.SET_TYPE_3==1">
-      	<input type="checkbox" checked="checked" id="SET_TYPE_3" />&nbsp;有人邀请我回答一个问题<br />
-      </s:if>
-      <s:else>
-      	<input type="checkbox"  id="SET_TYPE_3" />&nbsp;有人邀请我回答一个问题<br />
-      </s:else>
-      <s:if test="returnMap.SET_TYPE_4==1">
-      	<input type="checkbox" checked="checked" id="SET_TYPE_4" />&nbsp;我关注的问题有了新答案<br />
-      </s:if>
-      <s:else>
-      	<input type="checkbox"  id="SET_TYPE_4" />&nbsp;我关注的问题有了新答案<br />
-      </s:else>
-      <s:if test="returnMap.SET_TYPE_5==1">
-      	<input type="checkbox" checked="checked" id="SET_TYPE_5" />&nbsp;有人关注了我的品牌<br />
-      </s:if>
-      <s:else><input type="checkbox" id="SET_TYPE_5" />&nbsp;有人关注了我的品牌<br />
-      	
-      </s:else>
-        
-        
-        
-        
-      </div>
-      <div class="list_xgwt_xght_sz">
-	    设置谁可以给我发私信
-	  </div>
-      <div class="line_1"></div>
-      <div class="list_se_bcsz_1">
-      <s:if test="returnMap.SET_TYPE_6==3">
-      	<input name="SET_RADIO_TYPE"  type="radio" value="3" checked="checked" />所有人&nbsp;<input name="SET_RADIO_TYPE"  type="radio" value="4" />我关注的人
-      </s:if>
-      <s:else>
-      	<input name="SET_RADIO_TYPE"  type="radio" value="3"  />所有人&nbsp;<input name="SET_RADIO_TYPE"  type="radio" value="4" checked="checked"/>我关注的人
-      </s:else>
-   	  </div>
-      <div class="list_sz_zhsz_bcsz">
-        <input name="input" type="submit" class="list_sz_bcmm" value="保存"/>
-      </div>
-       </form>
-  </div>
- 
-	<div class="clear"></div>
-</div>
+	<div class="content">
+		<%@include file="/common/settingLeftNav.jsp" %>
+		<div class="c_left">
+			  <div class="list_xgwt_xght_sz">请选择提醒通知</div>
+		      <div class="list_sz_tzsz">
+		      	<label><input type="checkbox" checked="checked" id="SET_TYPE_1" name="SET_TYPE_1" value="1"/>&nbsp;有人关注了我</label> <br />
+		      	<label><input type="checkbox" checked="checked" id="SET_TYPE_2" name="SET_TYPE_2" value="1"/>&nbsp;有人问了我一个问题</label> <br />
+		      	<label><input type="checkbox" checked="checked" id="SET_TYPE_3" name="SET_TYPE_3" value="1"/>&nbsp;有人邀请我回答一个问题</label> <br />
+		      	<label><input type="checkbox" checked="checked" id="SET_TYPE_4" name="SET_TYPE_4" value="1"/>&nbsp;我关注的问题有了新答案</label> <br />
+		      	<label><input type="checkbox" checked="checked" id="SET_TYPE_5" name="SET_TYPE_5" value="1"/>&nbsp;有人关注了我的品牌</label> <br />
+		      	<label><input type="checkbox" checked="checked" id="SET_TYPE_7" name="SET_TYPE_7" value="1"/>&nbsp;有人关注了我的品牌下的问题</label> <br />
+		      	<label><input type="checkbox" checked="checked" id="SET_TYPE_8" name="SET_TYPE_8" value="1"/>&nbsp;我关注的品牌下的问题有了新答案</label> <br />
+		      </div>
+		      
+		      <div class="list_xgwt_xght_sz">设置谁可以给我发私信</div>
+		      <div class="list_se_bcsz_1">
+		      	<label><input name="SET_TYPE_6" id="SET_TYPE_6_3" type="radio" value="3" />所有人</label>&nbsp;
+		      	<label><input name="SET_TYPE_6" id="SET_TYPE_6_4" type="radio" value="4" checked="checked"/>我关注的人<label>
+		   	  </div>
+		      
+		      <div class="list_xgwt_xght_sz">私信可见性设置</div>
+		      <div class="list_se_bcsz_1">
+			      	<input name="SET_TYPE_9" id="SET_TYPE_9_3" type="radio" value="3" />全站可见
+			      	<input name="SET_TYPE_9" id="SET_TYPE_9_5" type="radio" value="5" checked="checked" />好友可见
+			      	<input name="SET_TYPE_9" id="SET_TYPE_9_0" type="radio" value="0" />自己可见
+		   	  </div>
+		      
+		      <div class="list_xgwt_xght_sz">心情可见性设置</div>
+		      <div class="list_se_bcsz_1">
+			      	<input name="SET_TYPE_10" id="SET_TYPE_10_3" type="radio" value="3" />全站可见
+			      	<input name="SET_TYPE_10" id="SET_TYPE_10_5" type="radio" value="5" checked="checked" />好友可见
+			      	<input name="SET_TYPE_10" id="SET_TYPE_10_0" type="radio" value="0" />自己可见
+		   	  </div>
+		   	  
+		      <div class="list_sz_zhsz_bcsz">
+		        <input id="btn_save" type="button" class="list_sz_bcmm" value="保存"/>
+		      </div>
+		</div>
+		<div class="clear"></div>
+	</div>
 	<%@include file="../common/foot.jsp" %>
 </body>
 </html>

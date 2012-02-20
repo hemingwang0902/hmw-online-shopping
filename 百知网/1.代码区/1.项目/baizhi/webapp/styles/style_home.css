@@ -342,15 +342,14 @@ margin-bottom:400px;}
 .c_right_1{width:200px; float:left; height:auto; margin-right:90px; display:inline;}
 .list_sz{ width:200px; padding-top:10px;}
 .list_sz ul li{ margin-bottom:5px;}
-.list_sz ul li a{ color:#276399;font-weight:bold; width:200px; line-height:25px;  text-align:center; display:block;}
+.list_sz ul li a{ color:#276399;font-weight:bolder; width:200px; line-height:25px;  text-align:center; display:block;}
 .list_sz ul li a:hover{color:#E0E0E0;}
 .column_sz{ width:180px;height:25px; padding-bottom:5px; border-bottom:1px solid #E0E0E0; line-height:25px; padding-left:20px;font-size:14px; font-weight:bold;}
-.list_xgwt_xght_sz{ line-height:30px; height:30px; width:570px; font-size:14px; font-weight:bold;}
+.list_xgwt_xght_sz{ line-height:30px; height:30px; width:570px; font-size:14px; font-weight:bold;padding-bottom: 2px;margin-bottom: 3px;border-bottom: 1px solid #E2DADA;}
 .title_xgwt_x_sz{width:560px; padding-left:10px; padding-top:15px;}
 .title_xgwt_tu_sz{  float:left; padding-right:15px; width:102px; height:102px; }
 .list_sz_1{ width:430px; height:102px;  float:left; color:#888;}
 .list_sz_1 ul .list_sz_li1{ line-height:25px;}
-.list_kssc{ width:88px; height:30px; background:url(../images/main/bcmm.png) no-repeat; border:0; color:#fff; line-height:30px;}
 .list_sz_xm{ float:left; padding-right:15px; float:left; width:102px;}
 .list_sz_name{float:left; padding-right:15px; float:left; width:102px;}
 .title_xgwt_x_sz_2{ width:102px; padding-right:15px; float:left; text-align:right;}
@@ -358,15 +357,10 @@ margin-bottom:400px;}
 .title_xgwt_x_sz_3{ width:430px; float:left;}
 .title_xgwt_x_sz_3 ul li{ width:430px; line-height:40px; color:#888;}
 .list_sz_js{ width:200px; height:40px; line-height:40px;}
-.list_sz_an{ width:88px; height:30px; border:0; background:url(../images/main//bcmm.png) no-repeat; color:#fff; 
-
-line-height:30px;cursor: pointer;}
-
+.list_kssc, .list_sz_an, .list_sz_bcmm{ width:88px; height:30px; border:0; background:url(../images/main//bcmm.png) no-repeat; color:#fff; line-height:30px;cursor: pointer;}
 .list_sz_zhsz{ width:570px; }
 .list_sz_zhsz ul li{ width:300px; line-height:40px; color:#888;}
 .list_sz_zhsz_bcsz{ width:230px; height:30px; margin-left:60px;}
-.list_sz_bcmm{ width:88px; height:30px; border:0; color:#fff; background:url(../images/main/bcmm.png) no-repeat;}
-
 .list_sz_tzsz{ line-height:30px; width:570px; color:#888;}
 .list_se_bcsz_1{ width:570px; line-height:30px; margin-bottom:15px;}
 

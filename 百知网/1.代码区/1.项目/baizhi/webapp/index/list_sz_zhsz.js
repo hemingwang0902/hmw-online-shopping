@@ -1,4 +1,7 @@
 $(document).ready(function(){
+	//高亮显示左侧导航的“账户设置”
+	$("#setting_left_nav a:eq(2)").attr("href", "javascript:;").css("color", "#f00");
+	
 	$("#UserForm").validate({
 		rules:{
 			R_PASSWORD:{required:true,remote: {url: "../user/checkPassword.go",type: "post",dataType: "json",data: {

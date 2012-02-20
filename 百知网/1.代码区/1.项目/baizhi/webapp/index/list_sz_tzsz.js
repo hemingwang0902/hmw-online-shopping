@@ -1,4 +1,7 @@
 $(document).ready(function(){
+	//高亮显示左侧导航的“通知设置”
+	$("#setting_left_nav a:eq(3)").attr("href", "javascript:;").css("color", "#f00");
+	
 	$("input:checkbox[id^='SET_TYPE_']").click(function(){
 		var values="";
 		$("input:checkbox[id^='SET_TYPE_']").each(function(){

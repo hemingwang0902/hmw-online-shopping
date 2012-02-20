@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@include file="../common/basePath.jsp" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- /webapp/index/list_sz.jsp -->
 <html>
 <head>
 	<link type="text/css" rel="stylesheet" href="../styles/message.css" />
@@ -14,33 +15,23 @@
 <body>
 	<%@include file="../common/head.jsp" %>
 <div class="content">
-<div class="c_right_1">
-  <div class="r_column">
-          <div class="column_sz">设置选项</div>
-          <div class="list_sz">
-          	<ul>
-            	<li><a href="javascript:;" style="font-weight:bold;"><font color="#276399" >基本资料</font></a></li>
-            	<li><a href="../index/list_sz_pplb.jsp" style="font-weight:bold;">品牌资料</a></li>
-                <li><a href="../index/list_sz_zhsz.jsp" style="font-weight:bold;">账户设置</a></li>
-                <li><a href="../usernotice/getUserNoticeList.go" style="font-weight:bold;">通知设置</a></li>
-            </ul>
-          </div>
-    </div>
-  </div>
-  
-  
+	<input type="hidden" id="user_id" value='<s:property value="#session.userinfo.USER_ID"/>' />;
+	<%@include file="/common/settingLeftNav.jsp" %>  
 	<div class="c_left">
-	  <div class="list_xgwt_xght_sz">请使用真实姓名，填写“个人介绍”好让大家了解你
-</div>
-      <div class="line_1"></div>
+	  <div class="list_xgwt_xght_sz">请使用真实姓名，填写“个人介绍”好让大家了解你</div>
       <div class="title_xgwt_x_sz" style="margin-bottom:15px;">
         <div class="title_xgwt_tu_sz"><img src="${basePath }/${returnMap.IMAGE_PATH}" height="102px" width="102px" onerror="load_person_image_102_102(this)" /></div>
         <form action="uploadHeadImage.go" method="post" id="UPLOAD_FORM" enctype="multipart/form-data" >
         <div class="list_sz_1">
         	<ul>
-            	<li class="list_sz_li1"><input type="file"  id="upload" name="upload"  /></li>
+            	<li class="list_sz_li1">
+            	<input type="file"  id="upload" name="upload"  />
+            	<input type="submit" class="list_kssc" value="开始上传" /></li>
                 <li class="list_sz_li1">支持 jpg, gif, png 格式的图片，不要超过 2MB。建议图片尺寸大于 100×100</li>
-                <li><input type="submit" class="list_kssc" value="开始上传" /></li>
+                <li>
+                	<textarea id="txt_mood" style="width: 100%;height: 40px;line-height: 20px;"></textarea><br>
+                	<input type="button" id="btn_publish_mood" class="list_kssc" value="发表心情" style="margin-left: 345px;" />
+				</li>
             </ul>
         </div>
         </form>

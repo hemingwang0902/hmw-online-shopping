@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@include file="../common/basePath.jsp" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- /webapp/index/list_sz_pplb.jsp -->
 <html>
 <head>
 	<link type="text/css" rel="stylesheet" href="../styles/message.css" />
@@ -11,27 +12,13 @@
 <body>
 	<%@include file="../common/head.jsp" %>
 <div class="content">
-<div class="c_right_1">
-  <div class="r_column">
-          <div class="column_sz">设置选项</div>
-          <div class="list_sz">
-          	<ul>
-            	<li><a href="../sz/initSzForm.go" style="font-weight:bold;">基本资料</a></li>
-            	<li><a href="javascript:;" ><font color="#276399" style="font-weight:bold;">品牌资料</font></a></li>
-                <li><a href="../index/list_sz_zhsz.jsp" style="font-weight:bold;">账户设置</a></li>
-                <li><a href="../usernotice/getUserNoticeList.go" style="font-weight:bold;">通知设置</a></li>
-            </ul>
-          </div>
-    </div>
-  </div>
+	<%@include file="/common/settingLeftNav.jsp" %>
 	<div class="c_left">
 	  <div class="list_xgwt_xght_sz">品牌列表信息
 	  	<span style="float: right;margin-right: 12px;">
 	  		<input type="button" value="新增品牌" style="width:100px; height:25px; background-color:#dadade;" onclick="location.href='../index/list_sz_pp.jsp'" />
 	  	</span>
 	  </div>
-      <div class="line_1"></div>
-      
       
       <div id="userbrandlist">
         <div class="title_xgwt_x">

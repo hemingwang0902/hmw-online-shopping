@@ -1,4 +1,7 @@
 $(document).ready(function(){
+	//高亮显示左侧导航的“基本资料”
+	$("#setting_left_nav a:eq(0)").attr("href", "javascript:;").css("color", "#f00");
+	
 	$("#SETTING_FORM").validate({
 		rules:{
 			NAME: {required: true, rangelength: [1,10]},
@@ -26,10 +29,44 @@ $(document).ready(function(){
             form.submit();
         }   
 	});
+	
+	//加载心情随记
+	$.post($("#basePath").val() + "/usermood/getUserMoodList.go",{
+		user_id: $("#user_id").val(),
+		nowPage: 1,
+		onePageCount: 1},
+		function(result){
+			if(result==null||result==''){
+				return;
+			}
+			var data = eval("("+result+")");
+			if (data != null && data["list"] != null && data["list"].length > 0) {
+				$("#txt_mood").val(data["list"][0]["descript"]);//心情随记的内容
+			}
+	});
+	
 	//加载下拉框
 	initSelect("PROVINCE","CITY",true,$("#PROVINCE_HIDDEN").val(),$("#CITY_HIDDEN").val());
-});
 
+	/*发表心情随记*/
+	$("#btn_publish_mood").click(function(){
+		$.post($("#basePath").val() + "/usermood/saveUserMood.go",{
+			descript:$("#txt_mood").val(),
+			ajax: 1
+		},function(result){
+			if(result==null||result==''){
+				return;
+			}
+			var data = eval("("+result+")");
+			if(data!=null&&data["flag"]==true){
+				show_showmessage({message:"发表心情随记成功", type:"info"});
+			}else{
+				show_showmessage({message:"发表心情随记失败", type:"error"});
+			}
+		});
+	});
+	
+});
 
 /* 保存数据*/
 function saveData(){
