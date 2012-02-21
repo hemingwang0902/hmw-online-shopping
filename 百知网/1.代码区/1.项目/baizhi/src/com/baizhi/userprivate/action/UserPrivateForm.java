@@ -1,5 +1,7 @@
 package com.baizhi.userprivate.action;
 
+import org.apache.commons.lang.StringUtils;
+
 import com.baizhi.commons.ActionSupport;
 /**
  * 类名： UserPrivateList.java<br>
@@ -12,6 +14,7 @@ import com.baizhi.commons.ActionSupport;
  */
 public abstract class UserPrivateForm extends ActionSupport {
 	
+    public static final String FACE_REGEX = "\\[em:\\s*(\\d+)\\s*:\\]";
 	private static final long serialVersionUID = 365585920828411117L;
 	
 	private String PRIVATE_ID;//私信ID
@@ -78,4 +81,12 @@ public abstract class UserPrivateForm extends ActionSupport {
 		this.CREATE_TIME = CREATE_TIME;
 	}
 	
+	/**
+	 * 替换私信内容中的表情符号
+	 * @param content 私信内容
+	 * @return 替换过表情符号后的私信内容
+	 */
+    protected String replacePrivateFace(String content) {
+        return StringUtils.trimToEmpty(content).replaceAll(FACE_REGEX,  "<img src='" + getContext_path() + "/images/face/$1.gif'/>");
+    }
 }

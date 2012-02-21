@@ -15,7 +15,7 @@ import com.baizhi.userprivate.service.UserPrivateService;
  * 修改者：<br>
  * 修改日期：<br>
  */
-public class GetUserPrivateByList  extends UserPrivateForm {
+public class GetUserPrivateByList extends UserPrivateForm {
 	
 	private static final long serialVersionUID = -8311480067715555032L;
 	
@@ -52,6 +52,7 @@ public class GetUserPrivateByList  extends UserPrivateForm {
 				for (int i = 0; i < list.size(); i++) {
 					Map<String, Object> newmap = list.get(i);
 					newmap.put("CREATE_TIME", getTime(newmap, "CREATE_TIME","M月dd日 HH:mm"));
+					newmap.put("CONTENT", replacePrivateFace((String)newmap.get("CONTENT")));
 				}
 				
 			}
@@ -59,7 +60,4 @@ public class GetUserPrivateByList  extends UserPrivateForm {
 		}
 		return JSONSUCCESS;
 	}
-
-	
-	
 }

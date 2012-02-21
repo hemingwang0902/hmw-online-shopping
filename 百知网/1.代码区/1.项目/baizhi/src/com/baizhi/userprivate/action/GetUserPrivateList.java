@@ -3,6 +3,7 @@ package com.baizhi.userprivate.action;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import com.baizhi.userprivate.service.UserPrivateService;
 /**
  * 类名： UserPrivateList.java<br>
@@ -43,14 +44,11 @@ public class GetUserPrivateList extends UserPrivateForm {
 				for (int i = 0; i < list.size(); i++) {
 					Map<String, Object> newmap = list.get(i);
 					newmap.put("CREATE_TIME", getTime(newmap, "CREATE_TIME","M月dd日 HH:mm"));
+					newmap.put("CONTENT", replacePrivateFace((String)newmap.get("CONTENT")));
 				}
-				
 			}
 			this.setResult(returnMap);
 		}
 		return JSONSUCCESS;
 	}
-
-	
-	
 }
