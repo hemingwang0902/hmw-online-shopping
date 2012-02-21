@@ -173,3 +173,7 @@ function delData(SEND_ID){
 	}});
 	return;
 }
+
+function insertFace(face){
+	$("#PRIVATE_CONTENT").val($("#PRIVATE_CONTENT").val() + "[em:" + face + ":]");
+}

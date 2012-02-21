@@ -2,15 +2,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@include file="../common/basePath.jsp" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- /webapp/index/list_hyym.jsp -->
 <html>
 <head>
 	<%@include file="../common/jsCss.jsp" %>
 	<script type="text/javascript" src="index.js"></script>
 	<script type="text/javascript" src="list_hyym.js"></script>
 	<style type="text/css">
-	.current{
-		text-decoration:underline;
-	}
+	.current{text-decoration:underline;}
 	</style>
 </head>
 
@@ -66,8 +65,7 @@
             	 <li><a id="a_attention" href="javascript:void(0);" onclick="attentionUser()" isDisAttention="false">添加关注</a></li>
             </s:else>
                 <li>
-                	<a id="a_sendPrivate" href="javascript:void(0);" onclick="$('#private_a').click();">给他发私信</a>
-                		<a href="#private_window" id="private_a"></a>
+                	<a id="private_a" href="#private_window">给他发私信</a>
 	<div style="display: none;">
 		<div style="height: 250px;width: 450px;" id="private_window">
 			<div style="width:100%;text-align: left;margin-bottom: 10px;background-color: #98b012;height: 30px;padding-top: 10px;font-size: 15px;color: white;" >发送私信</div>
@@ -76,12 +74,20 @@
 					<div style="text-align: right;padding-right: 15px;">内容：</div>
 				</div>
 				<div style="float: left;">
-					<div><textarea style="width: 357px;margin-bottom: 10px;height: 80px;" id="PRIVATE_CONTENT"></textarea></div>
+					<div>
+						<textarea style="width: 357px;margin-bottom: 10px;height: 80px;" id="PRIVATE_CONTENT"></textarea>
+						<div id="div_facelist" style="width: 357px;">
+							<s:iterator id="number" begin="1" end="32" step="1"  status='st'>
+								<img class="face" src='${basePath }/images/face/<s:property value='#st.count'/>.gif' onclick="insertFace('<s:property value="#st.count"/>');">
+							</s:iterator>
+						</div>
+					</div>
 					<div >
 						<div id="PRIVATE_MESSAGE" style="color: red;float: left;"></div>
 						<div style="text-align: right;float: right;padding-right: 20px;">
-							<input type="button" value="取消" onclick="$.fancybox.close();" />
-							<input type="button" value="发送" onclick="sendPrivate()" />
+							<%--<img id="img_facelist" src="${basePath }/images/face/facelist.gif" style="cursor: pointer;">--%>
+							<input type="button" value="取消" class="button_2" onclick="$.fancybox.close();" />
+							<input type="button" value="发送" class="button_2" onclick="sendPrivate()" />
 						</div>
 						
 					</div>

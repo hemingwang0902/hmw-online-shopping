@@ -148,9 +148,7 @@ list-style:none; font-size:0;}
 .title_xgwt_xner ul li .tit_con{ line-height:20px;height:auto;}
 .title_xgwt_anniu{ width:100px; float:left;height:auto;line-height:20px;}
 .title_xgwt_anniu p{ padding-top:10px;}
-.title_xgwt_x{width:560px; padding-bottom:20px; border-bottom:1px solid #bdd11a; padding-left:10px; padding-
-
-top:15px;}
+.title_xgwt_x{width:560px; padding-bottom:20px; border-bottom:1px solid #bdd11a; padding-left:10px; padding-top:15px;}
 
 .column_xgwt{ width:180px; padding:0 10px;}
 .column_xgwt ul li{ list-style:none; line-height:20px; padding-top:10px; }
@@ -308,7 +306,11 @@ shadow:0 1px 0 rgba(255,255,255,.3) inset,0 1px 0 rgba(0,0,0,.3);box-shadow:0 1p
 
 /**************   何明旺   *****************/
 .STYLE1 {color: #276399}
+/*按钮*/
 .baizhi_button_1{width:100px; height:25px; background-color:#dadade}
+.button_2{width:70px; height:30px; background-color:#DADADE;}
+/*私信表情*/
+img.face{cursor: pointer;}
 
 /**************    全部通知.css   *****************/
 

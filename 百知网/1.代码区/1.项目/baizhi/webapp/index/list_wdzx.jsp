@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@include file="../common/basePath.jsp" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- /webapp/index/list_wdzx.jsp -->
 <html>
 <head>
 	<link type="text/css" rel="stylesheet" href="../styles/message.css" />
@@ -16,11 +17,7 @@
       	<div class="subMenu_wdzx_1">我的私信<span>(共<span id="private_count">0</span>条)</span></div><div class="subMenu_wdzx_2"><input name="" type="button" value="写私信" onclick="$('#private_a').click();" style="width:70px; height:30px; background-color:#dadade; line-height:30px;" /></div>
       </div>
       <div class="line_1"></div>
-      	<div id="userprivatelist">
-      		
-      	</div>
-        
-        
+      <div id="userprivatelist"></div>
   </div>
     
     
@@ -42,7 +39,6 @@
 				</div>
 				<div style="float: left;">
 					<div style="width: 360px;">
-					
 					<input type="text" style="width: 355px;margin-bottom: 10px;" id="USER_IDS" />
 					<div id="div_USER" style="width:355px;border: solid 1px;height: 26px;padding-bottom: 2px;padding-top: 2px;margin-bottom: 5px;padding-left: 2px;display: none;">
 						<div style="clear: both;height: 25px;background-color: gray;float: left;border: solid 1px;">
@@ -51,12 +47,19 @@
 						</div>
 					</div>
 					</div>
-					<div style="clear: both;"><textarea style="width: 357px;margin-bottom: 10px;height: 80px;" id="PRIVATE_CONTENT"></textarea></div>
+					<div style="clear: both;">
+						<textarea style="width: 357px;margin-bottom: 10px;height: 80px;" id="PRIVATE_CONTENT"></textarea>
+						<div id="div_facelist" style="width: 357px;">
+							<s:iterator id="number" begin="1" end="32" step="1"  status='st'>
+								<img class="face" src='${basePath }/images/face/<s:property value='#st.count'/>.gif' onclick="insertFace('<s:property value="#st.count"/>');">
+							</s:iterator>
+						</div>
+					</div>
 					<div >
 						<div id="PRIVATE_MESSAGE" style="color: red;float: left;"></div>
 						<div style="text-align: right;float: right;padding-right: 20px;">
-							<input type="button" value="取消" onclick="$.fancybox.close();" />
-							<input type="button" value="发送" onclick="saveData()" />
+							<input type="button" value="取消" class="button_2" onclick="$.fancybox.close();" />
+							<input type="button" value="发送" class="button_2" onclick="saveData()" />
 						</div>
 						
 					</div>

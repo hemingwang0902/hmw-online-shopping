@@ -159,3 +159,7 @@ function sendPrivate(){
 	});
 	return;
 }
+
+function insertFace(face){
+	$("#PRIVATE_CONTENT").val($("#PRIVATE_CONTENT").val() + "[em:" + face + ":]");
+}

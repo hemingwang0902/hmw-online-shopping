@@ -105,3 +105,10 @@ function delData(PRIVATE_ID){
 	}});
 	return;
 }
+
+/**
+ * 插入表情
+ */
+function insertFace(face){
+	$("#PRIVATE_CONTENT").val($("#PRIVATE_CONTENT").val() + "[em:" + face + ":]");
+}
